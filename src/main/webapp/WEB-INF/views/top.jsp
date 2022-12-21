@@ -36,10 +36,10 @@
   <div class="collapse navbar-collapse" id="collapsibleNavbar">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" href="${myctx}/join">Join</a>
+        <a class="nav-link" href="#">Join</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="${myctx}/admin/userList">Users</a>
+        <a class="nav-link" href="#">Users</a>
       </li>
       <%-- <c:if test="${loginUser eq null}"> --%>
 	      <li class="nav-item"><!-- FOOT.jsp에서 MODAL 임포트함. -->
@@ -51,23 +51,23 @@
 	        <a class="nav-link text-white" href="#">${loginUser.userid }님 로그인중..</a>
 	      </li>
 	      <li class="nav-item">
-	        <a class="nav-link" href="${myctx}/logout">Logout</a>
+	        <a class="nav-link" href="#">Logout</a>
 	      </li>
       <%-- </c:if> --%>
       <li class="nav-item">
-        <a class="nav-link" href="${myctx}/admin/prodForm">Add Products</a>
+        <a class="nav-link" href="#">Add Products</a>
       </li>    
       <li class="nav-item">
-        <a class="nav-link" href="${myctx}/admin/prodList">Products List</a>
+        <a class="nav-link" href="#">Products List</a>
       </li>    
       <li class="nav-item">
-        <a class="nav-link" href="${myctx}/user/cartList">My Cart</a>
+        <a class="nav-link" href="#">My Cart</a>
       </li>    
       <li class="nav-item">
-        <a class="nav-link" href="${myctx}/board/list">Notice List</a>
+        <a class="nav-link" href="#">Notice List</a>
       </li>    
       <li class="nav-item">
-        <a class="nav-link" href="${myctx}/board/write">Notice Write</a>
+        <a class="nav-link" href="#">Notice Write</a>
       </li>    
       <li class="nav-item">
         <a class="nav-link" href="${myctx}/review/list">Review List</a>
@@ -76,10 +76,10 @@
         <a class="nav-link" href="${myctx}/review/write">Review Write</a>
       </li>    
       <li class="nav-item">
-        <a class="nav-link" href="${myctx}/board/list">Board List</a>
+        <a class="nav-link" href="#">Board List</a>
       </li>    
       <li class="nav-item">
-        <a class="nav-link" href="${myctx}/board/write">Board Write</a>
+        <a class="nav-link" href="#">Board Write</a>
       </li>    
     </ul>
   </div>  

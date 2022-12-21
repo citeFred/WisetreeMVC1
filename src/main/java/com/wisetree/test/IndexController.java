@@ -21,4 +21,9 @@ public class IndexController {
 	public void showIndex() {
 		//"/WEB-INF/views/index.jsp				
 	}
+	
+	@RequestMapping("/test")
+	public void test() {
+		//"/WEB-INF/views/test.jsp				
+	}
 }
