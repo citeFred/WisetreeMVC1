@@ -28,12 +28,13 @@
 	
 		<!-- 스캔 대상 패키지 등록======================== -->
 	<context:component-scan base-package="com.wisetree.test" />
-	<context:component-scan base-package="com.memo.controller" />
+<!-- 	<context:component-scan base-package="com.memo.controller" />
 	<context:component-scan base-package="com.memo.model" />
 	<context:component-scan base-package="com.user" />
 	<context:component-scan base-package="com.shop" />
 	<context:component-scan base-package="com.common" />
-	<context:component-scan base-package="com.board" />
+	<context:component-scan base-package="com.board" /> -->
+	<context:component-scan base-package="com.notice_board" />
 	<!-- 패키지 만들 때 마다 추가 ===================== -->
 	
 	

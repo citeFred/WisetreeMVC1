@@ -60,5 +60,5 @@
 			객체(Proxy)를 스프링이 대신 만들어준다(생성해줌)
 	-->
 	<mybatis-spring:scan base-package="com.shop.mapper"/>
-	<mybatis-spring:scan base-package="com.board.mapper"/>
+	<mybatis-spring:scan base-package="com.notice_board.mapper"/>
 </beans>
