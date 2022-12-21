@@ -70,10 +70,10 @@
         <a class="nav-link" href="${myctx}/board/write">Notice Write</a>
       </li>    
       <li class="nav-item">
-        <a class="nav-link" href="${myctx}/board/list">Review List</a>
+        <a class="nav-link" href="${myctx}/review/list">Review List</a>
       </li>    
       <li class="nav-item">
-        <a class="nav-link" href="${myctx}/board/write">Review Write</a>
+        <a class="nav-link" href="${myctx}/review/write">Review Write</a>
       </li>    
       <li class="nav-item">
         <a class="nav-link" href="${myctx}/board/list">Board List</a>
