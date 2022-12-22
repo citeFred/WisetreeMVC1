@@ -16,12 +16,12 @@ public class ReviewController {
 	
 	@RequestMapping("/list")
 	public String reList(){
-		return "/review/reviewList";
+		return "/review/reList";
 	}
 	
 	@RequestMapping("/write")
 	public String reWrite(){
-		return "/review/reviewwrite";
+		return "/review/reviewForm";
 	}
 	
 	

@@ -114,7 +114,7 @@
       </div>
       <div class="row">
       	<div class="col-md-12" id="reviewTitle">
-      		<h4>상품 리뷰 리스트 <span class="badge bage-success" id="review_cnt"> 7 </span> </h4>
+      		<h4>상품 리뷰 목록 <span class="badge bage-success" id="review_cnt"> [리뷰가 &개 있습니다.] </span> </h4>
       	</div>
       </div>
       <!-- 리뷰 목록 ---------------------------------------- -->
