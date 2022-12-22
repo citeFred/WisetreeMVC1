@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import com.review.mapper.ReviewMapper;
 import com.review.model.ReviewVO;
 
-
 @Service
 public class ReviewServiceImpl implements ReviewService {
 	
@@ -17,8 +16,8 @@ public class ReviewServiceImpl implements ReviewService {
 	private ReviewMapper reviewMapper;
 	
 	@Override
-	public int addReview(ReviewVO rvo) {
-		return this.reviewMapper.addReview(rvo);
+	public int addReview(ReviewVO revo) {
+		return this.reviewMapper.addReview(revo);
 	}
 
 	@Override
@@ -26,6 +25,24 @@ public class ReviewServiceImpl implements ReviewService {
 		return this.reviewMapper.listReview(pnum_fk);
 	}
 
-	
+	@Override
+	public int getReviewCnt(int pnum_fk) {
+		return this.reviewMapper.getReviewCnt(pnum_fk);
+	}
+
+	@Override
+	public ReviewVO getReview(int num) {
+		return this.reviewMapper.getReview(num);
+	}
+
+	@Override
+	public int upReview(ReviewVO revo) {
+		return this.reviewMapper.upReview(revo);
+	}
+
+	@Override
+	public int delReview(int num) {
+		return this.reviewMapper.delReview(num);
+	}
 
 }

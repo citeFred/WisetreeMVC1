@@ -8,21 +8,6 @@
 </head>
 <!-- --------------------------------------------------- -->
 <c:import url="/top" />
-<h3>메인화면 INDEX 테스트</h3>
-<%-- <c:import url="/test" /> --%>
-
-<%-- <div class="container mt-3" style="height: 600px; overflow: auto;">
-	<c:import url="/prodPspec">
-		<c:param name="pspec" value="HIT" />
-	</c:import>
-
-	<c:import url="/prodPspec">
-		<c:param name="pspec" value="NEW" />
-	</c:import>
-
-	<c:import url="/prodPspec">
-		<c:param name="pspec" value="BEST" />
-	</c:import>
-</div> --%>
+<c:import url="/review/reviewForm" /> 
 
 <c:import url="/foot" />

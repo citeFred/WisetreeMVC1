@@ -160,27 +160,32 @@ const show_reviews=function(){
 
 const showTable=function(res){
 	let str='<table class="table table-striped">';
-	$.each(res,function(i, rvo){
-			let d = new Date(rvo.wdate);
-			let dstr=d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+	$.each(res,function(i, revo){
+			let da = new Date(revo.wdate);
+			let dastr=da.getFullYear()+"-"+(da.getMonth()+1)+"-"+da.getDate();
 			
 			str+='<tr><td width="15%">';
-			if(rvo.filename==null) {
+			if(revo.filename==null) {
 				str+='<img src="resources/review_images/noimage.png" class="img-thumbnail" style="width:80%;margin:auto">';
 			}else {
-				str+='<img src="resources/review_images/'+rvo.filename+'" class="img-thumbnail" style="width:80%;margin:auto">';
+				str+='<img src="resources/review_images/'+revo.filename+'" class="img-thumbnail" style="width:80%;margin:auto">';
 			}
 			str+='</td><td width="60%" class="text-left">';
-			str+=rvo.content+" <span class='float-right'>"+rvo.userid+"[ "+dstr+" ]</span>";
+			str+=revo.content+" <span class='float-right'>"+revo.userid+"[ "+dastr+" ]</span>";
 			str+='</td>';
 			str+='<td width="25%" class="text-left">';
-			for(let k=0; k<rvo.score; k++) {
-				str+='<img src="resources/review_images/star.jpg">';
+			for(let k=0; k<revo.score; k++) {
+				//str+='<img src="resources/review_images/star.jpg">';
+				str+='img src="resources/review_images/별1.png"'
+				str+='img src="resources/review_images/별2.png"'
+				str+='img src="resources/review_images/별3.png"'
+				str+='img src="resources/review_images/별4.png"'
+				str+='img src="resources/review_images/별5.png"'
 			}
 			str+='<div class="mt-4">';
-			if(rvo.userid=="${loginUser.userid}") {
-				str+='<a href="#reviewList" onclick="reviewEdit('+rvo.num+')">EDIT</a> | ';
-				str+='<a href="#reviewList" onclick="reviewDel('+rvo.num+')">DEL</a>';
+			if(revo.userid=="${loginUser.userid}") {
+				str+='<a href="#reviewList" onclick="reviewEdit('+revo.num+')">글! 수! 정!</a> | ';
+				str+='<a href="#reviewList" onclick="reviewDel('+revo.num+')">글! 삭! 제!</a>';
 			}
 			str+='</div>';
 			str+='</td>';

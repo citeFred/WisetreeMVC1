@@ -32,7 +32,8 @@
 		
 		</td>
 		<th>작성자</th>
-		<td>${loginUser.name}[${loginUser.userid}]</td>
+		<td>[홍길동]</td>
+		<%-- <td>${loginUser.name}[${loginUser.userid}]</td> --%>
 	</tr>	
 	<tr>
 		<th>상품평</th>
