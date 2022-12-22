@@ -30,4 +30,26 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 
+	<!-- ===POST방식의 한글 처리를 위한 인코딩 필터=== -->
+	<filter>
+		<description></description>
+		<display-name>SpringEncodeFilter</display-name>
+		<filter-name>SpringEncodeFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>SpringEncodeFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<!-- ===================================== -->
+	
+
 </web-app>
