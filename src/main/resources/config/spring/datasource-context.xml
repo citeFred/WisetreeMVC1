@@ -61,4 +61,5 @@
 	-->
 	<mybatis-spring:scan base-package="com.shop.mapper"/>
 	<mybatis-spring:scan base-package="com.board.mapper"/>
+	<mybatis-spring:scan base-package="com.user.mapper"/>
 </beans>
