@@ -29,7 +29,7 @@
 		</if>
 	</sql>
 	
-	<select id="getTotalCount" resultType="int" parameterType="Paging">
+	<!-- <select id="getTotalCount" resultType="int" parameterType="Paging">
 		select count(num) from spring_board
 		
 		<include refid="findWhere"/>
@@ -46,7 +46,7 @@
 		 <![CDATA[
 		 where rn > #{start} and rn < #{end}
 		 ]]>
-	</select>
+	</select> -->
 	
 	<select id="selectBoardAll" resultType="Board" parameterType="map">
 		<!-- select * from spring_board order by num desc  [단순형 게시판]-->
