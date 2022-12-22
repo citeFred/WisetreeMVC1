@@ -3,8 +3,12 @@ package com.wisetree.test;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
+import com.user.model.UserVO;
 import com.user.service.UserService;
 
 import lombok.extern.log4j.Log4j;
@@ -16,13 +20,26 @@ public class UserController {
 	@Resource(name = "userServiceImpl")
 	private UserService userService;
 
-//	@RequestMapping("/join") == > 최근은 @GetMapping 으로도 한다.
+	//회원가입 폼 보여주는 메서드
 	@GetMapping("/join")
 	public String joinForm() {
 		// "/WEB-INF/views/member/join.jsp
 		return "/member/join";
 	}
-//
+	
+	@PostMapping("/join")
+	public String userInsert(Model m, @ModelAttribute("user") UserVO user) {
+		int n=userService.createUser(user);
+		
+		String str=(n>0)?"회원 가입 성공":"회원 가입 실패";
+		String loc=(n>0)?"index":"javascript:history.back()";
+		
+		m.addAttribute("message", str);
+		m.addAttribute("loc", loc);
+		
+		//WEB-INF/views/msg.jsp로 Model 전달
+		return "msg";
+	}
 //	@PostMapping("/join")
 //	public String joinEnd(Model m, @ModelAttribute("user") UserVO user) {
 //		log.info("user====" + user);
