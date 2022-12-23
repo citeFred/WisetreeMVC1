@@ -55,10 +55,10 @@
 	      </li>
       <%-- </c:if> --%>
       <li class="nav-item">
-        <a class="nav-link" href="${myctx}/admin/prodForm">Add Products</a>
+        <a class="nav-link" href="${myctx}/admin/register">Add Products</a>
       </li>    
       <li class="nav-item">
-        <a class="nav-link" href="${myctx}/admin/prodList">Products List</a>
+        <a class="nav-link" href="${myctx}/admin/list">Products List</a>
       </li>    
       <li class="nav-item">
         <a class="nav-link" href="${myctx}/user/cartList">My Cart</a>
