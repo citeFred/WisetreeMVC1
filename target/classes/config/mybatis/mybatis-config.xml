@@ -3,34 +3,17 @@
 PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+
 <typeAliases>
 		<typeAlias type="com.review.model.ReviewVO" alias="Review"/>	
 		<typeAlias type="com.user.model.UserVO" alias="User"/>	
+		<typeAlias type="com.notice_board.model.BoardVO" alias="Board"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="config/mybatis/mapper/ReviewMapper.xml"/>
 		<mapper resource="config/mybatis/mapper/UserMapper.xml"/>
+		<mapper resource="config/mybatis/mapper/BoardMapper_notice.xml"/>
 	</mappers>
-<!-- typeAlias 타입 별칭 설정 -->
-	<!-- <typeAliases>
-		<typeAlias type="com.memo.model.MemoVO" alias="Memo"/>   
-		<typeAlias type="com.user.model.UserVO" alias="User"/>
-		<typeAlias type="com.shop.model.CategoryVO" alias="Category"/>
-		<typeAlias type="com.shop.model.ProductVO" alias="Product"/>
-		<typeAlias type="com.shop.model.CartVO" alias="Cart"/>
-		<typeAlias type="com.shop.model.ReviewVO" alias="Review"/>
-		<typeAlias type="com.board.model.BoardVO" alias="Board"/>
-		<typeAlias type="com.board.model.PagingVO" alias="Paging"/>
-	</typeAliases> -->
 
-	<!-- mapper 정의  -->
-	<!-- <mappers>
-		<mapper resource="config/mybatis/mapper/MemoMapper.xml"/>
-		<mapper resource="config/mybatis/mapper/UserMapper.xml"/>
-		<mapper resource="config/mybatis/mapper/CategoryMapper.xml"/>
-		<mapper resource="config/mybatis/mapper/ProductMapper.xml"/>
-		<mapper resource="config/mybatis/mapper/CartMapper.xml"/>
-		<mapper resource="config/mybatis/mapper/ReviewMapper.xml"/>
-		<mapper resource="config/mybatis/mapper/BoardMapper.xml"/>
-	</mappers> -->
+
 </configuration>

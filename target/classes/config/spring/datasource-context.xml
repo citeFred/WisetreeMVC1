@@ -63,5 +63,6 @@
 	<mybatis-spring:scan base-package="com.board.mapper"/>
 	<mybatis-spring:scan base-package="com.user.mapper"/>
 	<mybatis-spring:scan base-package="com.review.mapper"/>
+	<mybatis-spring:scan base-package="com.notice_board.mapper"/>
 
 </beans>

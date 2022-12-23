@@ -65,11 +65,11 @@
         <a class="nav-link" href="${myctx}/user/cartList">My Cart</a>
       </li>    
       <li class="nav-item">
-        <a class="nav-link" href="${myctx}/board/list">Notice List</a>
+        <a class="nav-link" href="${myctx}/notice_board/list">Notice List</a>
       </li>    
       <li class="nav-item">
-        <a class="nav-link" href="${myctx}/board/write">Notice Write</a>
-      </li>    
+        <a class="nav-link" href="${myctx}/notice_board/write">Notice Write</a>
+      </li>
       <li class="nav-item">
         <a class="nav-link" href="${myctx}/review/list">Review List</a>
       </li>    
@@ -81,7 +81,7 @@
       </li>    
       <li class="nav-item">
         <a class="nav-link" href="${myctx}/board/write">Board Write</a>
-      </li>    
+      </li>
     </ul>
   </div>  
 </nav>
