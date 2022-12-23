@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%request.setCharacterEncoding("UTF-8"); %>
 
 <c:import url="/top" />
 <script type="text/javascript" src="./js/userCheck.js"></script>
@@ -30,7 +29,7 @@
 					<!-- <input type="text" name="userid" id="userid" onkeyup="ajax_idcheck(this.value)"	placeholder="User ID"> -->
 					<input type="text" name="userid" id="userid" placeholder="User ID">
 <!-- 					<button class="btn btn-outline-success" type="button" onclick="ajax_idcheck()">아이디 중복 체크</button> <br>
- -->				<span class='ck' id="id_result">*아이디는 영문자, 숫자, _, !만 사용 가능해요</span> -->
+ -->				<span class='ck' id="id_result">*아이디는 영문자, 숫자, _, !만 사용 가능해요</span> 
 				</td>
 			</tr>
 			<tr>
@@ -44,6 +43,15 @@
 				<td width="80%" class="m2">
 				<input type="password" name="pwd2" id="pwd2" placeholder="Re Password"></td>
 			</tr>
+			
+			<tr>
+				<td width="20%" class="m1"><b>이메일주소</b></td>
+				<td width="80%" class="m2">
+					<input type="text" name="email"	id="email" placeholder="Email"><br> 
+					<span class='ck' id="email_result">*이메일은 Abcd@abc.com 형식만 사용 가능해요</span> 
+				</td>
+			</tr>
+			
 			<tr>
 				<td width="20%" class="m1"><b>연락처</b></td>
 				<td width="80%" class="m2">

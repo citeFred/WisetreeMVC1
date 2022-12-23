@@ -32,7 +32,7 @@ public class UserController {
 		int n=userService.createUser(user);
 		
 		String str=(n>0)?"회원 가입 성공":"회원 가입 실패";
-		String loc=(n>0)?"index":"javascript:history.back()";
+		String loc=(n>0)?"/index":"javascript:history.back()";
 		
 		m.addAttribute("message", str);
 		m.addAttribute("loc", loc);
