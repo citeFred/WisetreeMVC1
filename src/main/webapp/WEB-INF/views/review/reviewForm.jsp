@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
-<c:import url="/top"/>
 <!-- Ajax 요청 처리 ---------------- -->
 <!-- <script src="js/reviewAjax.js"></script> -->
 
@@ -27,7 +23,7 @@
 		<th>리뷰평가점수</th>     
 		<td>
 		<!-- <input type="hidden" name="score" id="score"> -->
-		<label for="score1"><input type="radio" name="score" id="score1" value="1">별1개</label>ㅋ
+		<label for="score1"><input type="radio" name="score" id="score1" value="1">별1개</label>
 		<label for="score2"><input type="radio" name="score" id="score2" value="2">별2개</label>
 		<label for="score3"><input type="radio" name="score" id="score3" value="3">별3개</label>
 		<label for="score4"><input type="radio" name="score" id="score4" value="4">별4개</label>
@@ -62,4 +58,3 @@
 	</tr>
 </table>
 </form>
-<c:import url="/foot"/>
