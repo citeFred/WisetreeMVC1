@@ -8,7 +8,7 @@
 		$.ajax({
 			type:'get',
 			url:'getDownOption?up_Code='+code1,
-			dataType='json',
+			dataType:'json',
 			cache:false
 		})
 		
@@ -20,7 +20,8 @@
 		<div>
 			<div>
 				<h1>상품 등록[관리자 페이지]</h1>
-				<form role="form" method="POST" enctype="multipart/form-data" action="./register">
+				<form role="form" method="POST" enctype="multipart/form-data"
+					action="./register">
 					<table>
 						<thead>
 							<tr>
@@ -59,9 +60,9 @@
 							</tr>
 							<tr>
 								<td>상품이미지</td>
-<!-- 								<td><input type="file" name="ptimage"> <input -->
-<!-- 									type="file" name="ptimage"> <input type="file" -->
-<!-- 									name="ptimage"></td> -->
+								<!-- 								<td><input type="file" name="ptimage"> <input -->
+								<!-- 									type="file" name="ptimage"> <input type="file" -->
+								<!-- 									name="ptimage"></td> -->
 							</tr>
 
 							<tr>
