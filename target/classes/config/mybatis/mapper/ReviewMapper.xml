@@ -13,6 +13,4 @@
 	<select id="listReview" resultType="Review" parameterType="int">
 		select * from review where pnum_fk=#{value} order by num desc
 	</select>
-	
-	
 </mapper>
