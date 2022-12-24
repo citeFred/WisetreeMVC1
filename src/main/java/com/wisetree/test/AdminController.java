@@ -47,12 +47,12 @@ public class AdminController {
 	}
 	
 	@PostMapping("/register")//상품 등록 
-	public String register(@ModelAttribute ItemVO item,BindingResult b)
+	public String register(@ModelAttribute ItemVO Item,BindingResult b)
 	{	
 		b.getFieldError();
 		System.out.println("asdasdadasdassda");
-		log.info("register: "+ item);
-		int n = adminService.register(item);
+		log.info("register: "+ Item);
+		int n = adminService.register(Item);
 		log.info("n((((((((((((((((((((((((((((((((((("+n);
 		//rttr.addFlashAttribute("result", item.getPidx());//상품번호로 같이 전달
 		return "admin/list";//response.sendredirect

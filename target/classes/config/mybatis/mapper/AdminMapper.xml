@@ -9,7 +9,7 @@
 		select item_seq.nextval from dual
 	</selectKey>
 	insert into item(pidx,down_Code,up_Code,ptname,ptimage1,ptimage2,ptimage3,price,saleprice,count,point,quality,pinfo,pbrand,pindate)values
-					(#{pidx},#{down_Code:NUMERIC},#{up_Code},#{ptname},#{ptimage1:VARCHAR},#{ptimage2:VARCHAR},#{ptimage3:VARCHAR},#{price},#{saleprice},#{count},#{point},#{quality},#{pinfo},#{pbrand},sysdate)
+					(#{pidx},#{down_Code:NUMERIC},#{up_Code},#{ptname:VARCHAR},#{ptimage1:VARCHAR},#{ptimage2:VARCHAR},#{ptimage3:VARCHAR},#{price:NUMERIC},#{saleprice},#{count},#{point},#{quality:VARCHAR},#{pinfo},#{pbrand},sysdate)
 </insert>
 
 <select id="getItem" resultType="Item">
@@ -21,7 +21,7 @@
 
 
 
-<select id="itemList" resultType="com.shop.model.ItemVO">
+<select id="itemList" resultType="Item">
 	select * from item
 </select>
 

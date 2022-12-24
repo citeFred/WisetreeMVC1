@@ -8,7 +8,7 @@
 		$.ajax({
 			type:'get',
 			url:'getDownOption?up_Code='+code1,
-			dataType='json',
+			dataType:'json',
 			cache:false
 		})
 		
