@@ -7,7 +7,7 @@ import com.shop.model.ItemVO;
 
 public interface ItemMapper {
 	
-	int itemInsert(ItemVO Item);
+	int register(ItemVO Item);
 
 	List<ItemVO> getItem();
 	

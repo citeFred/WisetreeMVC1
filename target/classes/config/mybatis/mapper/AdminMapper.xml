@@ -2,30 +2,27 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.shop.mapper.AdminMapper">
-	<insert id="register" parameterType="Item">
-		<selectKey keyProperty="pidx" resultType="int"
-			order="BEFORE">
-			select item_seq.nextval from dual
-		</selectKey>
-		insert into
-		item(pidx,down_Code,up_Code,ptname,ptimage1,ptimage2,ptimage3,price,saleprice,count,point,quality,pinfo,pbrand,pindate)values
-		(#{pidx},#{down_Code:NUMERIC},#{up_Code},#{ptname},#{ptimage1:VARCHAR},#{ptimage2:VARCHAR},#{ptimage3:VARCHAR},#{price},#{saleprice},#{count},#{point},#{quality},#{pinfo},#{pbrand},sysdate)
-	</insert>
 
-	<select id="getItem" resultType="Item">
-		select i.*,
-		(select up_Name from
-		upoption where up_Code=i.up_Code)up_Name,
-		(select down_Name from
-		downoption where down_Code=i.down_Code)down_Name,
-		from item i order by
-		pidx desc
-	</select>
+<insert id="register" parameterType="Item">
+	<selectKey keyProperty="pidx" resultType="int" order="BEFORE">
+		select item_seq.nextval from dual
+	</selectKey>
+	insert into item(pidx,down_Code,up_Code,ptname,ptimage1,ptimage2,ptimage3,price,saleprice,count,point,quality,pinfo,pbrand,pindate)values
+					(#{pidx},#{down_Code:NUMERIC},#{up_Code},#{ptname:VARCHAR},#{ptimage1:VARCHAR},#{ptimage2:VARCHAR},#{ptimage3:VARCHAR},#{price:NUMERIC},#{saleprice},#{count},#{point},#{quality:VARCHAR},#{pinfo},#{pbrand},sysdate)
+</insert>
+
+<select id="getItem" resultType="Item">
+	select i.*,
+	(select up_Name from upoption where up_Code=i.up_Code)up_Name,
+	(select down_Name from downoption where down_Code=i.down_Code)down_Name,
+	from item i order by pidx desc
+</select>
 
 
 
-	<select id="itemList" resultType="com.shop.model.ItemVO">
-		select * from item
-	</select>
+<select id="itemList" resultType="Item">
+	select * from item
+</select>
+
 
 </mapper>
