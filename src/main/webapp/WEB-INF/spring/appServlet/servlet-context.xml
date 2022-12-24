@@ -27,7 +27,7 @@
 	</beans:bean>
 
 
-<!-- 스캔 대상 패키지 등록======================== -->
+	<!-- 스캔 대상 패키지 등록======================== -->
 	<context:component-scan base-package="com.wisetree.test" />
 	<context:component-scan base-package="com.memo.controller" />
 	<context:component-scan base-package="com.memo.model" />
@@ -37,9 +37,10 @@
 	<context:component-scan base-package="com.common" />
 	<context:component-scan base-package="com.board" />
 	<context:component-scan base-package="com.notice_board" />
-	<!-- <context:component-scan base-package="com.memo.controller" /> -->
+
 	<!-- 패키지 만들 때 마다 추가 ===================== -->
 	
+
 	<!-- 파일 업로드 위한 MultipartResolver 설정 ========================  -->
 	<!--주의: 빈의 id는 반드시 multipartResolver로 등록해야 한다.
 	다른 아이디를 주면 DispatcherServlet이 MultipartResolver로
@@ -48,5 +49,7 @@
 		<beans:property name="defaultEncoding" value="utf-8"/>
 		<beans:property name="maxUploadSize" value="-1"/>
 	</beans:bean>
+	
+	<view-controller path="/reviewForm" view-name="review/reviewForm"/>
 	
 </beans:beans>
