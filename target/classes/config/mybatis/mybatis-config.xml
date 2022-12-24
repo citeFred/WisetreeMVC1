@@ -3,7 +3,7 @@
 PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-
+	
 	<typeAliases>
 		<typeAlias type="com.review.model.ReviewVO" alias="Review"/>	
 		<typeAlias type="com.user.model.UserVO" alias="User"/>	
@@ -16,5 +16,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="config/mybatis/mapper/BoardMapper_notice.xml"/>
 		<mapper resource="config/mybatis/mapper/AdminMapper.xml"/>
 	</mappers>
+	
+	
 
 </configuration>
