@@ -7,7 +7,7 @@
 <script>
 	const openPop=function(img){
 		//alert(img);
-		let url='resources/product_images/'+img;
+		let url='resources/review_images/'+img;
 		let obj=new Image();
 		obj.src=url;
 		let w=obj.width;
@@ -47,32 +47,31 @@
                <tbody>
                   <tr>
                      <td align="center" width="50%">
-                     <a href="#" onclick="openPop('${prod.pimage1}')">
-                     <img
-                           src="resources/product_images/${prod.pimage1 }" class="img-fluid" style="width: 70%;"> <!-- </a> -->
+                     <a href="#" onclick="#">
+                     <img src="resources/review_images/noimage.png" class="img-fluid" style="width: 70%;"> <!-- </a> -->
                      </a></td>
 
                      <td align="left" width="50%" style="padding-left: 40px">
                         <h4>
-                           <span class="label label-danger">${prod.pspec } </span>
+                           <span class="label label-danger">아주아주 진귀한 볼펜 </span>
                         </h4> 
-                        	상품번호: ${prod.pnum } <br> 
-                        	상품이름: ${prod.pname } <br> 
+                        	상품번호: 1 <br> 
+                        	상품이름: 슈퍼볼펜 <br> 
                         	정가:<del>
                             <fmt:formatNumber value="1" pattern="###,###" />
                         	</del>원<br> 
                         	판매가:<span style="color: red; font-weight: bold">
-                           <fmt:formatNumber value="${prod.saleprice }" pattern="###,###" />
+                           <fmt:formatNumber value="1" pattern="###,###" />
                      			</span>원<br> 
-                     	    할인율:<span style="color: red">${prod.percent } %</span><br>
+                     	    할인율:<span style="color: red">10 %</span><br>
 
-                        POINT:<b style="color: green">[${prod.point }]</b>POINT<br>
+                        POINT:<b style="color: green">[100]</b>POINT<br>
 
                         <!-- form시작---------- -->
-                        <form name="frm" id="frm" method="POST">
+                        <form name="frm" id="frm" method="GET">
                            <!-- 상품번호를 hidden으로 넘기자------ -->
-                           <input type="hidden" name="pnum" value="${prod.pnum }">
-                           <input type="hidden" name="opnum" value="${prod.pnum }">
+                           <input type="text" name="pnum" value="${prod.pidx }">
+                           <input type="text" name="opnum" value="${prod.pidx }">
                            <!-- -------------------------------- -->
                            <label for="oqty">상품갯수</label> 
                            <input type="number" name="oqty"
@@ -89,16 +88,16 @@
                   </tr>
                   <tr style="border: 0">
                      <td align="center">
-                     	<img src="resources/product_images/${prod.pimage2 }"
+                     	<img src="resources/review_images/noimage.png"
                         class="img img-thumbnail" style="width: 70%;"></td>
                      <td align="center">
-                     	<img src="resources/product_images/${prod.pimage3 }"
+                     	<img src="resources/review_images/noimage.png"
                         class="img img-thumbnail" style="width: 70%;"></td>
                   </tr>
                   <tr>
                      <td colspan="2">
                         <p>상품설명</p> 
-                        <pre>${prod.pcontents }</pre>
+                        <pre>이것은 아주 진귀한 상품입니다</pre>
                      </td>
                   </tr>
                </tbody>

@@ -11,19 +11,19 @@ public interface ReviewService {
 	public int addReview(ReviewVO revo);
 	
 	/* 리뷰 목록 */
-	public List<ReviewVO> listReview(int pnum_fk);
+	public List<ReviewVO> listReview(int pidx_fk);
 
 	/* 상품 번호 받기 */
-	public int getReviewCnt(int pnum_fk);
+	public int getReviewCnt(int pidx_fk);
 
 	/* 리뷰 얻기 */
-	public ReviewVO getReview(int num);
+	public ReviewVO getReview(int renum);
 	
 	/* 리뷰 수정 */
 	public int upReview(ReviewVO revo);
 	
 	/* 리뷰 삭제 */
-	public int delReview(int num);
+	public int delReview(int renum);
 	
 }
 	

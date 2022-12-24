@@ -7,11 +7,12 @@
 <%@ include file="/WEB-INF/views/review/reviewScript.jsp"%>
 
 <!-- ------------------------------ -->
-<form method="post" enctype="multipart/form-data" name="rf" id="rf">
+<form method="post" enctype="multipart/form-data" name="reform" id="reform">
 	<!-- hidden data------------------------------------ -->
-		<input type="hidden" name="pnum_fk" id="pnum_fk" value="${prod.pnum}">
-		<input type="hidden" name="userid" id="userid" value="${loginUser.userid}">
-		<input type="hidden" name="mode" value="ajaxMode">
+		<input type="text" name="pnum_fk" id="pidx_fk" value="${prod.pidx}">
+		<input type="text" name="userid" id="userid" value="${loginUser.userid}">
+		<input type="text" name="mode" value="ajaxMode">
+		<input type="text" name="score" id="score" >
 	<!-- ---------------------------------------------- -->
 	<table class="table">
 	<tr>
@@ -20,14 +21,17 @@
 		</th>
 	</tr>
 	<tr>
-		<th>리뷰평가점수</th>     
+		<th>리뷰평가점수</th>   
 		<td>
-		<!-- <input type="hidden" name="score" id="score"> -->
-		<label for="score1"><input type="radio" name="score" id="score1" value="1">별1개</label>
-		<label for="score2"><input type="radio" name="score" id="score2" value="2">별2개</label>
-		<label for="score3"><input type="radio" name="score" id="score3" value="3">별3개</label>
-		<label for="score4"><input type="radio" name="score" id="score4" value="4">별4개</label>
-		<label for="score5"><input type="radio" name="score" id="score5" value="5">별5개</label>
+			<select name="score" >
+				<option value="none">=== 별점을 선택해주세요 ===</option>
+				<!-- 추후에 이미지 파일로 대체 -->
+				<option name="score" id="score" value="1">별점 1개</option>
+				<option value="2">별점 2개</option>
+				<option value="3">별점 3개</option>
+				<option value="3">별점 4개</option>
+				<option value="3">별점 5개</option>
+			</select>
 		</td>
 		
 		<th>작성자</th>
@@ -44,7 +48,7 @@
 	<tr>
 		<th>이미지업로드</th>
 		<td colspan="2">
-		<input type="file" name="mfilename" id="mfilename"
+		<input type="file" name="imgfile" id="imgfile"
 		 accept="image/*" class="form-control">
 		</td>
 		<td>
