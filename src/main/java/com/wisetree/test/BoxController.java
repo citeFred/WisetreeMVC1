@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.shop.model.BoxVO;
+import com.shop.model.MemberVO;
 import com.shop.service.ShopService;
-import com.user.model.UserVO;
 
 
 
@@ -37,7 +37,7 @@ public class BoxController {
 			return "redirect:../index";
 		}
 		
-		UserVO mlogin=(UserVO)ses.getAttribute("mlogin");
+		MemberVO mlogin=(MemberVO)ses.getAttribute("mlogin");
 		int midx_fk=mlogin.getIdx();
 		
 		BoxVO Box= new BoxVO();
@@ -53,7 +53,7 @@ public class BoxController {
 	@GetMapping("/list")
 	public String boxList(Model m, HttpSession ses)
 	{
-		UserVO mlogin=(UserVO)ses.getAttribute("mlogin");
+		MemberVO mlogin=(MemberVO)ses.getAttribute("mlogin");
 		int midx_fk=mlogin.getIdx();
 		
 		List<BoxVO> boxArr=this.shopService.selectBoxlist(midx_fk);
