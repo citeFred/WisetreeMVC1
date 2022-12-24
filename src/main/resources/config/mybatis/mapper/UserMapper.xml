@@ -14,6 +14,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		#{addr1:VARCHAR},#{addr2:VARCHAR},sysdate,1000,#{status},#{email})
 	</insert>
 	
+	<select id="listUser" resultType="User" parameterType="User">
+		select * from member order by idx desc
+	</select>
+	
+	<delete id="deleteUser" parameterType="int">
+		delete from member where idx=#{value}
+	</delete>
+	
+	<select id="selectUserByIdx" resultType="User" parameterType="int">
+		select * from member where idx=#{value}
+	</select>
 <!-- 	<select id="idCheck" resultType="int"  parameterType="string">
 		select idx from member where userid=#{value}
 	</select>

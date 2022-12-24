@@ -29,8 +29,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<UserVO> listUser(PagingVO pvo) {
-		return this.userMapper.listUser(pvo);
+	public List<UserVO> listUser(UserVO user) {
+		return this.userMapper.listUser(user);
 	}
 
 	@Override
@@ -82,5 +82,12 @@ public class UserServiceImpl implements UserService {
 		}
 		return user;
 	}
-
+	
+	// 회원 번호에 해당하는 회원정보 가져오기
+	@Override
+	public UserVO selectUserByIdx(Integer idx){
+		// TODO Auto-generated method stub
+		return this.userMapper.selectUserByIdx(idx);
+	}
+	
 }
