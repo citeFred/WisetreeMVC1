@@ -2,11 +2,14 @@ package com.wisetree.test;
 
 import java.util.List;
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.review.model.ReviewVO;
+import com.review.service.ReviewService;
 
 import lombok.extern.log4j.Log4j;
 
@@ -41,5 +44,18 @@ import lombok.extern.log4j.Log4j;
 @RestController
 @Log4j
 public class RESTAPIController {
-
+	
+	@Inject
+	private ReviewService reviewService;
+	
+	@GetMapping(value = "/prdreviews")
+	public List<ReviewVO> revList(HttpSession ses){
+		Integer pnum=(Integer)ses.getAttribute("pnum");
+		log.info("pnum =>"+pnum);
+		List<ReviewVO> rearr=this.reviewService.listReview(pnum);
+		return rearr;
+	}
+	
+	/* @GetMapping(value = "/prdreviewCnt") */
+	
 }

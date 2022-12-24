@@ -59,7 +59,7 @@
 			여기에 설정된 패키지의 인터페이스들은 scan해서 해당 인터페이스를 구현한
 			객체(Proxy)를 스프링이 대신 만들어준다(생성해줌)
 	-->
-
+	<mybatis-spring:scan base-package="com.wisetree.test"/>
 	<mybatis-spring:scan base-package="com.board.mapper"/>
 	<mybatis-spring:scan base-package="com.user.mapper"/>
 	<mybatis-spring:scan base-package="com.review.mapper"/>
