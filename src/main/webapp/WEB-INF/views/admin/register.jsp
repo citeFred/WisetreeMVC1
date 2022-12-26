@@ -4,17 +4,34 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%-- <c:import url="/top" /> --%>
 <script>
-	function selectDownOption(code1){
+	function selectDownOption(code){
 		$.ajax({
 			type:'get',
-			url:'getDownOption?up_Code='+code1,
+			url:'getDownOption?up_Code='+code,
 			dataType:'json',
 			cache:false
+		})
+		.done(function(res){
+			//alert(JSON.stringify(res));
+			//응답 결과를 받아서 select 태그 만들어서 id가 selectDcg인 곳에 응답html 데이터를 넣기
+			let str='<select name="down_Code" id="down_Code">';
+				str+='<option value="">::하위 카테고리::</option>';
+				$.each(res, function(i, getDownOption){
+					str+='<option value="'+getDownOption.down_Code+'">'+getDownOption.down_Name+'</option>';
+				})
+			
+			
+				str+='</select>';
+				$('#selectDcg').html(str);
+		})
+		.fail(function(err){
+			alert('err');
 		})
 		
 	}
 
 </script>
+ ${downLists}
 <div>
 	<div>
 		<div>
@@ -31,13 +48,27 @@
 						<tbody>
 							<tr>
 								<td>카테고리</td>
-								<td><select name="up_Code" id="up_Code"
+								<td>
+								<select name="up_Code" id="up_Code"
 									onchange="selectDownOption(this.value)">
-										<option>상위 카테고리</option>
-										<%-- 								<c:forEach var="up" items="${topList}"> --%>
-										<%-- 									<option value="${up.up_Code}">${up.up_Name}</option> --%>
-										<%-- 								</c:forEach> --%>
-								</select> <span> </span></td>
+										<option value="">상위 카테고리</option>
+										<c:forEach var="up" items="${uplist}">
+										<option value="${up.up_Code}">${up.up_Name}</option>
+										</c:forEach>
+								</select> 
+							
+								<select name="down_Code" id="down_Code"
+									onchange="selectDownOption(this.value)">
+										<option value="">하위 카테고리</option>
+										<c:forEach var="down" items="${getDownOption}">
+										<option value="${down.down_Code}">${down.down_Name}</option>
+										</c:forEach>
+								</select>
+								
+							 <span id="selectDcg"> 
+                     
+                                              
+                    		 </span></td>
 							</tr>
 							<tr>
 								<td><b>상품명</b></td>
@@ -88,7 +119,7 @@
 							</tr>
 							<tr>
 								<td>
-									<button type="submit" class="btn btn-default">상품등록</button>
+									<button type="submit" class="btn btn-success">상품등록</button>
 								</td>
 							</tr>
 						</tbody>

@@ -13,8 +13,8 @@
 
 <select id="getItem" resultType="Item">
 	select i.*,
-	(select up_Name from upoption where up_Code=i.up_Code)up_Name,
-	(select down_Name from downoption where down_Code=i.down_Code)down_Name,
+	(select up_Name from upOption where up_Code=i.up_Code)up_Name,
+	(select down_Name from downOption where down_Code=i.down_Code)down_Name,
 	from item i order by pidx desc
 </select>
 
@@ -24,5 +24,13 @@
 	select * from item
 </select>
 
+<select id="getUpOption" resultType="Option">
+	select * from upOption order by 1 asc
+</select>
+
+<select id="getDownOption" resultType="Option" parameterType="_int">
+	select * from downOption where up_Code=#{value}
+	order by 1 asc
+</select>
 
 </mapper>

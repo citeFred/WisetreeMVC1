@@ -1,5 +1,7 @@
 package com.shop.service;
 
+
+
 import java.util.List;
 
 import javax.inject.Inject;
@@ -10,7 +12,6 @@ import com.shop.mapper.AdminMapper;
 import com.shop.model.ItemVO;
 import com.shop.model.OptionVO;
 
-import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
 @Service
@@ -20,16 +21,15 @@ public class AdminServiceImpl implements AdminService {
 	@Inject
 	private AdminMapper adminMapper;
 	
+	
 	@Override
 	public List<OptionVO> getUpOption() {
-		// TODO Auto-generated method stub
-		return null;
+		return adminMapper.getUpOption();
 	}
 
 	@Override
-	public List<OptionVO> getDownOption() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<OptionVO> getDownOption(Integer up_Code) {
+		return adminMapper.getDownOption(up_Code);
 	}
 
 	@Override
