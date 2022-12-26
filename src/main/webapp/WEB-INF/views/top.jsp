@@ -77,10 +77,10 @@
         <a class="nav-link" href="${myctx}/review/write">Review Write</a>
       </li>  
       <li class="nav-item">
-        <a class="nav-link" href="${myctx}/board/list">Board List</a>
+        <a class="nav-link" href="${myctx}/free_board/list">Board List</a>
       </li>    
       <li class="nav-item">
-        <a class="nav-link" href="${myctx}/board/write">Board Write</a>
+        <a class="nav-link" href="${myctx}/free_board/write">Board Write</a>
       </li>
     </ul>
   </div>  
