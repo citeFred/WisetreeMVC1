@@ -1,1 +1,5 @@
+## 폴더 무시 (개인 PC에서 java 빌드되서 변경되는 사항들)
 target/
+
+## 파일 무시 (포트번호 변경하는 부분)
+database.properties
