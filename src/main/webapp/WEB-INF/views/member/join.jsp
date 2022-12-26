@@ -10,7 +10,7 @@
 	<h1 class="text-center mt-1">Signup</h1>
 	<form name="mf" action="join" method="post">
 		<!-- id중복체크용 hidden data--------------- -->
-		<input type="text" name="id_flag" id="id_flag" value="N">
+		id중복체크 yes/no<input type="text" name="id_flag" id="id_flag" value="N">
 		<!-- ------------------------- -->
 		<table class="table">
 			<tr>
@@ -27,7 +27,7 @@
 				</td>
 				<td width="80%" class="m2">
 					<!-- <input type="text" name="userid" id="userid" onkeyup="ajax_idcheck(this.value)"	placeholder="User ID"> -->
-					<input type="text" name="userid" id="userid" placeholder="User ID">
+					<input type="text" name="userid" id="userid" placeholder="User ID" onkeyup="ajax_idcheck(this.value)">
  					<button class="btn btn-outline-success" type="button" onclick="ajax_idcheck()">아이디 중복 체크</button> <br>
 				<span class='ck' id="id_result">*아이디는 영문자, 숫자, _, !만 사용 가능해요</span> 
 				</td>
@@ -76,7 +76,7 @@
 			<tr>
 				<td colspan="2" class="m3 text-center">
 					<!-- <button class="btn btn-outline-primary" type="button" onclick="member_check()">회원가입</button> -->
-					<button class="btn btn-outline-primary" type="submit">회원가입</button>
+					<button class="btn btn-outline-primary" type="button" onclick="member_check()">회원가입</button>
 					<button class="btn btn-outline-danger" type="reset">다시쓰기</button>
 				</td>
 			</tr>
