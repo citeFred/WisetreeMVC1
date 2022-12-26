@@ -1,7 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.board.mapper.BoardMapper">
+<mapper namespace="com.notice_board.mapper.BoardMapper">
+	<insert id="insertBoard" parameterType="Board">
+		<selectKey keyProperty="num" resultType="_int"
+			order="BEFORE">
+			select notice_spring_board_seq.nextval from dual
+		</selectKey>
+
+		insert into notice_spring_board(num,name,passwd,subject,
+		content,wdate,readnum,
+		filename,originFilename,filesize,refer,lev,sunbun)
+		values(#{num},#{name},#{passwd},#{subject},#{content:VARCHAR},SYSDATE,#{readnum},
+		#{filename:VARCHAR},#{originFilename:VARCHAR},#{filesize:NUMERIC},#{num},#{lev},#{sunbun})
+
+	</insert>
+	
+	
+	
+	
+	
+	
+	
 	
 </mapper>
-
