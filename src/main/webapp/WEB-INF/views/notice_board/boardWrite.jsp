@@ -18,6 +18,34 @@
 	   				<input>
 	   			</td>
 	   		</tr>
+	   		
+	   		<tr>
+	   			<td style="width:20%"><b>글쓴이</b></td>
+        		<td style="width:80%">
+	   				<input>
+	   			</td>
+	   		</tr>
+	   		
+	   		<tr>
+	   			<td style="width:20%"><b>글내용</b></td>
+        		<td style="width:80%">
+	   				<input>
+	   			</td>
+	   		</tr>
+	   		
+	   		<tr>
+	   			<td style="width:20%"><b>비밀번호</b></td>
+        		<td style="width:80%">
+	   				<input>
+	   			</td>
+	   		</tr>
+	   		
+	   		<tr>
+	   			<td style="width:20%"><b>첨부파일</b></td>
+        		<td style="width:80%">
+	   				<input>
+	   			</td>
+	   		</tr>
 	   
 	   
 	   </table>
