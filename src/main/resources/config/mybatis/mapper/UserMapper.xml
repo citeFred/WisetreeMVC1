@@ -25,6 +25,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectUserByIdx" resultType="User" parameterType="int">
 		select * from member where idx=#{value}
 	</select>
+	
+	<update id="updateUser" parameterType="User">
+		update member set pwd=#{pwd},hp1=#{hp1},hp2=#{hp2},hp3=#{hp3},post=#{post},addr1=#{addr1},addr2=#{addr2},email=#{email}
+			where idx=#{idx}
+	</update>
+	
+	
 <!-- 	<select id="idCheck" resultType="int"  parameterType="string">
 		select idx from member where userid=#{value}
 	</select>
