@@ -46,6 +46,13 @@
 	   				<input>
 	   			</td>
 	   		</tr>
+	   		
+	   		<tr>
+	   			<td colspan="2">
+	   				<button>글쓰기</button>
+	   				<button>다시쓰기</button>
+	   			</td>
+	   		</tr>
 	   
 	   
 	   </table>
