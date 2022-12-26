@@ -28,8 +28,10 @@
 					<td>
 					<c:out value="${i.ptname}"/>
 					</td>				
-					<td>
-				 <img src="../resources/item_images/${i.ptimage1}" class="img-thumbnail float-left" alt="Cinque Terre" width="304" height="236"> 
+					<td width="15%">
+					<%-- <a target="_blank">
+				 	<img src="../resources/item_images/${i.ptimage1}" style="width:90%;margin:auto" class="img-fluid"> 
+					</a> --%>
 					</td>			
 					<td><del>정가 : 
 					<fmt:formatNumber value="${i.price}" pattern="###,###"/>

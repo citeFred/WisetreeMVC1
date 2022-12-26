@@ -91,9 +91,9 @@
 							</tr>
 							<tr>
 								<td>상품이미지</td>
-								<!-- 								<td><input type="file" name="ptimage"> <input -->
-								<!-- 									type="file" name="ptimage"> <input type="file" -->
-								<!-- 									name="ptimage"></td> -->
+								<td>
+								<input type="file" name="file1">
+								</td>
 							</tr>
 
 							<tr>

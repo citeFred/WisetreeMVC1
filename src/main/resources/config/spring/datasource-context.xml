@@ -12,6 +12,7 @@
 
 	<!-- [1] context, mybatis-spring 네임 스페이스 추가 -->
 	<context:property-placeholder location="classpath:/config/props/database.properties"/>
+	<context:property-placeholder location="classpath:/config/props/filed.properties"/>
 
 	<!-- [2] DataSource alias 별칭 주기. -->
 	<alias name="dataSource-${Global.DbType}" alias="dataSource"/>
