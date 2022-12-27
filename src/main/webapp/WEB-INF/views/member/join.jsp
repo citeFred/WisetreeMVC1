@@ -5,6 +5,8 @@
 
 <c:import url="/top" />
 <script type="text/javascript" src="./js/userCheck.js"></script>
+<script type="text/javascript" src="./js/addressApi.js"></script>
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 
 <div class="container" style="height: 750px; overflow: auto;">
 	<h1 class="text-center mt-1">Signup</h1>
@@ -63,14 +65,14 @@
 			<tr>
 				<td width="20%" class="m1"><b>우편번호</b></td>
 				<td width="80%" class="m2">
-					<input type="text" name="post" id="post" placeholder="Post" maxlength="5">
-					<button class="btn btn-outline-success" type="button">우편번호 찾기</button></td>
+					<input type="text" name="post" id="post" placeholder="우편번호 찾기를 눌러주세요." maxlength="5">
+					<button class="btn btn-outline-success" type="button" onclick="execPostCode();">우편번호 찾기</button></td>
 			</tr>
 			<tr>
 				<td width="20%" class="m1"><b>주소</b></td>
 				<td width="80%" class="m2">
 					<input type="text" name="addr1"	id="addr1" placeholder="Address1"><br> 
-					<input type="text" name="addr2" id="addr2" placeholder="Address2">
+					<input type="text" name="addr2" id="addr2" placeholder="상세 주소를 입력해 주세요.">
 				</td>
 			</tr>
 			<tr>
