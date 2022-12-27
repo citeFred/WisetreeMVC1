@@ -16,11 +16,11 @@
 <script>
 	function check() {
 		if(!searchF.findType.value) {
-			alert('검색 유형 선택');
+			alert('검색 유형 선택하기');
 			return false;
 		}
 		if(!searchF.findKeyword.value) {
-			alert('검색어 입력');
+			alert('검색어 입력하기');
 			searchF.findKeyword.focus();
 			return false;
 		}
@@ -36,7 +36,7 @@
 	<!-- 검색 폼 -->
 	<form>
 		<div class="row py-3">
-			<div class="col-md-8 text-center">
+			<div class="col-md-9 text-center">
 				<form name="searchF" action="list" onsubmit="return check()">
 				
 					<input type="hidden" name="pageSize" value="${pageSize}">
@@ -44,9 +44,9 @@
 					
 					<select name="findType" style="padding:3px">
 						<option value="">---검색 유형---</option>
-						<option value="1">글제목</option>
+						<option value="1">제목</option>
 						<option value="2">작성자</option>
-						<option value="3">글내용</option>
+						<option value="3">내용</option>
 					</select>
 					<input type="text" name="findKeyword" placeholder="검색어 입력" autofocus="autofocus">
 					<button class="btn btn-outline-primary">검 색</button>
@@ -78,6 +78,7 @@
 				<th>작성자</th>
 				<th>날짜</th>
 				<th>조회수</th>
+				<th>추천수</th>
 			</tr>
 		</thead>
 		<tbody id="boardBody">
@@ -131,7 +132,7 @@
 				<td colspan="3" class="text-center">
 				${pageNavi}
 				</td>
-				<td colspan="2" class="text-right">
+				<td colspan="3" class="text-right">
 				총 게시글 수 : <c:out value="${paging.totalCount}"/><br>
 				<span class="text-danger"><c:out value="${paging.cpage}"/></span> / 
 				<c:out value="${paging.pageCount}"/>

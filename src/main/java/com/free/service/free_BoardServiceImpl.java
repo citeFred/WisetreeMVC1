@@ -84,13 +84,11 @@ public class free_BoardServiceImpl implements free_BoardService {
 
 	@Override
 	public int rewriteBoard(free_BoardVO board) {
-		//1 부모글의 글번호로 부모글의 refer, lev, sunbun 가져오기
+
 		free_BoardVO parent = this.selectRefLevSunbun(board.getNum());
 		
-		//2 기존에 달린 답변글들이 있으면 내 답변글 insert하기 전에 기존의 답변글들의 순번을 하나씩 증가시키기 >> update문
 		int n = this.updateSunbun(parent);
 		
-		//3 내가 쓴 답변 글을 insert >> insert문
 		board.setRefer(parent.getRefer());
 		board.setLev(parent.getLev() + 1);
 		board.setSunbun(parent.getSunbun() + 1);

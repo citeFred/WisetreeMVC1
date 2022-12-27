@@ -7,10 +7,10 @@
 <c:import url="/top"/>
 
 <div class="container mt-3" style="overflow: auto;">
-	<h1 class="text-center">Spring Board 내용 보기</h1>
+	<h1 class="text-center">게시글</h1>
 	<c:if test="${board eq null}">
 		<div class="alert alert-danger my-5 text-center">
-			<h4>no data</h4>
+			<h4>존재하지 않는 글입니다.</h4>
 		</div>
 	</c:if>
 	<c:if test="${board ne null}">
@@ -46,7 +46,7 @@
                <td colspan="3">&nbsp;
                      <!--  첨부파일이 있다면 -->
                      <c:if test="${board.filename ne null}">
-                     <%-- <a href="${pageContext.request.contextPath}/resources/board_upload/${board.filename}" download> --%>
+                     <%-- <a href="${pageContext.request.contextPath}/upload/${board.filename}" download> --%>
                      <a href="#" onclick="down()">
                      ${board.originFilename}
                      </a> [ <c:out value="${board.filesize}"/> bytes]
@@ -54,7 +54,7 @@
                      <c:set var="fname" value="${fn:toLowerCase(board.filename)}"/>
                      <c:if test="${fn:endsWith(fname, '.jpg') or fn:endsWith(fname, '.png') or fn:endsWith(fname, '.gif')}">
                         <img width="80px" class="img img-thumbnail"
-                           src="${pageContext.request.contextPath}/resources/board_upload/${board.filename}">
+                           src="${pageContext.request.contextPath}/resources/free_board_upload/${board.filename}">
                      </c:if>
                </td>
             </tr>

@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class free_BoardVO {
 	
-	private String mode; //글쓰기 답변글쓰기 글수정
+	private String mode;
 	private int num;
 	private String name;
 	private String passwd;

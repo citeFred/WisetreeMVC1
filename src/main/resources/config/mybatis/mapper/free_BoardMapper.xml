@@ -87,9 +87,9 @@
 		</selectKey>
 		insert into free_spring_board(num, name, passwd, subject, content, wdate,
 		readnum, filename, originFilename, filesize, refer, lev, sunbun)
-		values(#{num}, #{name}, #{passwd}, #{subject}, #{content:VARCHAR},
-		SYSDATE, #{readnum}, #{filename:VARCHAR}, #{originFilename:VARCHAR},
-		#{filesize:NUMERIC}, #{refer}, #{lev}, #{sunbun})
+		values(#{num:NUMERIC}, #{name:VARCHAR}, #{passwd:VARCHAR}, #{subject:VARCHAR}, #{content:VARCHAR},
+		SYSDATE, #{readnum:NUMERIC}, #{filename:VARCHAR}, #{originFilename:VARCHAR},
+		#{filesize:NUMERIC}, #{num:NUMERIC}, #{lev:NUMERIC}, #{sunbun:NUMERIC})
 	</insert>
 	
 	<sql id="findWhere">

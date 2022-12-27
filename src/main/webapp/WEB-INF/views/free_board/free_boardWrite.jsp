@@ -41,9 +41,6 @@ $(function() {
       <a href="write">글쓰기</a> / 
       <a href="list">글목록</a>
       <p>
-	<!-- 파일 업로드시
-   method: POST
-   enctype: multipart/form-data -->
 
    <form name="bf" id="bf" role="form" action="write" method="POST" enctype="multipart/form-data">
    <input type="hidden" name="mode" value="write">
