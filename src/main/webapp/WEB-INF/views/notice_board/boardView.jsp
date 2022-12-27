@@ -53,14 +53,31 @@
 			<td colspan="4" align=center>
 				<a href="../write">글쓰기</a> | 
 				<a href="../list">목록</a> |  
-				<a>삭제</a>
+				<a href="#" onclick="go(1)">삭제</a>
 			</td>
 		</tr>
 	
 	
 	
 	</table>
+	
+	<!-- 편집 또는 삭제를 위한 form----------------------------- -->
+
+	<!--  -->
 </div>
+
+<script type="text/javascript">
+function go(flag){
+	if(flag==1){
+		frm.mode.value='delete';
+		$('#btn').text('글삭제')
+		$('#passwd').focus();
+		frm.action='../delete';
+		frm.method='post';
+	}
+	$('#divPasswd').show(1000);
+}
+</script>
 
 
 <c:import url="/foot"/>

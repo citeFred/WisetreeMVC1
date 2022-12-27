@@ -11,5 +11,8 @@ public interface BoardMapper {
 	
 	// 글번호에 해당하는 글 가져오기
 	BoardVO selectBoardByIdx(Integer idx);
+	
+	// 글번호에 해당하는 글 삭제
+	int deleteBoard(Integer idx);
 
 }

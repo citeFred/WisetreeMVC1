@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.common.CommonUtil;
 import com.notice_board.model.BoardVO;
@@ -73,7 +76,21 @@ public class BoardController_notice {
 		m.addAttribute("board",board);
 		
 		return "notice_board/boardView";
+	}
+	
+	@PostMapping("/delete")
+	public String boardDelete(Model m,
+//			HttpServletRequest req,
+			@RequestParam(defaultValue = "0") int num) {
 		
+//		BoardVO vo=this.boardService.selectBoardByIdx(num);
+		int n=this.boardService.deleteBoard(num);
+		
+		String str=(n>0)?"글 삭제 성공":"삭제 실패";
+		String loc=(n>0)?"list":"javascript:history.back()";
+		
+		
+		return util.addMsgLoc(m, str, loc);
 	}
 
 }
