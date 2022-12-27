@@ -65,13 +65,14 @@
 			<tr>
 				<td width="20%" class="m1"><b>우편번호</b></td>
 				<td width="80%" class="m2">
-					<input type="text" name="post" id="post" placeholder="우편번호 찾기를 눌러주세요." maxlength="5">
+					<input type="text" name="post" id="post" placeholder="우편번호 찾기를 눌러주세요." onclick="execPostCode();" readonly>
+					<!-- 다음카카오 우편번호 API를 활용한 우편번호 검색입력 기능 추가 -->
 					<button class="btn btn-outline-success" type="button" onclick="execPostCode();">우편번호 찾기</button></td>
 			</tr>
 			<tr>
 				<td width="20%" class="m1"><b>주소</b></td>
 				<td width="80%" class="m2">
-					<input type="text" name="addr1"	id="addr1" placeholder="Address1"><br> 
+					<input type="text" name="addr1"	id="addr1" placeholder="Address1" onclick="execPostCode();" readonly><br> 
 					<input type="text" name="addr2" id="addr2" placeholder="상세 주소를 입력해 주세요.">
 				</td>
 			</tr>
