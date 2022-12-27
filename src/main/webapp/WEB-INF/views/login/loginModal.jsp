@@ -28,7 +28,11 @@
 				</div>
 				<!-- Modal footer -->
 				<div class="modal-footer">
-					<button class="btn btn-success">Login</button>
+					<button class="btn btn-success">Google Login</button>
+					<button class="btn btn-success">Naver Login</button>
+					<button class="btn btn-success">Facebook Login</button><br><br>
+					<button class="btn btn-success">일반 Login</button>
+					<button class="btn btn-primary" onclick="location.href='/join'">Join a member</button>
 					<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
 				</div>
 			</form>

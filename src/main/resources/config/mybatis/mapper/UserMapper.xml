@@ -16,14 +16,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 <!-- 회원 목록 불러오기 select문 -->
-	<select id="listUser" resultType="User" parameterType="User">
-		select * from member order by idx desc
+	<select id="listUser" resultType="User" parameterType="com.user.model.PagingVO">
+		select member.*, 
+		decode(status,0,'일반회원',-1,'정지회원',-2,'탈퇴회원',9,'관리자') statusStr
+		from member order by idx desc
 	</select>
+<!-- 	<select id="listUser" resultType="User" parameterType="User">
+		select * from member order by idx desc
+	</select> -->
 
-<!-- 특정 idx 회원 삭제하기 delete문 -->	
-	<delete id="deleteUser" parameterType="int">
-		delete from member where idx=#{value}
-	</delete>
 	
 <!-- 특정 idx 회원 정보를 수정 폼에 넣기 위해 불러오기 select문 -->
 	<select id="selectUserByIdx" resultType="User" parameterType="int">
@@ -41,19 +42,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select idx from member where userid=#{value}
 	</select>
 	
-<!-- 	
-	<select id="selectUserByUserid" parameterType="string" resultType="User">
-		select * from member where userid=#{value}	
-	</select>
-	
-	<select id="listUser" resultType="User" parameterType="com.user.model.PagingVO">
-		select member.*, decode(status,0,'일반회원',-1,'정지회원',-2,'탈퇴회원',9,'관리자') statusStr
-		from member order by idx desc
-	</select>
-	
+<!-- 특정 idx 회원 삭제하기 delete문 -->	
 	<delete id="deleteUser" parameterType="int">
-		delete from member where idx=#{value}	
-	</delete> -->
+		delete from member where idx=#{value}
+	</delete>
+	
+	<select id="findUser" parameterType="string" resultType="User">
+		select * from member where userid=#{userid}	
+	</select>
+
 </mapper>
 
 

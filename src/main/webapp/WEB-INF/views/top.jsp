@@ -36,31 +36,37 @@
   </button>
   <div class="collapse navbar-collapse" id="collapsibleNavbar">
     <ul class="navbar-nav">
-       <li class="nav-item">
+    	<c:if test="${loginUser eq null}">
+      	<li class="nav-item">
         <a class="nav-link" href="${myctx}/join">Join</a>
-      </li>
+     	</li>
+     	</c:if>
+      <c:if test="${loginUser.status eq 9}">
       <li class="nav-item">
         <a class="nav-link" href="${myctx}/admin/userList">Users</a>
       </li>
-      <%-- <c:if test="${loginUser eq null}"> --%>
+      </c:if>
+      <c:if test="${loginUser eq null}">
 	      <li class="nav-item"><!-- FOOT.jsp에서 MODAL 임포트함. -->
 	        <a class="nav-link" href="#loginModal" data-toggle="modal">Login</a>
 	      </li>
-      <%-- </c:if> --%>
-      <%-- <c:if test="${loginUser ne null}"> --%>
+      </c:if>
+      <c:if test="${loginUser ne null}">
       	  <li class="nav-item bg-primary">
 	        <a class="nav-link text-white" href="#">${loginUser.userid }님 로그인중..</a>
 	      </li>
 	      <li class="nav-item">
 	        <a class="nav-link" href="${myctx}/logout">Logout</a>
 	      </li>
-      <%-- </c:if> --%>
+      </c:if>
+      <c:if test="${loginUser.status eq 9}">
       <li class="nav-item">
         <a class="nav-link" href="${myctx}/admin/register">Add Products</a>
       </li>    
       <li class="nav-item">
         <a class="nav-link" href="${myctx}/admin/list">Products List</a>
       </li>    
+      </c:if>
       <li class="nav-item">
         <a class="nav-link" href="${myctx}/user/cartList">My Cart</a>
       </li>    
