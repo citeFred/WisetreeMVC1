@@ -48,6 +48,14 @@
 				<c:out value="${board.filesize }"/>
 			</td>
 		</tr>
+		
+		<tr>
+			<td colspan="4" align=center>
+				<a href="../write">글쓰기</a> | 
+				<a href="../list">목록</a> |  
+				<a>삭제</a>
+			</td>
+		</tr>
 	
 	
 	
