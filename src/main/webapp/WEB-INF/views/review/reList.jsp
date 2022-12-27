@@ -79,10 +79,10 @@
 
                         </form> <!-- form end------------ -->
 
-                        <button type="button" onclick="goCart()" class="btn btn-primary">장바구니</button>
-                        <button type="button" onclick="goOrder()"
+                        <button type="button" onclick="#" class="btn btn-primary">장바구니</button>
+                        <button type="button" onclick="#"
                            class="btn btn-warning">주문하기</button>
-                        <button type="button" onclick="goWish()" class="btn btn-danger">위시리시트</button>
+                        <button type="button" onclick="#" class="btn btn-danger">위시리시트</button>
                      </td>
 
                   </tr>
@@ -105,6 +105,9 @@
             </table>
          </div>
       </div><!-- .row end  -->
+      
+      
+      
       <!-- 리뷰 글쓰기 폼 ------------------------------------ -->
       <div class="row mt-4">
       	<div class="col-md-10 offset-md-1">

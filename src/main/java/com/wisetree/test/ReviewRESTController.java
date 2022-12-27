@@ -9,9 +9,13 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -44,10 +48,10 @@ import lombok.extern.log4j.Log4j;
  *  GET                /prdreviews           모든 리뷰를 조회한다
  *  GET                /prdreviews/create    리뷰를 생성하기 위한 Form
  *  POST               /prdreviews/cre       리뷰를 생성한다
- *  GET                /prdreviews/:id       id에 해당하는 리뷰를 조회한다
- *  GET                /prdreviews/:id/edit  id에 해당하는 리뷰를 수정하기 위한 Form
- *  PUT                /prdreviews/:id       id에 해당하는 리뷰를 수정한다
- *  DELETE             /prdreviews/:id       id에 해당하는 리뷰를 삭제한다
+ *  GET                /prdreviews/{renum}       id에 해당하는 리뷰를 조회한다
+ *  GET                /prdreviews/{renum}/edit  id에 해당하는 리뷰를 수정하기 위한 Form
+ *  PUT                /prdreviews/{renum}     id에 해당하는 리뷰를 수정한다
+ *  DELETE             /prdreviews/{renum}     id에 해당하는 리뷰를 삭제한다
  * */
 
 @RestController
@@ -58,7 +62,7 @@ public class ReviewRESTController {
 	private ReviewService reviewService;
 	
 	//리뷰 리스트
-	@GetMapping(value = "/prdreviews")
+	@GetMapping(value = "/prdreviews", produces = "application/json")
 	public List<ReviewVO> revList(HttpSession sion){
 		Integer pidx=(Integer)sion.getAttribute("pidx");
 		System.out.println("rrrrrrrr");
@@ -67,8 +71,8 @@ public class ReviewRESTController {
 		return rearr;
 	}
 	
-	//리뷰 카운트
-	@GetMapping(value = "/prdreviewCnt") 
+	//리뷰 갯수
+	@GetMapping(value = "/prdreviewCnt", produces = "application/json") 
 	public ModelMap getrevCount(HttpSession sion) {
 		Integer pidx=(Integer) sion.getAttribute("pidx");
 		int cnt=this.reviewService.getReviewCnt(pidx);
@@ -86,14 +90,14 @@ public class ReviewRESTController {
 		System.out.println("vvvvvvvvvvv");
 		log.info("revo=>"+revo);
 		
-		//업로드 디렉토리 절대경로
+		//업로드 절대경로
 		ServletContext ser=sion.getServletContext();
 		String FDir=ser.getRealPath("/resources/review_images");
 		
 		System.out.println("fffffffffffff");
 		log.info("FDir=>"+FDir);
 		
-		//디렉토리가 비어있으면 디렉토리 생성
+		//디렉토리 생성
 		File Dir=new File(FDir);
 		if (!Dir.exists()) {
 			Dir.mkdirs();
@@ -102,7 +106,7 @@ public class ReviewRESTController {
 		// 업로드 처리
 		try {
 			mtif.transferTo(new File(FDir, mtif.getOriginalFilename()));
-			revo.setFilename(mtif.getOriginalFilename());
+			revo.setRefilename(mtif.getOriginalFilename());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -113,6 +117,40 @@ public class ReviewRESTController {
 		return momap;
 		
 	}
-			
 	
+	//특정 리뷰 조회
+	@GetMapping(value = "prdreviews/{renum}", produces = "application/json")
+	public ReviewVO revGet(@PathVariable("renum") int renum) {
+		System.out.println("getgetgetget");
+		ReviewVO revo=this.reviewService.getReview(renum);
+		return revo;
+	}
+	
+	
+	//리뷰 삭제
+	@DeleteMapping(value = "prdreviews/{renum}", produces = "application/json")
+	public ModelMap revDelete(@PathVariable("renum") int renum) {
+		System.out.println("dddddddddddddddd");
+		log.info("del renum ===="+renum);
+		int deln=this.reviewService.delReview(renum);
+		ModelMap delmap= new ModelMap();
+		delmap.addAttribute("result", deln);
+		return delmap;
+	}
+	
+	//리뷰 수정 
+	@PutMapping(value = "prdreviews/{renum}", produces = "application/json")
+	public ModelMap revUpdate(
+			@PathVariable("renum") int renum,
+			@RequestBody ReviewVO revo) {
+		System.out.println("upupupupup");
+		log.info("Upd revo===="+revo);
+		
+		int Updn=this.reviewService.upReview(revo);
+		
+		ModelMap upmap=new ModelMap();
+		upmap.put("result", Updn);
+		return upmap;
+		
+	}
 }

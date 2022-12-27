@@ -18,7 +18,7 @@ public class ReviewVO {
 	private int score;
 	
 	/* 첨부 파일 */
-	private String filename;
+	private String refilename;
 	
 	/* 등록 날짜 */
 	private java.sql.Date wdate;

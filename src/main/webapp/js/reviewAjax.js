@@ -1,43 +1,34 @@
 
 $(function(){
-	show_reviews(); //목록 메서드 호출
-	review_count(); //리뷰 갯수 메서드 호출
-//파일 업로드 처리시 ==> FormData객체에 form data를 담아 보내야 한다(업로드)
-	$('#rf').submit(function(evt){
+	show_reviews(); //리뷰 목록 호출
+	review_count(); //리뷰 갯수 호출
+	
+	$('#reform').submit(function(evt){
 		evt.preventDefault(); //서브밋 막기 
-		//alert('hi');
-		//첨부파일
-		const file=$('#mfilename')[0]
-		//console.dir(file);
-		//첨부파일명
+		alert('hi');
+		const file=$('#refilename')[0]
 		const fname=file.files[0];
-		//alert(fname.name);
 		const userid=$('#userid').val();
 		const content=$('#content').val();
 		const score=$('input[name="score"]:checked').val();
-		const pnum_fk=$('#pnum_fk').val();
+		const pidx_fk=$('#pidx_fk').val();
 		
-		console.log(userid+"/"+content+"/"+score+"/"+pnum_fk+"/"+fname);
+		console.log(userid+"/"+content+"/"+score+"/"+pidx_fk+"/"+fname);
 		
-		//POST방식으로 전송하려면 FormData에 담아야 함. 
-		let fd=new FormData();
-		fd.append('mfilename', fname);
+		let formD=new FormData();
+		fd.append('refilename', fname);
 		fd.append('userid', userid);
 		fd.append('content', content);
 		fd.append('score', score);
-		fd.append('pnum_fk', pnum_fk);
+		fd.append('pidx_fk', pidx_fk);
 		fd.append('mode','ajaxMode');
-		/*
-			processData:false, ==> 기본값 : true ==> true면 enctype="application/x-www-form-urlencoded" 타입으로 전송됨.
-			contentType:false, ==> 기본값 : true ==> true면 enctype="application/x-www-form-urlencoded" 타입으로 전송됨.
-			따라서 파일 업로드 할때는 enctype="multipart/form-data로 가야하기 때문에 false, false로 설정해야 한다.
-		*/
 		
-		let url="user/reviews";
+		
+		let url="prdreviews/cre";
 		$.ajax({
 			type:'post',
 			url:url,
-			data:fd, //위에 담은 FormData객체임
+			data:formD,
 			dataType:'xml',
 			processData:false,
 			contentType:false,
@@ -47,46 +38,48 @@ $(function(){
 			},
 			success:function(res){
 				//alert(res);
-		          let result=$(res).find('result').text();
-		          if(result>0){
-		             //$('#reviewList').html("<h1>등록 성공</h1>");
-		        	 show_reviews();//전체 리뷰 목록 가져오기
+		        let result=$(res).find('result').text();
+		        if(result>0){
+		             $('#reviewList').html("<h1>등록 성공</h1>");
+		        	 show_reviews();//리뷰 목록 호출
 		          }else{
 		             alert('등록 실패');
 		          }
 		       },
 		       error: function(err){
-		          //alert('err: '+err.status);
-		    	  if(err.status==400) {
+		          alert('err: '+err.status);
+		    	  /*if(err.status==400) {
 		    		  alert('로그인 해야 이용가능 합니다.');
 		    	  }else {
 		    		  alert('err: '+err.status);
-		    	  }
+		    	  }*/
 		       }
 		    });
-		   })
+		   })//reform end----------------------
 
-//리뷰 수정 처리 (reviewEdit.jsp의 폼 id rf2의 서브밋 버튼 처리)
-	$('#rf2').submit(function(evt){
-		//서브밋 막기
-		evt.preventDefault();
+//리뷰 수정 처리
+//(reviewEdit.jsp의 폼 id reform2의 서브밋 버튼 처리)
+	$('#reform2').submit(function(evt){
+		evt.preventDefault(); //서브밋 막기
+		
 		//사용자가 수정한 값 얻기
-		let uid=rf2.userid.value;
-		let pnum=rf2.pnum_fk.value;
-		let num=rf2.num.value;
-		let score=rf2.score.value;
-		let content=rf2.content.value;
+		let uid=reform2.userid.value;
+		let pidx_fk=reform2.pidx_fk.value;
+		let renum=reform2.renum.value;
+		let score=reform2.score.value;
+		let content=reform2.content.value;
 		
 		let jsonData= {
 			userid:uid,
-			pnum_fk:pnum,
-			num:num,
+			pidx_fk:pidx,
+			renum:renum,
 			score:score,
 			content:content
 		}
 		//alert(JSON.stringify(jsonData));
+		
 		let data=JSON.stringify(jsonData);
-		let url="user/reviews/"+num;
+		let url="prdreviews/"+renum;
 		$.ajax({
 			type:'put',
 			url:url,
@@ -98,10 +91,11 @@ $(function(){
 				xhr.setRequestHeader("Ajax","true");
 			},
 			success:function(res){
-				//alert(JSON.stringify(res));
+				alert(JSON.stringify(res));
 				if(res.result>0) {
 					//모달윈도 닫기
 					$('#reviewModal').modal('hide');
+					
 					//리뷰목록 가져오기 
 					show_reviews();
 				}else {
@@ -109,30 +103,28 @@ $(function(){
 				}
 			},
 			error:function(err){
-				//alert('err: '+err.status);
-				if(err.status==400) {
+				alert('err: '+err.status);
+				/*if(err.status==400) {
 					alert('로그인 해야 이용 가능 합니다.');
 				}else {
 					alert('err: '+err.status);
-				}
+				}*/
 			}
 		});
-		
 	});
-	
-})//$()end------
+})//reform2 end------
 
 //리뷰 갯수 가져오기
 const review_count=function(){
-	let url="reviewCnt";
+	let url="prdreviewCnt";
 	$.ajax({
 		type:'get',
 		url:url,
 		dataType:'json',
 		cache:false,
 		success:function(res){
-			//alert(res.count);
-			$('#review_cnt').html(res.count);
+			alert(res.count);
+			$('#prdreviewCnt').html(res.count);
 		},
 		error:function(err){
 			alert('err: '+err.status);
@@ -143,14 +135,14 @@ const review_count=function(){
 
 //리뷰목록 가져오기
 const show_reviews=function(){
-	let url="reviews"
+	let url="prdreviews"
 	$.ajax({
 		type:'get',
 		url:url,
 		dataType:'json',
 		cache:false,
 		success:function(res){
-			//alert(JSON.stringify(res));
+			alert(JSON.stringify(res));
 			showTable(res);
 		},
 		error:function(err){
@@ -189,13 +181,14 @@ const showTable=function(res){
 	});
 	str+='</table>';
 
-	$('#reviewList').html(str);
+	$('#revList').html(str);
 }
 
-const reviewEdit = function(num){
-	//console.log(num);
-	let url="user/reviews/"+num;
-	//alert(url);
+const reviewEdit = function(renum){
+	console.log(renum);
+	let url="prdreviews/"+renum;
+	alert(url);
+	
 	$.ajax({
 		type:'get',
 		url:url,
@@ -205,9 +198,8 @@ const reviewEdit = function(num){
 			xhr.setRequestHeader("Ajax","true");
 		},
 		success:function(res){
-			//alert(JSON.stringify(res));
-			rf2.num.value=res.num;//리뷰 글번호
-			rf2.content.value=res.content;//리뷰 내용
+			reform2.renum.value=res.renum;//리뷰 글번호
+			reform2.content.value=res.content;//리뷰 내용
 			let str=''; //별불러오기 
 			for(let i=0;i<res.score;i++) {
 				str+='<img src="resources/review_images/star.png">';
@@ -215,10 +207,10 @@ const reviewEdit = function(num){
 			$('#star').html(str); //별달기
 			
 			let imgSrc;
-			if(res.filename==null) {
+			if(res.refilename==null) {
 				imgSrc='noimage.png';
 			}else {
-				imgSrc=res.filename
+				imgSrc=res.refilename
 			}
 			str='<img src="resources/review_images/'+imgSrc+'" class="img-fluid" style="width:50%;margin:auto">';
 			$('#prodImage').html(str); //상품이미지 띄우기
@@ -236,9 +228,10 @@ const reviewEdit = function(num){
 }
 
 
-const reviewDel = function(num){
-	//alert(num);
-	let url="user/reviews/"+num;
+const reviewDel = function(renum){
+	alert(renum);
+	let url="prdreviews/"+renum;
+	
 	$.ajax({
 		type:'delete',
 		url:url,
@@ -263,17 +256,11 @@ const reviewDel = function(num){
 	});
 }
 
-
-
-//파일 업로드가 없는 일반적 form data 전송 시 아래 사용 
  const send=function(){
- 	//alert('send');
+ 	alert('send');
  	
- 	let params=$('#rf').serialize();
- 	
- 	//alert(params);
- 	
- 	let url="user/reviews";
+ 	let params=$('#reform').serialize();
+ 	let url="prdreviews/cre";
  	
  	$.ajax({
  		type:'post',
@@ -282,9 +269,9 @@ const reviewDel = function(num){
  		cache:false,
  		dataType:'xml',
  		success:function(res){
- 			//alert(res); //XMLDocument.. 로온다
+ 			alert(res);
  			let result=$(res).find('result').text();
- 			//alert(result);
+ 			
  		},
  		error:function(err){
  			alert('err'+err.status);
