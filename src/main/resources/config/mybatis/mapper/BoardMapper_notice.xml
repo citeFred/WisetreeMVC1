@@ -8,23 +8,26 @@
 			select notice_spring_board_seq.nextval from dual
 		</selectKey>
 
-		insert into notice_spring_board(num,name,passwd,subject,
-		content,wdate,readnum,
-		filename,originFilename,filesize,refer,lev,sunbun)
-		values(#{num},#{name},#{passwd},#{subject},#{content:VARCHAR},SYSDATE,#{readnum},
-		#{filename:VARCHAR},#{originFilename:VARCHAR},#{filesize:NUMERIC},#{num},#{lev},#{sunbun})
+			insert into notice_spring_board(num,name,passwd,subject,
+			content,wdate,readnum,
+			filename,originFilename,filesize,refer,lev,sunbun)
+			values(#{num},#{name},#{passwd},#{subject},#{content:VARCHAR},SYSDATE,#{readnum},
+			#{filename:VARCHAR},#{originFilename:VARCHAR},#{filesize:NUMERIC},#{num},#{lev},#{sunbun})
 
 	</insert>
 	
 	
 	
 	
-	
+	<!-- notice_board 리스트 띄우기 1차 작성 -->
 	<select id="selectBoardAll" resultType="Board" parameterType="map">
-	select * from notice_spring_board order by num desc
-	
+		select * from notice_spring_board order by num desc
 	</select>
 	
+	<!-- 글번호에 해당하는 글 가져오기 -->
+	<select id="selectBoardByIdx" resultType="Board" parameterType="_int">
+		select * from notice_spring_board where num=#{value}
+	</select>
 	
 	
 	

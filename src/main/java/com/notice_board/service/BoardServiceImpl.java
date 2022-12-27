@@ -24,5 +24,10 @@ public class BoardServiceImpl implements BoardService{
 		return this.boardMapper.selectBoardAll();
 	}
 
+	@Override
+	public BoardVO selectBoardByIdx(Integer num) {
+		return this.boardMapper.selectBoardByIdx(num);
+	}
+
 
 }

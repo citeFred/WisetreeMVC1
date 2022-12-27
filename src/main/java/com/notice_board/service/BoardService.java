@@ -8,5 +8,8 @@ public interface BoardService {
 	int insertBoard(BoardVO board);
 	//게시목록 가져오기
 	List<BoardVO> selectBoardAll();
+	
+	// 글번호에 해당하는 글 가져오기
+	BoardVO selectBoardByIdx(Integer idx);
 
 }

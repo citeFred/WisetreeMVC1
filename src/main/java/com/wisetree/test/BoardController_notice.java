@@ -9,9 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.common.CommonUtil;
 import com.notice_board.model.BoardVO;
@@ -64,5 +64,16 @@ public class BoardController_notice {
 		m.addAttribute("boardArr",boardArr);
 		return "notice_board/boardList";
 	}//----------------------------------------
+	
+	@GetMapping("view/{num}")
+	public String boardView(Model m,@PathVariable("num") int num) {
+		log.info("num=="+num);
+		
+		BoardVO board=this.boardService.selectBoardByIdx(num);
+		m.addAttribute("board",board);
+		
+		return "notice_board/boardView";
+		
+	}
 
 }

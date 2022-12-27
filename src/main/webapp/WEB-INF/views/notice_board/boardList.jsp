@@ -25,8 +25,15 @@
 		
 			<c:forEach var="board" items="${boardArr }">
 					<tr>
+						
 						<td><c:out value="${board.num }" /></td>
-						<td><c:out value="${board.subject }" /></td>
+
+						<td class="sub">
+							<a href="view/<c:out value="${board.num }"/>">
+								<c:out value="${board.subject }" />				
+							</a>
+						</td>
+						
 						<td><c:out value="${board.name }" /></td>
 						<td><c:out value="${board.wdate }" /></td>
 						<td><c:out value="${board.readnum }" /></td>
