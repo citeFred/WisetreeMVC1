@@ -24,7 +24,7 @@ $(function(){
 		fd.append('mode','ajaxMode');
 		
 		
-		let url="prdreviews/cre";
+		let url="user/prdreviews";
 		$.ajax({
 			type:'post',
 			url:url,
@@ -79,7 +79,7 @@ $(function(){
 		//alert(JSON.stringify(jsonData));
 		
 		let data=JSON.stringify(jsonData);
-		let url="prdreviews/"+renum;
+		let url="user/prdreviews/"+renum;
 		$.ajax({
 			type:'put',
 			url:url,
@@ -153,27 +153,27 @@ const show_reviews=function(){
 
 const showTable=function(res){
 	let str='<table class="table table-striped">';
-	$.each(res,function(i, rvo){
-		let d=new Date(rvo.wdate); // date 부분에 d.toLocaleString() 로 넣을 수 있다. 하지만 아래 연월일로 사용했다.
-		let dstr=d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+	$.each(res, function(i, revo){
+		let dt=new Date(revo.wdate); // 
+		let dstr=dt.getFullYear()+"-"+(dt.getMonth()+1)+"-"+dt.getDate();
 		
 		str+='<tr><td width="15%">';
-		if(rvo.filename==null) {
+		if(revo.refilename==null) {
 			str+='<img src="resources/product_images/noimage.png" class="img-thumbnail" style="width:80%;margin:auto">';
 		}else {
-			str+='<img src="resources/review_images/'+rvo.filename+'" class="img-thumbnail" style="width:80%;margin:auto">';
+			str+='<img src="resources/review_images/'+revo.refilename+'" class="img-thumbnail" style="width:80%;margin:auto">';
 		}
 		str+='</td><td width="60%" class="text-left">';
-		str+=rvo.content+"<span class='float-right'>"+rvo.userid+"[ "+dstr+" ]</span>";
+		str+=revo.content+"<span class='float-right'>"+revo.userid+"[ "+dstr+" ]</span>";
 		str+='</td>';
 		str+='<td width="25%" class="text-left">';
-		for(let k=0;k<rvo.score;k++) {
+		for(let k=0;k<revo.score;k++) {
 			str+='<img src="resources/review_images/star.png">';
 		}
 		str+='<div class="mt-4">';
-		if(rvo.userid =="${loginUser.userid}") {
-		str+='<a href="#reviewList" onclick="reviewEdit('+rvo.num+')">EDIT</a> | ';
-		str+='<a href="#reviewList" onclick="reviewDel('+rvo.num+')">DEL</a>';
+		if(revo.userid =="${loginUser.userid}") {
+		str+='<a href="#revList" onclick="reviewEdit('+revo.num+')">EDIT</a> | ';
+		str+='<a href="#revList" onclick="reviewDel('+revo.num+')">DEL</a>';
 		}
 		str+='</div>';
 		str+='</td>';
@@ -186,7 +186,7 @@ const showTable=function(res){
 
 const reviewEdit = function(renum){
 	console.log(renum);
-	let url="prdreviews/"+renum;
+	let url="user/reviews/"+renum;
 	alert(url);
 	
 	$.ajax({
@@ -230,7 +230,7 @@ const reviewEdit = function(renum){
 
 const reviewDel = function(renum){
 	alert(renum);
-	let url="prdreviews/"+renum;
+	let url="user/reviews/"+renum;
 	
 	$.ajax({
 		type:'delete',
@@ -260,7 +260,7 @@ const reviewDel = function(renum){
  	alert('send');
  	
  	let params=$('#reform').serialize();
- 	let url="prdreviews/cre";
+ 	let url="user/reviews";
  	
  	$.ajax({
  		type:'post',

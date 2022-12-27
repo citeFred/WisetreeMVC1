@@ -70,8 +70,8 @@
                         <!-- form시작---------- -->
                         <form name="frm" id="frm" method="GET">
                            <!-- 상품번호를 hidden으로 넘기자------ -->
-                           <input type="text" name="pnum" value="${prod.pidx }">
-                           <input type="text" name="opnum" value="${prod.pidx }">
+                           <input type="text" name="pnum" value="1">
+                           <input type="text" name="opnum" value="1">
                            <!-- -------------------------------- -->
                            <label for="oqty">상품갯수</label> 
                            <input type="number" name="oqty"
@@ -80,8 +80,7 @@
                         </form> <!-- form end------------ -->
 
                         <button type="button" onclick="#" class="btn btn-primary">장바구니</button>
-                        <button type="button" onclick="#"
-                           class="btn btn-warning">주문하기</button>
+                        <button type="button" onclick="#" class="btn btn-warning">주문하기</button>
                         <button type="button" onclick="#" class="btn btn-danger">위시리시트</button>
                      </td>
 
@@ -114,15 +113,15 @@
       		<c:import url="/reviewForm"/>
       	</div>
       </div>
+      
+      <!-- 리뷰 목록 ---------------------------------------- -->
       <div class="row">
       	<div class="col-md-12" id="reviewTitle">
       		<h4>상품 리뷰 목록 <span class="badge bage-success" id="review_cnt"> [리뷰가 &개 있습니다.] </span> </h4>
       	</div>
       </div>
-      <!-- 리뷰 목록 ---------------------------------------- -->
       <div class="row">
       	<div class="col-md-12" id="reviewList">
-      	
       	</div>
       </div>
       <div class="row">

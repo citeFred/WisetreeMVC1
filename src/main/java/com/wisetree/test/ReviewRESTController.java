@@ -67,6 +67,7 @@ public class ReviewRESTController {
 		Integer pidx=(Integer)sion.getAttribute("pidx");
 		System.out.println("rrrrrrrr");
 		log.info("pidx =>"+pidx);
+		
 		List<ReviewVO> rearr=this.reviewService.listReview(pidx);
 		return rearr;
 	}
@@ -84,7 +85,7 @@ public class ReviewRESTController {
 	}
 
 	//리뷰 글 작성
-	@PostMapping(value = "/prdreviews/cre",  produces = "application/xml")
+	@PostMapping(value = "/user/prdreviews",  produces = "application/xml")
 	public ModelMap revInsert(@RequestParam(value = "refilename", required = false) MultipartFile mtif,
 								@ModelAttribute("revo") ReviewVO revo, HttpSession sion) {
 		System.out.println("vvvvvvvvvvv");
@@ -119,7 +120,7 @@ public class ReviewRESTController {
 	}
 	
 	//특정 리뷰 조회
-	@GetMapping(value = "prdreviews/{renum}", produces = "application/json")
+	@GetMapping(value = "/prdreviews/{renum}", produces = "application/json")
 	public ReviewVO revGet(@PathVariable("renum") int renum) {
 		System.out.println("getgetgetget");
 		ReviewVO revo=this.reviewService.getReview(renum);
@@ -128,7 +129,7 @@ public class ReviewRESTController {
 	
 	
 	//리뷰 삭제
-	@DeleteMapping(value = "prdreviews/{renum}", produces = "application/json")
+	@DeleteMapping(value = "/user/prdreviews/{renum}", produces = "application/json")
 	public ModelMap revDelete(@PathVariable("renum") int renum) {
 		System.out.println("dddddddddddddddd");
 		log.info("del renum ===="+renum);
@@ -139,7 +140,7 @@ public class ReviewRESTController {
 	}
 	
 	//리뷰 수정 
-	@PutMapping(value = "prdreviews/{renum}", produces = "application/json")
+	@PutMapping(value = "/user/prdreviews/{renum}", produces = "application/json")
 	public ModelMap revUpdate(
 			@PathVariable("renum") int renum,
 			@RequestBody ReviewVO revo) {

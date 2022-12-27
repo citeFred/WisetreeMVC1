@@ -2,17 +2,16 @@
     pageEncoding="UTF-8"%>
 
 <!-- Ajax 요청 처리 ---------------- -->
-<!-- <script src="js/reviewAjax.js"></script> -->
+<script src="js/reviewAjax.js"></script>
 
-<%@ include file="/WEB-INF/views/review/reviewScript.jsp"%>
+<%-- <%@ include file="/WEB-INF/views/review/reviewScript.jsp"%> --%>
 
 <!-- ------------------------------ -->
 <form method="post" enctype="multipart/form-data" name="reform" id="reform">
 	<!-- hidden data------------------------------------ -->
-		<input type="text" name="pnum_fk" id="pidx_fk" value="${prod.pidx}">
+		<input type="text" name="pidx_fk" id="pidx_fk" value="${prod.pidx}">
 		<input type="text" name="userid" id="userid" value="${loginUser.userid}">
-		<input type="text" name="mode" value="ajaxMode">
-		<input type="text" name="score" id="score" >
+		<input type="text" name="score" id="score"  value="${revo.score}">
 	<!-- ---------------------------------------------- -->
 	<table class="table">
 	<tr>
