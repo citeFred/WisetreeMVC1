@@ -3,7 +3,7 @@
 <%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- functions taglib---------------------------------------- -->
 <c:import url="/top"/>
-
+<%-- ${boardArr } --%>
 <div class="container mt-3" style="overflow: auto;">
 	<h1 class="text-center">Spring Board</h1>
 	<p class="text-center my-4">
@@ -20,9 +20,22 @@
 				<th>조회수</th>
 			</tr>
 		</thead>
-	
-	
-	
+		
+		<tbody>
+		
+			<c:forEach var="board" items="${boardArr }">
+					<tr>
+						<td><c:out value="${board.num }" /></td>
+						<td><c:out value="${board.subject }" /></td>
+						<td><c:out value="${board.name }" /></td>
+						<td><c:out value="${board.wdate }" /></td>
+						<td><c:out value="${board.readnum }" /></td>
+
+					</tr>
+				</c:forEach>
+		
+		
+		</tbody>
 	
 	
 	</table>

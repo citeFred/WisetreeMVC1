@@ -1,5 +1,7 @@
 package com.wisetree.test;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.inject.Inject;
 
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.common.CommonUtil;
 import com.notice_board.model.BoardVO;
@@ -50,8 +53,15 @@ public class BoardController_notice {
 	
 	
 	@GetMapping("/list")
-	public String boardListPaging() {
-			
+	public String boardList(Model m) {
+		
+		
+	
+		
+		 
+		//"boardArr"
+		List<BoardVO> boardArr=this.boardService.selectBoardAll();
+		m.addAttribute("boardArr",boardArr);
 		return "notice_board/boardList";
 	}//----------------------------------------
 

@@ -20,6 +20,15 @@
 	
 	
 	
+	<select id="selectBoardAll" resultType="Board" parameterType="map">
+	select * from notice_spring_board order by num desc
+	
+	</select>
+	
+	
+	
+	
+	
 	
 	
 	
