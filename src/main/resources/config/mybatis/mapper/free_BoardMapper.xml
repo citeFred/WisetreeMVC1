@@ -7,16 +7,19 @@
 			order="BEFORE">
 			select free_spring_board_seq.nextval from dual
 		</selectKey>
-		insert into free_spring_board(num, name, passwd, subject, content, wdate,
+		insert into free_spring_board(num, name, passwd, subject, content,
+		wdate,
 		readnum, filename, originFilename, filesize, refer, lev, sunbun)
 		values(#{num}, #{name}, #{passwd}, #{subject}, #{content:VARCHAR},
 		SYSDATE, #{readnum}, #{filename:VARCHAR}, #{originFilename:VARCHAR},
 		#{filesize:NUMERIC}, #{num}, #{lev}, #{sunbun})
 	</insert>
-	
-	<select id="selectBoardAllPaging" resultType="Free_Board" parameterType="Paging">
+
+	<select id="selectBoardAllPaging" resultType="Free_Board"
+		parameterType="Paging">
 		select * from(
-		select row_number() over(order by refer desc, sunbun asc) rn, free_spring_board.*
+		select row_number() over(order by refer desc, sunbun
+		asc) rn, free_spring_board.*
 		from free_spring_board
 		<include refid="findWhere" />
 		)
@@ -29,17 +32,19 @@
 	<select id="selectBoardAll" resultType="Free_Board"
 		parameterType="map">
 		select * from(
-		select row_number() over(order by refer desc, sunbun asc) rn, free_spring_board.*
+		select row_number() over(order by refer desc, sunbun
+		asc) rn, free_spring_board.*
 		from free_spring_board
 		)
 		<![CDATA[
 		where rn > #{start} and rn < #{end}
 		]]>
-		
+
 	</select>
-	
+
 	<update id="updateReadnum" parameterType="int">
-		update free_spring_board set readnum = readnum + 1 where num=#{num}
+		update
+		free_spring_board set readnum = readnum + 1 where num=#{num}
 	</update>
 
 	<select id="selectBoardByIdx" resultType="Free_Board"
@@ -48,7 +53,8 @@
 	</select>
 
 	<delete id="deleteBoard" parameterType="int">
-		delete from free_spring_board
+		delete from
+		free_spring_board
 		where num=#{value}
 	</delete>
 
@@ -64,34 +70,33 @@
 			num=#{num}
 		</where>
 	</update>
-	<!-- 1단계 : 부모글의 refer lev sunbun 가져오기 -->
 	<select id="selectRefLevSunbun" parameterType="int"
-		resultType="Board">
+		resultType="Free_Board">
 		select refer, lev, sunbun from free_spring_board where
 		num=#{value}
 	</select>
 
-	<!-- 2단계 : 기존에 달려있는 답변글이 있다면 답변글의 순번을 하나씩 증가시켜주기 -->
 	<update id="updateSunbun" parameterType="Free_Board">
-		update free_spring_board set
+		update free_spring_board
+		set
 		sunbun=sunbun + 1
 		where refer=#{refer} and sunbun > #{sunbun}
 	</update>
 
-	<!-- 3단계 : 답변글쓰기 insert -->
 	<insert id="rewriteBoard" parameterType="Free_Board"
 		useGeneratedKeys="true" keyProperty="num">
 		<selectKey keyProperty="num" resultType="_int"
 			order="BEFORE">
 			select free_spring_board_seq.nextval from dual
 		</selectKey>
-		insert into free_spring_board(num, name, passwd, subject, content, wdate,
+		insert into free_spring_board(num, name, passwd, subject, content,
+		wdate,
 		readnum, filename, originFilename, filesize, refer, lev, sunbun)
-		values(#{num:NUMERIC}, #{name:VARCHAR}, #{passwd:VARCHAR}, #{subject:VARCHAR}, #{content:VARCHAR},
-		SYSDATE, #{readnum:NUMERIC}, #{filename:VARCHAR}, #{originFilename:VARCHAR},
-		#{filesize:NUMERIC}, #{num:NUMERIC}, #{lev:NUMERIC}, #{sunbun:NUMERIC})
+		values(#{num}, #{name}, #{passwd}, #{subject}, #{content:VARCHAR},
+		SYSDATE, #{readnum}, #{filename:VARCHAR}, #{originFilename:VARCHAR},
+		#{filesize:NUMERIC}, #{refer}, #{lev}, #{sunbun})
 	</insert>
-	
+
 	<sql id="findWhere">
 		<if test="findType!=null and findKeyword!=''">
 			<where>
@@ -108,10 +113,52 @@
 		</if>
 	</sql>
 
-	<select id="getTotalCount" resultType="int" parameterType="Paging">
+	<select id="getTotalCount" resultType="int"
+		parameterType="Paging">
 		select count(num) from free_spring_board
 		<include refid="findWhere" />
-		
+	</select>
+	
+	<!-- 게시글 추천수 -->
+	<update id="updateLike" parameterType="int">
+		update free_spring_board set
+		LIKEHIT = LIKEHIT+1
+		where BNO = #{bno}
+	</update>
+
+	<!-- 게시글 추천수취소 -->
+	<update id="updateLikeCancel" parameterType="int">
+		update free_spring_board set
+		LIKEHIT = LIKEHIT - 1
+		where BNO = #{bno}
+	</update>
+
+	<!-- 게시글 추천 시 Like 테이블에 insert -->
+	<insert id="insertLike">
+		insert into updown(LIKENO , BNO , MEMBER_ID)
+		values((SELECT NVL(MAX(likeno), 0) + 1 FROM MP_LIKE) ,#{bno} ,#{memberId})
+	</insert>
+
+	<!-- 게시글 추천취소 시 delete -->
+	<delete id="deleteLike">
+		delete from updown where BNO = #{bno} and MEMBER_ID = #{memberId}
+	</delete>
+
+	<!-- 게시글 추천 시 Check를 1로 만들어서 중복방지 -->
+	<!-- <update id="updateLikeCheck">
+		update updown set LIKECHECK = 1
+		where BNO = #{bno} and MEMBER_ID = #{memberId}
+	</update> -->
+
+	<!-- 게시글 추천취소 시 다시 0 -->
+	<update id="updateLikeCheckCancel">
+		update updown set LIKECHECK = 0
+		where BNO = #{bno} and MEMBER_ID = #{memberId}
+	</update>
+
+	<!-- 게시글 추천 중복방지 select문 -->
+	<select id="likeCheck" resultType="int">
+		select count(*) from updown where BNO = #{bno} and MEMBER_ID = #{memberId}
 	</select>
 
 </mapper>

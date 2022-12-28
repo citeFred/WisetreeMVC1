@@ -23,4 +23,7 @@ public class free_BoardVO {
 	private int sunbun;
 	private String old_filename;
 	
+	private int UP;
+	private int DOWN;
+	
 }

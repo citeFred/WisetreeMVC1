@@ -107,5 +107,5 @@ public class free_BoardServiceImpl implements free_BoardService {
 		// TODO Auto-generated method stub
 		return this.free_boardMapper.updateSunbun(parent);
 	}
-
+	
 }

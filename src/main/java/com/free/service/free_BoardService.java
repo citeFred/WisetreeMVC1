@@ -9,6 +9,7 @@ import com.free.model.free_BoardVO;
 import com.free.model.free_PagingVO;
 
 public interface free_BoardService {
+	
 	int insertBoard(free_BoardVO board);
 	List<free_BoardVO> selectBoardAll(Map<String,Integer> map);
 	List<free_BoardVO> selectBoardAllPaging(free_PagingVO paging);
@@ -28,4 +29,5 @@ public interface free_BoardService {
 	int rewriteBoard(free_BoardVO board);
 	free_BoardVO selectRefLevSunbun(int idx);
 	int updateSunbun(free_BoardVO parent);
+	
 }

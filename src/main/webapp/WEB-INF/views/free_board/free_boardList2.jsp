@@ -73,7 +73,6 @@
 	<table class="table table-condensed table-striped">
 		<thead>
 			<tr>
-				<th>글번호</th>
 				<th>제목</th>
 				<th>작성자</th>
 				<th>날짜</th>
@@ -90,9 +89,6 @@
 		<c:if test="${boardArr ne null and not empty boardArr}">
 			<c:forEach var="board" items="${boardArr}">
 			<tr>
-				<td>
-					<c:out value="${board.num}" />
-				</td>
 				<td>
 					<c:forEach var="k" begin="1" end="${board.lev}">
 						&nbsp;&nbsp;&nbsp;
@@ -123,6 +119,9 @@
 				<td>
 					<c:out value="${board.readnum}" />
 				</td>
+				<td>
+					0<%-- <c:out value="${board.readnum}" /> --%>
+				</td>
 			</tr>
 			</c:forEach>
 		</c:if>
@@ -132,7 +131,7 @@
 				<td colspan="3" class="text-center">
 				${pageNavi}
 				</td>
-				<td colspan="3" class="text-right">
+				<td colspan="2" class="text-right">
 				총 게시글 수 : <c:out value="${paging.totalCount}"/><br>
 				<span class="text-danger"><c:out value="${paging.cpage}"/></span> / 
 				<c:out value="${paging.pageCount}"/>

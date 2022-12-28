@@ -44,12 +44,12 @@
             <tr>
                <td width="20%">첨부파일</td>
                <td colspan="3">&nbsp;
-                     <!--  첨부파일이 있다면 -->
+
                      <c:if test="${board.filename ne null}">
                      <%-- <a href="${pageContext.request.contextPath}/upload/${board.filename}" download> --%>
                      <a href="#" onclick="down()">
-                     ${board.originFilename}
-                     </a> [ <c:out value="${board.filesize}"/> bytes]
+                     ${board.originFilename}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     </a> <%-- [ <c:out value="${board.filesize}"/> bytes] --%>
                      </c:if>
                      <c:set var="fname" value="${fn:toLowerCase(board.filename)}"/>
                      <c:if test="${fn:endsWith(fname, '.jpg') or fn:endsWith(fname, '.png') or fn:endsWith(fname, '.gif')}">
@@ -57,6 +57,10 @@
                            src="${pageContext.request.contextPath}/resources/free_board_upload/${board.filename}">
                      </c:if>
                </td>
+            </tr>
+            <tr>
+            	<td colspan="4" align=center><button id="btnUP" class="btn btn-primary">UP</button>&nbsp;&nbsp;&nbsp;
+            	<button id="btnDOWN" class="btn btn-danger">DOWN</button>
             </tr>
             <tr>
                <td colspan="4" align=center><a href="../write">글쓰기</a>| <a
@@ -95,12 +99,10 @@
 	</form>
 </div>
 <script>
-	//답변 글쓰기로 가기
 	function goRe() {
 		reF.submit();
 	}
 	
-	//파일 다운로드 처리
 	function down() {
 		fileF.submit();
 		

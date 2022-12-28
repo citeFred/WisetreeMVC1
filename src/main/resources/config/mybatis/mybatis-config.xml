@@ -11,6 +11,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="com.shop.model.ItemVO" alias="Item"/>
 		<typeAlias type="com.free.model.free_BoardVO" alias="Free_Board"/>
 		<typeAlias type="com.free.model.free_PagingVO" alias="Paging"/>
+		<typeAlias type="com.free.model.UpdownDAO" alias="Read"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="config/mybatis/mapper/ReviewMapper.xml"/>
