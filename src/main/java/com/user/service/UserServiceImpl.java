@@ -1,10 +1,19 @@
 package com.user.service;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 import com.user.mapper.UserMapper;
 import com.user.model.NotUserException;
 import com.user.model.PagingVO;
@@ -88,5 +97,6 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		return this.userMapper.selectUserByIdx(idx);
 	}
+	
 	
 }

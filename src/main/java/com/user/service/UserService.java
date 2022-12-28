@@ -25,5 +25,7 @@ public interface UserService {
 
 	UserVO loginCheck(String userid, String pwd) throws NotUserException;
 	// 회원 번호에 해당하는 회원정보 가져오기
-	UserVO selectUserByIdx(Integer idx);   
+	UserVO selectUserByIdx(Integer idx);
+
+
 }

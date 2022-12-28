@@ -49,4 +49,5 @@ public class UserLoginController {
 		log.error(ex);
 		return "login/errorAlert";
 	}
+	
 }

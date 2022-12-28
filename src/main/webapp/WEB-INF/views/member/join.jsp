@@ -14,6 +14,7 @@
 		<!-- id중복체크용 hidden data--------------- -->
 		id중복체크 yes/no<input type="text" name="id_flag" id="id_flag" value="N">
 		<!-- ------------------------- -->
+				
 		<table class="table">
 			<tr>
 				<td width="20%" class="m1">
