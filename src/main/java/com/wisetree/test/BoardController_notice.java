@@ -4,8 +4,6 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -91,6 +89,20 @@ public class BoardController_notice {
 		
 		
 		return util.addMsgLoc(m, str, loc);
+	}
+	
+	@PostMapping("edit")
+	public String boardEditform(Model m,
+			@RequestParam(defaultValue = "0") int num
+			) {
+		
+		//글번호로 해당 글 가져오기
+		BoardVO vo=this.boardService.selectBoardByIdx(num);
+		
+		//Model에 해당 글 저장 "board"
+		m.addAttribute("board",vo);
+		
+		return "notice_board/boardEdit";
 	}
 
 }

@@ -53,7 +53,8 @@
 			<td colspan="4" align=center>
 				<a href="../write">글쓰기</a> | 
 				<a href="../list">목록</a> |  
-				<a href="#" onclick="go(1)">삭제</a>
+				<a href="#" onclick="go(1)">삭제</a> |  
+				<a href="#" onclick="go(2)">편집</a>
 			</td>
 		</tr>
 	
@@ -89,10 +90,14 @@ function go(flag){
 		$('#passwd').focus();
 		frm.action='../delete';
 		frm.method='post';
+	}else if(flag==2){
+		frm.mode.value='edit';
+		$('#btn').text('글수정');
+		$('#passwd').focus();
+		frm.action='../edit';
+		frm.method='post';
 	}
 	$('#divPasswd').show(1000);
 }
 </script>
-
-
 <c:import url="/foot"/>

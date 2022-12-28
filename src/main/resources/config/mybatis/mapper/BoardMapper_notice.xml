@@ -34,7 +34,14 @@
 		delete from notice_spring_board where num=#{value}
 	</delete>
 	
-	
+	<!--  -->
+	<update id="updateBoard" parameterType="Board">
+		update notice_spring_board set name=#{name},subject=#{subject},
+		content=#{content:VARCHAR}, passwd=#{passwd}
+		<where>
+			num=#{num}
+		</where>
+	</update>
 	
 	
 	

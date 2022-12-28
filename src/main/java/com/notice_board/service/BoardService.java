@@ -14,5 +14,8 @@ public interface BoardService {
 	
 	// 글번호에 해당하는 글 삭제
 	int deleteBoard(Integer idx);
+	
+	// 글번호에 해당하는 글 수정
+	int updateBoard(BoardVO board);
 
 }
