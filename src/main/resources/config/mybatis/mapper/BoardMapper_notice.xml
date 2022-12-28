@@ -34,7 +34,7 @@
 		delete from notice_spring_board where num=#{value}
 	</delete>
 	
-	<!--  -->
+	<!-- 글번호에 해당하는 글 수정 -->
 	<update id="updateBoard" parameterType="Board">
 		update notice_spring_board set name=#{name},subject=#{subject},
 		content=#{content:VARCHAR}, passwd=#{passwd}
