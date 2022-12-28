@@ -1,5 +1,7 @@
 package com.wisetree.test;
 
+import static org.hamcrest.CoreMatchers.instanceOf;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -64,11 +66,17 @@ public class ReviewRESTController {
 	//리뷰 리스트
 	@GetMapping(value = "/prdreviews", produces = "application/json")
 	public List<ReviewVO> revList(HttpSession sion){
-		Integer pidx=(Integer)sion.getAttribute("pidx");
-		System.out.println("rrrrrrrr");
-		log.info("pidx =>"+pidx);
 		
-		List<ReviewVO> rearr=this.reviewService.listReview(pidx);
+		int pidx = 6;
+		sion.setAttribute("pidx", pidx);
+		sion.setMaxInactiveInterval(-1);
+		
+		
+		Integer pidx1=(Integer)sion.getAttribute("pidx");
+		System.out.println("rrrrrrrr");
+		log.info("pidx1 =>"+pidx1);
+		
+		List<ReviewVO> rearr=this.reviewService.listReview(pidx1);
 		return rearr;
 	}
 	

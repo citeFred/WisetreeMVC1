@@ -14,8 +14,8 @@
 		<selectKey keyProperty="num" resultType="int" order="BEFORE">
 			select review_seq.nextval from dual
 		</selectKey>
-		insert into review(renum, userid, content, score, filename, wdate, pidx_fk)
-		values(#{renum}, #{userid}, #{content:VARCHAR}, #{score}, #{filename:VARCHAR}, sysdate, #{pidx_fk})
+		insert into review(renum, userid, content, score, refilename, wdate, pidx_fk)
+		values(#{renum}, #{userid}, #{content:VARCHAR}, #{score}, #{refilename:VARCHAR}, sysdate, #{pidx_fk})
 	</insert>
 	
 	<select id="getReview" resultType="Review" parameterType="_int">

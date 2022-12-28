@@ -9,8 +9,9 @@
 <!-- ------------------------------ -->
 <form method="post" enctype="multipart/form-data" name="reform" id="reform">
 	<!-- hidden data------------------------------------ -->
-		<input type="text" name="pidx_fk" id="pidx_fk" value="${prod.pidx}">
-		<input type="text" name="userid" id="userid" value="${loginUser.userid}">
+		<input type="text" name="pidx_fk" id="pidx_fk" value="15">
+		<input type="text" name="userid" id="userid" value="hong">
+		<input type="text" name="mode" value="ajaxMode">
 		<input type="text" name="score" id="score"  value="${revo.score}">
 	<!-- ---------------------------------------------- -->
 	<table class="table">
@@ -25,7 +26,7 @@
 			<select name="score" >
 				<option value="none">=== 별점을 선택해주세요 ===</option>
 				<!-- 추후에 이미지 파일로 대체 -->
-				<option id="score" value="1">별점 1개</option>
+				<option value="1">별점 1개</option>
 				<option value="2">별점 2개</option>
 				<option value="3">별점 3개</option>
 				<option value="3">별점 4개</option>

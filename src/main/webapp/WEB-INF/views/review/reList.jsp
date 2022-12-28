@@ -121,8 +121,7 @@
       	</div>
       </div>
       <div class="row">
-      	<div class="col-md-12" id="reviewList">
-      	</div>
+      	<div class="col-md-12" id="revList"></div>
       </div>
       <div class="row">
       	<div class="col-md-10 offset-md-1">

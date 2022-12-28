@@ -74,7 +74,7 @@
         <a class="nav-link" href="${myctx}/review/list">Review List</a>
       </li>    
       <li class="nav-item">
-        <a class="nav-link" href="${myctx}/prdreviews/cre">Review Write</a>
+        <a class="nav-link" href="${myctx}/user/prdreviews">Review Write</a>
       </li>  
       <li class="nav-item">
         <a class="nav-link" href="${myctx}/board/list">Board List</a>
