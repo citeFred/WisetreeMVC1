@@ -35,7 +35,7 @@ public class BoardController_notice {
 	public String boardWrite() {
 		return "notice_board/boardWrite";
 	}
-	@PostMapping("write")
+	@PostMapping("/write")
 	public String boardInsert(Model m,
 			@ModelAttribute BoardVO board) {
 		
@@ -91,7 +91,7 @@ public class BoardController_notice {
 		return util.addMsgLoc(m, str, loc);
 	}
 	
-	@PostMapping("edit")
+	@PostMapping("/edit")
 	public String boardEditform(Model m,
 			@RequestParam(defaultValue = "0") int num
 			) {
