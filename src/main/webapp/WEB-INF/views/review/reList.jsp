@@ -48,7 +48,7 @@
                   <tr>
                      <td align="center" width="50%">
                      <a href="#" onclick="#">
-                     <img src="resources/review_images/noimage.png" class="img-fluid" style="width: 70%;"> <!-- </a> -->
+                     <img src="../resources/review_images/noimage.png" class="img-fluid" style="width: 70%;"> <!-- </a> -->
                      </a></td>
 
                      <td align="left" width="50%" style="padding-left: 40px">
@@ -87,10 +87,10 @@
                   </tr>
                   <tr style="border: 0">
                      <td align="center">
-                     	<img src="resources/review_images/noimage.png"
+                     	<img src="../resources/review_images/noimage.png"
                         class="img img-thumbnail" style="width: 70%;"></td>
                      <td align="center">
-                     	<img src="resources/review_images/noimage.png"
+                     	<img src="../resources/review_images/noimage.png"
                         class="img img-thumbnail" style="width: 70%;"></td>
                   </tr>
                   <tr>

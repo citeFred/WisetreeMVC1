@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 
 <!-- Ajax 요청 처리 ---------------- -->
-<script src="js/reviewAjax.js"></script>
+<script src="../js/reviewAjax.js"></script>
 
 <%-- <%@ include file="/WEB-INF/views/review/reviewScript.jsp"%> --%>
 
@@ -11,8 +11,9 @@
 	<!-- hidden data------------------------------------ -->
 		<input type="text" name="pidx_fk" id="pidx_fk" value="15">
 		<input type="text" name="userid" id="userid" value="hong">
+		<input type="text" name="score" id="score"  value="5">
 		<input type="text" name="mode" value="ajaxMode">
-		<input type="text" name="score" id="score"  value="${revo.score}">
+		
 	<!-- ---------------------------------------------- -->
 	<table class="table">
 	<tr>
@@ -46,7 +47,7 @@
 	<tr>
 		<th>이미지업로드</th>
 		<td colspan="2">
-			<input type="file" name="imgfile" id="imgfile"
+			<input type="file" name="refilename" id="refilename"
 			 accept="image/*" class="form-control">
 		</td>
 		<td>

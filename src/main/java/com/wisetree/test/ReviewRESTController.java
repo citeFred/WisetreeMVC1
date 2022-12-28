@@ -1,9 +1,6 @@
 package com.wisetree.test;
 
-import static org.hamcrest.CoreMatchers.instanceOf;
-
 import java.io.File;
-import java.io.IOException;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -46,71 +43,43 @@ import lombok.extern.log4j.Log4j;
  * 	DELETE	DELETE를 통해 리소스를 삭제합니다.
  *  ----------------------------------------------------*/
 
-/*  HTTP메서드          URI                설명
- *  GET                /prdreviews           모든 리뷰를 조회한다
- *  GET                /prdreviews/create    리뷰를 생성하기 위한 Form
- *  POST               /prdreviews/cre       리뷰를 생성한다
- *  GET                /prdreviews/{renum}       id에 해당하는 리뷰를 조회한다
- *  GET                /prdreviews/{renum}/edit  id에 해당하는 리뷰를 수정하기 위한 Form
- *  PUT                /prdreviews/{renum}     id에 해당하는 리뷰를 수정한다
- *  DELETE             /prdreviews/{renum}     id에 해당하는 리뷰를 삭제한다
+/*  HTTP메서드          URI                			설명
+ *  POST               /prdreviews/user      		리뷰를 생성한다
+ *  GET                /prdreviews           		모든 리뷰를 조회한다
+ *  GET                /prdreviews/{renum}      	id에 해당하는 리뷰를 조회한다
+ *  PUT                /prdreviews/user/{renum}     id에 해당하는 리뷰를 수정한다
+ *  DELETE             /prdreviews/user/{renum}     id에 해당하는 리뷰를 삭제한다
  * */
 
 @RestController
+@RequestMapping("/prdreviews")
 @Log4j
 public class ReviewRESTController {
-	
+
 	@Inject
 	private ReviewService reviewService;
-	
-	//리뷰 리스트
-	@GetMapping(value = "/prdreviews", produces = "application/json")
-	public List<ReviewVO> revList(HttpSession sion){
-		
-		int pidx = 6;
-		sion.setAttribute("pidx", pidx);
-		sion.setMaxInactiveInterval(-1);
-		
-		
-		Integer pidx1=(Integer)sion.getAttribute("pidx");
-		System.out.println("rrrrrrrr");
-		log.info("pidx1 =>"+pidx1);
-		
-		List<ReviewVO> rearr=this.reviewService.listReview(pidx1);
-		return rearr;
-	}
-	
-	//리뷰 갯수
-	@GetMapping(value = "/prdreviewCnt", produces = "application/json") 
-	public ModelMap getrevCount(HttpSession sion) {
-		Integer pidx=(Integer) sion.getAttribute("pidx");
-		int cnt=this.reviewService.getReviewCnt(pidx);
-		System.out.println("cccccccccc");
-		log.info("cnt=>"+cnt);
-		ModelMap remap=new ModelMap();
-		remap.put("cnt", cnt);
-		return remap;
-	}
 
-	//리뷰 글 작성
-	@PostMapping(value = "/user/prdreviews",  produces = "application/xml")
+	/**
+	 * 리뷰 글 작성
+	 * */
+	@PostMapping("/user")
 	public ModelMap revInsert(@RequestParam(value = "refilename", required = false) MultipartFile mtif,
-								@ModelAttribute("revo") ReviewVO revo, HttpSession sion) {
+			@ModelAttribute("revo") ReviewVO revo, HttpSession sion) {
 		System.out.println("vvvvvvvvvvv");
-		log.info("revo=>"+revo);
-		
-		//업로드 절대경로
-		ServletContext ser=sion.getServletContext();
-		String FDir=ser.getRealPath("/resources/review_images");
-		
+		log.info("revo=>" + revo);
+
+		// 업로드 절대경로
+		ServletContext ser = sion.getServletContext();
+		String FDir = ser.getRealPath("/resources/review_images");
+
 		System.out.println("fffffffffffff");
-		log.info("FDir=>"+FDir);
-		
-		//디렉토리 생성
-		File Dir=new File(FDir);
+		log.info("FDir=>" + FDir);
+
+		// 디렉토리 생성
+		File Dir = new File(FDir);
 		if (!Dir.exists()) {
 			Dir.mkdirs();
-			
+
 		}
 		// 업로드 처리
 		try {
@@ -120,46 +89,84 @@ public class ReviewRESTController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		int re=this.reviewService.addReview(revo);
+		int re = this.reviewService.addReview(revo);
 		ModelMap momap = new ModelMap();
 		momap.addAttribute("result", re);
 		return momap;
-		
+
 	}
-	
-	//특정 리뷰 조회
-	@GetMapping(value = "/prdreviews/{renum}", produces = "application/json")
+
+	/**
+	 * 리뷰 리스트 조회
+	 * */
+	@GetMapping("")
+	public List<ReviewVO> revList(HttpSession sion) {
+
+		int pidx = 6;
+		sion.setAttribute("pidx", pidx);
+		sion.setMaxInactiveInterval(-1);
+
+		Integer pidx1 = (Integer) sion.getAttribute("pidx");
+		System.out.println("rrrrrrrr");
+		log.info("pidx1 =>" + pidx1);
+
+		List<ReviewVO> rearr = this.reviewService.listReview(pidx1);
+		return rearr;
+	}
+
+	/**
+	 * 리뷰 갯수 카운팅
+	 * */
+	@GetMapping("/cnt")
+	public ModelMap getrevCount(HttpSession sion) {
+		Integer pidx = (Integer) sion.getAttribute("pidx");
+		int cnt = this.reviewService.getReviewCnt(pidx);
+		System.out.println("cccccccccc");
+		log.info("cnt=>" + cnt);
+		ModelMap remap = new ModelMap();
+		remap.put("cnt", cnt);
+		return remap;
+	}
+
+	/**
+	 * 특정 리뷰 조회
+	 * */
+	@GetMapping("/{renum}")
 	public ReviewVO revGet(@PathVariable("renum") int renum) {
 		System.out.println("getgetgetget");
-		ReviewVO revo=this.reviewService.getReview(renum);
+		ReviewVO revo = this.reviewService.getReview(renum);
 		return revo;
 	}
 	
+	/**
+	 * 리뷰 글 수정
+	 * */
+	@PutMapping("/user/{renum}")
+	public ModelMap revUpdate(@PathVariable("renum") int renum, @RequestBody ReviewVO revo) {
+		System.out.println("upupupupup");
+		log.info("Upd revo====" + revo);
+
+		int Updn = this.reviewService.upReview(revo);
+
+		ModelMap upmap = new ModelMap();
+		upmap.put("result", Updn);
+		return upmap;
+
+	}
 	
-	//리뷰 삭제
-	@DeleteMapping(value = "/user/prdreviews/{renum}", produces = "application/json")
+	
+	/**
+	 * 리뷰 삭제
+	 * */
+	@DeleteMapping("/user/{renum}")
 	public ModelMap revDelete(@PathVariable("renum") int renum) {
 		System.out.println("dddddddddddddddd");
-		log.info("del renum ===="+renum);
-		int deln=this.reviewService.delReview(renum);
-		ModelMap delmap= new ModelMap();
+		log.info("del renum ====" + renum);
+		int deln = this.reviewService.delReview(renum);
+		ModelMap delmap = new ModelMap();
 		delmap.addAttribute("result", deln);
 		return delmap;
 	}
+
 	
-	//리뷰 수정 
-	@PutMapping(value = "/user/prdreviews/{renum}", produces = "application/json")
-	public ModelMap revUpdate(
-			@PathVariable("renum") int renum,
-			@RequestBody ReviewVO revo) {
-		System.out.println("upupupupup");
-		log.info("Upd revo===="+revo);
-		
-		int Updn=this.reviewService.upReview(revo);
-		
-		ModelMap upmap=new ModelMap();
-		upmap.put("result", Updn);
-		return upmap;
-		
-	}
 }
