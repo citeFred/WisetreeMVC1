@@ -1,60 +1,135 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<!-- Ajax 요청 처리 ---------------- -->
-<!-- <script src="js/reviewAjax.js"></script> -->
-
-<%@ include file="/WEB-INF/views/review/reviewScript.jsp"%>
-
-<!-- ------------------------------ -->
-<form method="post" enctype="multipart/form-data" name="rf" id="rf">
-	<!-- hidden data------------------------------------ -->
-		<input type="hidden" name="pnum_fk" id="pnum_fk" value="">
-		<input type="hidden" name="userid" id="userid" value="">
-		<input type="hidden" name="mode" value="ajaxMode">
-	<!-- ---------------------------------------------- -->
-	<table class="table">
-	<tr>
-		<th colspan="4" class="text-center">
-		<h3>::상품 후기 쓰기::</h3>
-		</th>
-	</tr>
-	<tr>
-		<th>평가점수</th>
-		<td>
-		<!-- <input type="hidden" name="score" id="score"> -->
-		<label for="score1"><input type="radio" name="score" id="score1" value="1">1점</label>
-		<label for="score2"><input type="radio" name="score" id="score2" value="2">2점</label>
-		<label for="score3"><input type="radio" name="score"  id="score3" value="3">3점</label>
-		<label for="score4"><input type="radio" name="score" id="score4" value="4">4점</label>
-		<label for="score5"><input type="radio" name="score"  id="score5"value="5">5점</label>
+<c:import url="/top"/>
+<script>
+	const openPop=function(img){
+		//alert(img);
+		let url='resources/review_images/'+img;
+		let obj=new Image();
+		obj.src=url;
+		let w=obj.width;
+		let h=obj.height;
 		
-		
-		</td>
-		<th>작성자</th>
-		<td>김테스트</td>
-	</tr>	
-	<tr>
-		<th>상품평</th>
-		<td colspan="3">
-		<textarea name="content" id="content"
-		 rows="2" class="form-control"></textarea>	
-		</td>
-	</tr>
-	<tr>
-		<th>이미지업로드</th>
-		<td colspan="2">
-		<input type="file" name="mfilename" id="mfilename"
-		 accept="image/*" class="form-control">
-		</td>
-		<td>
-		<!-- 파일 업로드가 없는 일반적인 폼 데이터를 전송할 떄 => send()함수통해 ajax요청 -->
-		<!-- <a type="button" class="btn btn-success"
-				onclick="send()">글쓰기</a> -->
-				
-		<!-- default submit button -->
-		<button class="btn btn-outline-success">글쓰기</button>
-		</td>
-	</tr>
-</table>
-</form>
+		window.open(url, 'imgView', 'width='+w+'px, height='+h+'px, left=100px, top=100px')
+	}
+	
+	const goCart=function(){
+		//pnum, oqty가 파라미터로 넘어감
+		frm.action="user/cartAdd";
+		//frm.method='get'
+		frm.submit();
+	}
+	
+	const goOrder=function(){
+		//opnumm oqty가 파라미터로 넘어감
+		frm.action='user/order';
+		frm.submit();
+	}
+	
+	const goWish=function(){
+		frm.action='user/wishAdd';
+		frm.submit();
+	}
+</script>
+<div class="container" style="text-align:center">
+		<div class="row">
+         <div class="col-md-12">
+            <table class="table">
+               <thead>
+                  <tr>
+                     <th colspan="2"><h3 style="text-align:center">상품 정보</h3></th>
+                  </tr>
+               </thead>
+
+               <tbody>
+                  <tr>
+                     <td align="center" width="50%">
+                     <a href="#" onclick="#">
+                     <img src="../resources/review_images/noimage.png" class="img-fluid" style="width: 70%;"> <!-- </a> -->
+                     </a></td>
+
+                     <td align="left" width="50%" style="padding-left: 40px">
+                        <h4>
+                           <span class="label label-danger">아주아주 진귀한 볼펜 </span>
+                        </h4> 
+                        	상품번호: 1 <br> 
+                        	상품이름: 슈퍼볼펜 <br> 
+                        	정가:<del>
+                            <fmt:formatNumber value="1" pattern="###,###" />
+                        	</del>원<br> 
+                        	판매가:<span style="color: red; font-weight: bold">
+                           <fmt:formatNumber value="1" pattern="###,###" />
+                     			</span>원<br> 
+                     	    할인율:<span style="color: red">10 %</span><br>
+
+                        POINT:<b style="color: green">[100]</b>POINT<br>
+
+                        <!-- form시작---------- -->
+                        <form name="frm" id="frm" method="GET">
+                           <!-- 상품번호를 hidden으로 넘기자------ -->
+                           <input type="text" name="pnum" value="1">
+                           <input type="text" name="opnum" value="1">
+                           <!-- -------------------------------- -->
+                           <label for="oqty">상품갯수</label> 
+                           <input type="number" name="oqty"
+                              id="oqty" min="1" max="50" size="2" value="1">
+
+                        </form> <!-- form end------------ -->
+
+                        <button type="button" onclick="#" class="btn btn-primary">장바구니</button>
+                        <button type="button" onclick="#" class="btn btn-warning">주문하기</button>
+                        <button type="button" onclick="#" class="btn btn-danger">위시리시트</button>
+                     </td>
+
+                  </tr>
+                  <tr style="border: 0">
+                     <td align="center">
+                     	<img src="../resources/review_images/noimage.png"
+                        class="img img-thumbnail" style="width: 70%;"></td>
+                     <td align="center">
+                     	<img src="../resources/review_images/noimage.png"
+                        class="img img-thumbnail" style="width: 70%;"></td>
+                  </tr>
+                  <tr>
+                     <td colspan="2">
+                        <p>상품설명</p> 
+                        <pre>이것은 아주 진귀한 상품입니다</pre>
+                     </td>
+                  </tr>
+               </tbody>
+
+            </table>
+         </div>
+      </div><!-- .row end  -->
+      
+      
+      
+      <!-- 리뷰 글쓰기 폼 ------------------------------------ -->
+      <div class="row mt-4">
+      	<div class="col-md-10 offset-md-1">
+      		<c:import url="/reviewForm"/>
+      	</div>
+      </div>
+      
+      <!-- 리뷰 목록 ---------------------------------------- -->
+      <div class="row">
+      	<div class="col-md-12" id="reviewTitle">
+      		<h4>상품 리뷰 목록 <span class="badge bage-success" id="review_cnt"> [리뷰가 &개 있습니다.] </span> </h4>
+      	</div>
+      </div>
+      <div class="row">
+      	<div class="col-md-12" id="revList"></div>
+      </div>
+      <div class="row">
+      	<div class="col-md-10 offset-md-1">
+      <!-- 리뷰 수정 모달 ------------------------------------- -->
+      <%@ include file="/WEB-INF/views/review/reviewEdit.jsp" %>
+      <!-- ------------------------------------------------- -->
+	 	</div>
+	 </div>
+	</div><!-- .container end -->
+	
+<c:import url="/foot"/>

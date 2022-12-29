@@ -58,11 +58,11 @@ public class ReviewRESTController {
 
 	@Inject
 	private ReviewService reviewService;
-
+	
 	/**
 	 * 리뷰 글 작성
 	 * */
-	@PostMapping("/user")
+	@PostMapping(value = "/user", produces = "application/xml")
 	public ModelMap revInsert(@RequestParam(value = "refilename", required = false) MultipartFile mtif,
 			@ModelAttribute("revo") ReviewVO revo, HttpSession sion) {
 		System.out.println("vvvvvvvvvvv");
@@ -99,25 +99,21 @@ public class ReviewRESTController {
 	/**
 	 * 리뷰 리스트 조회
 	 * */
-	@GetMapping("")
+	@GetMapping(value = "", produces = "application/json")
 	public List<ReviewVO> revList(HttpSession sion) {
 
-		int pidx = 6;
-		sion.setAttribute("pidx", pidx);
-		sion.setMaxInactiveInterval(-1);
-
-		Integer pidx1 = (Integer) sion.getAttribute("pidx");
+		Integer pidx = (Integer) sion.getAttribute("pidx");
 		System.out.println("rrrrrrrr");
-		log.info("pidx1 =>" + pidx1);
+		log.info("pidx =>" + pidx);
 
-		List<ReviewVO> rearr = this.reviewService.listReview(pidx1);
+		List<ReviewVO> rearr = this.reviewService.listReview(pidx);
 		return rearr;
 	}
 
 	/**
 	 * 리뷰 갯수 카운팅
 	 * */
-	@GetMapping("/cnt")
+	@GetMapping(value = "/cnt", produces = "application/json")
 	public ModelMap getrevCount(HttpSession sion) {
 		Integer pidx = (Integer) sion.getAttribute("pidx");
 		int cnt = this.reviewService.getReviewCnt(pidx);
@@ -131,9 +127,10 @@ public class ReviewRESTController {
 	/**
 	 * 특정 리뷰 조회
 	 * */
-	@GetMapping("/{renum}")
+	@GetMapping(value = "/{renum}", produces = "application/json")
 	public ReviewVO revGet(@PathVariable("renum") int renum) {
 		System.out.println("getgetgetget");
+		log.info("renum=>"+renum);
 		ReviewVO revo = this.reviewService.getReview(renum);
 		return revo;
 	}
@@ -141,7 +138,7 @@ public class ReviewRESTController {
 	/**
 	 * 리뷰 글 수정
 	 * */
-	@PutMapping("/user/{renum}")
+	@PutMapping(value = "/user/{renum}", produces = "application/json")
 	public ModelMap revUpdate(@PathVariable("renum") int renum, @RequestBody ReviewVO revo) {
 		System.out.println("upupupupup");
 		log.info("Upd revo====" + revo);
@@ -158,7 +155,7 @@ public class ReviewRESTController {
 	/**
 	 * 리뷰 삭제
 	 * */
-	@DeleteMapping("/user/{renum}")
+	@DeleteMapping(value = "/user/{renum}", produces = "application/json")
 	public ModelMap revDelete(@PathVariable("renum") int renum) {
 		System.out.println("dddddddddddddddd");
 		log.info("del renum ====" + renum);

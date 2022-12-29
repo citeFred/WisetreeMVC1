@@ -21,7 +21,7 @@
   </style>
 </head>
 <body>
-<!-- context명 세팅 "multiweb"  -->
+<!-- context명 세팅 "test"  -->
 <c:set var="myctx" value="${pageContext.request.contextPath}"/>
 
 <div class="jumbotron text-center" style="margin-bottom:0">
@@ -71,10 +71,10 @@
         <a class="nav-link" href="${myctx}/notice_board/write">Notice Write</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="${myctx}/review/list">Review List</a>
+        <a class="nav-link" href="${myctx}/test">Review List</a>
       </li>    
       <li class="nav-item">
-        <a class="nav-link" href="${myctx}/review/write">Review Write</a>
+        <a class="nav-link" href="${myctx}/reviewForm">Review Write</a>
       </li>  
       <li class="nav-item">
         <a class="nav-link" href="${myctx}/board/list">Board List</a>

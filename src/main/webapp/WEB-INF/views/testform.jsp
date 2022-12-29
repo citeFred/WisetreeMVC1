@@ -9,9 +9,9 @@
 <!-- ------------------------------ -->
 <form method="post" enctype="multipart/form-data" name="reform" id="reform">
 	<!-- hidden data------------------------------------ -->
-		<input type="text" name="pidx_fk" id="pidx_fk" value="${prod.pidx}">
+		<input type="text" name="pidx_fk" id="pidx_fk" value="15">
 		<input type="text" name="userid" id="userid" value="hong">
-		<input type="text" name="score" id="score">
+		<input type="text" name="score" id="score" >
 		<input type="text" name="mode" value="ajaxMode">
 		
 	<!-- ---------------------------------------------- -->
@@ -22,7 +22,7 @@
 		</th>
 	</tr>
 	<tr>
-		<th>리뷰평가점수</th>   
+		<th>리뷰평가점수</th>  
 		<td>
 		<label for="score1"><input type="radio" name="score" id="score1" value="1">1점</label>
 		<label for="score2"><input type="radio" name="score" id="score2" value="2">2점</label>
@@ -31,7 +31,7 @@
 		<label for="score5"><input type="radio" name="score"  id="score5"value="5">5점</label>
 		
 		
-		</td>
+		</td> 
 		<!-- <td>
 			<select name="score" >
 				<option value="none">=== 별점을 선택해주세요 ===</option>

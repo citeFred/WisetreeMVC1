@@ -70,7 +70,7 @@ $(function(){
 		
 		//사용자가 수정한 값 얻기
 		let uid=reform2.userid.value;
-		let pidx_fk=reform2.pidx_fk.value;
+		let pidx=reform2.pidx_fk.value;
 		let renum=reform2.renum.value;
 		let score=reform2.score.value;
 		let content=reform2.content.value;
@@ -87,7 +87,7 @@ $(function(){
 		
 		$.ajax({
 			type:'put',
-			url:'user/prdreviews/'+renum,
+			url:'prdreviews/user+renum;,
 			data:data,
 			contentType:'application/json; charset=UTF-8',
 			dataType:'json',
