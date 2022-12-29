@@ -3,6 +3,39 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:import url="/top" />
 
+<!-- id로 유효성 체크 -->
+<script>
+$(function(){
+	
+	$('#bf').submit(function(){
+		if($('#subject').val()==''){
+			alert('제목을 입력해세요');
+			$('#subject').focus();
+			return false;
+		}
+		if($('#name').val()==''){
+			alert('글쓴이를 입력하세요');
+			$('#name').focus();
+			return false;
+		}
+		
+		if($('#content').val()==''){
+			alert('글내용을 입력하세요');
+			$('#content').focus();
+			return false;
+		}
+		
+		if($('#bpwd').val()==''){
+			alert('비밀번호를 입력하세요');
+			$('#bpwd').focus();
+			return false;
+		}
+		return true;
+	})
+})//$() end----------------------------
+	
+</script>
+
 <div align="center" id="bbs" class="col-md-8 offset-md-2 my-4">
    <h1>Spring Board</h1>
    <p>
