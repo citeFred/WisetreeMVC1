@@ -13,8 +13,8 @@ $(function(){
 		const fname=file.files[0];
 		const userid=$('#userid').val();
 		const content=$('#content').val();
-		//const score=$('input[name="score"]:checked').val();
-		const score=5;
+		const score=$('input[name="score"]:checked').val();
+		//const score=5;
 		const pidx_fk=$('#pidx_fk').val();
 		
 		console.log(userid+"/"+content+"/"+score+"/"+pidx_fk+"/"+fname);
@@ -70,7 +70,7 @@ $(function(){
 		
 		//사용자가 수정한 값 얻기
 		let uid=reform2.userid.value;
-		let pidx_fk=reform2.pidx_fk.value;
+		let pidx=reform2.pidx_fk.value;
 		let renum=reform2.renum.value;
 		let score=reform2.score.value;
 		let content=reform2.content.value;
@@ -87,7 +87,7 @@ $(function(){
 		
 		$.ajax({
 			type:'put',
-			url:'user/prdreviews/'+renum,
+			url:"prdreviews/user/"+renum,
 			data:data,
 			contentType:'application/json; charset=UTF-8',
 			dataType:'json',
@@ -123,8 +123,8 @@ $(function(){
 		})
 		.done(function(res) { 
 			alert(JSON.stringify(res));
-			alert(res.length);
-			showTable(res);
+			//alert(res.length);
+			//showTable(res);
 		})
 		.fail(function(err) { 
 			alert('err'+err.status);
@@ -138,7 +138,7 @@ $(function(){
 		let str='<table class="table table-striped">';
 		$.each(res, function(i, revo){
 			let wd=new Date(revo.wdate); // 
-			let dstr=wd.getFullYear()+"-"+(wd.getMonth()+1)+"-"+wd.getDate();
+			let wdstr=wd.getFullYear()+"-"+(wd.getMonth()+1)+"-"+wd.getDate();
 			
 			str+='<tr><td width="15%">';
 			if(revo.refilename==null) {
@@ -170,7 +170,7 @@ $(function(){
 	/**
 	 * 리뷰 갯수
 	 * */
-	const review_cnt=function(){
+	const review_count=function(){
 		$.ajax({
 			type:'get',
 			url:'prdreview/cnt',
@@ -233,7 +233,7 @@ const reviewDel = function(renum){
 	
 	$.ajax({
 		type:'delete',
-		url:'user/reviews/'+renum,
+		url:'prdreviews/user/'+renum,
 		dataType:'json',
 		cache:false,
 		beforeSend:function(xhr){
@@ -258,7 +258,7 @@ const reviewDel = function(renum){
  	alert('send');
  	
  	let params=$('#reform').serialize();
- 	let url="user/reviews";
+ 	let url="prdreviews/user";
  	
  	$.ajax({
  		type:'post',

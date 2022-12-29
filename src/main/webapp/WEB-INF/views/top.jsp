@@ -71,13 +71,13 @@
         <a class="nav-link" href="${myctx}/notice_board/write">Notice Write</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="${myctx}/review/list">Review List</a>
+        <a class="nav-link" href="${myctx}/reviewList">Review List</a>
       </li>    
       <li class="nav-item">
-        <a class="nav-link" href="${myctx}/review/write">Review Write</a>
+        <a class="nav-link" href="${myctx}/reviewForm">Review Write</a>
       </li>  
       <li class="nav-item">
-        <a class="nav-link" href="${myctx}/board/list">Board List</a>
+        <a class="nav-link" href="${myctx}/review/write">Board List</a>
       </li>    
       <li class="nav-item">
         <a class="nav-link" href="${myctx}/board/write">Board Write</a>
