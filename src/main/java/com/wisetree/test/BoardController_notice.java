@@ -104,5 +104,18 @@ public class BoardController_notice {
 		
 		return "notice_board/boardEdit";
 	}
+	
+	@PostMapping("/update")
+	public String boardEditform(Model m,@ModelAttribute BoardVO board
+			) {
+		
+		//글번호로 해당 글 가져오기
+		int vo=this.boardService.updateBoard(board);
+		
+		//Model에 해당 글 저장 "board"
+		m.addAttribute("board",vo);
+		
+		return "redirect:/notice_board/list";
+	}
 
 }

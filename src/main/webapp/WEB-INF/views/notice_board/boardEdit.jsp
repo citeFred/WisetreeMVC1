@@ -9,7 +9,7 @@
    	<a href="write">글쓰기</a>|<a href="list">글목록</a>
    </p>
    
-   <form name="bf" id="bf" role="form" action="write" method="POST" enctype="multipart/form-data">
+   <form name="bf" id="bf" role="form" action="update" method="POST" enctype="multipart/form-data">
 	   <input type="text" name="num" value="<c:out value="${board.num }"/>">
 	   <!-- <input> --><!-- 원본글쓰기mode는 write, 답변글쓰기 mode는 rewrite로 감 - 활용할때 사용  -->
 	   <table>
