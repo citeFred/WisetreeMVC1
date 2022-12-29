@@ -52,7 +52,7 @@ import lombok.extern.log4j.Log4j;
  * */
 
 @RestController
-@RequestMapping(value = "prdreviews")
+@RequestMapping("/prdreviews")
 @Log4j
 public class ReviewRESTController {
 
@@ -102,15 +102,15 @@ public class ReviewRESTController {
 	@GetMapping("")
 	public List<ReviewVO> revList(HttpSession sion) {
 
-		int pidx1 = 15;
-		sion.setAttribute("pidx", pidx1);
+		int pidx = 6;
+		sion.setAttribute("pidx", pidx);
 		sion.setMaxInactiveInterval(-1);
 
-		Integer pidx = (Integer) sion.getAttribute("pidx");
+		Integer pidx1 = (Integer) sion.getAttribute("pidx");
 		System.out.println("rrrrrrrr");
-		log.info("pidx1 =>" + pidx);
+		log.info("pidx1 =>" + pidx1);
 
-		List<ReviewVO> rearr = this.reviewService.listReview(pidx);
+		List<ReviewVO> rearr = this.reviewService.listReview(pidx1);
 		return rearr;
 	}
 
