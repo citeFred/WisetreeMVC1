@@ -6,7 +6,14 @@
 
 <div class="container mt-3" style="overflow:auro;">
 	<h1 class="text-center">Spring Board 내용 보기</h1>
-
+	
+	<c:if test="${board eq null }">
+		<div class="alert alert-danger my-5 test-center">
+			<h4>존재 하지 않는 글입니다.</h4>
+		</div>
+	</c:if>
+	
+	<c:if test="${board ne null }">
 	<table class="table mt-4">
 		<tr>
 			<td>글번호</td>
@@ -61,7 +68,7 @@
 	
 	
 	</table>
-	
+	</c:if>
 <!-- 편집 또는 삭제를 위한 form----------------------------- -->
 <form name="frm" id="frm">
 	<input type="text" name="num" value="<c:out value="${board.num }"/>">
