@@ -1,5 +1,6 @@
 package com.wisetree.test;
 
+
 import java.io.File;
 import java.util.List;
 
@@ -101,11 +102,10 @@ public class ReviewRESTController {
 	 * */
 	@GetMapping(value = "", produces = "application/json")
 	public List<ReviewVO> revList(HttpSession sion) {
-
+		
 		Integer pidx = (Integer) sion.getAttribute("pidx");
 		System.out.println("rrrrrrrr");
 		log.info("pidx =>" + pidx);
-
 		List<ReviewVO> rearr = this.reviewService.listReview(pidx);
 		return rearr;
 	}

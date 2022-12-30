@@ -71,7 +71,7 @@
         <a class="nav-link" href="${myctx}/notice_board/write">Notice Write</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="${myctx}/test">Review List</a>
+        <a class="nav-link" href="${myctx}/review">Review List</a>
       </li>    
       <li class="nav-item">
         <a class="nav-link" href="${myctx}/reviewForm">Review Write</a>

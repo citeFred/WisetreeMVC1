@@ -120,7 +120,7 @@ const review_cnt=function(){
 		dataType:'json',
 		cache:false,
 		success:function(res){
-			alert(res.count);
+			//alert(res.count);
 			$('#review_cnt').html(res.count);
 		},
 		error:function(err){

@@ -87,7 +87,7 @@ $(function(){
 		
 		$.ajax({
 			type:'put',
-			url:'prdreviews/user+renum;,
+			url:'prdreviews/user'+renum,
 			data:data,
 			contentType:'application/json; charset=UTF-8',
 			dataType:'json',

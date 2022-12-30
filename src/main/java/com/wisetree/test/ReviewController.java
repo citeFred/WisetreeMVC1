@@ -12,15 +12,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class ReviewController {
 	
 	
-	@RequestMapping("/test")
-	public void test() {
+	@RequestMapping("/review")
+	public void review() {
 		//"/WEB-INF/views/test.jsp				
 	}
 	
-	@PostMapping("/test")
-	public String testinsert() {
-		return "test";
-	}
+	/*
+	 * @PostMapping("/test") public String testinsert() { return "test"; }
+	 */
 	
 	@RequestMapping(value = "/reviewForm", method = RequestMethod.GET)
 	public String reviewWrite(){

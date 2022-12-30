@@ -11,7 +11,7 @@
 	<!-- hidden data------------------------------------ -->
 		<input type="text" name="pidx_fk" id="pidx_fk" value="${prod.pidx}">
 		<input type="text" name="userid" id="userid" value="hong">
-		<input type="text" name="score" id="score">
+		
 		<input type="text" name="mode" value="ajaxMode">
 		
 	<!-- ---------------------------------------------- -->
@@ -24,6 +24,7 @@
 	<tr>
 		<th>리뷰평가점수</th>   
 		<td>
+		<input type="text" name="score" id="score">
 		<label for="score1"><input type="radio" name="score" id="score1" value="1">1점</label>
 		<label for="score2"><input type="radio" name="score" id="score2" value="2">2점</label>
 		<label for="score3"><input type="radio" name="score"  id="score3" value="3">3점</label>
@@ -44,8 +45,7 @@
 			</select>
 		</td> -->
 		<th>작성자</th>
-		<td>[홍길동]</td>
-		<%-- <td>${loginUser.name}[${loginUser.userid}]</td> --%>
+		<td>${loginUser.name}["hong"]</td>
 	</tr>	
 	<tr>
 		<th>상품평</th>
