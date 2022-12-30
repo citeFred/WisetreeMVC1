@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.free.mapper.free_BoardMapper">
+	<insert id="insertBoard" parameterType="Free_Board">
+		<selectKey keyProperty="num" resultType="_int"
+			order="BEFORE">
+			select free_spring_board_seq.nextval from dual
+		</selectKey>
+		insert into free_spring_board(num, name, passwd, subject, content,
+		wdate,
+		readnum, filename, originFilename, filesize, refer, lev, sunbun)
+		values(#{num}, #{name}, #{passwd}, #{subject}, #{content:VARCHAR},
+		SYSDATE, #{readnum}, #{filename:VARCHAR}, #{originFilename:VARCHAR},
+		#{filesize:NUMERIC}, #{num}, #{lev}, #{sunbun})
+	</insert>
+
+	<select id="selectBoardAllPaging" resultType="Free_Board"
+		parameterType="Paging">
+		select * from(
+		select row_number() over(order by refer desc, sunbun
+		asc) rn, free_spring_board.*
+		from free_spring_board
+		<include refid="findWhere" />
+		)
+		
+		<![CDATA[
+		where rn > #{start} and rn < #{end}
+		]]>
+	</select>
+
+	<select id="selectBoardAll" resultType="Free_Board"
+		parameterType="map">
+		select * from(
+		select row_number() over(order by refer desc, sunbun
+		asc) rn, free_spring_board.*
+		from free_spring_board
+		)
+		<![CDATA[
+		where rn > #{start} and rn < #{end}
+		]]>
+
+	</select>
+
+	<update id="updateReadnum" parameterType="int">
+		update
+		free_spring_board set readnum = readnum + 1 where num=#{num}
+	</update>
+
+	<select id="selectBoardByIdx" resultType="Free_Board"
+		parameterType="_int">
+		select * from free_spring_board where num=#{value}
+	</select>
+
+	<delete id="deleteBoard" parameterType="int">
+		delete from
+		free_spring_board
+		where num=#{value}
+	</delete>
+
+	<update id="updateBoard" parameterType="Free_Board">
+		update free_spring_board set name=#{name}, subject=#{subject},
+		content=#{content:VARCHAR},
+		passwd=#{passwd}
+		<if test="filename!=null and filename!=''">
+			, filename=#{filename}, filesize=#{filesize},
+			originFilename=#{originFilename}
+		</if>
+		<where>
+			num=#{num}
+		</where>
+	</update>
+	<select id="selectRefLevSunbun" parameterType="int"
+		resultType="Free_Board">
+		select refer, lev, sunbun from free_spring_board where
+		num=#{value}
+	</select>
+
+	<update id="updateSunbun" parameterType="Free_Board">
+		update free_spring_board
+		set
+		sunbun=sunbun + 1
+		where refer=#{refer} and sunbun > #{sunbun}
+	</update>
+
+	<insert id="rewriteBoard" parameterType="Free_Board"
+		useGeneratedKeys="true" keyProperty="num">
+		<selectKey keyProperty="num" resultType="_int"
+			order="BEFORE">
+			select free_spring_board_seq.nextval from dual
+		</selectKey>
+		insert into free_spring_board(num, name, passwd, subject, content,
+		wdate,
+		readnum, filename, originFilename, filesize, refer, lev, sunbun)
+		values(#{num}, #{name}, #{passwd}, #{subject}, #{content:VARCHAR},
+		SYSDATE, #{readnum}, #{filename:VARCHAR}, #{originFilename:VARCHAR},
+		#{filesize:NUMERIC}, #{refer}, #{lev}, #{sunbun})
+	</insert>
+
+	<sql id="findWhere">
+		<if test="findType!=null and findKeyword!=''">
+			<where>
+				<if test="findType==1">
+					subject like '%'||#{findKeyword}||'%'
+				</if>
+				<if test="findType==2">
+					name like '%'||#{findKeyword}||'%'
+				</if>
+				<if test="findType==3">
+					content like '%'||#{findKeyword}||'%'
+				</if>
+			</where>
+		</if>
+	</sql>
+
+	<select id="getTotalCount" resultType="int"
+		parameterType="Paging">
+		select count(num) from free_spring_board
+		<include refid="findWhere" />
+	</select>
+
+</mapper>

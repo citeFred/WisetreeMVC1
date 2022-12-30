@@ -11,6 +11,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="com.notice_board.model.BoardVO" alias="Board"/>
 		<typeAlias type="com.shop.model.ItemVO" alias="Item"/>
 		<typeAlias type="com.shop.model.OptionVO" alias="Option"/>
+		<typeAlias type="com.free.model.free_BoardVO" alias="Free_Board"/>
+		<typeAlias type="com.free.model.free_PagingVO" alias="Paging"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="config/mybatis/mapper/ReviewMapper.xml"/>
@@ -18,6 +20,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="config/mybatis/mapper/KakaoMapper.xml"/>
 		<mapper resource="config/mybatis/mapper/BoardMapper_notice.xml"/>
 		<mapper resource="config/mybatis/mapper/AdminMapper.xml"/>
+		<mapper resource="config/mybatis/mapper/free_BoardMapper.xml"/>
 	</mappers>
 	
 	
