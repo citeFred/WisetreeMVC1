@@ -118,47 +118,5 @@
 		select count(num) from free_spring_board
 		<include refid="findWhere" />
 	</select>
-	
-	<!-- 게시글 추천수 -->
-	<update id="updateLike" parameterType="int">
-		update free_spring_board set
-		LIKEHIT = LIKEHIT+1
-		where BNO = #{bno}
-	</update>
-
-	<!-- 게시글 추천수취소 -->
-	<update id="updateLikeCancel" parameterType="int">
-		update free_spring_board set
-		LIKEHIT = LIKEHIT - 1
-		where BNO = #{bno}
-	</update>
-
-	<!-- 게시글 추천 시 Like 테이블에 insert -->
-	<insert id="insertLike">
-		insert into updown(LIKENO , BNO , MEMBER_ID)
-		values((SELECT NVL(MAX(likeno), 0) + 1 FROM MP_LIKE) ,#{bno} ,#{memberId})
-	</insert>
-
-	<!-- 게시글 추천취소 시 delete -->
-	<delete id="deleteLike">
-		delete from updown where BNO = #{bno} and MEMBER_ID = #{memberId}
-	</delete>
-
-	<!-- 게시글 추천 시 Check를 1로 만들어서 중복방지 -->
-	<!-- <update id="updateLikeCheck">
-		update updown set LIKECHECK = 1
-		where BNO = #{bno} and MEMBER_ID = #{memberId}
-	</update> -->
-
-	<!-- 게시글 추천취소 시 다시 0 -->
-	<update id="updateLikeCheckCancel">
-		update updown set LIKECHECK = 0
-		where BNO = #{bno} and MEMBER_ID = #{memberId}
-	</update>
-
-	<!-- 게시글 추천 중복방지 select문 -->
-	<select id="likeCheck" resultType="int">
-		select count(*) from updown where BNO = #{bno} and MEMBER_ID = #{memberId}
-	</select>
 
 </mapper>

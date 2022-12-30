@@ -1,9 +1,8 @@
 package com.wisetree.test;
 
 import java.io.File;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 import javax.annotation.Resource;
@@ -20,15 +19,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.common.CommonUtil;
 import com.free.model.free_BoardVO;
 import com.free.model.free_PagingVO;
 import com.free.service.free_BoardService;
-import com.common.CommonUtil;
 
 import lombok.extern.log4j.Log4j;
 
@@ -214,26 +211,6 @@ public class BoardController {
 		m.addAttribute("subject", vo.getSubject());
 		
 		return "free_board/free_boardRewrite";
-	}
-	
-	@ResponseBody
-	@RequestMapping(value = "/free_board/updateLike" , method = RequestMethod.POST)
-	public int updateLike(int bno, String memberId, String writerId) throws Exception {
-		
-			int likeCheck = free_boardService.likeCheck(bno, memberId);
-			if(likeCheck == 0) {
-				//좋아요 처음누름
-				free_boardService.insertLike(bno, memberId); //like테이블 삽입
-				free_boardService.updateLike(bno);	//게시판테이블 +1
-				free_boardService.updateLikeCheck(bno, memberId);//like테이블 구분자 1
-				free_boardService.memberPointPlus(writerId); //회원포인트 +
-			}else if(likeCheck == 1) {
-				free_boardService.updateLikeCheckCancel(bno, memberId); //like테이블 구분자0
-				free_boardService.updateLikeCancel(bno); //게시판테이블 - 1
-				free_boardService.deleteLike(bno, memberId); //like테이블 삭제
-				free_boardService.memberPointDown(writerId); //회원포인트 - 
-			}
-			return likeCheck;
 	}
 	
 }
