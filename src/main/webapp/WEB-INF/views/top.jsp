@@ -61,22 +61,30 @@
 					</li>
 				</c:if>
 
-				<!-- [로그인 모달윈도 탭] <- 어떠한 로그인도 안된 상태에서는 로그인 창이 보이게 -->
-				<c:if test="${loginUser eq null and k_loginUser eq null}">
-				
-				</c:if>
+				<!-- [로그인 상태 탭 1,2] <- 어떠한 로그인도 안된 상태에서는 로그인상태가 둘다 안보이게 -->
+				<script>
+				$(function(){
+					if(${loginUser eq null and k_loginUser eq null}){
+						document.getElementById("normalUserLogined").style.display = "none";
+						document.getElementById("kakaoUserLogined").style.display = "none";
+					}
+				})
+				</script>
 				<!-- [일반 로그인 상태 탭-1] <- 일반회원 로그인 상태에서는 카카오 로그인상태가 안보이게 -->
 				<c:if test="${loginUser ne null or k_loginUser eq null}">
+				<div id="normalUserLogined">
 					<li class="nav-item bg-primary">
-						<a id="normalUserLogined" class="nav-link text-white" href="#">${loginUser.userid }님 로그인중..</a>
+						<a class="nav-link text-white" href="#">${loginUser.userid }님 로그인중..</a>
+				</div>
 				</c:if>
 				
 				<!-- [카카오 로그인 상태 탭-2] <- 카카오회원 로그인 상태에서는 일반 로그인상태가 안보이게 -->
 				<c:if test="${loginUser eq null or k_loginUser ne null}">
-					<li  class="nav-item bg-primary">
-						<a id="kakaoUserLogined" class="nav-link text-white" href="#">${k_loginUser.k_name}님 로그인중..</a>
+				<div id="kakaoUserLogined">
+					<li class="nav-item bg-primary">
+						<a class="nav-link text-white" href="#">${k_loginUser.k_name}님 로그인중..</a>
+				</div>
 				</c:if>
-				
 				
 				<!-- [로그아웃 탭] <- 어떠한 형태의 회원이라도 로그인 한 경우 로그아웃 보이게 -->
 				<c:if test="${loginUser ne null or k_loginUser ne null}">
