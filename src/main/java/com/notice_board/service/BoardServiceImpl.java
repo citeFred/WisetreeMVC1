@@ -1,5 +1,7 @@
 package com.notice_board.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,26 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public int insertBoard(BoardVO board) {
 		return this.boardMapper.insertBoard(board);
+	}
+
+	@Override
+	public List<BoardVO> selectBoardAll() {
+		return this.boardMapper.selectBoardAll();
+	}
+
+	@Override
+	public BoardVO selectBoardByIdx(Integer num) {
+		return this.boardMapper.selectBoardByIdx(num);
+	}
+
+	@Override
+	public int deleteBoard(Integer idx) {
+		return this.boardMapper.deleteBoard(idx);
+	}
+
+	@Override
+	public int updateBoard(BoardVO board) {
+		return this.boardMapper.updateBoard(board);
 	}
 
 
