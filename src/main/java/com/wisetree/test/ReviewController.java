@@ -1,27 +1,30 @@
 package com.wisetree.test;
 
+
+
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-
+import org.springframework.web.bind.annotation.RequestMethod;
 
 //@RestController
 @Controller
-@RequestMapping("/review")
 public class ReviewController {
 	
-	/*
-	 * @Inject private ReviewService reviewService;
-	 */
 	
-	@RequestMapping("/list")
-	public String reList(){
-		return "/review/reList";
+	@RequestMapping("/review")
+	public void review() {
+		//"/WEB-INF/views/test.jsp				
 	}
 	
-	@RequestMapping("/write")
-	public String reWrite(){
-		return "/review/reviewForm";
+	/*
+	 * @PostMapping("/test") public String testinsert() { return "test"; }
+	 */
+	
+	@RequestMapping(value = "/reviewForm", method = RequestMethod.GET)
+	public String reviewWrite(){
+		
+		return "review/reviewForm";
 	}
 	
 	

@@ -31,8 +31,8 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public ReviewVO getReview(int num) {
-		return this.reviewMapper.getReview(num);
+	public ReviewVO getReview(int renum) {
+		return this.reviewMapper.getReview(renum);
 	}
 
 	@Override
@@ -41,8 +41,8 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public int delReview(int num) {
-		return this.reviewMapper.delReview(num);
+	public int delReview(int renum) {
+		return this.reviewMapper.delReview(renum);
 	}
 
 }

@@ -7,7 +7,7 @@
 <script>
 	const openPop=function(img){
 		//alert(img);
-		let url='resources/product_images/'+img;
+		let url='resources/review_images/'+img;
 		let obj=new Image();
 		obj.src=url;
 		let w=obj.width;
@@ -47,32 +47,31 @@
                <tbody>
                   <tr>
                      <td align="center" width="50%">
-                     <a href="#" onclick="openPop('${prod.pimage1}')">
-                     <img
-                           src="resources/product_images/${prod.pimage1 }" class="img-fluid" style="width: 70%;"> <!-- </a> -->
+                     <a href="#" onclick="#">
+                     <img src="../resources/review_images/noimage.png" class="img-fluid" style="width: 70%;"> <!-- </a> -->
                      </a></td>
 
                      <td align="left" width="50%" style="padding-left: 40px">
                         <h4>
-                           <span class="label label-danger">${prod.pspec } </span>
+                           <span class="label label-danger">아주아주 진귀한 볼펜 </span>
                         </h4> 
-                        	상품번호: ${prod.pnum } <br> 
-                        	상품이름: ${prod.pname } <br> 
+                        	상품번호: 1 <br> 
+                        	상품이름: 슈퍼볼펜 <br> 
                         	정가:<del>
                             <fmt:formatNumber value="1" pattern="###,###" />
                         	</del>원<br> 
                         	판매가:<span style="color: red; font-weight: bold">
-                           <fmt:formatNumber value="${prod.saleprice }" pattern="###,###" />
+                           <fmt:formatNumber value="1" pattern="###,###" />
                      			</span>원<br> 
-                     	    할인율:<span style="color: red">${prod.percent } %</span><br>
+                     	    할인율:<span style="color: red">10 %</span><br>
 
-                        POINT:<b style="color: green">[${prod.point }]</b>POINT<br>
+                        POINT:<b style="color: green">[100]</b>POINT<br>
 
                         <!-- form시작---------- -->
-                        <form name="frm" id="frm" method="POST">
+                        <form name="frm" id="frm" method="GET">
                            <!-- 상품번호를 hidden으로 넘기자------ -->
-                           <input type="hidden" name="pnum" value="${prod.pnum }">
-                           <input type="hidden" name="opnum" value="${prod.pnum }">
+                           <input type="text" name="pnum" value="1">
+                           <input type="text" name="opnum" value="1">
                            <!-- -------------------------------- -->
                            <label for="oqty">상품갯수</label> 
                            <input type="number" name="oqty"
@@ -80,25 +79,24 @@
 
                         </form> <!-- form end------------ -->
 
-                        <button type="button" onclick="goCart()" class="btn btn-primary">장바구니</button>
-                        <button type="button" onclick="goOrder()"
-                           class="btn btn-warning">주문하기</button>
-                        <button type="button" onclick="goWish()" class="btn btn-danger">위시리시트</button>
+                        <button type="button" onclick="#" class="btn btn-primary">장바구니</button>
+                        <button type="button" onclick="#" class="btn btn-warning">주문하기</button>
+                        <button type="button" onclick="#" class="btn btn-danger">위시리시트</button>
                      </td>
 
                   </tr>
                   <tr style="border: 0">
                      <td align="center">
-                     	<img src="resources/product_images/${prod.pimage2 }"
+                     	<img src="../resources/review_images/noimage.png"
                         class="img img-thumbnail" style="width: 70%;"></td>
                      <td align="center">
-                     	<img src="resources/product_images/${prod.pimage3 }"
+                     	<img src="../resources/review_images/noimage.png"
                         class="img img-thumbnail" style="width: 70%;"></td>
                   </tr>
                   <tr>
                      <td colspan="2">
                         <p>상품설명</p> 
-                        <pre>${prod.pcontents }</pre>
+                        <pre>이것은 아주 진귀한 상품입니다</pre>
                      </td>
                   </tr>
                </tbody>
@@ -106,22 +104,24 @@
             </table>
          </div>
       </div><!-- .row end  -->
+      
+      
+      
       <!-- 리뷰 글쓰기 폼 ------------------------------------ -->
       <div class="row mt-4">
       	<div class="col-md-10 offset-md-1">
       		<c:import url="/reviewForm"/>
       	</div>
       </div>
-      <div class="row">
-      	<div class="col-md-12" id="reviewTitle">
-      		<h4>상품 리뷰 목록 <span class="badge bage-success" id="review_cnt"> [리뷰가 &개 있습니다.] </span> </h4>
-      	</div>
-      </div>
+      
       <!-- 리뷰 목록 ---------------------------------------- -->
       <div class="row">
-      	<div class="col-md-12" id="reviewList">
-      	
+      	<div class="col-md-12" id="reviewTitle">
+      		<h4>상품 리뷰 목록 <span class="badge bage-success" id="review_cnt"> </span> </h4>
       	</div>
+      </div>
+      <div class="row">
+      	<div class="col-md-12" id="revList"></div>
       </div>
       <div class="row">
       	<div class="col-md-10 offset-md-1">

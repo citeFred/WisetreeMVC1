@@ -6,7 +6,7 @@ import lombok.Data;
 public class ReviewVO {
 	
 	/* 리뷰 번호 */
-	private int num;
+	private int renum;
 	
 	/* 회원 계정 */
 	private String userid;
@@ -18,11 +18,11 @@ public class ReviewVO {
 	private int score;
 	
 	/* 첨부 파일 */
-	private String filename;
+	private String refilename;
 	
 	/* 등록 날짜 */
 	private java.sql.Date wdate;
 	
 	/* 상품 번호 */
-	private int pnum_fk;
+	private int pidx_fk;
 }
