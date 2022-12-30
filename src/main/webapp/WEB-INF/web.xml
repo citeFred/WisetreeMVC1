@@ -30,8 +30,13 @@
 			</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
+		<multipart-config>
+        	<max-file-size>209715200</max-file-size>
+        	<max-request-size>209715200</max-request-size>
+        	<file-size-threshold>0</file-size-threshold>
+        	<location>/Users/haenalee/study/filedata/</location>
+    	</multipart-config>
 	</servlet>
-
 	<servlet-mapping>
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>

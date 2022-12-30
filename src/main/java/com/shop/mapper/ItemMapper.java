@@ -14,5 +14,5 @@ public interface ItemMapper {
 	List<ItemVO>selectByQty(String quality);
 	List<ItemVO> selectByOption(int op_num);
 	
-	public ItemVO selectByPidx(int pidx);
+	public ItemVO selectByitemNum(int itemNum);
 }

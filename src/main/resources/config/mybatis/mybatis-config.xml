@@ -10,6 +10,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="com.user.model.KakaoVO" alias="KakaoUser"/>	
 		<typeAlias type="com.notice_board.model.BoardVO" alias="Board"/>
 		<typeAlias type="com.shop.model.ItemVO" alias="Item"/>
+		<typeAlias type="com.shop.model.OptionVO" alias="Option"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="config/mybatis/mapper/ReviewMapper.xml"/>

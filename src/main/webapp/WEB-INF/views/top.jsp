@@ -97,7 +97,7 @@
 				
 				<!-- 장바구니 목록 탭  -->
 				<li class="nav-item">
-					<a class="nav-link"	href="${myctx}/user/cartList">My Cart</a>
+					<a class="nav-link" href="${myctx}/cart">My Cart</a>
 				</li>
 				
 				<!-- 공지사항 목록 탭  -->

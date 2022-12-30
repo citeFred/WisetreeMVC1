@@ -1,17 +1,25 @@
 package com.shop.service;
 
+
+
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.shop.mapper.AdminMapper;
 import com.shop.model.ItemVO;
 import com.shop.model.OptionVO;
 
-import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
+import oracle.ucp.common.FailoverStats.Item;
 
 @Service
 @Log4j
@@ -20,16 +28,15 @@ public class AdminServiceImpl implements AdminService {
 	@Inject
 	private AdminMapper adminMapper;
 	
+	
 	@Override
 	public List<OptionVO> getUpOption() {
-		// TODO Auto-generated method stub
-		return null;
+		return adminMapper.getUpOption();
 	}
 
 	@Override
-	public List<OptionVO> getDownOption() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<OptionVO> getDownOption(Integer up_Code) {
+		return adminMapper.getDownOption(up_Code);
 	}
 
 	@Override
@@ -57,4 +64,9 @@ public class AdminServiceImpl implements AdminService {
 		return adminMapper.itemList();
 	}
 
+
+
+	
 }
+
+
