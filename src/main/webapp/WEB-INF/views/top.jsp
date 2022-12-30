@@ -22,20 +22,15 @@
 </head>
 
 <body>
-<<<<<<< HEAD
+
 	<!-- context명 세팅 == href= 의 시작점 "wisetree"  -->
 	<c:set var="myctx" value="${pageContext.request.contextPath}" />
-=======
-<!-- context명 세팅 "test"  -->
-<c:set var="myctx" value="${pageContext.request.contextPath}"/>
->>>>>>> 4cad2ac77ede4d76f999f1691fa1cfbfd3e35b94
 
 	<div class="jumbotron text-center" style="margin-bottom: 0">
 		<h1>Goods Store Web Page</h1>
 		<p>World variety goods!</p>
 	</div>
 
-<<<<<<< HEAD
 	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 		<a class="navbar-brand" href="${myctx}/index">GOODS STORE</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"	data-target="#collapsibleNavbar">
@@ -118,12 +113,12 @@
 				
 				<!-- 리뷰 목록 탭  -->
 				<li class="nav-item">
-					<a class="nav-link" href="${myctx}/review/list">Review List</a>
+					<a class="nav-link" href="${myctx}/review">Review List</a>
 				</li>
 				
 				<!-- 리뷰 쓰기 폼 탭  -->
 				<li class="nav-item">
-					<a class="nav-link"	href="${myctx}/review/write">Review Write</a>
+					<a class="nav-link" href="${myctx}/reviewForm">Review Write</a>
 				</li>
 				
 				<!-- 게시판 목록 탭  -->
@@ -139,61 +134,3 @@
 			</ul>
 		</div>
 	</nav>
-=======
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  <a class="navbar-brand" href="${myctx}/index">GOODS STORE</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="collapsibleNavbar">
-    <ul class="navbar-nav">
-       <li class="nav-item">
-        <a class="nav-link" href="${myctx}/join">Join</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="${myctx}/admin/userList">Users</a>
-      </li>
-      <%-- <c:if test="${loginUser eq null}"> --%>
-	      <li class="nav-item"><!-- FOOT.jsp에서 MODAL 임포트함. -->
-	        <a class="nav-link" href="#loginModal" data-toggle="modal">Login</a>
-	      </li>
-      <%-- </c:if> --%>
-      <%-- <c:if test="${loginUser ne null}"> --%>
-      	  <li class="nav-item bg-primary">
-	        <a class="nav-link text-white" href="#">${loginUser.userid }님 로그인중..</a>
-	      </li>
-	      <li class="nav-item">
-	        <a class="nav-link" href="${myctx}/logout">Logout</a>
-	      </li>
-      <%-- </c:if> --%>
-      <li class="nav-item">
-        <a class="nav-link" href="${myctx}/admin/register">Add Products</a>
-      </li>    
-      <li class="nav-item">
-        <a class="nav-link" href="${myctx}/admin/list">Products List</a>
-      </li>    
-      <li class="nav-item">
-        <a class="nav-link" href="${myctx}/user/cartList">My Cart</a>
-      </li>    
-      <li class="nav-item">
-        <a class="nav-link" href="${myctx}/notice_board/list">Notice List</a>
-      </li>    
-      <li class="nav-item">
-        <a class="nav-link" href="${myctx}/notice_board/write">Notice Write</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="${myctx}/review">Review List</a>
-      </li>    
-      <li class="nav-item">
-        <a class="nav-link" href="${myctx}/reviewForm">Review Write</a>
-      </li>  
-      <li class="nav-item">
-        <a class="nav-link" href="${myctx}/board/list">Board List</a>
-      </li>    
-      <li class="nav-item">
-        <a class="nav-link" href="${myctx}/board/write">Board Write</a>
-      </li>
-    </ul>
-  </div>  
-</nav>
->>>>>>> 4cad2ac77ede4d76f999f1691fa1cfbfd3e35b94
