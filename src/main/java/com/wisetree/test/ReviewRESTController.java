@@ -87,8 +87,7 @@ public class ReviewRESTController {
 			mtif.transferTo(new File(FDir, mtif.getOriginalFilename()));
 			revo.setRefilename(mtif.getOriginalFilename());
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.error(e);
 		}
 		int re = this.reviewService.addReview(revo);
 		ModelMap momap = new ModelMap();
@@ -108,7 +107,6 @@ public class ReviewRESTController {
 		sion.setMaxInactiveInterval(-1);
 		
 		Integer pidx1 = (Integer) sion.getAttribute("pidx");
-		System.out.println("rrrrrrrr");
 		log.info("pidx =>" + pidx1);
 		List<ReviewVO> rearr = this.reviewService.listReview(pidx1);
 		return rearr;
@@ -157,7 +155,7 @@ public class ReviewRESTController {
 	
 	
 	/**
-	 * 리뷰 삭제
+	 * 리뷰 삭제ww
 	 * */
 	@DeleteMapping(value = "/user/{renum}", produces = "application/json")
 	public ModelMap revDelete(@PathVariable("renum") int renum) {

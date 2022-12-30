@@ -26,7 +26,7 @@ public class KakaoController {
 	private KakaoService ms;
 	
 //	@ResponseBody //ModelAndView로 반환 할 때 ResponseBody(반환 내용이 HTML에 들어가게 됨==필요없음) 가 없어야한다.
-    @GetMapping(value="member/kakaologin", produces="application/json")
+    @GetMapping(value="member/kakaologin", produces="application/json; charset=UTF-8")
     public ModelAndView kakaoLogin(@RequestParam(value="code", required= false)String code,
     		@ModelAttribute("user") KakaoVO user)
     throws Exception{

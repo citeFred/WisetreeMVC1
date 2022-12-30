@@ -4,7 +4,7 @@
 
 $(function(){
 	show_reviews();//전체 리뷰 목록 가져오기
-	review_count();
+	review_cnt();
 	$('#reform').submit(function(evt){
 		evt.preventDefault();
 		alert('1차');
@@ -12,11 +12,12 @@ $(function(){
 		const fname=file.files[0];
 		const userid=$('#userid').val();
 		const content=$('#content').val();
-		const score=$('input[name="score"]:checked').val();
-		//const score=5;
-		const pidx_fk=$('#pidx_fk').val();
+		//const score=$('input[name="score"]:checked').val();
+		const score=5;
+		//const pidx_fk=$('#pidx_fk').val();
+		const pidx_fk=6;
 		
-		console.log(userid+"/"+content+"/"+score+"/"+pidx_fk+"/"+fname);
+		alert(userid+"/"+content+"/"+score+"/"+pidx_fk+"/"+fname);
 		let formD=new FormData();
 		formD.append('refilename', fname);
 		formD.append('userid', userid);
@@ -25,7 +26,7 @@ $(function(){
 		formD.append('pidx_fk', pidx_fk);
 		formD.append('mode','ajaxMode');
 		
-		console.log("formD ====>"+formD)		
+		alert("formD ====>"+formD)		
 		
 		
 		let url="prdreviews/user";
@@ -52,9 +53,9 @@ $(function(){
 			},
 			error:function(err){
 				alert('err'+err.status);
-				if(err.status==400) {
+				/* if(err.status==400) {
 					alert('로그인해야 이용가능 합니다..')
-				}
+				} */
 			}
 			
 		});
@@ -140,8 +141,8 @@ const show_reviews=function(){
 		dataType:'json',
 		cache:false,
 		success:function(res){
-			alert(JSON.stringify(res));
-		 	alert(res.length);
+			//alert(JSON.stringify(res));
+		 	//alert(res.length);
 			showTable(res);
 		},
 		error:function(err){
@@ -170,7 +171,7 @@ const showTable=function(res){
 				str+='<img src="resources/review_images/star.jpg">';
 			}
 			str+='<div class="mt-4">';
-			if(revo.userid=="hong") {
+			if(revo.userid=="${loginUser.userid}") {
 				str+='<a href="#revList" onclick="reviewEdit('+revo.renum+')">EDIT</a> | ';
 				str+='<a href="#revList" onclick="reviewDel('+revo.renum+')">DEL</a>';
 			}
@@ -184,7 +185,7 @@ const showTable=function(res){
 
 const reviewEdit=function(renum){
 	console.log(renum);
-	let url="prdreviews/"+renum;
+	let url="prdreviews/user/"+renum;
 	$.ajax({
 		type:'get',
 		url:url,
@@ -213,7 +214,7 @@ const reviewEdit=function(renum){
 			$('#reviewModal').modal();//모달창 띄우기 <==> 모달창 닫기 $().modal('hide');
 		},
 		error:function(err){
-			alert('err');
+			alert('err작동안함');
 			if(err.status==400) {
 				alert('로그인 해야 이용 가능해요');
 			}
@@ -257,7 +258,7 @@ const reviewDel = function(num){
  		cache:false,
  		dataType:'xml',
  		success:function(res){
- 			alert(res);//XMLDocument
+ 			//alert(res);//XMLDocument
  			let result=$(res).find('result').text();
  			alert(result);
  		},
