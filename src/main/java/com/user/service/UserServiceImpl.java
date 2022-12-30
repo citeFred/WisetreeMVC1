@@ -1,10 +1,19 @@
 package com.user.service;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 import com.user.mapper.UserMapper;
 import com.user.model.NotUserException;
 import com.user.model.PagingVO;
@@ -29,8 +38,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<UserVO> listUser(PagingVO pvo) {
-		return this.userMapper.listUser(pvo);
+	public List<UserVO> listUser(UserVO user) {
+		return this.userMapper.listUser(user);
 	}
 
 	@Override
@@ -49,8 +58,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public int updateUser(UserVO user) {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.userMapper.updateUser(user);
 	}
 
 	@Override
@@ -82,5 +90,13 @@ public class UserServiceImpl implements UserService {
 		}
 		return user;
 	}
-
+	
+	// 회원 번호에 해당하는 회원정보 가져오기
+	@Override
+	public UserVO selectUserByIdx(Integer idx){
+		// TODO Auto-generated method stub
+		return this.userMapper.selectUserByIdx(idx);
+	}
+	
+	
 }

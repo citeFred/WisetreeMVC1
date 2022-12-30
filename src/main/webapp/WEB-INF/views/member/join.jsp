@@ -5,13 +5,16 @@
 
 <c:import url="/top" />
 <script type="text/javascript" src="./js/userCheck.js"></script>
+<script type="text/javascript" src="./js/addressApi.js"></script>
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 
 <div class="container" style="height: 750px; overflow: auto;">
 	<h1 class="text-center mt-1">Signup</h1>
 	<form name="mf" action="join" method="post">
 		<!-- id중복체크용 hidden data--------------- -->
-		<input type="text" name="id_flag" id="id_flag" value="N">
+		id중복체크 yes/no<input type="text" name="id_flag" id="id_flag" value="N">
 		<!-- ------------------------- -->
+				
 		<table class="table">
 			<tr>
 				<td width="20%" class="m1">
@@ -27,9 +30,9 @@
 				</td>
 				<td width="80%" class="m2">
 					<!-- <input type="text" name="userid" id="userid" onkeyup="ajax_idcheck(this.value)"	placeholder="User ID"> -->
-					<input type="text" name="userid" id="userid" placeholder="User ID">
-<!-- 					<button class="btn btn-outline-success" type="button" onclick="ajax_idcheck()">아이디 중복 체크</button> <br>
- -->				<span class='ck' id="id_result">*아이디는 영문자, 숫자, _, !만 사용 가능해요</span> 
+					<input type="text" name="userid" id="userid" placeholder="User ID" onkeyup="ajax_idcheck(this.value)">
+ 					<button class="btn btn-outline-success" type="button" onclick="ajax_idcheck()">아이디 중복 체크</button> <br>
+				<span class='ck' id="id_result">*아이디는 영문자, 숫자, _, !만 사용 가능해요</span> 
 				</td>
 			</tr>
 			<tr>
@@ -63,20 +66,21 @@
 			<tr>
 				<td width="20%" class="m1"><b>우편번호</b></td>
 				<td width="80%" class="m2">
-					<input type="text" name="post" id="post" placeholder="Post" maxlength="5">
-					<button class="btn btn-outline-success" type="button">우편번호 찾기</button></td>
+					<input type="text" name="post" id="post" placeholder="우편번호 찾기를 눌러주세요." onclick="execPostCode();" readonly>
+					<!-- 다음카카오 우편번호 API를 활용한 우편번호 검색입력 기능 추가 -->
+					<button class="btn btn-outline-success" type="button" onclick="execPostCode();">우편번호 찾기</button></td>
 			</tr>
 			<tr>
 				<td width="20%" class="m1"><b>주소</b></td>
 				<td width="80%" class="m2">
-					<input type="text" name="addr1"	id="addr1" placeholder="Address1"><br> 
-					<input type="text" name="addr2" id="addr2" placeholder="Address2">
+					<input type="text" name="addr1"	id="addr1" placeholder="Address1" onclick="execPostCode();" readonly><br> 
+					<input type="text" name="addr2" id="addr2" placeholder="상세 주소를 입력해 주세요.">
 				</td>
 			</tr>
 			<tr>
 				<td colspan="2" class="m3 text-center">
 					<!-- <button class="btn btn-outline-primary" type="button" onclick="member_check()">회원가입</button> -->
-					<button class="btn btn-outline-primary" type="submit">회원가입</button>
+					<button class="btn btn-outline-primary" type="button" onclick="member_check()">회원가입</button>
 					<button class="btn btn-outline-danger" type="reset">다시쓰기</button>
 				</td>
 			</tr>
