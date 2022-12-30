@@ -4,6 +4,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.user.mapper.UserMapper">
 
+<!-- 회원 생성 insert문 -->
 	<insert id="createUser" parameterType="User">
 		<selectKey keyProperty="idx" resultType="int" order="BEFORE">
 			select member_seq.nextval from dual
@@ -14,22 +15,42 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		#{addr1:VARCHAR},#{addr2:VARCHAR},sysdate,1000,#{status},#{email})
 	</insert>
 	
-<!-- 	<select id="idCheck" resultType="int"  parameterType="string">
+<!-- 회원 목록 불러오기 select문 -->
+	<select id="listUser" resultType="User" parameterType="com.user.model.PagingVO">
+		select member.*, 
+		decode(status,0,'일반회원',-1,'정지회원',-2,'탈퇴회원',9,'관리자') statusStr
+		from member order by idx desc
+	</select>
+<!-- 	<select id="listUser" resultType="User" parameterType="User">
+		select * from member order by idx desc
+	</select> -->
+
+	
+<!-- 특정 idx 회원 정보를 수정 폼에 넣기 위해 불러오기 select문 -->
+	<select id="selectUserByIdx" resultType="User" parameterType="int">
+		select * from member where idx=#{value}
+	</select>
+	
+<!-- 특정 idx 회원 정보를 수정 update문 -->
+	<update id="updateUser" parameterType="User">
+		update member set pwd=#{pwd},hp1=#{hp1},hp2=#{hp2},hp3=#{hp3},post=#{post},addr1=#{addr1},addr2=#{addr2},email=#{email}
+			where idx=#{idx}
+	</update>
+
+<!-- 특정 id의 회원의 idx가 존재하는지 불러오는 select문 -->
+	<select id="idCheck" resultType="int"  parameterType="string">
 		select idx from member where userid=#{value}
 	</select>
 	
-	<select id="selectUserByUserid" parameterType="string" resultType="User">
-		select * from member where userid=#{value}	
-	</select>
-	
-	<select id="listUser" resultType="User" parameterType="com.user.model.PagingVO">
-		select member.*, decode(status,0,'일반회원',-1,'정지회원',-2,'탈퇴회원',9,'관리자') statusStr
-		from member order by idx desc
-	</select>
-	
+<!-- 특정 idx 회원 삭제하기 delete문 -->	
 	<delete id="deleteUser" parameterType="int">
-		delete from member where idx=#{value}	
-	</delete> -->
+		delete from member where idx=#{value}
+	</delete>
+	
+	<select id="findUser" parameterType="string" resultType="User">
+		select * from member where userid=#{userid}	
+	</select>
+
 </mapper>
 
 

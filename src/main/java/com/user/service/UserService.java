@@ -11,7 +11,7 @@ public interface UserService {
 
 	int getUserCount(PagingVO pvo);
 
-	List<UserVO> listUser(PagingVO pvo);
+	List<UserVO> listUser(UserVO user);
 
 	boolean idCheck(String userid);
 
@@ -24,4 +24,8 @@ public interface UserService {
 	UserVO findUser(UserVO findUser) throws NotUserException;
 
 	UserVO loginCheck(String userid, String pwd) throws NotUserException;
+	// 회원 번호에 해당하는 회원정보 가져오기
+	UserVO selectUserByIdx(Integer idx);
+
+
 }

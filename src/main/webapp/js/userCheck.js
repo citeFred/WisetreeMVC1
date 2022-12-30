@@ -3,6 +3,7 @@ function open_idcheck(){
 	win=window.open("idCheck.do","idCheck","width=400, height=400, left=200, top=200");	
 }//-------------------------------
 
+//회원 가입 시 아이디 유효성 체크(onkeyup, onclick 동일)
 function ajax_idcheck(uid){
 	if(!uid){
 		uid=$('#userid').val();
@@ -36,7 +37,7 @@ function ajax_idcheck(uid){
 			alert('err: '+err.status);
 		}
 	})
-}
+}//------------------------
 
 function setId(uid){
 	//alert(uid);
@@ -80,14 +81,8 @@ function id_check(){
 		mf.birth.select();
 		return;
 	}
-	
-	if(!isEmail(mf.email)){
-		alert('이메일 형식에 맞아야 합니다');
-		mf.email.select();
-		return;
-	}
-	*/
-	
+		*/
+
 	if(!isKor(mf.name)){
 		alert('이름은 한글이름만 가능합니다');
 		mf.name.select();
@@ -106,6 +101,11 @@ function id_check(){
 	if(mf.pwd.value!=mf.pwd2.value){
 		alert('비밀번호와 비밀번호 확인이 달라요');
 		mf.pwd2.select();
+		return;
+	}
+	if(!isEmail(mf.email)){
+		alert('이메일 형식에 맞아야 합니다');
+		mf.email.select();
 		return;
 	}
 	if(!isMobile(mf.hp1, mf.hp2, mf.hp3)){
