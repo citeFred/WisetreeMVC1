@@ -90,7 +90,7 @@
 								</select></td>
 							</tr>
 							<tr>
-								<td>상품이미지</td>
+								<td><b>상품이미지</b></td>
 								<td>
 								<input type="file" name="file1">
 								</td>

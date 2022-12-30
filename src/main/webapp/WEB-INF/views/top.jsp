@@ -62,7 +62,7 @@
         <a class="nav-link" href="${myctx}/admin/list">Products List</a>
       </li>    
       <li class="nav-item">
-        <a class="nav-link" href="${myctx}/user/cartList">My Cart</a>
+        <a class="nav-link" href="${myctx}/cart">My Cart</a>
       </li>    
       <li class="nav-item">
         <a class="nav-link" href="${myctx}/notice_board/list">Notice List</a>

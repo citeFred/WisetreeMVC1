@@ -23,15 +23,15 @@
 				<c:forEach items="${list}" var="i">
 				<tr>
 					<td>
-					<c:out value="${i.pidx}"/>
+					<c:out value="${i.itemNum}"/>
 					</td>								
 					<td>
-					<c:out value="${i.ptname}"/>
+					<c:out value="${i.itemName}"/>
 					</td>				
 					<td width="15%">
-					<%-- <a target="_blank">
-				 	<img src="../resources/item_images/${i.ptimage1}" style="width:90%;margin:auto" class="img-fluid"> 
-					</a> --%>
+					<a target="_blank">
+				 	<img src="../resources/item_images/${i.itemImage1}" style="width:90%;margin:auto" class="img-fluid"> 
+					</a>
 					</td>			
 					<td><del>정가 : 
 					<fmt:formatNumber value="${i.price}" pattern="###,###"/>

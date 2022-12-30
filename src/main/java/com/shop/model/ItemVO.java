@@ -11,11 +11,11 @@ public class ItemVO {
 	private int down_Code;
 	private String down_Name;
 
-	private int pidx;
-	private String ptname;
-	private String ptimage1;
-	private String ptimage2;
-	private String ptimage3;
+	private int ItemNo;
+	private String itemName;
+	private String itemImage1;
+	private String itemImage2;
+	private String itemImage3;
 
 	private int price;
 	private int saleprice;
@@ -23,9 +23,9 @@ public class ItemVO {
 	private int count;
 
 	private String quality;
-	private String pinfo;
-	private String pbrand;
-	private java.sql.Date pindate;
+	private String itemInfo;
+	private String itemBrand;
+	private java.sql.Date itemIndate;
 
 	private int totalPrice;
 	private int totalPoint;

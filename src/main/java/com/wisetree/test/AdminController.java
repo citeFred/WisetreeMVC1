@@ -22,13 +22,17 @@ import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.shop.model.ItemVO;
 import com.shop.service.AdminService;
 
 import lombok.extern.slf4j.Slf4j;
+import oracle.ucp.common.FailoverStats.Item;
 
 @Controller
 @RequestMapping("/admin")
@@ -52,9 +56,8 @@ public class AdminController {
 	}
 	
 	@PostMapping("/list")//상품 목록
-	public String itemFrame(Model m) 
-	{
-		return "";
+	public String itemImage(Model m) {
+	return "";
 	}
 
 	@GetMapping("/register")
@@ -89,6 +92,7 @@ public class AdminController {
 			}
 			//편의 메서드 
 			//content-disposition, filename
+			String tempname=p.getSubmittedFileName();
 			log.info("파일명",p.getSubmittedFileName());
 			log.info("size",p.getSize());
 			
@@ -108,5 +112,7 @@ public class AdminController {
 		
 		return "admin/register";
 	}
+	
+	
 	
 }
