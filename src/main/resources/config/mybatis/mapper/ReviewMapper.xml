@@ -11,7 +11,7 @@
 	</select>
 	
 	<insert id="addReview" parameterType="Review">
-		<selectKey keyProperty="num" resultType="int" order="BEFORE">
+		<selectKey keyProperty="renum" resultType="int" order="BEFORE">
 			select review_seq.nextval from dual
 		</selectKey>
 		insert into review(renum, userid, content, score, refilename, wdate, pidx_fk)

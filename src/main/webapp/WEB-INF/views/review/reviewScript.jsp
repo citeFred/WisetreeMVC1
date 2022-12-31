@@ -5,6 +5,7 @@
 $(function(){
 	show_reviews();//전체 리뷰 목록 가져오기
 	review_count();
+	
 	$('#reform').submit(function(evt){
 		evt.preventDefault();
 		alert('1차');
@@ -12,8 +13,8 @@ $(function(){
 		const fname=file.files[0];
 		const userid=$('#userid').val();
 		const content=$('#content').val();
-		//const score=$('input[name="score"]:checked').val();
-		const score=5;
+		const score=$('input[name="score"]:checked').val();
+		//const score=5;
 		//const pidx_fk=$('#pidx_fk').val();
 		const pidx_fk=6;
 		
@@ -45,14 +46,14 @@ $(function(){
 				alert(res);
 				let result=$(res).find('result').text();
 				if(result>0) {
-					$('#reviewList').html("<h1>등록성공</h1>");
+					$('#revList').html("<h1>등록성공</h1>");
 					show_reviews();
 				}else {
 					alert('등록 실패');
 				}
 			},
 			error:function(err){
-				alert('err'+err.status);
+				alert('err'+err.status+'등록 실패');
 				/* if(err.status==400) {
 					alert('로그인해야 이용가능 합니다..')
 				} */
@@ -234,7 +235,7 @@ const reviewDel = function(renum){
 			xhr.setRequestHeader("Ajax","true");
 		},
 		success:function(res){
-			alert(JSON.stringify(res));
+			//alert(JSON.stringify(res));
 			if(res.result>0) {
 				show_reviews();//전체 리뷰목록 가져옴;
 			}

@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.ui.ModelMap;
@@ -63,9 +64,15 @@ public class ReviewRESTController {
 	/**
 	 * 리뷰 글 작성
 	 * */
+	
 	@PostMapping(value = "/user", produces = "application/xml")
-	public ModelMap revInsert(@RequestParam(value = "refilename", required = false) MultipartFile mtif,
-			@ModelAttribute("revo") ReviewVO revo, HttpSession sion) {
+	public ModelMap revInsert(
+			@RequestParam(value = "refilename", required = false) MultipartFile mtif,
+			@ModelAttribute("revo") ReviewVO revo, HttpSession sion,
+			HttpServletResponse response) {
+		response.setContentType("application/xml");
+        log.info(response);
+        
 		System.out.println("vvvvvvvvvvv");
 		log.info("revo=>" + revo);
 
@@ -80,14 +87,13 @@ public class ReviewRESTController {
 		File Dir = new File(FDir);
 		if (!Dir.exists()) {
 			Dir.mkdirs();
-
 		}
 		// 업로드 처리
 		try {
 			mtif.transferTo(new File(FDir, mtif.getOriginalFilename()));
 			revo.setRefilename(mtif.getOriginalFilename());
 		} catch (Exception e) {
-			log.error(e);
+			log.info("파일업로드에서 실패"+e);
 		}
 		int re = this.reviewService.addReview(revo);
 		ModelMap momap = new ModelMap();
@@ -160,7 +166,7 @@ public class ReviewRESTController {
 	 * */
 	@DeleteMapping(value = "/user/{renum}", produces = "application/json")
 	public ModelMap revDelete(@PathVariable("renum") int renum) {
-		System.out.println("dddddddddddddddd");
+		//System.out.println("dddddddddddddddd");
 		log.info("del renum ====" + renum);
 		int deln = this.reviewService.delReview(renum);
 		ModelMap delmap = new ModelMap();
