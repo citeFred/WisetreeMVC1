@@ -9,9 +9,8 @@
 				<form method="post" enctype="multipart/form-data" name="reform2" id="reform2">
 					<!-- hidden data------------------------------------ -->
 					<input type="text" name="pidx_fk" id="pidx_fk" value="${prod.pidx}">
-					<input type="text" name="userid" id="userid"
-						value="${loginUser.userid}"> <input type="text" name="num"
-						id="num">
+					<input type="text" name="userid" id="userid" value="${loginUser.userid}"> 
+					<input type="text" name="num" id="num">
 					<!-- ---------------------------------------------- -->
 					<table class="table">
 						<tr>

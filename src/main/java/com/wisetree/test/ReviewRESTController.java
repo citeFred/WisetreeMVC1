@@ -119,8 +119,9 @@ public class ReviewRESTController {
 	public ModelMap getrevCount(HttpSession sion) {
 		Integer pidx = (Integer) sion.getAttribute("pidx");
 		int cnt = this.reviewService.getReviewCnt(pidx);
-		System.out.println("cccccccccc");
+		//System.out.println("cccccccccc");
 		log.info("cnt=>" + cnt);
+		
 		ModelMap remap = new ModelMap();
 		remap.put("cnt", cnt);
 		return remap;
@@ -131,7 +132,7 @@ public class ReviewRESTController {
 	 * */
 	@GetMapping(value = "/{renum}", produces = "application/json")
 	public ReviewVO revGet(@PathVariable("renum") int renum) {
-		System.out.println("getgetgetget");
+		//System.out.println("getgetgetget");
 		log.info("renum=>"+renum);
 		ReviewVO revo = this.reviewService.getReview(renum);
 		return revo;
@@ -155,7 +156,7 @@ public class ReviewRESTController {
 	
 	
 	/**
-	 * 리뷰 삭제ww
+	 * 리뷰 삭제
 	 * */
 	@DeleteMapping(value = "/user/{renum}", produces = "application/json")
 	public ModelMap revDelete(@PathVariable("renum") int renum) {

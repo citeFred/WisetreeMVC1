@@ -21,13 +21,13 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public List<ReviewVO> listReview(int pnum_fk) {
-		return this.reviewMapper.listReview(pnum_fk);
+	public List<ReviewVO> listReview(int pidx_fk) {
+		return this.reviewMapper.listReview(pidx_fk);
 	}
 
 	@Override
-	public int getReviewCnt(int pnum_fk) {
-		return this.reviewMapper.getReviewCnt(pnum_fk);
+	public int getReviewCnt(int pidx_fk) {
+		return this.reviewMapper.getReviewCnt(pidx_fk);
 	}
 
 	@Override

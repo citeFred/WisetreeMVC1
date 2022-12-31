@@ -4,7 +4,7 @@
 
 $(function(){
 	show_reviews();//전체 리뷰 목록 가져오기
-	review_cnt();
+	review_count();
 	$('#reform').submit(function(evt){
 		evt.preventDefault();
 		alert('1차');
@@ -113,16 +113,17 @@ $(function(){
 	});//$('#reform2') end-----------------------------------
 })//$() end------------------------------------------------
 
-const review_cnt=function(){
-	let url='prdreview/cnt';
+const review_count=function(){
+	let url='prdreviews/cnt';
 	$.ajax({
 		type:'get',
 		url:url,
 		dataType:'json',
 		cache:false,
 		success:function(res){
-			//alert(res.count);
-			$('#review_cnt').html(res.count);
+			//alert(res.cnt);
+			
+			$('#review_cnt').html(res.cnt);
 		},
 		error:function(err){
 			alert(err);
@@ -172,8 +173,8 @@ const showTable=function(res){
 			}
 			str+='<div class="mt-4">';
 			if(revo.userid=="${loginUser.userid}") {
-				str+='<a href="#revList" onclick="reviewEdit('+revo.renum+')">EDIT</a> | ';
-				str+='<a href="#revList" onclick="reviewDel('+revo.renum+')">DEL</a>';
+				str+='<a href="#revList" onclick="reviewEdit('+revo.renum+')">수정버튼</a> | ';
+				str+='<a href="#revList" onclick="reviewDel('+revo.renum+')">삭제버튼</a>';
 			}
 			str+='</div>';
 			str+='</td>';
@@ -214,7 +215,7 @@ const reviewEdit=function(renum){
 			$('#reviewModal').modal();//모달창 띄우기 <==> 모달창 닫기 $().modal('hide');
 		},
 		error:function(err){
-			alert('err작동안함');
+			alert('수정안됨');
 			if(err.status==400) {
 				alert('로그인 해야 이용 가능해요');
 			}
@@ -222,7 +223,7 @@ const reviewEdit=function(renum){
 	});
 }//---------------------------------------------------
 
-const reviewDel = function(num){
+const reviewDel = function(renum){
 	let url="prdreviews/user/"+renum;
 	$.ajax({
 		type:'delete',
