@@ -111,14 +111,23 @@ public class BoardController_notice {
 	
 	@PostMapping("/edit")
 	public String boardEditform(Model m,
-			@RequestParam(defaultValue = "0") int num
+			@RequestParam(defaultValue = "0") int num,
+			@RequestParam(defaultValue = "") String passwd
 			) {
-		
+		//글번호,비번 유효성 체크 ==> list
+		if(num==0||passwd.isEmpty()) {
+			return "redirect:list";
+		}
 		//글번호로 해당 글 가져오기
 		BoardVO vo=this.boardService.selectBoardByIdx(num);
-		//유효성 체크
+		//글번호로 유효성 체크
 		if(vo==null) {
 			return util.addMsgBack(m, "해당 글은 없어요");
+		}
+		
+		//비번체크->일치하지 않으면 "불일치" backd이동
+		if(!vo.getPasswd().equals(passwd)) {
+			return util.addMsgBack(m, "비밀번호가 일치하지 않아요");
 		}
 		
 		//Model에 해당 글 저장 "board"
