@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+"http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.review.mapper.ReviewMapper">
 	<select id="listReview" resultType="Review" parameterType="int">
-		select * from review where pidx_fk=#{value} order by renum desc
+		select * from review where itemNo=#{value} order by renum desc
 	</select>
 	
 	<select id="getReviewCnt" resultType="_int" parameterType="_int">
-		select count(renum) from review where pidx_fk=#{value}
+		select count(renum) from review where itemNo=#{value}
 	</select>
 	
 	<insert id="addReview" parameterType="Review">
 		<selectKey keyProperty="num" resultType="int" order="BEFORE">
 			select review_seq.nextval from dual
 		</selectKey>
-		insert into review(renum, userid, content, score, refilename, wdate, pidx_fk)
-		values(#{renum}, #{userid}, #{content:VARCHAR}, #{score}, #{refilename:VARCHAR}, sysdate, #{pidx_fk})
+		insert into review(renum, userid, content, score, refilename, wdate, itemNo)
+		values(#{renum}, #{userid}, #{content:VARCHAR}, #{score}, #{refilename:VARCHAR}, sysdate, #{itemNo})
 	</insert>
 	
 	<select id="getReview" resultType="Review" parameterType="_int">

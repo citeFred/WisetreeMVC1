@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shop.mapper.CartMapper">
+<select id="findCartNoByitemNo" resultType="cvo" parameterType="_int">
+	select cartNo from cart 
+	where itemNO=#{itemNO} and
+	idx_fk=#{idk_fk}
+</select>
+
+<update id="updateCartCount" parameterType="cvo">
+	update cart set
+	count=count + #{count}
+	where itemNO=#{itemNO} and
+	idx_fk=#{idk_fk}
+</update>
+
+<insert id="addCart" parameterType="cvo">
+	insert into cart(idx_fk,itemNO,count,indate)
+	values(#{idx_fk},#{itemNO},#{count},sysdate)
+</insert>
+
+<select id="seeCartBasket" resultType="cvo" parameterType="int">
+	select * from cart where idx_fk=#{value}
+</select>
+
+<delete id="deleteCart" parameterType="int">
+	delete from cart where cartNo=#{value}
+</delete>
+
+<select id="getCartTotalSum" resultType="cvo" parameterType="int">
+	select sum(totalPrice) carttotalPrice, and sum(totalPoint) carttotalPoint
+	from cart where idx_fk=#{value}
+</select>
+</mapper>

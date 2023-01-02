@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration
 PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-config.dtd">
+"http://www.mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	
 	<typeAliases>
@@ -11,6 +11,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="com.notice_board.model.BoardVO" alias="Board"/>
 		<typeAlias type="com.shop.model.ItemVO" alias="Item"/>
 		<typeAlias type="com.shop.model.OptionVO" alias="Option"/>
+		<typeAlias type="com.shop.model.CartVO" alias="cvo"/>
+		<typeAlias type="com.shop.model.MemberVO" alias="member"/>
 		<typeAlias type="com.free.model.free_BoardVO" alias="Free_Board"/>
 		<typeAlias type="com.free.model.free_PagingVO" alias="Paging"/>
 	</typeAliases>
@@ -21,6 +23,9 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="config/mybatis/mapper/BoardMapper_notice.xml"/>
 		<mapper resource="config/mybatis/mapper/AdminMapper.xml"/>
 		<mapper resource="config/mybatis/mapper/free_BoardMapper.xml"/>
+		<mapper resource="config/mybatis/mapper/CartMapper.xml"/>
+		<mapper resource="config/mybatis/mapper/free_BoardMapper.xml"/>
+		<mapper resource="config/mybatis/mapper/CategoryMapper.xml"/>
 	</mappers>
 	
 	

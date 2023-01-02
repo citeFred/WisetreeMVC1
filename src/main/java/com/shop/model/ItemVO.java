@@ -11,7 +11,7 @@ public class ItemVO {
 	private int down_Code;
 	private String down_Name;
 
-	private int ItemNo;
+	private int itemNo;
 	private String itemName;
 	private String itemImage1;
 	private String itemImage2;
@@ -38,8 +38,10 @@ public class ItemVO {
 		this.totalPoint = this.point * this.count;
 	}
 
-	public int getDCPercent() {
-		int dcpercent = (price - saleprice) * 100 / price;
-		return dcpercent;
+	/*할인율을 반환하는 메서드*/
+	public int getPercent() {
+		//(정가-판매가)*100/정가
+		int percent=(price-saleprice)*100/price;
+		return percent;
 	}
 }

@@ -88,17 +88,17 @@
 				<!-- [상품 추가 탭] <- 로그인된 유저의 상태가 9(관리자 인경우) 상품추가 가 보이게 -->
 				<%-- <c:if test="${loginUser.status eq 9 or k_loginUser.status eq 9}"> --%>
 					<li class="nav-item">
-						<a class="nav-link" href="${myctx}/admin/register">Add Products</a>
+						<a class="nav-link" href="${myctx}/admin/prodForm">Add Products</a>
 					</li>
 				<!-- [상품 목록 탭] <- 로그인된 유저의 상태가 9(관리자 인경우) 상품추가 가 보이게 -->
 					<li class="nav-item">
-						<a class="nav-link"	href="${myctx}/admin/list">Products List</a>
+						<a class="nav-link"	href="${myctx}/admin/prodList">Products List</a>
 					</li>
 				<%-- </c:if> --%>
 				
 				<!-- 장바구니 목록 탭  -->
 				<li class="nav-item">
-					<a class="nav-link" href="${myctx}/cart">My Cart</a>
+					<a class="nav-link" href="${myctx}/cart/cartList">My Cart</a>
 				</li>
 				
 				<!-- 공지사항 목록 탭  -->

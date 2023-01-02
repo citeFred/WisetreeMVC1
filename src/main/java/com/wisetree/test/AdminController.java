@@ -46,26 +46,26 @@ public class AdminController {
 	@Inject
 	private AdminService adminService;
 	
-	@GetMapping("/list")
+	@GetMapping("/prodList")
 	public String list(Model m) {
 		log.info("list");
 		List<ItemVO> list=adminService.itemList();
 		log.info("size",list.size());
 		m.addAttribute("list",list);
-		return "/admin/list";
+		return "admin/prodList";
 	}
 	
-	@PostMapping("/list")//상품 목록
+	@PostMapping("/prodList")//상품 목록
 	public String itemImage(Model m) {
 	return "";
 	}
 
-	@GetMapping("/register")
+	@GetMapping("/prodForm")
 	public String newFile() {
-		return "admin/register";
+		return "admin/prodForm";
 	}
 	
-	@PostMapping("/register")//상품 등록 
+	@PostMapping("/prodForm")//상품 등록 
 	public String saveFile(HttpServletRequest req,@ModelAttribute ItemVO Item,BindingResult b) throws ServletException,IOException
 	{	
 		b.getFieldError();
@@ -110,7 +110,7 @@ public class AdminController {
 		}
 		
 		
-		return "admin/register";
+		return "admin/prodForm";
 	}
 	
 	
