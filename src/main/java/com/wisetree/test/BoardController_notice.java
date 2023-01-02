@@ -39,6 +39,13 @@ public class BoardController_notice {
 	public String boardInsert(Model m,
 			@ModelAttribute BoardVO board) {
 		
+		//유효성 체크 (subject, name, passwd)==> reditect "write"
+		if(board.getName()==null||board.getSubject()==null||board.getPasswd()==null||
+				board.getName().trim().isEmpty()||board.getSubject().trim().isEmpty()||board.getPasswd().trim().isEmpty()) {
+			return "redirect:write";
+		}
+		
+		
 		//boardService의 insertBoard()호출하기
 		int n=0;
 		String str="",loc="";
