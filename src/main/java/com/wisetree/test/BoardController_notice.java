@@ -86,13 +86,19 @@ public class BoardController_notice {
 	@PostMapping("/delete")
 	public String boardDelete(Model m,
 //			HttpServletRequest req,
-			@RequestParam(defaultValue = "0") int num) {
+			@RequestParam(defaultValue = "0") int num,
+			@RequestParam(defaultValue = "") String passwd) {
 		
 		BoardVO vo=this.boardService.selectBoardByIdx(num);
 		if(vo==null) {
 			return util.addMsgBack(m, "해당글은 존재하지 않아요");
 		}
 		
+		String dbPwd=vo.getPasswd();
+		if(!dbPwd.equals(passwd)) {
+			return util.addMsgBack(m, "비밀번호가 일치하지 않아요");
+			
+		}
 		
 		int n=this.boardService.deleteBoard(num);
 		
