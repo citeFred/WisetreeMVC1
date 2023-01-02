@@ -88,7 +88,12 @@ public class BoardController_notice {
 //			HttpServletRequest req,
 			@RequestParam(defaultValue = "0") int num) {
 		
-//		BoardVO vo=this.boardService.selectBoardByIdx(num);
+		BoardVO vo=this.boardService.selectBoardByIdx(num);
+		if(vo==null) {
+			return util.addMsgBack(m, "해당글은 존재하지 않아요");
+		}
+		
+		
 		int n=this.boardService.deleteBoard(num);
 		
 		String str=(n>0)?"글 삭제 성공":"삭제 실패";
