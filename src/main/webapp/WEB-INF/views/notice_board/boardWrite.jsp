@@ -76,12 +76,14 @@ $(function(){
 	   			</td>
 	   		</tr>
 	   		
-	   		<tr>
-	   			<td style="width:20%"><b>비밀번호</b></td>
-        		<td style="width:80%">
-	   				<input type="password" name="passwd" id="bpwd" class="form-control">
-	   			</td>
-	   		</tr>
+	       <tr>
+    	        <td style="width:20%"><b>비밀번호</b></td>
+       	   		<td style="width:80%">
+       	  	 	<div class="col-md-5">
+       			<input type="password" name="passwd" id="bpwd" class="form-control">
+      	 	    </div>
+       	   		</td>
+      		</tr>
 	   		
 	   		<tr>
 	   			<td style="width:20%"><b>첨부파일</b></td>
