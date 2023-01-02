@@ -14,5 +14,5 @@ public interface ItemMapper {
 	List<ItemVO> selectByPspec(String pspec);
 	List<ItemVO> selectByOption(int op_num);
 	
-	public ItemVO selectByitemNum(int itemNum);
+	ItemVO selectByitemNum(int itemNo);
 }

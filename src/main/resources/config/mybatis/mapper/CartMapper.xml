@@ -4,24 +4,24 @@
 <mapper namespace="com.shop.mapper.CartMapper">
 <select id="findCartNoByitemNo" resultType="cvo" parameterType="_int">
 	select cartNo from cart 
-	where itemNO=#{itemNO} and
-	idx_fk=#{idk_fk}
+	where itemNo=#{itemNo} and
+	idx=#{idk}
 </select>
 
 <update id="updateCartCount" parameterType="cvo">
 	update cart set
 	count=count + #{count}
 	where itemNO=#{itemNO} and
-	idx_fk=#{idk_fk}
+	idx=#{idk}
 </update>
 
 <insert id="addCart" parameterType="cvo">
-	insert into cart(idx_fk,itemNO,count,indate)
-	values(#{idx_fk},#{itemNO},#{count},sysdate)
+	insert into cart(idx,itemNo,count,indate)
+	values(#{idx},#{itemNo},#{count},sysdate)
 </insert>
 
 <select id="seeCartBasket" resultType="cvo" parameterType="int">
-	select * from cart where idx_fk=#{value}
+	select * from cart where idx=#{value} -->
 </select>
 
 <delete id="deleteCart" parameterType="int">
@@ -30,6 +30,6 @@
 
 <select id="getCartTotalSum" resultType="cvo" parameterType="int">
 	select sum(totalPrice) carttotalPrice, and sum(totalPoint) carttotalPoint
-	from cart where idx_fk=#{value}
+	from cart where idx=#{value}
 </select>
 </mapper>

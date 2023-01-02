@@ -48,8 +48,9 @@
                   <tr>
                      <td align="center" width="50%">
                      <a href="#" onclick="openPop('${prod.itemImage1}')">
-                     <img
-                           src="resources/product_images/${prod.itemImage1}" class="img-fluid" style="width: 70%;">
+                     <%-- ${prod.itemImage} --%>
+                     <img 
+                           src="resources/product_images/noimage.png" class="img-fluid" style="width: 70%;">
                      </a></td>
 
                      <td align="left" width="50%" style="padding-left: 40px">

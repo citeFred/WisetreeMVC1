@@ -35,13 +35,16 @@
 						<tr>
 							<td>${prod.itemNo}</td>
 							<td>
-							${prod.up_Code}>${prod.down_Code}
+							${prod.up_Name}>${prod.down_Name}
 							</td>
 							<td>${prod.itemName}</td>
 							<td width="15%">
-							<a href="prodDetail2" target="_blank">
+							<a href="prodDetail2?itemNo=${prod.itemNo}" target="_blank">
+					
+							
 							<img src="../resources/product_images/${prod.itemImage1}" 
 							style="width:90%;margin:auto" class="img-fluid">
+							
 							</a>
 							</td>
 							<td><del>정 가:

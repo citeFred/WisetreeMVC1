@@ -8,9 +8,9 @@ import com.shop.model.OptionVO;
 //스프링이 대신 만들어준다
 public interface CategoryMapper {
 	
-	public List<OptionVO> getUpcategory();
+	public List<OptionVO> getUpOption();
 	
-	public List<OptionVO> getDowncategory(String up_Code);
+	public List<OptionVO> getDownOption(Integer up_Code);
 	
 	public int categoryAdd(OptionVO vo);
 	public int categoryDelete(OptionVO vo);

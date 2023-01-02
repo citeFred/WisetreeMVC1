@@ -7,7 +7,7 @@
 	select * from upOption order by 1 asc
 </select>
 
-<select id="getDownOption" resultType="Option" parameterType="string">
+<select id="getDownOption" resultType="Option" parameterType="int">
 	select * from downOption where up_Code=#{value}
 	order by 1 asc
 </select>

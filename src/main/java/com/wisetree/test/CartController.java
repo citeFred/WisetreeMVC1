@@ -40,12 +40,12 @@ public class CartController {
 			}
 			
 			UserVO loginUser=(UserVO)ses.getAttribute("loginUser");
-			int idx_fk=loginUser.getIdx();
+			int idx=loginUser.getIdx();
 			
 			CartVO cvo=new CartVO();
 			cvo.setItemNo(itemNo);
 			cvo.setCount(count);
-			cvo.setIdx(idx_fk);
+			cvo.setIdx(idx);
 			
 			return "redirect:cartList";	
 	}
@@ -54,11 +54,11 @@ public class CartController {
 	public String cartList(Model m, HttpSession ses) {
 		
 		UserVO loginUser=(UserVO)ses.getAttribute("loginUser");
-		int idx_fk=loginUser.getIdx();
+		int idx=loginUser.getIdx();
 		
-		List<CartVO> cartArr=this.shopService.seeCartBasket(idx_fk);
+		List<CartVO> cartArr=this.shopService.seeCartBasket(idx);
 		
-		CartVO cvo=this.shopService.getCartTotalSum(idx_fk);
+		CartVO cvo=this.shopService.getCartTotalSum(idx);
 		
 		m.addAttribute("cartArr",cartArr);
 		m.addAttribute("TotalSum",cvo);

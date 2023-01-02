@@ -34,7 +34,7 @@ public class ItemController {
 	}
 
 	@GetMapping("admin/prodDetail2")
-	public String prodDetai(Model m, @RequestParam(defaultValue="0") int itemNo, HttpSession ses) {
+	public String prodDetail(Model m, @RequestParam(defaultValue="0") int itemNo, HttpSession ses) {
 		if(itemNo==0) {
 			return "redirect:index";
 		}

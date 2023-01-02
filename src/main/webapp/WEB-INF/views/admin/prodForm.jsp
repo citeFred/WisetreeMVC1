@@ -15,12 +15,12 @@
 			cache:false
 		})
 		.done(function(res){
-			alert(JSON.stringify(res));
+			//alert(JSON.stringify(res));
 			//응답 결과를 받아서 select 태그 만들어서 id가 selectDcg인 곳에 응답html 데이터를 넣기
 			let str='<select name="down_Code" id="down_Code">';
 				str+='<option value="">::하위 카테고리::</option>';
 				$.each(res, function(i, item){
-					str+='<option value="'+item.down_Code+'">'+item.down_Code+'</option>';
+					str+='<option value="'+item.down_Code+'">'+item.down_Name+'</option>';
 				})
 			
 			
@@ -102,7 +102,7 @@
                      <select name="up_Code" id="up_Code"
                         onchange="selectDownCategory(this.value)">
                            <option value="">::상위 카테고리::</option>
-                           <c:forEach var="up" items="${list}">
+                           <c:forEach var="up" items="${upoption}">
                            	<option value="${up.up_Code}">${up.up_Name}</option>
                            </c:forEach>
                            
