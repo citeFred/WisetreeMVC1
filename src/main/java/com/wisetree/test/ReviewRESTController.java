@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -46,9 +48,10 @@ import lombok.extern.log4j.Log4j;
  *  ----------------------------------------------------*/
 
 /*  HTTP메서드          URI                			설명
- *  POST               /prdreviews/user      		리뷰를 생성한다
  *  GET                /prdreviews           		모든 리뷰를 조회한다
- *  GET                /prdreviews/{renum}      	id에 해당하는 리뷰를 조회한다
+ *  POST               /prdreviews/user      		리뷰를 생성한다
+ *  
+ *  GET                /prdreviews/user/{renum}     id에 해당하는 리뷰를 조회한다
  *  PUT                /prdreviews/user/{renum}     id에 해당하는 리뷰를 수정한다
  *  DELETE             /prdreviews/user/{renum}     id에 해당하는 리뷰를 삭제한다
  * */
@@ -64,38 +67,43 @@ public class ReviewRESTController {
 	/**
 	 * 리뷰 글 작성
 	 * */
-	
-	@PostMapping(value = "/user", produces = "application/xml")
+	//@ResponseBody
+	@PostMapping(value = "/user", produces = "application/json; charset=UTF-8" )
 	public ModelMap revInsert(
-			@RequestParam(value = "refilename", required = false) MultipartFile mtif,
-			@ModelAttribute("revo") ReviewVO revo, HttpSession sion,
+			@RequestParam(value = "refilename1", required = false) MultipartFile mtif,
+			@ModelAttribute("revo") ReviewVO revo,
+			/* @RequestBody */
+			HttpSession sion,
 			HttpServletResponse response) {
-		response.setContentType("application/xml");
+		response.setContentType("application/json");
+		log.info(mtif);
+		
         log.info(response);
-        
-		System.out.println("vvvvvvvvvvv");
 		log.info("revo=>" + revo);
 
 		// 업로드 절대경로
 		ServletContext ser = sion.getServletContext();
-		String FDir = ser.getRealPath("/resources/review_images");
-
-		System.out.println("fffffffffffff");
-		log.info("FDir=>" + FDir);
+		String upDir = ser.getRealPath("/resources/review_images");
+		log.info("upDir=>" + upDir);
 
 		// 디렉토리 생성
-		File Dir = new File(FDir);
-		if (!Dir.exists()) {
-			Dir.mkdirs();
+		File fdir = new File(upDir);
+		if (!fdir.exists()) {
+			fdir.mkdirs();
 		}
-		// 업로드 처리
+		log.info("fdir=>" + fdir);
+		
+		// 업로드 처리 ------->>>이부분부터 오류 해결
 		try {
-			mtif.transferTo(new File(FDir, mtif.getOriginalFilename()));
+			mtif.transferTo(new File(upDir, mtif.getOriginalFilename()));
+			revo.setRefilename(upDir);
 			revo.setRefilename(mtif.getOriginalFilename());
 		} catch (Exception e) {
-			log.info("파일업로드에서 실패"+e);
+			e.getMessage();
+			//log.info("파일업로드에서 실패====>"+e);
 		}
 		int re = this.reviewService.addReview(revo);
+		log.info("reNum%%%%%%%%%%%%%%%%%%%%%%%%"+re);
 		ModelMap momap = new ModelMap();
 		momap.addAttribute("result", re);
 		return momap;
@@ -136,25 +144,33 @@ public class ReviewRESTController {
 	/**
 	 * 특정 리뷰 조회
 	 * */
-	@GetMapping(value = "/{renum}", produces = "application/json")
+	@GetMapping(value = "/user/{renum}", produces = "application/json")
 	public ReviewVO revGet(@PathVariable("renum") int renum) {
-		//System.out.println("getgetgetget");
+		System.out.println("getgetgetget");
 		log.info("renum=>"+renum);
-		ReviewVO revo = this.reviewService.getReview(renum);
-		return revo;
+		ReviewVO revo1 = this.reviewService.getReview(renum);
+		
+		log.info("revo=>"+revo1);
+		return revo1;
 	}
 	
 	/**
 	 * 리뷰 글 수정
 	 * */
+	// user/{renum} --> GET
+	// user/{renum} --> PUT
+	// user/{renum} --> DELETE
 	@PutMapping(value = "/user/{renum}", produces = "application/json")
-	public ModelMap revUpdate(@PathVariable("renum") int renum, @RequestBody ReviewVO revo) {
-		System.out.println("upupupupup");
-		log.info("Upd revo====" + revo);
+	public ModelMap revUpdate(
+			@PathVariable("renum") int renum, 
+			@RequestBody ReviewVO revo1) {
+		System.out.println("putputput");
+		log.info("PUT revo1===="+revo1);
+		log.info("PUT renum===="+renum);
 
-		int Updn = this.reviewService.upReview(revo);
-
+		int Updn = this.reviewService.upReview(revo1);
 		ModelMap upmap = new ModelMap();
+		//upmap.addAttribute("result",  Updn);
 		upmap.put("result", Updn);
 		return upmap;
 

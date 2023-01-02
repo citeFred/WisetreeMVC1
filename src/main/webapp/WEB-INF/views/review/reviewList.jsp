@@ -52,25 +52,40 @@
 						</a></td>
 
 						<td align="left" width="50%" style="padding-left: 40px">
-							<h4>
-								<span class="label label-danger">${prod.pspec } </span>
-							</h4> 상품번호: ${prod.pnum } <br> 상품이름: ${prod.pname } <br> 정가:<del>
+							<h4><span class="label label-danger">${prod.pspec } </span></h4> 
+							상품번호: ${prod.pnum } 
+							<br>
+							상품이름: ${prod.pname }
+							<br> 
+							정가:
+							<del>
 								<fmt:formatNumber value="1" pattern="###,###" />
-							</del>원<br> 판매가:<span style="color: red; font-weight: bold">
+							</del>원
+							<br> 
+							판매가:
+							<span style="color: red; font-weight: bold">
 								<fmt:formatNumber value="${prod.saleprice }" pattern="###,###" />
-						</span>원<br> 할인율:<span style="color: red">${prod.percent } %</span><br>
+							</span>원
+							<br> 
+							할인율:
+							<span style="color: red">
+								${prod.percent } %
+							</span>
+							<br>
 
-							POINT:<b style="color: green">[${prod.point }]</b>POINT<br>
+							POINT:<b style="color: green">[${prod.point }]</b>POINT
+							<br>
 
 							<!-- form시작---------- -->
 							<form name="frm" id="frm" method="POST">
 								<!-- 상품번호를 hidden으로 넘기자------ -->
-								<input type="text" name="pnum" value="${prod.pnum }"> <input
-									type="text" name="opnum" value="${prod.pnum }">
+								<input type="text" name="pnum" value="${prod.pnum }">
+								<input	type="text" name="opnum" value="${prod.pnum }">
 								<!-- -------------------------------- -->
-								<label for="oqty">상품갯수</label> <input type="number" name="oqty"
-									id="oqty" min="1" max="50" size="2" value="1">
-							</form> <!-- form end------------ -->
+								<label for="oqty">상품갯수</label>
+								<input type="number" name="oqty" id="oqty" min="1" max="50" size="2" value="1">
+							</form>
+							<!-- form end------------ -->
 
 							<button type="button" onclick="goCart()" class="btn btn-primary">장바구니</button>
 							<button type="button" onclick="goOrder()" class="btn btn-warning">주문하기</button>
@@ -88,11 +103,11 @@
 					</tr>
 					<tr>
 						<td colspan="2">
-							<p>상품설명</p> <pre>${prod.pcontents }</pre>
+							<p>상품설명</p>
+							<pre>${prod.pcontents }</pre>
 						</td>
 					</tr>
 				</tbody>
-
 			</table>
 		</div>
 	</div>
@@ -103,7 +118,8 @@
 	<!-- 리뷰 글쓰기 폼 ------------------------------------ -->
 	<div class="row mt-4">
 		<div class="col-md-10 offset-md-1">
-			<c:import url="/reviewForm" />
+			<%@ include file="/WEB-INF/views/review/reviewForm.jsp"%>
+			<%-- <c:import url="/reviewForm" /> --%>
 		</div>
 	</div>
 
@@ -120,7 +136,6 @@
 	</div>
 	<div class="row">
 		<div class="col-md-10 offset-md-1">
-
 			<!-- 리뷰 수정 모달 ------------------------------------- -->
 			<%@ include file="/WEB-INF/views/review/reviewEdit.jsp"%>
 			<!-- ------------------------------------------------- -->
