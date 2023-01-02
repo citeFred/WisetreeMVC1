@@ -105,6 +105,10 @@ public class BoardController_notice {
 		
 		//글번호로 해당 글 가져오기
 		BoardVO vo=this.boardService.selectBoardByIdx(num);
+		//유효성 체크
+		if(vo==null) {
+			return util.addMsgBack(m, "해당 글은 없어요");
+		}
 		
 		//Model에 해당 글 저장 "board"
 		m.addAttribute("board",vo);
