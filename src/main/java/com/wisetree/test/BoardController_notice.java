@@ -89,6 +89,10 @@ public class BoardController_notice {
 			@RequestParam(defaultValue = "0") int num,
 			@RequestParam(defaultValue = "") String passwd) {
 		
+		if(num==0||passwd.isEmpty()) {
+			return "redirect:list";
+		}
+		
 		BoardVO vo=this.boardService.selectBoardByIdx(num);
 		if(vo==null) {
 			return util.addMsgBack(m, "해당글은 존재하지 않아요");
