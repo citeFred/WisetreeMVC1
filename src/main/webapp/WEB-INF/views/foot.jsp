@@ -12,9 +12,10 @@
 	background-color: #efefef;
 }
 </style>
-<div class="text-center footer">
-	<p>Footer</p>
-</div>
+        <!-- Footer-->
+        <footer class="py-5 bg-dark">
+            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Wisetree 2023</p></div>
+        </footer>
 <!-- loginModal.jsp include -->
 <%@ include file="/WEB-INF/views/login/loginModal.jsp" %>
 <!-- ---------------------------------- -->
