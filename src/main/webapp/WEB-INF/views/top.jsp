@@ -4,15 +4,27 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en">
+<script type="text/javascript" src="./js/navigationControl.js"></script>
 
 <head>
-<title>Goods Store Webpage</title>
+<title>Wisetree Store Webpage</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 <script	src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script>
 <script	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- [로그인 상태 탭 1,2] <- 어떠한 로그인도 안된 상태에서는 로그인상태가 둘다 안보이게 -->
+<script>
+$(function(){
+	if(${loginUser eq null and k_loginUser eq null}){
+		document.getElementById("normalUserLogined").style.display = "none";
+		document.getElementById("kakaoUserLogined").style.display = "none";
+	}
+})
+</script>
+
 <style>
 .fakeimg {
 	height: 200px;
@@ -26,12 +38,12 @@
 	<!-- context명 세팅 == href= 의 시작점 "wisetree"  -->
 	<c:set var="myctx" value="${pageContext.request.contextPath}" />
 
-	<div class="jumbotron text-center" style="margin-bottom: 0">
+<!-- 	<div class="jumbotron text-center" style="margin-bottom: 0">
 		<h1>Goods Store Web Page</h1>
 		<p>World variety goods!</p>
-	</div>
+	</div> -->
 
-	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<a class="navbar-brand" href="${myctx}/index">GOODS STORE</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"	data-target="#collapsibleNavbar">
 			<span class="navbar-toggler-icon"></span>
@@ -49,7 +61,7 @@
 				<!-- [회원 목록 탭] <- 로그인된 유저의 상태status가 9(admin)인경우에만 보이게 -->
 				<c:if test="${loginUser.status eq 9 or k_loginUser.status eq 9}">
 					<li class="nav-item">
-						<a class="nav-link"	href="${myctx}/admin/userList">Users</a>
+						<a class="nav-link"	href="${myctx}/admin/userList">[Admin 전용]Users List</a>
 					</li>
 				</c:if>
 
@@ -61,22 +73,21 @@
 					</li>
 				</c:if>
 
-				<!-- [로그인 모달윈도 탭] <- 어떠한 로그인도 안된 상태에서는 로그인 창이 보이게 -->
-				<c:if test="${loginUser eq null and k_loginUser eq null}">
-				
-				</c:if>
 				<!-- [일반 로그인 상태 탭-1] <- 일반회원 로그인 상태에서는 카카오 로그인상태가 안보이게 -->
 				<c:if test="${loginUser ne null or k_loginUser eq null}">
+				<div id="normalUserLogined">
 					<li class="nav-item bg-primary">
-						<a id="normalUserLogined" class="nav-link text-white" href="#">${loginUser.userid }님 로그인중..</a>
+						<a class="nav-link text-white" href="#">${loginUser.userid }님 로그인중..</a>
+				</div>
 				</c:if>
 				
 				<!-- [카카오 로그인 상태 탭-2] <- 카카오회원 로그인 상태에서는 일반 로그인상태가 안보이게 -->
 				<c:if test="${loginUser eq null or k_loginUser ne null}">
-					<li  class="nav-item bg-primary">
-						<a id="kakaoUserLogined" class="nav-link text-white" href="#">${k_loginUser.k_name}님 로그인중..</a>
+				<div id="kakaoUserLogined">
+					<li class="nav-item bg-primary">
+						<a class="nav-link text-white" href="#">${k_loginUser.k_name}님 로그인중..</a>
+				</div>
 				</c:if>
-				
 				
 				<!-- [로그아웃 탭] <- 어떠한 형태의 회원이라도 로그인 한 경우 로그아웃 보이게 -->
 				<c:if test="${loginUser ne null or k_loginUser ne null}">
@@ -134,3 +145,12 @@
 			</ul>
 		</div>
 	</nav>
+        <!-- Header-->
+        <header class="bg-dark py-5">
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="text-center text-white">
+                    <h1 class="display-4 fw-bolder">Shop in style</h1>
+                    <p class="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p>
+                </div>
+            </div>
+        </header>
