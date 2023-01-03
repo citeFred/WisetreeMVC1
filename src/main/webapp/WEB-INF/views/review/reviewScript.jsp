@@ -16,6 +16,7 @@ $(function(){
 		const userid=$('#userid').val();
 		const content=$('#content').val();
 		const score=$('input[name="score"]:checked').val();
+		alert(score);
 		//const score=5;
 		//const pidx_fk=$('#pidx_fk').val();
 		const pidx_fk=6;
@@ -179,7 +180,7 @@ const showTable=function(res){
 			str+='</td>';
 			str+='<td width="25%" class="text-left">';
 			for(let k=0; k<revo.score; k++) {
-				str+='<img src="resources/review_images/star.jpg">';
+				str+='<img src="resources/review_images/star.png">';
 			}
 			str+='<div class="mt-4">';
 			if(revo.userid=="${loginUser.userid}") {

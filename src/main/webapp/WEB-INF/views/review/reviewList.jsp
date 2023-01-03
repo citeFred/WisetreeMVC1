@@ -118,7 +118,7 @@
 	<!-- 리뷰 글쓰기 폼 ------------------------------------ -->
 	<div class="row mt-4">
 		<div class="col-md-10 offset-md-1">
-			<%@ include file="/WEB-INF/views/review/reviewForm.jsp"%>
+			<%@ include file="/WEB-INF/views/review/reviewForm2.jsp"%>
 			<%-- <c:import url="/reviewForm" /> --%>
 		</div>
 	</div>

@@ -19,7 +19,7 @@
 	<table class="table">
 	<tr>
 		<th colspan="4" class="text-center">
-			<h3>::▶문구상품 리뷰 남기기◀::</h3>
+			<h3>리뷰쓰기</h3>
 		</th>
 	</tr>
 	<tr>
