@@ -17,11 +17,9 @@ public class CartVO {
 	
 	private int price;
 	private int saleprice;
-	private int point;
 	
-	private int totalPrice; //saleprice*count =>상품 당 총가격합계 
-	private int totalPoint; //point*count => 상품 당 총포인트 합
+//	private int totalPrice; //saleprice*count =>상품 당 총가격합계 
 	
 	private int carttotalPrice; //장바구니 총액 합계 
-	private int carttotalPoint;//장바구니 포인트 합계 
+
 }

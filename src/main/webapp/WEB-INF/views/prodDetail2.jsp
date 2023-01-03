@@ -18,7 +18,7 @@
 	}//------------------------------
 	
 	const goCart=function(){
-		frm.action="user/cartAdd";
+		frm.action="cart/add";
 		//frm.method='get';
 		frm.submit();
 	}
@@ -73,7 +73,9 @@
                         <form name="frm" id="frm" method="POST">
                            <!-- 상품번호를 hidden으로 넘기자------ -->
                            <input type="hidden" name="itemNo" value="${prod.itemNo}">
+                           <input type="hidden" name="itemName" value="${prod.itemName}">
                            <input type="hidden" name="opnum" value="${prod.itemNo}">
+                           <input type="hidden" name="itemImage1" value="${prod.itemImage1}">
                            <!-- -------------------------------- -->
                            <label for="count">상품갯수</label> 
                            <input type="number" name="count"

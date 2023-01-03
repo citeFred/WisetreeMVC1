@@ -92,7 +92,7 @@
 					</li>
 				<!-- [상품 목록 탭] <- 로그인된 유저의 상태가 9(관리자 인경우) 상품추가 가 보이게 -->
 					<li class="nav-item">
-						<a class="nav-link"	href="${myctx}/admin/prodList">Products List</a>
+						<a class="nav-link"	href="${myctx}/prodList">Products List</a>
 					</li>
 				<%-- </c:if> --%>
 				

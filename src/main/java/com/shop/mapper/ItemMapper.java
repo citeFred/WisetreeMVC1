@@ -13,6 +13,6 @@ public interface ItemMapper {
 	List<ItemVO>selectByQty(String quality);
 	List<ItemVO> selectByPspec(String pspec);
 	List<ItemVO> selectByOption(int op_num);
-	
+	List<ItemVO> itemList();
 	ItemVO selectByitemNum(int itemNo);
 }

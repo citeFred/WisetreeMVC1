@@ -9,8 +9,7 @@
 
 		<div class="row">
 			<div class="col-md-12">
-				<h1 class="text-center m-4" style="margin: 1em">::Product List
-					[Admin Page]:::</h1>
+				<h1 class="text-center m-4" style="margin: 1em">:::Product List:::</h1>
 	
 				<table class="table table-striped" id="products">
 					<thead>
@@ -57,8 +56,10 @@
 							<span class="badge badge-danger">${prod.percent} %할인</span>
 							</td>
 							<td>
+						<%-- <c:if test="${loginUser.role eq 'admin'}"> --%>
 							<a href="javascript:edit('${prod.itemNo}')">수정</a>| 
 							<a href="#" onclick="remove('${prod.itemNo}')">삭제</a>| 
+						<%-- </c:if> --%>
 						</tr>
 						</c:forEach>
 					</c:if>

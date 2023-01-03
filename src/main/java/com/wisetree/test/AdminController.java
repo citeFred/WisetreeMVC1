@@ -12,6 +12,7 @@ import javax.inject.Inject;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -23,18 +24,17 @@ import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.shop.model.ItemVO;
 import com.shop.model.OptionVO;
 import com.shop.service.AdminService;
+import com.shop.service.ShopService;
 
 import lombok.extern.slf4j.Slf4j;
-import oracle.ucp.common.FailoverStats.Item;
 
 @Controller
 @RequestMapping("/admin")
@@ -47,15 +47,6 @@ public class AdminController {
 	
 	@Inject
 	private AdminService adminService;
-	
-	@GetMapping("/prodList")
-	public String list(Model m) {
-		log.info("list");
-		List<ItemVO> list=adminService.itemList();
-		log.info("size"+list);
-		m.addAttribute("list",list);
-		return "admin/prodList";
-	}
 
 
 	@GetMapping("/prodForm")

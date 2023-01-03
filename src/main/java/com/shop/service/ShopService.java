@@ -15,6 +15,8 @@ public interface ShopService {
 	public ItemVO selectByitemNum(int itemNum);
 	
 	int register(ItemVO Item);
+	
+	public List<ItemVO> itemList();
 //장바구니 정보
 
 	Integer findCartNoByitemNo(CartVO cvo);
@@ -23,7 +25,7 @@ public interface ShopService {
 	
 	List<CartVO> seeCartBasket(int idx_fk);
 	int deleteCart(int cartNo);
-	CartVO getCartTotalSum(int idx_fk);
+	int getCartTotalSum(int idx_fk);
 	
 	public void delOrder(int mnum_fk, int pidx);
 }

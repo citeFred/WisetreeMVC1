@@ -24,8 +24,8 @@ public class ShopServiceImpl implements ShopService {
 	}
 
 	@Override
-	public ItemVO selectByitemNum(int itemNum) {
-		return this.itemMapper.selectByitemNum(itemNum);
+	public ItemVO selectByitemNum(int itemNo) {
+		return this.itemMapper.selectByitemNum(itemNo);
 	}
 
 	@Override
@@ -49,8 +49,8 @@ public class ShopServiceImpl implements ShopService {
 	}
 
 	@Override
-	public List<CartVO> seeCartBasket(int idx_fk) {
-		return this.cartMapper.seeCartBasket(idx_fk);
+	public List<CartVO> seeCartBasket(int idx) {
+		return this.cartMapper.seeCartBasket(idx);
 	}
 
 	@Override
@@ -59,8 +59,8 @@ public class ShopServiceImpl implements ShopService {
 	}
 
 	@Override
-	public CartVO getCartTotalSum(int idx_fk) {
-		return this.cartMapper.getCartTotalSum(idx_fk);
+	public int getCartTotalSum(int idx) {
+		return this.cartMapper.getCartTotalSum(idx);
 	}
 
 	@Override
@@ -73,5 +73,11 @@ public class ShopServiceImpl implements ShopService {
 	public List<ItemVO> selectByPspec(String quality){
 		return this.itemMapper.selectByPspec(quality);
 	}
+
+	@Override
+	public List<ItemVO> itemList() {
+		return this.itemMapper.itemList();
+	};
+	
 
 }

@@ -27,25 +27,29 @@ public class CartController {
 	@Inject
 	ShopService shopService;
 	
+	@GetMapping("/add")
+	public String cartList() {
+		return "cartList";
+	}
 	@PostMapping("/add")
 	public String addItem(
 			Model m,
-			HttpSession ses,
-			@RequestParam(defaultValue="0") int itemNo,
-			@RequestParam(defaultValue="0") int count) {
-			log.info("itemNo==="+itemNo+",count==="+count);
+			HttpSession ses,@ModelAttribute CartVO cvo) {
+			log.info("itemNo==="+cvo.getItemNo()+",count==="+cvo.getCount());
 			
-			if(itemNo==0||count==0) {
+			if(cvo.getItemNo()==0||cvo.getCount()==0) {
 				return "redirect:../index";
 			}
 			
 			UserVO loginUser=(UserVO)ses.getAttribute("loginUser");
 			int idx=loginUser.getIdx();
 			
-			CartVO cvo=new CartVO();
-			cvo.setItemNo(itemNo);
-			cvo.setCount(count);
+			
 			cvo.setIdx(idx);
+		
+			
+			int n=shopService.addCart(cvo);
+			
 			
 			return "redirect:cartList";	
 	}
@@ -58,10 +62,10 @@ public class CartController {
 		
 		List<CartVO> cartArr=this.shopService.seeCartBasket(idx);
 		
-		CartVO cvo=this.shopService.getCartTotalSum(idx);
+		int sum=this.shopService.getCartTotalSum(idx);
 		
 		m.addAttribute("cartArr",cartArr);
-		m.addAttribute("TotalSum",cvo);
+		m.addAttribute("sum",sum);
 		
 		return "cartList";
 	}
