@@ -137,7 +137,7 @@
 	<div class="row">
 		<div class="col-md-10 offset-md-1">
 			<!-- 리뷰 수정 모달 ------------------------------------- -->
-			<%@ include file="/WEB-INF/views/review/reviewEdit.jsp"%>
+			<%@ include file="/WEB-INF/views/review/reviewEdit2.jsp"%>
 			<!-- ------------------------------------------------- -->
 		</div>
 	</div>

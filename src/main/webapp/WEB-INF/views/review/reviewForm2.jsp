@@ -6,15 +6,6 @@
 
 <%@ include file="/WEB-INF/views/review/reviewScript.jsp"%>
 <link href="css/review.css" rel="stylesheet" type="text/css">
-<script>
-	$(function(){
-		ratingToPercent() {
-		      const score = +this.restaurant.averageScore * 20;
-		      return score + 1.5;
-		 }
-		
-	})
-</script>
 <!-- ------------------------------ -->
 <form method="post" enctype="multipart/form-data" name="reform"
 	id="reform">
@@ -53,20 +44,20 @@
 		<td>${loginUser.name}[${loginUser.userid}]</td>
 	</tr>	
 	<tr>
-		<th>상품평</th>
+		<th>어떤 점이 좋았나요?</th>
 		<td colspan="3">
 			<textarea name="content" id="content" rows="2" class="form-control"></textarea>	
 		</td>
 	</tr>
 	<tr>
-		<th>이미지업로드</th>
+		<th>사진/동영상 첨부하기</th>
 		<td colspan="2">
 			<input type="file" name="refilename" id="refilename"
 			 accept="image/*" class="form-control">
 		</td>
 		<td>
 			<button type="submit" class="btn btn-secondary">
-				작성
+				등록
 			</button>
 		</td>
 	</tr>

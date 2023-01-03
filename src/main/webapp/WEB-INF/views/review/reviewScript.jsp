@@ -216,10 +216,16 @@ const reviewEdit=function(renum){
 			
 			reform2.content.value=res.content;
 			let str='';
-			for(let i=0; i<res.score; i++) {
-				str+='<img src="resources/review_images/star.jpg">'
+			
+			//alert($('#'+res.score+"-stars").val())
+			$('#reform2 #'+res.score+"-stars").prop("checked",true);
+			//alert($('#'+res.score+"-stars").is(":checked"))
+			
+			//.prop("checked",true);
+			/* for(let i=0; i<res.score; i++) {
+				str+='<img src="resources/review_images/star.png">'
 			}
-			$('#star').html(str);
+			$('#star').html(str); */
 			let imgSrc;
 			if(res.refilename==null) {
 				imgSrc='noimage.png';
