@@ -3,10 +3,8 @@
 "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.shop.mapper.ItemMapper">
 	<select id="selectByitemNum" resultType="Item" parameterType="_int">
-		select i.*,
-		(select up_Name from upOption where up_Code=i.up_Code) up_Name,
-		(select down_Name from downOption where down_Code=i.down_Code) down_Name
-		from item2 i where itemNo=#{value} order by itemNo desc
+		select itemNo,itemName,price,saleprice,point,quality,itemImage1,itemInfo
+		from item2 where itemNo=#{value}
 	</select>
 	
 </mapper>

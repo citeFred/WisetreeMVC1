@@ -70,8 +70,8 @@ public class ShopServiceImpl implements ShopService {
 	}
 	
 	@Override
-	public List<ItemVO> selectByPspec(String pspec){
-		return this.itemMapper.selectByPspec(pspec);
+	public List<ItemVO> selectByPspec(String quality){
+		return this.itemMapper.selectByPspec(quality);
 	}
 
 }

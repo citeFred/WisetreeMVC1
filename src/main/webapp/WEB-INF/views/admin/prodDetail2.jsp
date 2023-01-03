@@ -55,7 +55,7 @@
 
                      <td align="left" width="50%" style="padding-left: 40px">
                         <h4>
-                           <span class="label label-danger">${prod.pspec} </span>
+                           <span class="label label-danger">${prod.quality} </span>
                         </h4> 
                         	상품번호: ${prod.itemNo} <br> 
                         	상품이름: ${prod.itemName} <br> 
