@@ -1,36 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+"http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.shop.mapper.AdminMapper">
 
-<insert id="register" parameterType="Item">
-	<selectKey keyProperty="pidx" resultType="int" order="BEFORE">
-		select item_seq.nextval from dual
-	</selectKey>
-	insert into item(pidx,down_Code,up_Code,ptname,ptimage1,ptimage2,ptimage3,price,saleprice,count,point,quality,pinfo,pbrand,pindate)values
-					(#{pidx},#{down_Code:NUMERIC},#{up_Code},#{ptname:VARCHAR},#{ptimage1:VARCHAR},#{ptimage2:VARCHAR},#{ptimage3:VARCHAR},#{price:NUMERIC},#{saleprice},#{count},#{point},#{quality:VARCHAR},#{pinfo},#{pbrand},sysdate)
-</insert>
+	<insert id="register" parameterType="Item">
+		<selectKey keyProperty="itemNo" resultType="int"
+			order="BEFORE">
+			select item2_seq.nextval from dual
+		</selectKey>
+		insert into
+		item2(itemNo,down_Code,up_Code,itemName,itemImage1,itemImage2,itemImage3,price,saleprice,count,point,quality,itemInfo,itemBrand,itemIndate)values
+		(#{itemNo},#{down_Code:NUMERIC},#{up_Code},#{itemName:VARCHAR},#{itemImage1:VARCHAR},#{itemImage2:VARCHAR},#{itemImage3:VARCHAR},#{price:NUMERIC},#{saleprice},#{count},#{point},#{quality:VARCHAR},#{itemInfo},#{itemBrand},sysdate)
+	</insert>
 
-<select id="getItem" resultType="Item">
-	select i.*,
-	(select up_Name from upOption where up_Code=i.up_Code)up_Name,
-	(select down_Name from downOption where down_Code=i.down_Code)down_Name,
-	from item i order by pidx desc
-</select>
+	<select id="getItem" resultType="Item">
+		select i.*,
+		(select up_Name from upOption where up_Code=i.up_Code) up_Name,
+		(select down_Name from downOption where down_Code=i.down_Code) down_Name
+		from item2 i where itemNo=#{value} order by itemNo desc
+	</select>
 
 
 
-<select id="itemList" resultType="Item">
-	select * from item
-</select>
+	<select id="itemList" resultType="Item">
+		select i.*,
+		(select up_Name from upOption where up_Code=i.up_Code) up_Name,
+		(select down_Name from downOption where down_Code=i.down_Code) down_Name
+		from item2 i order by itemNo desc
+	</select>
 
-<select id="getUpOption" resultType="Option">
-	select * from upOption order by 1 asc
-</select>
 
-<select id="getDownOption" resultType="Option" parameterType="_int">
-	select * from downOption where up_Code=#{value}
-	order by 1 asc
-</select>
 
 </mapper>

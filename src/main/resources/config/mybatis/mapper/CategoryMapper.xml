@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shop.mapper.CategoryMapper">
+
+<select id="getUpOption" resultType="Option">
+	select * from upOption order by 1 asc
+</select>
+
+<select id="getDownOption" resultType="Option" parameterType="int">
+	select * from downOption where up_Code=#{value}
+	order by 1 asc
+</select>
+
+</mapper>

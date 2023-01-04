@@ -42,7 +42,7 @@
 	<view-controller path="/reviewForm" view-name="review/reviewForm"/>
 
 	<beans:bean id="upDir" class="java.lang.String">
-		<beans:constructor-arg value="C:/Wisetree/Upload"/>
+		<beans:constructor-arg value="/Users/haenalee/study/filedata"/>
 	</beans:bean>
 </beans:beans>
 

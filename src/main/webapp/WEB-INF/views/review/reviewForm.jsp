@@ -7,12 +7,12 @@
 <%@ include file="/WEB-INF/views/review/reviewScript.jsp"%>
 
 <!-- ------------------------------ -->
-<form method="post" enctype="multipart/form-data" name="reform" id="reform">
+<%-- <form method="post" enctype="multipart/form-data" name="reform" id="reform">
 	<!-- hidden data------------------------------------ -->
 		<input type="text" name="pidx_fk" id="pidx_fk" value="${prod.pidx}">
 		<input type="text" name="userid" id="userid" value="hong">
 		
-		<input type="text" name="mode" value="ajaxMode">
+		<input type="text" name="mode" value="ajaxMode"> --%>
 		
 	<!-- ---------------------------------------------- -->
 	<table class="table">

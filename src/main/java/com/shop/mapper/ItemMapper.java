@@ -2,7 +2,6 @@ package com.shop.mapper;
 
 import java.util.List;
 
-
 import com.shop.model.ItemVO;
 
 public interface ItemMapper {
@@ -12,7 +11,8 @@ public interface ItemMapper {
 	List<ItemVO> getItem();
 	
 	List<ItemVO>selectByQty(String quality);
+	List<ItemVO> selectByPspec(String pspec);
 	List<ItemVO> selectByOption(int op_num);
-	
-	public ItemVO selectByitemNum(int itemNum);
+	List<ItemVO> itemList();
+	ItemVO selectByitemNum(int itemNo);
 }

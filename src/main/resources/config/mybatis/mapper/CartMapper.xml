@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shop.mapper.CartMapper">
+	<select id="findCartNoByitemNo" resultType="cvo"
+		parameterType="_int">
+		select cartNo from cart
+		where itemNo=#{itemNo} and
+		idx=#{idk}
+	</select>
+
+	<update id="updateCartCount" parameterType="cvo">
+		update cart set
+		count=count + #{count}
+		where itemNO=#{itemNO} and
+		idx=#{idk}
+	</update>
+
+	<insert id="addCart" parameterType="cvo">
+		<selectKey keyProperty="cartNo" resultType="int"
+			order="BEFORE">
+			select cart_seq.nextval from dual
+		</selectKey>
+		insert into
+		cart(cartNo,idx,itemNo,count,itemName,itemImage1,price,saleprice,carttotalPrice,indate)
+		values(#{cartNo},#{idx},#{itemNo},#{count},#{itemName},#{itemImage1},#{price},#{saleprice},#{carttotalPrice},sysdate)
+	</insert>
+
+	<select id="seeCartBasket" resultType="cvo" parameterType="int">
+		select * from cart where idx=#{value} -->
+	</select>
+
+	<delete id="deleteCart" parameterType="int">
+		delete from cart where cartNo=#{value}
+	</delete>
+
+	<select id="getCartTotalSum" resultType="int"
+		parameterType="int">
+		select sum(price) from cart where idx=#{value}
+	</select>
+</mapper>
