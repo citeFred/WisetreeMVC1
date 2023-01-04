@@ -32,12 +32,14 @@ public class ProductController {
 	}
 	
 	@GetMapping("/prodDetail2")
-	public String prodDetail(Model m, @RequestParam(defaultValue="0") int itemNo, HttpSession ses) {
+	public String prodDetail(Model m, @RequestParam(value="itemNo",defaultValue="0") int itemNo, HttpSession ses) {
 		if(itemNo==0) {
 			return "redirect:index";
 		}
 		
 		ses.setAttribute("itemNo", itemNo);
+		log.info(itemNo);
+		
 		ItemVO Item=this.shopService.selectByitemNum(itemNo);
 		m.addAttribute("prod",Item);
 		return "prodDetail2";

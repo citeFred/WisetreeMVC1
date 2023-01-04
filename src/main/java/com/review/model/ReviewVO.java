@@ -24,5 +24,5 @@ public class ReviewVO {
 	private java.sql.Date wdate;
 	
 	/* 상품 번호 */
-	private int pidx_fk;
+	private int itemno_fk;
 }

@@ -117,13 +117,16 @@ public class ReviewRESTController {
 	@GetMapping(value = "", produces = "application/json")
 	public List<ReviewVO> revList(HttpSession sion) {
 		
-		int pidx = 6;
-		sion.setAttribute("pidx", pidx);
-		sion.setMaxInactiveInterval(-1);
 		
-		Integer pidx1 = (Integer) sion.getAttribute("pidx");
-		log.info("pidx =>" + pidx1);
-		List<ReviewVO> rearr = this.reviewService.listReview(pidx1);
+		/*
+		 * int itemNo = 6; sion.setAttribute("itemNo", itemNo);
+		 * sion.setMaxInactiveInterval(-1);
+		 */
+		 
+		
+		Integer itemNo1 = (Integer) sion.getAttribute("itemNo");
+		log.info("itemno =>" + itemNo1);
+		List<ReviewVO> rearr = this.reviewService.listReview(itemNo1);
 		return rearr;
 	}
 
@@ -132,8 +135,8 @@ public class ReviewRESTController {
 	 * */
 	@GetMapping(value = "/cnt", produces = "application/json")
 	public ModelMap getrevCount(HttpSession sion) {
-		Integer pidx = (Integer) sion.getAttribute("pidx");
-		int cnt = this.reviewService.getReviewCnt(pidx);
+		Integer itemNo = (Integer) sion.getAttribute("itemNo");
+		int cnt = this.reviewService.getReviewCnt(itemNo);
 		//System.out.println("cccccccccc");
 		log.info("cnt=>" + cnt);
 		

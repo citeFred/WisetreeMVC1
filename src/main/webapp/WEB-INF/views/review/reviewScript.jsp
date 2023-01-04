@@ -18,16 +18,16 @@ $(function(){
 		const score=$('input[name="score"]:checked').val();
 		alert(score);
 		//const score=5;
-		//const pidx_fk=$('#pidx_fk').val();
-		const pidx_fk=6;
+		const itemno_fk=$('#itemno_fk').val();
+		//const pidx_fk=6;
 		
-		//alert(userid+"/"+content+"/"+score+"/"+pidx_fk+"/"+fname);
+		alert(userid+"/"+content+"/"+score+"/"+itemno_fk+"/"+fname);
 		let formD=new FormData();
 		formD.append('refilename1', fname);
 		formD.append('userid', userid);
 		formD.append('content', content);
 		formD.append('score', score);
-		formD.append('pidx_fk', pidx_fk);
+		formD.append('itemno_fk', itemno_fk);
 		formD.append('mode','ajaxMode');
 		
 		//alert("formD ====>"+formD)		

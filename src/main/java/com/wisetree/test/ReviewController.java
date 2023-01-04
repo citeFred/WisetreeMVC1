@@ -28,12 +28,12 @@ public class ReviewController {
 	@GetMapping("/review")
 	public String review(){
 			
-			return "review/reviewList";
+			return "review/reviewList2";
 	}
 	@PostMapping("/review")
 	public String reviewend(){
 			
-			return "review/reviewList";
+			return "review/reviewList2";
 	}
 	
 

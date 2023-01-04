@@ -10,10 +10,9 @@
 <form method="post" enctype="multipart/form-data" name="reform"
 	id="reform">
 	<!-- hidden data------------------------------------ -->
-	<%-- <input type="text" name="pidx_fk" id="pidx_fk" value="${prod.pidx}"> --%>
-	<input type="hidden" name="pidx_fk" id="pidx_fk" value="6">
+	<input type="text" name="itemno_fk" id="itemno_fk" value="${prod.itemNo}">
 	<input type="text" name="userid" id="userid" value="${loginUser.userid}">
-	<input type="hidden" name="score" id="score" value="${result.renum}">
+	<input type="text" name="score" id="score" value="${result.revo}">
 	<input type="hidden" name="mode" value="ajaxMode">
 
 	<!-- ---------------------------------------------- -->
