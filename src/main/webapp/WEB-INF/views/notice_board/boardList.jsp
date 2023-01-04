@@ -36,6 +36,14 @@
 							<a href="view/<c:out value="${board.num }"/>">
 								<c:out value="${board.subject }" />				
 							</a>
+							<!-- ---첨부파일 있는 글 표시---------------- -->
+							<c:if test="${board.filesize>0 }">
+								<span class="float-right">
+									<img src="../images/attach.jpg" style='width:26px'
+									title="<c:out value="board.originFilename"/>"/>
+								</span>
+							</c:if>
+							<!-- ----------------------------------- -->
 						</td>
 						
 						<td><c:out value="${board.name }" /></td>
