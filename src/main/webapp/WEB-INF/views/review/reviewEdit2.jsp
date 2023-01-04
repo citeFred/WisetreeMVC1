@@ -12,6 +12,7 @@
 				<input type="hidden" name="pidx_fk" id="pidx_fk" value="${prod.pidx}">
 				<input type="text" name="userid" id="userid" value="${loginUser.userid}">
 				<input type="text" name="renum" id="renum" value="${result.revo} ">
+				<input type="text" name="score" id="score" value="${result.score} ">
 			<!-- ---------------------------------------------- -->
 	<table class="table">
 		<th>
@@ -23,8 +24,7 @@
 		<td>상품은 만족하셨나요?</td>   
 		<td>
 			<div class="star-score space-x-4 mx-auto" id="star">
-				<input type="radio" id="5-stars" name="score" value="5" 				
-				v-model="ratings"/>
+				<input type="radio" id="5-stars" name="score" value="5" v-model="ratings"/>
 				<label for="5-stars" class="star pr-4">★</label>
 				<input type="radio" id="4-stars" name="score" value="4" v-model="ratings"/>
 				<label for="4-stars" class="star">★</label>
@@ -32,8 +32,7 @@
 				<label for="3-stars" class="star">★</label>
 				<input type="radio" id="2-stars" name="score" value="2" v-model="ratings"/>
 				<label for="2-stars" class="star">★</label>
-				<input type="radio" id="1-star" name="score"				
-				 value="1" v-model="ratings" />
+				<input type="radio" id="1-star" name="score"  value="1" v-model="ratings" />
 				<label for="1-star" class="star">★</label>
 			</div>
 		</td>

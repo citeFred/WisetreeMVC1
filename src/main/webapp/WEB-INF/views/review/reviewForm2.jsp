@@ -11,10 +11,10 @@
 	id="reform">
 	<!-- hidden data------------------------------------ -->
 	<%-- <input type="text" name="pidx_fk" id="pidx_fk" value="${prod.pidx}"> --%>
-	<input type="text" name="pidx_fk" id="pidx_fk" value="6"> <input
-		type="text" name="userid" id="userid" value="${loginUser.userid}">
-	<input type="text" name="score" id="score" value="${result.score}">
-	<input type="text" name="mode" value="ajaxMode">
+	<input type="hidden" name="pidx_fk" id="pidx_fk" value="6">
+	<input type="text" name="userid" id="userid" value="${loginUser.userid}">
+	<input type="hidden" name="score" id="score" value="${result.renum}">
+	<input type="hidden" name="mode" value="ajaxMode">
 
 	<!-- ---------------------------------------------- -->
 	<table class="table">

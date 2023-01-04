@@ -77,7 +77,8 @@ $(function(){
 		let pidx=6;
 		let renum=reform2.renum.value;
 		//alert(renum);//---->해결	
-		let score=reform2.score.value;
+		let score=reform2.score.value;//-------->해결x
+		alert("sco===>"+score)
 		let content=reform2.content.value;
 		
 		let jsonData= {
@@ -104,7 +105,7 @@ $(function(){
 				//xhr.setRequestHeader("Ajax","true");
 			},
 			success:function(res){
-				alert(JSON.stringify(res));
+				//alert(JSON.stringify(res));
 				if(res.result>0) {
 					$('#reviewModal').modal('hide');
 					show_reviews();
