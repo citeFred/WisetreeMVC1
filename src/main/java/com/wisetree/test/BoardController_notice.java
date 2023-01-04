@@ -1,9 +1,13 @@
 package com.wisetree.test;
 
+import java.io.File;
 import java.util.List;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.common.CommonUtil;
 import com.notice_board.model.BoardVO;
@@ -37,7 +42,44 @@ public class BoardController_notice {
 	}
 	@PostMapping("/write")
 	public String boardInsert(Model m,
+			HttpServletRequest req,
+			@RequestParam("mfilename") MultipartFile mfilename,
 			@ModelAttribute BoardVO board) {
+		
+		//파일 업로드 처리
+		//업로드  디렉토리 절대경로 얻기
+		ServletContext app=req.getServletContext();
+		String upDir=app.getRealPath("/resources/notice_board_upload");
+		File dir=new File(upDir);
+		if(!dir.exists()) {
+			dir.mkdirs();
+		}
+		
+		if(!mfilename.isEmpty()) {
+			//첨부파일명과 파일크기 확인
+			String originFname=mfilename.getOriginalFilename();
+			long fsize=mfilename.getSize();
+			log.info(originFname+">>>"+fsize);
+			
+			//동일한 파일명이 서버에 있을 경우 랜덤 처리
+			UUID uuid=UUID.randomUUID();
+			String filename=uuid.toString()+"-"+originFname;
+			log.info("filename==="+filename);
+		
+		
+			//업로드 처리
+			try {
+				mfilename.transferTo(new File(upDir,filename));
+				log.info("upDir==="+upDir);
+			} catch (Exception e) {
+				log.error("board w e"+e);
+			}
+			
+			//BoardVO객체에 filename, originFilename,filesize세팅
+			board.setFilename(filename);
+			board.setOriginFilename(originFname);
+			board.setFilesize(fsize);
+		}
 		
 		//유효성 체크 (subject, name, passwd)==> reditect "write"
 		if(board.getName()==null||board.getSubject()==null||board.getPasswd()==null||

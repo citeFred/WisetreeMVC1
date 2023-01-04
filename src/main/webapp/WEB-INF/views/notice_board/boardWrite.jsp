@@ -88,7 +88,7 @@ $(function(){
 	   		<tr>
 	   			<td style="width:20%"><b>첨부파일</b></td>
         		<td style="width:80%">
-	   				<input type="text" name="mfilename" id="filename" class="form-control">
+	   				<input type="file" name="mfilename" id="filename" class="form-control">
 	   			</td>
 	   		</tr>
 	   		
