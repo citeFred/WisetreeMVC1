@@ -51,8 +51,14 @@
 		<tr>
 			<td>첨부파일</td>
 			<td>
+			<!-- ---첨부파일이 있다면------------------------ -->
+			<c:if test="${board.filename ne null }">
+			<a>
 				<c:out value="${board.originFilename }"/>
-				<c:out value="${board.filesize }"/>
+			</a>
+				[ <c:out value="${board.filesize }"/> bytes]
+			</c:if>
+			<!-- --------------------------------------- -->
 			</td>
 		</tr>
 		
