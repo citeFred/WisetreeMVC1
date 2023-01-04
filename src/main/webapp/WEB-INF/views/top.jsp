@@ -7,7 +7,7 @@
 <script type="text/javascript" src="./js/navigationControl.js"></script>
 
 <head>
-<title>Goods Store Webpage</title>
+<title>Wisetree Store Webpage</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
@@ -38,12 +38,12 @@ $(function(){
 	<!-- context명 세팅 == href= 의 시작점 "wisetree"  -->
 	<c:set var="myctx" value="${pageContext.request.contextPath}" />
 
-	<div class="jumbotron text-center" style="margin-bottom: 0">
+<!-- 	<div class="jumbotron text-center" style="margin-bottom: 0">
 		<h1>Goods Store Web Page</h1>
 		<p>World variety goods!</p>
-	</div>
+	</div> -->
 
-	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<a class="navbar-brand" href="${myctx}/index">GOODS STORE</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"	data-target="#collapsibleNavbar">
 			<span class="navbar-toggler-icon"></span>
@@ -144,4 +144,18 @@ $(function(){
 				
 			</ul>
 		</div>
+			<button class="btn btn-outline-dark" type="button">
+				<i class="bi-cart-fill me-1"></i>
+				Cart
+				<span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+			</button>
 	</nav>
+        <!-- Header-->
+        <header class="bg-dark py-5">
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="text-center text-white">
+                    <h1 class="display-4 fw-bolder">Shop in style</h1>
+                    <p class="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p>
+                </div>
+            </div>
+        </header>
