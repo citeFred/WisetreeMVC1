@@ -33,18 +33,27 @@
 	<context:component-scan base-package="com.notice_board" />
 	<context:component-scan base-package="com.free" />
 	<!-- 패키지 만들 때 마다 추가 ===================== -->
+	
+	<!-- 파일 업로르 위한 MultipartResolver 설정 =========================== -->
+	<!--주의: 빈의 id는 반드시 multipartResolver로 등록해야 한다.
+	다른 아이디를 주면 DispatcherServlet이 MultipartResolver로 인식하질 못한다.  -->
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<beans:property name="defaultEncoding" value="UTF-8"/>
 		<beans:property name="maxUploadSize" value="-1"/>
 	</beans:bean>
 	
+
+	
 	<!-- 상품평을 쓰는 리뷰폼 매핑 ==================================== -->
 	<view-controller path="/reviewForm" view-name="review/reviewForm"/>
+	
+	
 
 	<beans:bean id="upDir" class="java.lang.String">
 		<beans:constructor-arg value="/Users/haenalee/study/filedata"/>
 		<!-- <beans:constructor-arg value="/Users/inyongkim/Documents/myspring"/> -->
 	</beans:bean>
+
 </beans:beans>
 
 

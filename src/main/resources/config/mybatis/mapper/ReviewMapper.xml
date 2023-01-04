@@ -11,7 +11,7 @@
 	</select>
 	
 	<insert id="addReview" parameterType="Review">
-		<selectKey keyProperty="num" resultType="int" order="BEFORE">
+		<selectKey keyProperty="renum" resultType="int" order="BEFORE">
 			select review_seq.nextval from dual
 		</selectKey>
 		insert into review(renum, userid, content, score, refilename, wdate, itemNo)
@@ -27,8 +27,11 @@
 	</delete>
 	
 	<update id="upReview" parameterType="Review">
-		update review set userid=#{userid}, content=#{content:VARCHAR}, score=#{score:NUMERIC}
-			<if test="filename!=null and filename!=''">, filename=#{filename} </if>
+		update review set 
+		userid=#{userid}, 
+		content=#{content:VARCHAR}, 
+		score=#{score:NUMERIC}
+			<if test="refilename!=null and refilename!=''">, refilename=#{refilename} </if>
 		where renum=#{renum}
 	</update>
 	

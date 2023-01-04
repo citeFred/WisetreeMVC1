@@ -25,6 +25,7 @@ public class KakaoController {
 	@Autowired
 	private KakaoService ms;
 	
+
 //	@ResponseBody //ModelAndView로 반환 할 때 ResponseBody(반환 내용이 HTML에 들어가게 됨==필요없음) 가 없어야한다. //; charset=UTF-8을 추가하여 한글 깨짐 현상 제거
     @GetMapping(value="member/kakaologin", produces="application/json; charset=UTF-8")
     public ModelAndView kakaoLogin(@RequestParam(value="code", required= false)String code,

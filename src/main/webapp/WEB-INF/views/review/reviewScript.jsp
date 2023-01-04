@@ -5,27 +5,32 @@
 $(function(){
 	show_reviews();//전체 리뷰 목록 가져오기
 	review_count();
+	
 	$('#reform').submit(function(evt){
 		evt.preventDefault();
-		alert('1차');
+		//alert('1차확인');
 		const file=$('#refilename')[0]
+		//alert(file);
 		const fname=file.files[0];
+		//alert(fname.name);
 		const userid=$('#userid').val();
 		const content=$('#content').val();
 		const score=$('input[name="score"]:checked').val();
+		alert(score);
 		//const score=5;
-		const pidx_fk=$('#pidx_fk').val();
+		//const pidx_fk=$('#pidx_fk').val();
+		const pidx_fk=6;
 		
-		console.log(userid+"/"+content+"/"+score+"/"+pidx_fk+"/"+fname);
+		//alert(userid+"/"+content+"/"+score+"/"+pidx_fk+"/"+fname);
 		let formD=new FormData();
-		formD.append('refilename', fname);
+		formD.append('refilename1', fname);
 		formD.append('userid', userid);
 		formD.append('content', content);
 		formD.append('score', score);
 		formD.append('pidx_fk', pidx_fk);
 		formD.append('mode','ajaxMode');
 		
-		console.log("formD ====>"+formD)		
+		//alert("formD ====>"+formD)		
 		
 		
 		let url="prdreviews/user";
@@ -33,28 +38,30 @@ $(function(){
 			type:'post',
 			url:url,
 			data:formD, 
-			dataType:'xml',
+			dataType:'json',
 			cache:false,
 			processData:false, 
 			contentType:false, 
 			beforeSend:function(xhr){
-				xhr.setRequestHeader("Ajax","true");
+				//xhr.setRequestHeader("Ajax","true");
 			},
 			success:function(res){
-				alert(res);
-				let result=$(res).find('result').text();
+				//alert(res);
+// 				let result=$(res).find('result').text();
+				let result = res.result;
+				
 				if(result>0) {
-					$('#reviewList').html("<h1>등록성공</h1>");
+					//$('#revList').html("<h1>등록성공</h1>");
 					show_reviews();
 				}else {
-					alert('등록 실패');
+					alert('성공에서 등록 실패');
 				}
 			},
 			error:function(err){
-				alert('err'+err.status);
-				if(err.status==400) {
+				alert('err'+err.status+'등록 실패');
+				/* if(err.status==400) {
 					alert('로그인해야 이용가능 합니다..')
-				}
+				} */
 			}
 			
 		});
@@ -66,9 +73,12 @@ $(function(){
 		evt.preventDefault();
 		
 		let uid=reform2.userid.value;
-		let pidx=reform2.pidx_fk.value;
+		//let pidx=reform2.pidx_fk.value;
+		let pidx=6;
 		let renum=reform2.renum.value;
-		let score=reform2.score.value;
+		//alert(renum);//---->해결	
+		let score=reform2.score.value;//-------->해결x
+		alert("sco===>"+score)
 		let content=reform2.content.value;
 		
 		let jsonData= {
@@ -79,8 +89,11 @@ $(function(){
 			content:content
 		}
 		
+		//alert("jsonData======"+jsonData);
+		alert(JSON.stringify(jsonData))
+		
 		let data=JSON.stringify(jsonData);
-		let url="prdreviews/user"+renum;
+		let url="prdreviews/user/"+renum;
 		$.ajax({
 			type:'put',
 			url:url,
@@ -89,10 +102,10 @@ $(function(){
 			dataType:'json',
 			cache:false,
 			beforeSend:function(xhr){
-				xhr.setRequestHeader("Ajax","true");
+				//xhr.setRequestHeader("Ajax","true");
 			},
 			success:function(res){
-				alert(JSON.stringify(res));
+				//alert(JSON.stringify(res));
 				if(res.result>0) {
 					$('#reviewModal').modal('hide');
 					show_reviews();
@@ -101,27 +114,28 @@ $(function(){
 				}
 			},
 			error:function(err){
-				alert('err');
-				if(err.status==400) {
+				alert('err'+err.status);
+				/* if(err.status==400) {
 					alert('로그인 해야 이용 가능해요')
 				}else {
 					alert('err');
-				}
+				} */
 			}
 		});
 	});//$('#reform2') end-----------------------------------
 })//$() end------------------------------------------------
 
-const review_cnt=function(){
-	let url='prdreview/cnt';
+const review_count=function(){
+	let url='prdreviews/cnt';
 	$.ajax({
 		type:'get',
 		url:url,
 		dataType:'json',
 		cache:false,
 		success:function(res){
-			//alert(res.count);
-			$('#review_cnt').html(res.count);
+			//alert(res.cnt);
+			
+			$('#review_cnt').html(res.cnt);
 		},
 		error:function(err){
 			alert(err);
@@ -140,8 +154,8 @@ const show_reviews=function(){
 		dataType:'json',
 		cache:false,
 		success:function(res){
-			alert(JSON.stringify(res));
-		 	alert(res.length);
+			//alert(JSON.stringify(res));
+		 	//alert(res.length);
 			showTable(res);
 		},
 		error:function(err){
@@ -167,12 +181,12 @@ const showTable=function(res){
 			str+='</td>';
 			str+='<td width="25%" class="text-left">';
 			for(let k=0; k<revo.score; k++) {
-				str+='<img src="resources/review_images/star.jpg">';
+				str+='<img src="resources/review_images/star.png">';
 			}
 			str+='<div class="mt-4">';
-			if(revo.userid=="hong") {
-				str+='<a href="#revList" onclick="reviewEdit('+revo.renum+')">EDIT</a> | ';
-				str+='<a href="#revList" onclick="reviewDel('+revo.renum+')">DEL</a>';
+			if(revo.userid=="${loginUser.userid}") {
+				str+='<a href="#revList" onclick="reviewEdit('+revo.renum+')">수정버튼</a> | ';
+				str+='<a href="#revList" onclick="reviewDel('+revo.renum+')">삭제버튼</a>';
 			}
 			str+='</div>';
 			str+='</td>';
@@ -181,47 +195,59 @@ const showTable=function(res){
 		str+='</table>';
 		$('#revList').html(str);
 }//---------------------------------------------------
-
+//리뷰 수정 요청
 const reviewEdit=function(renum){
-	console.log(renum);
-	let url="prdreviews/"+renum;
+	console.log(renum);// --> renum은 들어오는거 확인
+	
+	let url="prdreviews/user/"+renum; //"prdreviews/user/11
 	$.ajax({
 		type:'get',
 		url:url,
 		dataType:'json',
 		cache:false,
 		beforeSend:function(xhr){
-			xhr.setRequestHeader("Ajax","true");
+			//xhr.setRequestHeader("Ajax","true");
 		},
 		success:function(res){
 			alert(JSON.stringify(res));
-			reform2.renum.value=res.renum;//리뷰글번호
+			//alert(res.renum);
+			
+			reform2.renum.value=res.renum;
+			//alert(reform2.renum.value);//여기까진 확인
+			
 			reform2.content.value=res.content;
 			let str='';
-			for(let i=0; i<res.score; i++) {
-				str+='<img src="resources/review_images/star.jpg">'
+			
+			//alert($('#'+res.score+"-stars").val())
+			$('#reform2 #'+res.score+"-stars").prop("checked",true);
+			//alert($('#'+res.score+"-stars").is(":checked"))
+			
+			//.prop("checked",true);
+			/* for(let i=0; i<res.score; i++) {
+				str+='<img src="resources/review_images/star.png">'
 			}
-			$('#star').html(str);
+			$('#star').html(str); */
 			let imgSrc;
 			if(res.refilename==null) {
 				imgSrc='noimage.png';
 			}else{
 				imgSrc=res.refilename
 			}
-			str='<img src="resources/review_images/'+imgSrc+'" class="img-fluid" style="width:50%;margin:auto">'
+			str='<img src="resources/review_images/'+imgSrc+'"class="img-fluid" style="width:50%; margin:auto">'
 			$('#prodImage').html(str);
-			$('#reviewModal').modal();//모달창 띄우기 <==> 모달창 닫기 $().modal('hide');
+			$('#reviewModal').modal();
+			//모달창 띄우기 <==> 모달창 닫기 $().modal('hide');
 		},
 		error:function(err){
-			alert('err');
-			if(err.status==400) {
-				alert('로그인 해야 이용 가능해요');
-			}
+			alert('수정안됨');
+				/* if(err.status==400) {
+					alert('로그인 해야 이용 가능해요');
+				} */
 		}
 	});
 }//---------------------------------------------------
 
-const reviewDel = function(num){
+const reviewDel = function(renum){
 	let url="prdreviews/user/"+renum;
 	$.ajax({
 		type:'delete',
@@ -232,7 +258,7 @@ const reviewDel = function(num){
 			xhr.setRequestHeader("Ajax","true");
 		},
 		success:function(res){
-			alert(JSON.stringify(res));
+			//alert(JSON.stringify(res));
 			if(res.result>0) {
 				show_reviews();//전체 리뷰목록 가져옴;
 			}
@@ -257,7 +283,7 @@ const reviewDel = function(num){
  		cache:false,
  		dataType:'xml',
  		success:function(res){
- 			alert(res);//XMLDocument
+ 			//alert(res);//XMLDocument
  			let result=$(res).find('result').text();
  			alert(result);
  		},

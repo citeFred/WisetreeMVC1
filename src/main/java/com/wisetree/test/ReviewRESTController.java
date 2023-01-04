@@ -6,9 +6,11 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -18,8 +20,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.review.model.ReviewVO;
 import com.review.service.ReviewService;
@@ -45,9 +49,10 @@ import lombok.extern.log4j.Log4j;
  *  ----------------------------------------------------*/
 
 /*  HTTP메서드          URI                			설명
- *  POST               /prdreviews/user      		리뷰를 생성한다
  *  GET                /prdreviews           		모든 리뷰를 조회한다
- *  GET                /prdreviews/{renum}      	id에 해당하는 리뷰를 조회한다
+ *  POST               /prdreviews/user      		리뷰를 생성한다
+ *  
+ *  GET                /prdreviews/user/{renum}     id에 해당하는 리뷰를 조회한다
  *  PUT                /prdreviews/user/{renum}     id에 해당하는 리뷰를 수정한다
  *  DELETE             /prdreviews/user/{renum}     id에 해당하는 리뷰를 삭제한다
  * */
@@ -63,34 +68,43 @@ public class ReviewRESTController {
 	/**
 	 * 리뷰 글 작성
 	 * */
-	@PostMapping(value = "/user", produces = "application/xml")
-	public ModelMap revInsert(@RequestParam(value = "refilename", required = false) MultipartFile mtif,
-			@ModelAttribute("revo") ReviewVO revo, HttpSession sion) {
-		System.out.println("vvvvvvvvvvv");
+	//@ResponseBody
+	@PostMapping(value = "/user", produces = "application/json; charset=UTF-8" )
+	public ModelMap revInsert(
+			@RequestParam(value = "refilename1", required = false) MultipartFile mtif,
+			@ModelAttribute("revo") ReviewVO revo,
+			/* @RequestBody */
+			HttpSession sion,
+			HttpServletResponse response) {
+		response.setContentType("application/json");
+		log.info(mtif);
+		
+        log.info(response);
 		log.info("revo=>" + revo);
 
 		// 업로드 절대경로
 		ServletContext ser = sion.getServletContext();
-		String FDir = ser.getRealPath("/resources/review_images");
-
-		System.out.println("fffffffffffff");
-		log.info("FDir=>" + FDir);
+		String upDir = ser.getRealPath("/resources/review_images");
+		log.info("upDir=>" + upDir);
 
 		// 디렉토리 생성
-		File Dir = new File(FDir);
-		if (!Dir.exists()) {
-			Dir.mkdirs();
-
+		File fdir = new File(upDir);
+		if (!fdir.exists()) {
+			fdir.mkdirs();
 		}
-		// 업로드 처리
+		log.info("fdir=>" + fdir);
+		
+		// 업로드 처리 ------->>>이부분부터 오류 해결
 		try {
-			mtif.transferTo(new File(FDir, mtif.getOriginalFilename()));
+			mtif.transferTo(new File(upDir, mtif.getOriginalFilename()));
+			revo.setRefilename(upDir);
 			revo.setRefilename(mtif.getOriginalFilename());
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e.getMessage();
+			//log.info("파일업로드에서 실패====>"+e);
 		}
 		int re = this.reviewService.addReview(revo);
+		log.info("reNum%%%%%%%%%%%%%%%%%%%%%%%%"+re);
 		ModelMap momap = new ModelMap();
 		momap.addAttribute("result", re);
 		return momap;
@@ -108,7 +122,6 @@ public class ReviewRESTController {
 		sion.setMaxInactiveInterval(-1);
 		
 		Integer pidx1 = (Integer) sion.getAttribute("pidx");
-		System.out.println("rrrrrrrr");
 		log.info("pidx =>" + pidx1);
 		List<ReviewVO> rearr = this.reviewService.listReview(pidx1);
 		return rearr;
@@ -121,8 +134,9 @@ public class ReviewRESTController {
 	public ModelMap getrevCount(HttpSession sion) {
 		Integer pidx = (Integer) sion.getAttribute("pidx");
 		int cnt = this.reviewService.getReviewCnt(pidx);
-		System.out.println("cccccccccc");
+		//System.out.println("cccccccccc");
 		log.info("cnt=>" + cnt);
+		
 		ModelMap remap = new ModelMap();
 		remap.put("cnt", cnt);
 		return remap;
@@ -131,25 +145,33 @@ public class ReviewRESTController {
 	/**
 	 * 특정 리뷰 조회
 	 * */
-	@GetMapping(value = "/{renum}", produces = "application/json")
+	@GetMapping(value = "/user/{renum}", produces = "application/json")
 	public ReviewVO revGet(@PathVariable("renum") int renum) {
 		System.out.println("getgetgetget");
 		log.info("renum=>"+renum);
-		ReviewVO revo = this.reviewService.getReview(renum);
-		return revo;
+		ReviewVO revo1 = this.reviewService.getReview(renum);
+		
+		log.info("revo=>"+revo1);
+		return revo1;
 	}
 	
 	/**
 	 * 리뷰 글 수정
 	 * */
+	// user/{renum} --> GET
+	// user/{renum} --> PUT
+	// user/{renum} --> DELETE
 	@PutMapping(value = "/user/{renum}", produces = "application/json")
-	public ModelMap revUpdate(@PathVariable("renum") int renum, @RequestBody ReviewVO revo) {
-		System.out.println("upupupupup");
-		log.info("Upd revo====" + revo);
+	public ModelMap revUpdate(
+			@PathVariable("renum") int renum, 
+			@RequestBody ReviewVO revo1) {
+		System.out.println("putputput");
+		log.info("PUT revo1===="+revo1);
+		log.info("PUT renum===="+renum);
 
-		int Updn = this.reviewService.upReview(revo);
-
+		int Updn = this.reviewService.upReview(revo1);
 		ModelMap upmap = new ModelMap();
+		//upmap.addAttribute("result",  Updn);
 		upmap.put("result", Updn);
 		return upmap;
 
@@ -161,7 +183,7 @@ public class ReviewRESTController {
 	 * */
 	@DeleteMapping(value = "/user/{renum}", produces = "application/json")
 	public ModelMap revDelete(@PathVariable("renum") int renum) {
-		System.out.println("dddddddddddddddd");
+		//System.out.println("dddddddddddddddd");
 		log.info("del renum ====" + renum);
 		int deln = this.reviewService.delReview(renum);
 		ModelMap delmap = new ModelMap();
@@ -169,5 +191,4 @@ public class ReviewRESTController {
 		return delmap;
 	}
 
-	
 }
