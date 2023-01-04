@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn"  uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <c:import url="/top"/>
 
@@ -53,12 +54,22 @@
 			<td>
 			<!-- ---첨부파일이 있다면------------------------ -->
 			<c:if test="${board.filename ne null }">
-			<a>
-				<c:out value="${board.originFilename }"/>
+			<a href="#" onclick="down()">
+				${board.originFilename }
 			</a>
 				[ <c:out value="${board.filesize }"/> bytes]
 			</c:if>
 			<!-- --------------------------------------- -->
+			<!-- 파일명의 확장자를 검사하기 위해 모두 소문자로 바꿈 -->
+			<c:set var="fname" value="${fn:toLowerCase(board.filename) }"/>
+			<!-- ------------------------------------- -->
+			<!-- ---이미지 보이도록 수정---------------------------------- -->
+			<c:if test="${fn:endsWith(fname,'.jpg') or fn:endsWith(fname,'.gif') or fn:endsWith(fname,'.png') }">
+				<img width="80px" class="img img-thumbnail"
+				src="${pageContext.request.contextPath }/resources/notice_board_upload/${board.filename}">
+			</c:if>
+			<!-- ---------------------------------------------------- -->
+			
 			</td>
 		</tr>
 		
