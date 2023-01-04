@@ -19,7 +19,9 @@
 							<th data-sort="string">상품명</th>
 							<th>이미지</th>
 							<th data-sort="string">가 격</th>
+						<c:if test="${loginUser.userid eq admin}">
 							<th>수정|삭제</th>
+						</c:if>
 						</tr>
 					</thead>
 					<tbody>
@@ -56,10 +58,10 @@
 							<span class="badge badge-danger">${prod.percent} %할인</span>
 							</td>
 							<td>
-						<%-- <c:if test="${loginUser.role eq 'admin'}"> --%>
+						<c:if test="${loginUser.userid eq admin}">
 							<a href="javascript:edit('${prod.itemNo}')">수정</a>| 
 							<a href="#" onclick="remove('${prod.itemNo}')">삭제</a>| 
-						<%-- </c:if> --%>
+						</c:if>
 						</tr>
 						</c:forEach>
 					</c:if>

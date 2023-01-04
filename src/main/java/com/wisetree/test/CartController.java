@@ -33,7 +33,6 @@ public class CartController {
 	}
 	@PostMapping("/add")
 	public String addItem(
-			Model m,
 			HttpSession ses,@ModelAttribute CartVO cvo) {
 			log.info("itemNo==="+cvo.getItemNo()+",count==="+cvo.getCount());
 			
