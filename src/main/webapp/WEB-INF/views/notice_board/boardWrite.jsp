@@ -2,10 +2,12 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:import url="/top" />
-
+<script src="https://cdn.ckeditor.com/4.17.2/standard/ckeditor.js"></script>
 <!-- id로 유효성 체크 -->
 <script>
 $(function(){
+	
+	CKEDITOR.replace('content');
 	
 	$('#bf').submit(function(){
 		if($('#subject').val()==''){
@@ -19,11 +21,17 @@ $(function(){
 			return false;
 		}
 		
-		if($('#content').val()==''){
+		if(CKEDITOR.instances.content.getData()==''){
+			alert('글내용을 입력하세요');
+			CkEDITOR.instances.content.focus();
+			return false;
+		}
+		
+		/* if($('#content').val()==''){
 			alert('글내용을 입력하세요');
 			$('#content').focus();
 			return false;
-		}
+		} */
 		
 		if($('#bpwd').val()==''){
 			alert('비밀번호를 입력하세요');
@@ -60,18 +68,22 @@ $(function(){
 	   		</tr>
 	   		
 	   		<tr>
-	   			<td style="width:20%"><b>글내용</b></td>
-        		<td style="width:80%">
-	   				<input type="text" name="content" id="content" class="form-control">
+      	   		<td style="width:20%"><b>글내용</b></td>
+       	   		<td style="width:80%">
+       	   		<textarea name="content" id="content" rows="10" cols="50"
+                  class="form-control"></textarea>
+	   				<!-- <input type="text" name="content" id="content" class="form-control"> -->
 	   			</td>
 	   		</tr>
 	   		
-	   		<tr>
-	   			<td style="width:20%"><b>비밀번호</b></td>
-        		<td style="width:80%">
-	   				<input type="password" name="passwd" id="bpwd" class="form-control">
-	   			</td>
-	   		</tr>
+	       <tr>
+    	        <td style="width:20%"><b>비밀번호</b></td>
+       	   		<td style="width:80%">
+       	  	 	<div class="col-md-5">
+       			<input type="password" name="passwd" id="bpwd" class="form-control">
+      	 	    </div>
+       	   		</td>
+      		</tr>
 	   		
 	   		<tr>
 	   			<td style="width:20%"><b>첨부파일</b></td>

@@ -20,9 +20,13 @@
 				<th>조회수</th>
 			</tr>
 		</thead>
-		
 		<tbody>
-		
+		<c:if test="${boardArr eq null or empty boardArr }">
+			<tr>
+				<td colspan="3"><b>데이터가 없습니다</b></td>
+			</tr>
+		</c:if>
+		<c:if test="${boardArr ne null and not empty boardArr }">
 			<c:forEach var="board" items="${boardArr }">
 					<tr>
 						
@@ -40,8 +44,7 @@
 
 					</tr>
 				</c:forEach>
-		
-		
+			</c:if>
 		</tbody>
 	
 	

@@ -44,7 +44,7 @@
 			</td>
 			<td>글내용</td>
 			<td>
-				<c:out value="${board.content }"/>
+				${board.content }
 			</td>
 		</tr>
 		

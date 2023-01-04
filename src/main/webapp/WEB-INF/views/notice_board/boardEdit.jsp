@@ -2,6 +2,47 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:import url="/top" />
+<script src="https://cdn.ckeditor.com/4.17.2/standard/ckeditor.js"></script>
+<!-- id로 유효성 체크 -->
+<script>
+$(function(){
+	
+	CKEDITOR.replace('content');
+	
+	$('#bf').submit(function(){
+		if($('#subject').val()==''){
+			alert('제목을 입력해세요');
+			$('#subject').focus();
+			return false;
+		}
+		if($('#name').val()==''){
+			alert('글쓴이를 입력하세요');
+			$('#name').focus();
+			return false;
+		}
+		
+		if(CKEDITOR.instances.content.getData()==''){
+			alert('글내용을 입력하세요');
+			CkEDITOR.instances.content.focus();
+			return false;
+		}
+		
+		/* if($('#content').val()==''){
+			alert('글내용을 입력하세요');
+			$('#content').focus();
+			return false;
+		} */
+		
+		if($('#bpwd').val()==''){
+			alert('비밀번호를 입력하세요');
+			$('#bpwd').focus();
+			return false;
+		}
+		return true;
+	})
+})//$() end----------------------------
+	
+</script>
 
 <div align="center" id="bbs" class="col-md-8 offset-md-2 my-4">
    <h1>Spring Board Edit</h1>
@@ -34,16 +75,20 @@
 	   		<tr>
 	   			<td style="width:20%"><b>글내용</b></td>
         		<td style="width:80%">
-	   				<input type="text" name="content" id="content" 
+        			<textarea name="content" id="content" rows="10" cols="50"
+                 	 	class="form-control">${board.content}</textarea>
+	   				<%-- <input type="text" name="content" id="content" 
 	   				value='<c:out value="${board.content }"/>'
-	   				class="form-control">
+	   				class="form-control"> --%>
 	   			</td>
 	   		</tr>
 	   		
 	   		<tr>
 	   			<td style="width:20%"><b>비밀번호</b></td>
         		<td style="width:80%">
-	   				<input type="password" name="passwd" id="bpwd" class="form-control">
+    	  		  <div class="col-md-5">
+   		 	      <input type="password" name="passwd" id="bpwd" class="form-control">
+   			      </div>
 	   			</td>
 	   		</tr>
 	   		

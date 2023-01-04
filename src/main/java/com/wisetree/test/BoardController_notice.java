@@ -39,6 +39,13 @@ public class BoardController_notice {
 	public String boardInsert(Model m,
 			@ModelAttribute BoardVO board) {
 		
+		//유효성 체크 (subject, name, passwd)==> reditect "write"
+		if(board.getName()==null||board.getSubject()==null||board.getPasswd()==null||
+				board.getName().trim().isEmpty()||board.getSubject().trim().isEmpty()||board.getPasswd().trim().isEmpty()) {
+			return "redirect:write";
+		}
+		
+		
 		//boardService의 insertBoard()호출하기
 		int n=0;
 		String str="",loc="";
@@ -79,9 +86,24 @@ public class BoardController_notice {
 	@PostMapping("/delete")
 	public String boardDelete(Model m,
 //			HttpServletRequest req,
-			@RequestParam(defaultValue = "0") int num) {
+			@RequestParam(defaultValue = "0") int num,
+			@RequestParam(defaultValue = "") String passwd) {
 		
-//		BoardVO vo=this.boardService.selectBoardByIdx(num);
+		if(num==0||passwd.isEmpty()) {
+			return "redirect:list";
+		}
+		
+		BoardVO vo=this.boardService.selectBoardByIdx(num);
+		if(vo==null) {
+			return util.addMsgBack(m, "해당글은 존재하지 않아요");
+		}
+		
+		String dbPwd=vo.getPasswd();
+		if(!dbPwd.equals(passwd)) {
+			return util.addMsgBack(m, "비밀번호가 일치하지 않아요");
+			
+		}
+		
 		int n=this.boardService.deleteBoard(num);
 		
 		String str=(n>0)?"글 삭제 성공":"삭제 실패";
@@ -93,11 +115,24 @@ public class BoardController_notice {
 	
 	@PostMapping("/edit")
 	public String boardEditform(Model m,
-			@RequestParam(defaultValue = "0") int num
+			@RequestParam(defaultValue = "0") int num,
+			@RequestParam(defaultValue = "") String passwd
 			) {
-		
+		//글번호,비번 유효성 체크 ==> list
+		if(num==0||passwd.isEmpty()) {
+			return "redirect:list";
+		}
 		//글번호로 해당 글 가져오기
 		BoardVO vo=this.boardService.selectBoardByIdx(num);
+		//글번호로 유효성 체크
+		if(vo==null) {
+			return util.addMsgBack(m, "해당 글은 없어요");
+		}
+		
+		//비번체크->일치하지 않으면 "불일치" backd이동
+		if(!vo.getPasswd().equals(passwd)) {
+			return util.addMsgBack(m, "비밀번호가 일치하지 않아요");
+		}
 		
 		//Model에 해당 글 저장 "board"
 		m.addAttribute("board",vo);
