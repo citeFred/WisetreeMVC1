@@ -27,5 +27,5 @@ public interface ShopService {
 	int deleteCart(int cartNo);
 	int getCartTotalSum(int idx_fk);
 	
-	public void delOrder(int mnum_fk, int pidx);
+	public void delOrder(int mnum_fk, int idx);
 }

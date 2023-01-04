@@ -43,6 +43,7 @@
 
 	<beans:bean id="upDir" class="java.lang.String">
 		<beans:constructor-arg value="/Users/haenalee/study/filedata"/>
+		<!-- <beans:constructor-arg value="/Users/inyongkim/Documents/myspring"/> -->
 	</beans:bean>
 </beans:beans>
 

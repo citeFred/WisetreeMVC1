@@ -64,7 +64,7 @@ public class ShopServiceImpl implements ShopService {
 	}
 
 	@Override
-	public void delOrder(int mnum_fk, int pidx) {
+	public void delOrder(int mnum_fk, int idx) {
 		// TODO Auto-generated method stub
 
 	}
