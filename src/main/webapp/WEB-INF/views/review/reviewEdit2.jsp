@@ -9,7 +9,7 @@
 		<div class="modal-body">
 		<form method="post" enctype="multipart/form-data" name="reform2" id="reform2">
 			<!-- hidden data------------------------------------ -->
-				<input type="text" name="pidx_fk" id="pidx_fk" value="${prod.itemNo}">
+				<input type="text" name="itemno_fk" id="itemno_fk" value="${prod.itemNo}">
 				<input type="text" name="userid" id="userid" value="${loginUser.userid}">
 				<input type="hidden" name="renum" id="renum" >
 			<!-- ---------------------------------------------- -->

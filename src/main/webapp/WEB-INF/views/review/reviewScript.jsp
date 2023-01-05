@@ -73,8 +73,8 @@ $(function(){
 		evt.preventDefault();
 		
 		let uid=reform2.userid.value;
-		//let pidx=reform2.pidx_fk.value;
-		let pidx=6;
+		let itemno=reform2.itemno_fk.value;
+		alert("itemno====>"+itemno);
 		let renum=reform2.renum.value;
 		//alert(renum);//---->해결	
 		let score=reform2.score.value;//-------->해결x
@@ -83,7 +83,7 @@ $(function(){
 		
 		let jsonData= {
 			userid:uid,
-			pidx_fk:pidx,
+			itemno_fk:itemno,
 			renum:renum,
 			score:score,
 			content:content
@@ -219,8 +219,8 @@ const reviewEdit=function(renum){
 			let str='';
 			
 			//alert($('#'+res.score+"-stars").val())
-			$('#reform2 #'+res.score+"-stars").prop("checked",true);
-			//alert($('#'+res.score+"-stars").is(":checked"))
+			$('#reform2 #'+res.score+"-stars").prop("checked", true);
+			alert($('#reform2 #'+res.score+"-stars").is(":checked"))
 			
 			//.prop("checked",true);
 			/* for(let i=0; i<res.score; i++) {
@@ -235,6 +235,7 @@ const reviewEdit=function(renum){
 			}
 			str='<img src="resources/review_images/'+imgSrc+'"class="img-fluid" style="width:50%; margin:auto">'
 			$('#prodImage').html(str);
+			
 			$('#reviewModal').modal();
 			//모달창 띄우기 <==> 모달창 닫기 $().modal('hide');
 		},

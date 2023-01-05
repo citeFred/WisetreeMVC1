@@ -12,6 +12,11 @@ public class IndexController {
 		//"/WEB-INF/views/top.jsp
 	}
 	
+	@RequestMapping("/top2")
+	public void top2() {
+		//"/WEB-INF/views/top.jsp
+	}
+	
 	@RequestMapping("/foot")
 	public void foot() {
 		//"/WEB-INF/views/foot.jsp		
@@ -21,5 +26,6 @@ public class IndexController {
 	public void showIndex() {
 		//"/WEB-INF/views/index.jsp				
 	}
+	
 	
 }
