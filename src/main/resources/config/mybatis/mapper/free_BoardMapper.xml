@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.free.mapper.free_BoardMapper">
+	<!-- 게시판 글 작성 메서드 -->
 	<insert id="insertBoard" parameterType="Free_Board">
 		<selectKey keyProperty="num" resultType="_int"
 			order="BEFORE">
@@ -15,20 +16,7 @@
 		#{filesize:NUMERIC}, #{num}, #{lev}, #{sunbun})
 	</insert>
 
-	<select id="selectBoardAllPaging" resultType="Free_Board"
-		parameterType="Paging">
-		select * from(
-		select row_number() over(order by refer desc, sunbun
-		asc) rn, free_spring_board.*
-		from free_spring_board
-		<include refid="findWhere" />
-		)
-		
-		<![CDATA[
-		where rn > #{start} and rn < #{end}
-		]]>
-	</select>
-
+	<!-- 글번호 순서가 아닌 최근글 순서로 표현 -->
 	<select id="selectBoardAll" resultType="Free_Board"
 		parameterType="map">
 		select * from(
@@ -42,22 +30,26 @@
 
 	</select>
 
+	<!-- 조회수 증가 기능 -->
 	<update id="updateReadnum" parameterType="int">
 		update
 		free_spring_board set readnum = readnum + 1 where num=#{num}
 	</update>
 
+	<!-- 해당 게시글 정보 불러오기(View페이지) -->
 	<select id="selectBoardByIdx" resultType="Free_Board"
 		parameterType="_int">
 		select * from free_spring_board where num=#{value}
 	</select>
 
+	<!-- 해당 게시글 삭제 기능 -->
 	<delete id="deleteBoard" parameterType="int">
 		delete from
 		free_spring_board
 		where num=#{value}
 	</delete>
 
+	<!-- 해당 게시글 수정 기능 -->
 	<update id="updateBoard" parameterType="Free_Board">
 		update free_spring_board set name=#{name}, subject=#{subject},
 		content=#{content:VARCHAR},
@@ -70,12 +62,15 @@
 			num=#{num}
 		</where>
 	</update>
+	
+	<!-- 답변을 달 게시물 정보 가져오기 -->
 	<select id="selectRefLevSunbun" parameterType="int"
 		resultType="Free_Board">
 		select refer, lev, sunbun from free_spring_board where
 		num=#{value}
 	</select>
 
+	<!-- 답변을 달 게시물의 순번에 1을 추가함으로써 해당 게시글 아래에 답변이 달리게 하는 기능 -->
 	<update id="updateSunbun" parameterType="Free_Board">
 		update free_spring_board
 		set
@@ -83,6 +78,7 @@
 		where refer=#{refer} and sunbun > #{sunbun}
 	</update>
 
+	<!-- 답변 글쓰기 기능 -->
 	<insert id="rewriteBoard" parameterType="Free_Board"
 		useGeneratedKeys="true" keyProperty="num">
 		<selectKey keyProperty="num" resultType="_int"
@@ -97,6 +93,7 @@
 		#{filesize:NUMERIC}, #{refer}, #{lev}, #{sunbun})
 	</insert>
 
+	<!-- 검색조건 -->
 	<sql id="findWhere">
 		<if test="findType!=null and findKeyword!=''">
 			<where>
@@ -112,7 +109,23 @@
 			</where>
 		</if>
 	</sql>
+	
+	<!-- 검색 조건에 따라 페이지에 순서대로 출력 -->
+	<select id="selectBoardAllPaging" resultType="Free_Board"
+		parameterType="Paging">
+		select * from(
+		select row_number() over(order by refer desc, sunbun
+		asc) rn, free_spring_board.*
+		from free_spring_board
+		<include refid="findWhere" />
+		)
+		
+		<![CDATA[
+		where rn > #{start} and rn < #{end}
+		]]>
+	</select>
 
+	<!-- 전체 페이지수 출력 -->
 	<select id="getTotalCount" resultType="int"
 		parameterType="Paging">
 		select count(num) from free_spring_board
