@@ -30,7 +30,7 @@ $(function(){
 		document.getElementById("kakaoUserLogined").style.display = "none";
 	}
 })
-  $(function(){
+$(function(){
       // 이미지 슬라이드 컨트롤를 사용하기 위해서는 carousel를 실행해야한다.
       $('#myCarousel').carousel({
         // 슬리아딩 자동 순환 지연 시간
@@ -40,7 +40,7 @@ $(function(){
         pause: "hover",
         // 순환 설정, true면 1 -> 2가면 다시 1로 돌아가서 반복
         wrap: true,
-        // 키보드 이벤트 설정 여부(?)
+        // 키보드 이벤트 설정 여부
         keyboard : true
 	  });
 	});
@@ -51,8 +51,23 @@ $(function(){
 	height: 200px;
 	background: #aaa;
 }
+/* 캐러셀(이미지슬라이드) 사이드 흰색 */
 a.carousel-control {
-  opacity: 0;
+ 	opacity: 0;
+}
+/* 캐러셀(이미지슬라이드) 이미지 크기변경 */
+.carousel-inner{
+	width:auto;
+	height:300px; /* 이미지 높이 변경 */
+}
+.carousel-item{
+	width: auto;
+	height:100%;
+}
+.d-block {
+	display:block;
+	width: auto;
+	height: 100%;
 }
 </style>
 </head>
@@ -179,7 +194,6 @@ a.carousel-control {
         <header class="bg-dark py-2">
             
             <!-- carousel를 구성할 영역 설정 -->
-			  <div style="width: 1800px; margin: 50px">
 			    <!-- carousel를 사용하기 위해서는 class에 carousel와 slide 설정한다. -->
 			    <!-- carousel는 특이하게 id를 설정해야 한다.-->
 			    <div id="myCarousel" class="carousel slide" data-ride="carousel" >
@@ -197,32 +211,35 @@ a.carousel-control {
 			        <!-- 이미지의 개수만큼 item을 만든다. 중요한 포인트는 carousel-indicators의 li 태그 개수와 item의 개수는 일치해야 한다. -->
 			        <div class="item active">
 			          <!-- 아미지 설정- -->
-			          <img src="resources/review_images/별1.png" style="width:100%">
-			          <!-- 캡션 설정 (생략 가능) -->
-			          <!-- 글자 색은 검은색 -->
+			          <img class="d-block w-100" src="resources/carousel/11.jpg" alt="First slide">
 			          <div class="carousel-caption" style="color:black;">
 			           <h3>TEST1</h3>
+			           <p>테스트입니다.</p>
 			          </div>
 			        </div>
 			        
 			        <div class="item">
-			          <img src="resources/review_images/별2.png" style="width:100%">
-			          <div class="carousel-caption" style="color:black;">
+			          <img class="d-block w-100" src="resources/carousel/12.jpg" alt="Second slide" >
+			          <div class="carousel-caption" style="color:white;">
 			          <h3>TEST2</h3>
+			          <p>테스트입니다.</p>
 			          </div>
 			        </div>
 			        
 			        <div class="item">
-			          <img src="resources/review_images/별3.png" style="width:100%">
-			          <div class="carousel-caption" style="color:black;">
+			          <img class="d-block w-100" src="resources/carousel/13.jpg" alt="Third slide">
+			          <div class="carousel-caption" style="color:white;">
 			          <h3>TEST3</h3>
+			           <p>테스트입니다.</p>
 			          </div>
 			        </div>
 			        
+			        
 			        <div class="item">
-			          <img src="resources/review_images/별4.png" style="width:100%">
-			          <div class="carousel-caption" style="color:black;">
+			          <img  class="d-block w-100" src="rresources/carousel/15.jpg" alt="Fourth slide" >
+			          <div class="carousel-caption" style="color:white;">
 			           <h3>TEST4</h3>
+			            <p>테스트입니다.</p>
 			          </div>
 			        </div>
 			      </div>
@@ -237,12 +254,11 @@ a.carousel-control {
 				      <span class="sr-only">Next</span>
 				    </a>
 			    </div>
-			  </div>
+			    </div>
                <!--<div class="container px-4 px-lg-5 my-5"> 
                 	<div class="text-center text-white">
                     <h1 class="display-4 fw-bolder">Shop in style</h1>
                     <p class="lead fw-normal text-white-50 mb-0">With this shop homepage template</p>
                 </div>
                 </div> -->
-            
         </header>
