@@ -86,6 +86,15 @@
 	
 	</table>
 	</c:if>
+	
+<!-- ---파일다운로드를 위한 form text----- -->
+<form name="fileF" id="fileF" method="post" action="../../fileDown_notice">
+	<input type="text" name="fname" value="<c:out value="${board.filename }"/>"/>
+	<input type="text" name="origin_fname" value="<c:out value="${board.originFilename }"/>"/>
+</form>
+<!-- -------------------------------- -->
+	
+	
 <!-- 편집 또는 삭제를 위한 form----------------------------- -->
 <form name="frm" id="frm">
 	<input type="text" name="num" value="<c:out value="${board.num }"/>">
@@ -107,6 +116,12 @@
 </div>
 
 <script type="text/javascript">
+
+//파일 다운로드  처리
+function down(){
+	fileF.submit();
+}
+
 function go(flag){
 	if(flag==1){
 		frm.mode.value='delete';
