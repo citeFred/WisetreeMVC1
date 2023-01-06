@@ -129,6 +129,58 @@ $(function(){
 	});//$('#reform2') end-----------------------------------
 })//$() end------------------------------------------------
 
+//리뷰 수정 요청
+const reviewEdit=function(renum){
+	console.log(renum);// --> renum은 들어오는거 확인
+	
+	let url="prdreviews/user/"+renum; //"prdreviews/user/11
+	$.ajax({
+		type:'get',
+		url:url,
+		dataType:'json',
+		cache:false,
+		beforeSend:function(xhr){
+			//xhr.setRequestHeader("Ajax","true");
+		},
+		success:function(res){
+			alert(JSON.stringify(res));
+			//alert(res.renum);
+			
+			reform2.renum.value=res.renum;
+			//alert(reform2.renum.value);//여기까진 확인
+			
+			reform2.content.value=res.content;
+			let str='';
+			
+			//alert($('#'+res.score+"-stars").val())
+			$('#reform2 #'+res.score+"-stars").prop("checked", true);
+			alert($('#reform2 #'+res.score+"-stars").is(":checked"))
+			
+			//.prop("checked",true);
+			/* for(let i=0; i<res.score; i++) {
+				str+='<img src="resources/review_images/star.png">'
+			}
+			$('#star').html(str); */
+			let imgSrc;
+			if(res.refilename==null) {
+				imgSrc='noimage.png';
+			}else{
+				imgSrc=res.refilename
+			}
+			str='<img src="resources/review_images/'+imgSrc+'"class="img-fluid" style="width:50%; margin:auto">'
+			$('#prodImage').html(str);
+			
+			$('#reviewModal').modal();
+			//모달창 띄우기 <==> 모달창 닫기 $().modal('hide');
+		},
+		error:function(err){
+			alert('수정안됨');
+				/* if(err.status==400) {
+					alert('로그인 해야 이용 가능해요');
+				} */
+		}
+	});
+}//---------------------------------------------------
 const review_count=function(){
 	let url='prdreviews/cnt';
 	$.ajax({
@@ -199,58 +251,7 @@ const showTable=function(res){
 		str+='</table>';
 		$('#revList').html(str);
 }//---------------------------------------------------
-//리뷰 수정 요청
-const reviewEdit=function(renum){
-	console.log(renum);// --> renum은 들어오는거 확인
-	
-	let url="prdreviews/user/"+renum; //"prdreviews/user/11
-	$.ajax({
-		type:'get',
-		url:url,
-		dataType:'json',
-		cache:false,
-		beforeSend:function(xhr){
-			//xhr.setRequestHeader("Ajax","true");
-		},
-		success:function(res){
-			alert(JSON.stringify(res));
-			//alert(res.renum);
-			
-			reform2.renum.value=res.renum;
-			//alert(reform2.renum.value);//여기까진 확인
-			
-			reform2.content.value=res.content;
-			let str='';
-			
-			//alert($('#'+res.score+"-stars").val())
-			$('#reform2 #'+res.score+"-stars").prop("checked", true);
-			alert($('#reform2 #'+res.score+"-stars").is(":checked"))
-			
-			//.prop("checked",true);
-			/* for(let i=0; i<res.score; i++) {
-				str+='<img src="resources/review_images/star.png">'
-			}
-			$('#star').html(str); */
-			let imgSrc;
-			if(res.refilename==null) {
-				imgSrc='noimage.png';
-			}else{
-				imgSrc=res.refilename
-			}
-			str='<img src="resources/review_images/'+imgSrc+'"class="img-fluid" style="width:50%; margin:auto">'
-			$('#prodImage').html(str);
-			
-			$('#reviewModal').modal();
-			//모달창 띄우기 <==> 모달창 닫기 $().modal('hide');
-		},
-		error:function(err){
-			alert('수정안됨');
-				/* if(err.status==400) {
-					alert('로그인 해야 이용 가능해요');
-				} */
-		}
-	});
-}//---------------------------------------------------
+
 
 const reviewDel = function(renum){
 	let url="prdreviews/user/"+renum;

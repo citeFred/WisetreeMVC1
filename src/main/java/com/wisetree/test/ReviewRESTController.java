@@ -151,8 +151,9 @@ public class ReviewRESTController {
 	 * */
 	@GetMapping(value = "/user/{renum}", produces = "application/json")
 	public ReviewVO revGet(@PathVariable("renum") int renum) {
-		System.out.println("getgetgetget");
+		System.out.println("********************");
 		log.info("renum=>"+renum);
+		System.out.println("********************");
 		ReviewVO revo1 = this.reviewService.getReview(renum);
 		
 		log.info("revo=>"+revo1);
@@ -169,10 +170,11 @@ public class ReviewRESTController {
 	public ModelMap revUpdate(
 			@PathVariable("renum") int renum, 
 			@RequestBody ReviewVO revo1) {
-		System.out.println("putputput");
+		System.out.println("********************");
 		log.info("PUT revo1===="+revo1);
 		log.info("PUT renum===="+renum);
-
+		System.out.println("********************");
+		
 		int Updn = this.reviewService.upReview(revo1);
 		ModelMap upmap = new ModelMap();
 		//upmap.addAttribute("result",  Updn);

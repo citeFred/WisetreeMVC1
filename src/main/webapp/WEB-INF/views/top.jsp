@@ -178,10 +178,10 @@ $(document).ready(function(){
 					<a class="nav-link" href="${myctx}/review">Review List</a>
 				</li>
 				
-				<!-- 리뷰 쓰기 폼 탭  -->
+				<%-- <!-- 리뷰 쓰기 폼 탭  -->
 				<li class="nav-item">
 					<a class="nav-link" href="${myctx}/reviewForm">Review Write</a>
-				</li>
+				</li> --%>
 				
 				<!-- 게시판 목록 탭  -->
 				<li class="nav-item">

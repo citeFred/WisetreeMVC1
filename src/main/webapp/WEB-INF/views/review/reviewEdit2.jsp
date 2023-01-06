@@ -12,6 +12,7 @@
 			<!-- hidden data------------------------------------ -->
 				<input type="text" name="itemno_fk" id="itemno_fk" value="${prod.itemNo}">
 				<input type="text" name="userid" id="userid" value="${loginUser.userid}">
+				<input type="text" name="score" id="score" value="${revo1.score}">
 				<input type="hidden" name="renum" id="renum" >
 			<!-- ---------------------------------------------- -->
 	<table class="table">

@@ -27,8 +27,8 @@ public class ReviewController {
 	
 	@GetMapping("/review")
 	public String review(){
-			
-			return "review/reviewList2";
+		
+			return "redirect:prodDetail2?itemNo=2";
 	}
 	@PostMapping("/review")
 	public String reviewend(){

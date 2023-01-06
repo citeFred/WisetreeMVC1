@@ -7,12 +7,11 @@
 <%@ include file="/WEB-INF/views/review/reviewScript.jsp"%>
 <link href="css/review.css" rel="stylesheet" type="text/css">
 <!-- ------------------------------ -->
-<form method="post" enctype="multipart/form-data" name="reform"
-	id="reform">
+<form method="post" enctype="multipart/form-data" name="reform" id="reform">
 	<!-- hidden data------------------------------------ -->
 	<input type="text" name="itemno_fk" id="itemno_fk" value="${prod.itemNo}">
 	<input type="text" name="userid" id="userid" value="${loginUser.userid}">
-	<input type="text" name="score" id="score" value="${result.revo}">
+	<%-- <input type="text" name="score" id="score" value="${revo.score}"> --%>
 	<input type="hidden" name="mode" value="ajaxMode">
 
 	<!-- ---------------------------------------------- -->

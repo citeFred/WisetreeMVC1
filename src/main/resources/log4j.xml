@@ -12,24 +12,24 @@
 	
 	<!-- Application Loggers -->
 	<logger name="com.wisetree.test">
-		<level value="info" />
+		<level value="WARN" />
 	</logger>
 	
 	<!-- 3rdparty Loggers -->
 	<logger name="org.springframework.core">
-		<level value="info" />
+		<level value="WARN" />
 	</logger>
 	
 	<logger name="org.springframework.beans">
-		<level value="info" />
+		<level value="WARN" />
 	</logger>
 	
 	<logger name="org.springframework.context">
-		<level value="info" />
+		<level value="WARN" />
 	</logger>
 
 	<logger name="org.springframework.web">
-		<level value="info" />
+		<level value="WARN" />
 	</logger>
 
 	<!-- Root Logger -->
