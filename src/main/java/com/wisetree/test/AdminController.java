@@ -12,7 +12,6 @@ import javax.inject.Inject;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -47,7 +46,19 @@ public class AdminController {
 	
 	@Inject
 	private AdminService adminService;
+	
+	@Inject
+	private ShopService shopService;
 
+	@GetMapping("/edit")
+	public String editForm(@RequestParam("itemNo")int itemNo,Model m) {
+		ItemVO itemvo=shopService.selectByitemNum(itemNo);
+		List<OptionVO> upoption=adminService.getUpOption();
+		m.addAttribute("upoption",upoption);
+		m.addAttribute("itemvo",itemvo);
+		
+		return "admin/prodEdit";
+	}
 
 	@GetMapping("/prodForm")
 	public String newFile(Model model) {

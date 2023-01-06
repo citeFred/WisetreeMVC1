@@ -72,6 +72,18 @@
 		</div>
 	
 	</div>
+	
+	<form name="editform">
+		<input type="hidden" name="itemNo" id="itemNo">
+	</form>
 
+<script>
+function edit(itemNo){
+	//alert(itemNo);
+	editform.itemNo.value=itemNo;
+	editform.action="admin/edit";
+	editform.submit();
+}
 
+</script>
 <c:import url="/foot" />
