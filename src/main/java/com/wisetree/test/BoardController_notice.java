@@ -127,7 +127,7 @@ public class BoardController_notice {
 	
 	@PostMapping("/delete")
 	public String boardDelete(Model m,
-//			HttpServletRequest req,
+			HttpServletRequest req,
 			@RequestParam(defaultValue = "0") int num,
 			@RequestParam(defaultValue = "") String passwd) {
 		
@@ -146,8 +146,22 @@ public class BoardController_notice {
 			
 		}
 		
+		//db에서 글 삭제처리
 		int n=this.boardService.deleteBoard(num);
 		
+		//업로드 디렉토리 절대경로 얻기
+		ServletContext app=req.getServletContext();
+		String upDir=app.getRealPath("/resources/notice_board_upload");
+		log.info("upDir==="+upDir);
+		
+		//서버에 업로드한 첨부파일이 있다면 서버에서 삭제처리
+		if(n>0 && vo.getFilename()!=null) {
+			File f=new File(upDir,vo.getFilename());
+			if(f.exists()) {
+				boolean b=f.delete();
+				log.info("파일 삭제 여부: "+b);
+			}
+		}
 		String str=(n>0)?"글 삭제 성공":"삭제 실패";
 		String loc=(n>0)?"list":"javascript:history.back()";
 		
