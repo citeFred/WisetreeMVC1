@@ -38,6 +38,12 @@
 	<update id="updateBoard" parameterType="Board">
 		update notice_spring_board set name=#{name},subject=#{subject},
 		content=#{content:VARCHAR}, passwd=#{passwd}
+		
+		<if test="filename!=null and filename!=''">
+		, filename=#{filename}, filesize=#{filesize},
+		originFilename=#{originFilename}
+		
+		</if>
 		<where>
 			num=#{num}
 		</where>

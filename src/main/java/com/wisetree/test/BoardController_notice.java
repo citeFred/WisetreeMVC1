@@ -183,8 +183,57 @@ public class BoardController_notice {
 	}
 	
 	@PostMapping("/update")
-	public String boardEditform(Model m,@ModelAttribute BoardVO board
+	public String boardEditform(Model m,
+			HttpServletRequest req,
+			@RequestParam("mfilename") MultipartFile mfilename,
+			@ModelAttribute BoardVO board
 			) {
+		
+		
+		
+		//업로드 디렉토리 절대경로 얻기
+		ServletContext app=req.getServletContext();
+		String upDir=app.getRealPath("/resources/notice_board_upload");
+		
+		//이전에 첨부한 파일이 있다면 삭제 처리
+		if(board.getOld_filename()!=null) {
+			File delF=new File(upDir, board.getOld_filename());
+			if(delF.exists()) {
+				boolean b=delF.delete();
+				log.info("old file삭제여부: "+b);
+			}
+		}
+		
+		//파일 업로드 처리
+		File dir=new File(upDir);
+		if(!dir.exists()) {
+			dir.mkdirs();
+		}
+				
+		if(!mfilename.isEmpty()) {
+			//첨부파일명과 파일크기 확인
+			String originFname=mfilename.getOriginalFilename();
+			long fsize=mfilename.getSize();
+			log.info(originFname+">>>"+fsize);				
+			//동일한 파일명이 서버에 있을 경우 랜덤 처리
+			UUID uuid=UUID.randomUUID();
+			String filename=uuid.toString()+"-"+originFname;
+			log.info("filename==="+filename);
+				
+				
+			//업로드 처리
+			try {
+				mfilename.transferTo(new File(upDir,filename));
+				log.info("upDir==="+upDir);
+			} catch (Exception e) {
+				log.error("board w e"+e);
+			}
+					
+			//BoardVO객체에 filename, originFilename,filesize세팅
+			board.setFilename(filename);
+			board.setOriginFilename(originFname);
+			board.setFilesize(fsize);
+		}
 		
 		//글번호로 해당 글 가져오기
 		int vo=this.boardService.updateBoard(board);
