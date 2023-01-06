@@ -5,7 +5,7 @@
 <c:import url="/top"/>
 <%-- ${boardArr } --%>
 <div class="container mt-3" style="overflow: auto;">
-	<h1 class="text-center">Notice Board</h1>
+	<h1 class="text-center">공지게시판</h1>
 	<p class="text-center my-4">
 		<a href="write">글쓰기</a>|<a href="list">글목록</a>
 	</p>

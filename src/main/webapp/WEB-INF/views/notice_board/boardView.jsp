@@ -6,7 +6,7 @@
 <c:import url="/top"/>
 
 <div class="container mt-3" style="overflow:auro;">
-	<h1 class="text-center">Notice Board 내용 보기</h1>
+	<h1 class="text-center">공지게시판 내용 보기</h1>
 	
 	<c:if test="${board eq null }">
 		<div class="alert alert-danger my-5 test-center">

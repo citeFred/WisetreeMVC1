@@ -47,7 +47,7 @@ $(function(){
 </script>
 
 <div align="center" id="bbs" class="col-md-8 offset-md-2 my-4">
-   <h1>Notice Board Edit</h1>
+   <h1>공지게시판 수정</h1>
    <p>
    	<a href="write">글쓰기</a>|<a href="list">글목록</a>
    </p>
