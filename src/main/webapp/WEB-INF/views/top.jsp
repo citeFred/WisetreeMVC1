@@ -75,22 +75,6 @@ $(function(){
 					</li>
 				</c:if>
 
-				<!-- [일반 로그인 상태 탭-1] <- 일반회원 로그인 상태에서는 카카오 로그인상태가 안보이게 -->
-				<c:if test="${loginUser ne null or k_loginUser eq null}">
-				<div id="normalUserLogined">
-					<li class="nav-item bg-primary">
-						<a class="nav-link text-white" href="#">${loginUser.userid }님 로그인중..</a>
-				</div>
-				</c:if>
-				
-				<!-- [카카오 로그인 상태 탭-2] <- 카카오회원 로그인 상태에서는 일반 로그인상태가 안보이게 -->
-				<c:if test="${loginUser eq null or k_loginUser ne null}">
-				<div id="kakaoUserLogined">
-					<li class="nav-item bg-primary">
-						<a class="nav-link text-white" href="#">${k_loginUser.k_name}님 로그인중..</a>
-				</div>
-				</c:if>
-				
 				<!-- [로그아웃 탭] <- 어떠한 형태의 회원이라도 로그인 한 경우 로그아웃 보이게 -->
 				<c:if test="${loginUser ne null or k_loginUser ne null}">
 					<li class="nav-item">
@@ -147,12 +131,32 @@ $(function(){
 					
 			</ul>
 		</div>
-		<button class="btn btn-outline-dark" type="button" onclick="location.href='${myctx}/cart'">
-				<i class="bi-cart-fill me-1"></i>
-				Cart
-				<span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-		</button>
 		
+		<div>
+			<ul class="navbar-nav">
+				<!-- [일반 로그인 상태 탭-1] <- 일반회원 로그인 상태에서는 카카오 로그인상태가 안보이게 -->
+				<c:if test="${loginUser ne null or k_loginUser eq null}">
+				<div id="normalUserLogined">
+					<li class="nav-item bg-primary">
+						<a class="nav-link text-white" href="#">${loginUser.userid }님 로그인중..</a>
+				</div>
+				</c:if>
+				
+				<!-- [카카오 로그인 상태 탭-2] <- 카카오회원 로그인 상태에서는 일반 로그인상태가 안보이게 -->
+				<c:if test="${loginUser eq null or k_loginUser ne null}">
+				<div id="kakaoUserLogined">
+					<li class="nav-item bg-primary">
+						<a class="nav-link text-white" href="#">${k_loginUser.k_name}님 로그인중..</a>
+				</div>
+				</c:if>
+			
+				<button class="btn btn-outline-dark" type="button" onclick="location.href='${myctx}/cart'">
+						<i class="bi-cart-fill me-1"></i>
+						Cart
+						<span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+				</button>
+			</ul>
+		</div>
 	</nav>
         <!-- Header-->
         <header class="bg-dark py-5">
