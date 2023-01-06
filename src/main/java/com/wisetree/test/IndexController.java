@@ -27,5 +27,10 @@ public class IndexController {
 		//"/WEB-INF/views/index.jsp				
 	}
 	
+	@RequestMapping("/carousel2")
+	public void carousel2() {
+		//"/WEB-INF/views/index.jsp				
+	}
+	
 	
 }

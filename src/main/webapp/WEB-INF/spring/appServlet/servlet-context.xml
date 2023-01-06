@@ -51,7 +51,7 @@
 
 	<beans:bean id="upDir" class="java.lang.String">
 		<!-- <beans:constructor-arg value="/Users/haenalee/study/filedata"/> -->
-		<beans:constructor-arg value="D:\project\git\WisetreeMVC1\Upload"/>
+		<beans:constructor-arg value="C:"/>
 	</beans:bean>
 
 </beans:beans>

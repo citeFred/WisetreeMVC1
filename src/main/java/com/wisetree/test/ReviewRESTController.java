@@ -27,6 +27,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.review.model.ReviewVO;
 import com.review.service.ReviewService;
+import com.shop.model.MemberVO;
 
 import lombok.extern.log4j.Log4j;
 
@@ -71,14 +72,14 @@ public class ReviewRESTController {
 	//@ResponseBody
 	@PostMapping(value = "/user", produces = "application/json; charset=UTF-8" )
 	public ModelMap revInsert(
-			@RequestParam(value = "refilename1", required = false) MultipartFile mtif,
+			@RequestParam(value = "reviewFile", required = false) MultipartFile mtif,
 			@ModelAttribute("revo") ReviewVO revo,
 			/* @RequestBody */
 			HttpSession sion,
 			HttpServletResponse response) {
 		response.setContentType("application/json");
-		log.info(mtif);
-		
+		log.info("mtif : +++++"+mtif);
+		log.info("rvo.mtif : +++++"+revo.getRefilename());
         log.info(response);
 		log.info("revo=>" + revo);
 

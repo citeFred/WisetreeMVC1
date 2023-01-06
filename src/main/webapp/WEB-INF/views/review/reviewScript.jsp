@@ -13,23 +13,25 @@ $(function(){
 		//alert(file);
 		const fname=file.files[0];
 		//alert(fname.name);
+		/* web.xml이랑 servlet 경로 D로 바꾸면 파일업로드가 안됨 */
 		const userid=$('#userid').val();
 		const content=$('#content').val();
 		const score=$('input[name="score"]:checked').val();
-		alert(score);
-		//const score=5;
+		//alert(score);
 		const itemno_fk=$('#itemno_fk').val();
 		//const pidx_fk=6;
 		
 		alert(userid+"/"+content+"/"+score+"/"+itemno_fk+"/"+fname);
 		let formD=new FormData();
-		formD.append('refilename1', fname);
-		formD.append('userid', userid);
+ 		formD.append('userid', userid);
+		//formD.append('userid', 'abcd');
 		formD.append('content', content);
 		formD.append('score', score);
 		formD.append('itemno_fk', itemno_fk);
 		formD.append('mode','ajaxMode');
+		formD.append('reviewFile', fname);
 		
+		//alert(fname.name);
 		//alert("formD ====>"+formD)		
 		
 		
@@ -46,6 +48,7 @@ $(function(){
 				//xhr.setRequestHeader("Ajax","true");
 			},
 			success:function(res){
+				//alert(JSON.stringify(res))
 				//alert(res);
 // 				let result=$(res).find('result').text();
 				let result = res.result;
@@ -53,6 +56,7 @@ $(function(){
 				if(result>0) {
 					//$('#revList').html("<h1>등록성공</h1>");
 					show_reviews();
+					window.location.reload(true)
 				}else {
 					alert('성공에서 등록 실패');
 				}

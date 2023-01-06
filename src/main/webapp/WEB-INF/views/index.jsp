@@ -7,7 +7,7 @@
 <link rel="shortcut icon" href="#">
 </head>
 <!-- --------------------------------------------------- -->
-<c:import url="/top2" />
+<c:import url="/top" />
 <h3>메인화면 INDEX 테스트</h3>
  <!-- Section-->
         <section class="py-5">
