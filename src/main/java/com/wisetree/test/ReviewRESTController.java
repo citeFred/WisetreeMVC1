@@ -27,6 +27,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.review.model.ReviewVO;
 import com.review.service.ReviewService;
+import com.shop.model.MemberVO;
 
 import lombok.extern.log4j.Log4j;
 
@@ -71,14 +72,14 @@ public class ReviewRESTController {
 	//@ResponseBody
 	@PostMapping(value = "/user", produces = "application/json; charset=UTF-8" )
 	public ModelMap revInsert(
-			@RequestParam(value = "refilename1", required = false) MultipartFile mtif,
+			@RequestParam(value = "reviewFile", required = false) MultipartFile mtif,
 			@ModelAttribute("revo") ReviewVO revo,
 			/* @RequestBody */
 			HttpSession sion,
 			HttpServletResponse response) {
 		response.setContentType("application/json");
-		log.info(mtif);
-		
+		log.info("mtif : +++++"+mtif);
+		log.info("rvo.mtif : +++++"+revo.getRefilename());
         log.info(response);
 		log.info("revo=>" + revo);
 
@@ -117,13 +118,16 @@ public class ReviewRESTController {
 	@GetMapping(value = "", produces = "application/json")
 	public List<ReviewVO> revList(HttpSession sion) {
 		
-		int pidx = 6;
-		sion.setAttribute("pidx", pidx);
-		sion.setMaxInactiveInterval(-1);
 		
-		Integer pidx1 = (Integer) sion.getAttribute("pidx");
-		log.info("pidx =>" + pidx1);
-		List<ReviewVO> rearr = this.reviewService.listReview(pidx1);
+		/*
+		 * int itemNo = 6; sion.setAttribute("itemNo", itemNo);
+		 * sion.setMaxInactiveInterval(-1);
+		 */
+		 
+		
+		Integer itemNo1 = (Integer) sion.getAttribute("itemNo");
+		log.info("itemno =>" + itemNo1);
+		List<ReviewVO> rearr = this.reviewService.listReview(itemNo1);
 		return rearr;
 	}
 
@@ -132,8 +136,8 @@ public class ReviewRESTController {
 	 * */
 	@GetMapping(value = "/cnt", produces = "application/json")
 	public ModelMap getrevCount(HttpSession sion) {
-		Integer pidx = (Integer) sion.getAttribute("pidx");
-		int cnt = this.reviewService.getReviewCnt(pidx);
+		Integer itemNo = (Integer) sion.getAttribute("itemNo");
+		int cnt = this.reviewService.getReviewCnt(itemNo);
 		//System.out.println("cccccccccc");
 		log.info("cnt=>" + cnt);
 		
@@ -143,12 +147,13 @@ public class ReviewRESTController {
 	}
 
 	/**
-	 * 특정 리뷰 조회
+	 * 리뷰 수정(편집) 페이지 매핑
 	 * */
 	@GetMapping(value = "/user/{renum}", produces = "application/json")
 	public ReviewVO revGet(@PathVariable("renum") int renum) {
-		System.out.println("getgetgetget");
+		System.out.println("********************");
 		log.info("renum=>"+renum);
+		System.out.println("********************");
 		ReviewVO revo1 = this.reviewService.getReview(renum);
 		
 		log.info("revo=>"+revo1);
@@ -156,7 +161,7 @@ public class ReviewRESTController {
 	}
 	
 	/**
-	 * 리뷰 글 수정
+	 * 리뷰 수정(편집) 처리 매핑
 	 * */
 	// user/{renum} --> GET
 	// user/{renum} --> PUT
@@ -165,10 +170,11 @@ public class ReviewRESTController {
 	public ModelMap revUpdate(
 			@PathVariable("renum") int renum, 
 			@RequestBody ReviewVO revo1) {
-		System.out.println("putputput");
+		System.out.println("********************");
 		log.info("PUT revo1===="+revo1);
 		log.info("PUT renum===="+renum);
-
+		System.out.println("********************");
+		
 		int Updn = this.reviewService.upReview(revo1);
 		ModelMap upmap = new ModelMap();
 		//upmap.addAttribute("result",  Updn);

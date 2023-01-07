@@ -72,9 +72,9 @@
                         <!-- form시작---------- -->
                         <form name="frm" id="frm" method="POST">
                            <!-- 상품번호를 hidden으로 넘기자------ -->
-                           <input type="hidden" name="itemNo" value="${prod.itemNo}">
-                           <input type="hidden" name="itemName" value="${prod.itemName}">
-                           <input type="hidden" name="opnum" value="${prod.itemNo}">
+                           <input type="text" name="itemNo" value="${prod.itemNo}">
+                           <input type="text" name="itemName" value="${prod.itemName}">
+                           <input type="text" name="opnum" value="${prod.itemNo}">
                            <input type="hidden" name="itemImage1" value="${prod.itemImage1}">
                            <!-- -------------------------------- -->
                            <label for="count">상품갯수</label> 
@@ -109,23 +109,34 @@
             </table>
          </div>
       </div>
-     <!--  리뷰 글쓰기 폼  -->
-	</div>
-	
+     <!-- 리뷰 글쓰기 폼 ------------------------------------ -->
 	<div class="row mt-4">
-      	<div class="col-md-10 offset-md-1">
-      		<c:import url="/reviewForm"/>
-      	</div>
-      </div>
-      <!-- 리뷰목록 --------------------------- -->
-      <div class="row">
-      	<div class="col-md-12" id="reviewList">
-      		
-      	</div>
-      </div>
-      <!-- ------리뷰 수정 모달---------------------------------- -->
-      <%@ include file="/WEB-INF/views/review/reviewEdit.jsp" %>
-	</div><!-- container end -->
+		<div class="col-md-10 offset-md-1">
+			<%@ include file="/WEB-INF/views/review/reviewForm2.jsp"%>
+			<%-- <c:import url="/reviewForm" /> --%>
+		</div>
+	</div>
+
+	<!-- 리뷰 목록 ---------------------------------------- -->
+	<div class="row">
+		<div class="col-md-12" id="reviewTitle">
+			<h4>
+				상품 리뷰 목록 <span class="badge bage-success" id="review_cnt"> </span> 개
+			</h4>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12" id="revList"></div>
+	</div>
+	<div class="row">
+		<div class="col-md-10 offset-md-1">
+			<!-- 리뷰 수정 모달 ------------------------------------- -->
+			<%@ include file="/WEB-INF/views/review/reviewEdit2.jsp"%>
+			<!-- ------------------------------------------------- -->
+		</div>
+	</div>
+</div>
+<!-- .container end -->
 <div class="container mt-3" style="height:600px;overflow: auto;">
 	
 	

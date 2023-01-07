@@ -50,8 +50,9 @@
 	
 
 	<beans:bean id="upDir" class="java.lang.String">
-		<beans:constructor-arg value="C:\upload"/>
-		<!-- <beans:constructor-arg value="/Users/inyongkim/Documents/myspring"/> -->
+<!-- 		<beans:constructor-arg value="C:\Users\jjs37\tmpstorage"/> -->
+		<beans:constructor-arg value="/Users/inyongkim/Documents/myspring"/>
+
 	</beans:bean>
 
 </beans:beans>

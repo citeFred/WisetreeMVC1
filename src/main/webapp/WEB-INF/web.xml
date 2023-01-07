@@ -36,7 +36,7 @@
         	<max-file-size>209715200</max-file-size>
         	<max-request-size>209715200</max-request-size>
         	<file-size-threshold>0</file-size-threshold>
-        	<location>C:\upload</location>
+        	<location>C:\Users\jjs37\tmpstorage</location>
         	<!-- <location>/Users/inyongkim/Documents/myspring</location> -->
     	</multipart-config>
 	</servlet>
@@ -67,21 +67,22 @@
 	<!-- ===================================== -->
 	<!-- Restful method======================================== -->
 	<filter>
-        <filter-name>hiddenHttpMethodFilter</filter-name>
-        <filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>hiddenHttpMethodFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
-    
-    <filter>
-        <filter-name>HttpPutFormContentFilter</filter-name>
-        <filter-class>org.springframework.web.filter.HttpPutFormContentFilter</filter-class>
-    </filter>
+		<filter-name>hiddenHttpMethodFilter</filter-name>
+		<filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>hiddenHttpMethodFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
 
-    <filter-mapping>
-        <filter-name>HttpPutFormContentFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
+	<filter>
+		<filter-name>HttpPutFormContentFilter</filter-name>
+		<filter-class>org.springframework.web.filter.HttpPutFormContentFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>HttpPutFormContentFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
 </web-app>

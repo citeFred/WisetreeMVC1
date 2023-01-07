@@ -2,38 +2,42 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.review.mapper.ReviewMapper">
+	<!-- 리뷰 리스트 조회 -->
 	<select id="listReview" resultType="Review" parameterType="int">
-		select * from review where itemNo=#{value} order by renum desc
+		select * from review2 where itemno_fk=#{value} order by renum desc
 	</select>
 	
+	<!-- 리뷰 갯수 카운트 -->
 	<select id="getReviewCnt" resultType="_int" parameterType="_int">
-		select count(renum) from review where itemNo=#{value}
+		select count(renum) from review2 where itemno_fk=#{value}
 	</select>
 	
+	<!-- 리뷰 추가 인설트 -->
 	<insert id="addReview" parameterType="Review">
 		<selectKey keyProperty="renum" resultType="int" order="BEFORE">
-			select review_seq.nextval from dual
+			select review2_seq.nextval from dual
 		</selectKey>
-		insert into review(renum, userid, content, score, refilename, wdate, itemNo)
-		values(#{renum}, #{userid}, #{content:VARCHAR}, #{score}, #{refilename:VARCHAR}, sysdate, #{itemNo})
+		insert into review2(renum, userid, content, score, refilename, wdate, itemno_fk)
+		values(#{renum}, #{userid}, #{content:VARCHAR}, #{score}, #{refilename:VARCHAR}, sysdate, #{itemno_fk})
 	</insert>
 	
+	<!-- 리뷰 받아오기 -->
 	<select id="getReview" resultType="Review" parameterType="_int">
-		select * from review where renum=#{value}
+		select * from review2 where renum=#{value}
 	</select>
 	
+	<!-- 리뷰 삭제 -->
 	<delete  id="delReview" parameterType="_int">
-		delete from review where renum=#{value}	
+		delete from review2 where renum=#{value}	
 	</delete>
 	
+	<!-- 리뷰 수정 -->
 	<update id="upReview" parameterType="Review">
-		update review set 
+		update review2 set 
 		userid=#{userid}, 
 		content=#{content:VARCHAR}, 
 		score=#{score:NUMERIC}
 			<if test="refilename!=null and refilename!=''">, refilename=#{refilename} </if>
 		where renum=#{renum}
 	</update>
-	
-	
 </mapper>

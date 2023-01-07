@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en">
-<script type="text/javascript" src="./js/navigationControl.js"></script>
+<!-- <script type="text/javascript" src="./js/navigationControl.js"></script> -->
 
 <head>
 <title>Wisetree Store Webpage</title>
@@ -14,6 +14,13 @@
 <script	src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script>
 <script	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- CSS -->
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+
+<!-- JS -->
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
 <!-- [로그인 상태 탭 1,2] <- 어떠한 로그인도 안된 상태에서는 로그인상태가 둘다 안보이게 -->
 <script>
@@ -25,14 +32,56 @@ $(function(){
 		document.getElementById("kakaoUserLogined").style.display = "none";
 	}
 })
-
+$(document).ready(function(){
+	$(".slide_div").slick(
+			{
+				dots: true,
+				autoplay : true,
+				autoplaySpeed: 5000,
+			}
+	
+	);
+});
 </script>
-
 <style>
 .fakeimg {
 	height: 200px;
 	background: #aaa;
 }
+.slick-prev{
+	left: 140px;
+    z-index: 1;
+}
+.slick-next{
+	right: 150px;
+    z-index: 1;
+}
+.slide_div img{
+	margin: auto;
+	height: 320px;
+	width:  1111px;
+}
+.slide_div_wrap{
+	padding: 0 0 0 0;
+    background: #e6e9f6;
+    height: 350px;
+	width:  100%;
+}
+.image_wrap img{
+	max-width: 85%;
+    height: auto;
+    display: block;
+	margin: auto;    
+}
+/* 홈페이지 메인 제품 목록  */
+.content_area{
+ 	height: 350px;
+	width:  100%;
+    min-height: 100px;
+    text-align: center;
+    margin: auto;    
+}
+
 </style>
 </head>
 
@@ -113,10 +162,10 @@ $(function(){
 					<a class="nav-link" href="${myctx}/review">Review List</a>
 				</li>
 				
-				<!-- 리뷰 쓰기 폼 탭  -->
+				<%-- <!-- 리뷰 쓰기 폼 탭  -->
 				<li class="nav-item">
 					<a class="nav-link" href="${myctx}/reviewForm">Review Write</a>
-				</li>
+				</li> --%>
 				
 				<!-- 게시판 목록 탭  -->
 				<li class="nav-item">
@@ -159,11 +208,33 @@ $(function(){
 		</div>
 	</nav>
         <!-- Header-->
-        <header class="bg-dark py-5">
-            <div class="container px-4 px-lg-5 my-5">
-                <div class="text-center text-white">
-                    <h1 class="display-4 fw-bolder">Shop in style</h1>
-                    <p class="lead fw-normal text-white-50 mb-0">With this shop homepage template</p>
-                </div>
-            </div>
+        <!-- <header class="bg-dark py-1 px-1"> -->
+           <!-- <div class="container px-1 px-lg-1 my-1"> -->
+					<div class="content_area">
+						<div class="slide_div_wrap">
+							<div class="slide_div">
+								<div>
+									<a>
+										<img src="../resources/carousel_images/main1.gif">
+									</a>
+								</div>
+								<div>
+									<a>
+										<img src="../resources/carousel_images/main2.jpg">
+									</a>
+								</div>
+								<div>
+									<a>
+										<img src="../resources/carousel_images/main3.jpg">
+									</a>
+								</div>
+								<div>
+									<a>
+										<img src="../resources/carousel_images/main4.jpg">
+									</a>
+								</div>
+								</div>
+							</div>
+						</div>
+               <!--  </div> -->
         </header>

@@ -13,23 +13,25 @@ $(function(){
 		//alert(file);
 		const fname=file.files[0];
 		//alert(fname.name);
+		/* web.xml이랑 servlet 경로 D로 바꾸면 파일업로드가 안됨 */
 		const userid=$('#userid').val();
 		const content=$('#content').val();
 		const score=$('input[name="score"]:checked').val();
-		alert(score);
-		//const score=5;
-		//const pidx_fk=$('#pidx_fk').val();
-		const pidx_fk=6;
+		//alert(score);
+		const itemno_fk=$('#itemno_fk').val();
+		//const pidx_fk=6;
 		
-		//alert(userid+"/"+content+"/"+score+"/"+pidx_fk+"/"+fname);
+		alert(userid+"/"+content+"/"+score+"/"+itemno_fk+"/"+fname);
 		let formD=new FormData();
-		formD.append('refilename1', fname);
-		formD.append('userid', userid);
+ 		formD.append('userid', userid);
+		//formD.append('userid', 'abcd');
 		formD.append('content', content);
 		formD.append('score', score);
-		formD.append('pidx_fk', pidx_fk);
+		formD.append('itemno_fk', itemno_fk);
 		formD.append('mode','ajaxMode');
+		formD.append('reviewFile', fname);
 		
+		//alert(fname.name);
 		//alert("formD ====>"+formD)		
 		
 		
@@ -46,6 +48,7 @@ $(function(){
 				//xhr.setRequestHeader("Ajax","true");
 			},
 			success:function(res){
+				//alert(JSON.stringify(res))
 				//alert(res);
 // 				let result=$(res).find('result').text();
 				let result = res.result;
@@ -53,6 +56,7 @@ $(function(){
 				if(result>0) {
 					//$('#revList').html("<h1>등록성공</h1>");
 					show_reviews();
+					window.location.reload(true)
 				}else {
 					alert('성공에서 등록 실패');
 				}
@@ -73,8 +77,8 @@ $(function(){
 		evt.preventDefault();
 		
 		let uid=reform2.userid.value;
-		//let pidx=reform2.pidx_fk.value;
-		let pidx=6;
+		let itemno=reform2.itemno_fk.value;
+		alert("itemno====>"+itemno);
 		let renum=reform2.renum.value;
 		//alert(renum);//---->해결	
 		let score=reform2.score.value;//-------->해결x
@@ -83,11 +87,17 @@ $(function(){
 		
 		let jsonData= {
 			userid:uid,
-			pidx_fk:pidx,
+			itemno_fk:itemno,
 			renum:renum,
 			score:score,
 			content:content
 		}
+		
+		// 리뷰수정을 위한 정보들을 다 입력했는지 확인
+        if (!userid || !itemno || !renum || !score || !content) {
+            alert("모든 정보를 입력해주세요!");
+            return false;
+        }
 		
 		//alert("jsonData======"+jsonData);
 		alert(JSON.stringify(jsonData))
@@ -125,6 +135,58 @@ $(function(){
 	});//$('#reform2') end-----------------------------------
 })//$() end------------------------------------------------
 
+//리뷰 수정 요청
+const reviewEdit=function(renum){
+	console.log(renum);// --> renum은 들어오는거 확인
+	
+	let url="prdreviews/user/"+renum; //"prdreviews/user/11
+	$.ajax({
+		type:'get',
+		url:url,
+		dataType:'json',
+		cache:false,
+		beforeSend:function(xhr){
+			//xhr.setRequestHeader("Ajax","true");
+		},
+		success:function(res){
+			alert(JSON.stringify(res));
+			//alert(res.renum);
+			
+			reform2.renum.value=res.renum;
+			//alert(reform2.renum.value);//여기까진 확인
+			
+			reform2.content.value=res.content;
+			let str='';
+			
+			//alert($('#'+res.score+"-stars").val())
+			$('#reform2 #'+res.score+"-stars").prop("checked", true);
+			alert($('#reform2 #'+res.score+"-stars").is(":checked"))
+			
+			//.prop("checked",true);
+			/* for(let i=0; i<res.score; i++) {
+				str+='<img src="resources/review_images/star.png">'
+			}
+			$('#star').html(str); */
+			let imgSrc;
+			if(res.refilename==null) {
+				imgSrc='noimage.png';
+			}else{
+				imgSrc=res.refilename
+			}
+			str='<img src="resources/review_images/'+imgSrc+'"class="img-fluid" style="width:50%; margin:auto">'
+			$('#prodImage').html(str);
+			
+			$('#reviewModal').modal();
+			//모달창 띄우기 <==> 모달창 닫기 $().modal('hide');
+		},
+		error:function(err){
+			alert('수정안됨');
+				/* if(err.status==400) {
+					alert('로그인 해야 이용 가능해요');
+				} */
+		}
+	});
+}//---------------------------------------------------
 const review_count=function(){
 	let url='prdreviews/cnt';
 	$.ajax({
@@ -195,57 +257,7 @@ const showTable=function(res){
 		str+='</table>';
 		$('#revList').html(str);
 }//---------------------------------------------------
-//리뷰 수정 요청
-const reviewEdit=function(renum){
-	console.log(renum);// --> renum은 들어오는거 확인
-	
-	let url="prdreviews/user/"+renum; //"prdreviews/user/11
-	$.ajax({
-		type:'get',
-		url:url,
-		dataType:'json',
-		cache:false,
-		beforeSend:function(xhr){
-			//xhr.setRequestHeader("Ajax","true");
-		},
-		success:function(res){
-			alert(JSON.stringify(res));
-			//alert(res.renum);
-			
-			reform2.renum.value=res.renum;
-			//alert(reform2.renum.value);//여기까진 확인
-			
-			reform2.content.value=res.content;
-			let str='';
-			
-			//alert($('#'+res.score+"-stars").val())
-			$('#reform2 #'+res.score+"-stars").prop("checked",true);
-			//alert($('#'+res.score+"-stars").is(":checked"))
-			
-			//.prop("checked",true);
-			/* for(let i=0; i<res.score; i++) {
-				str+='<img src="resources/review_images/star.png">'
-			}
-			$('#star').html(str); */
-			let imgSrc;
-			if(res.refilename==null) {
-				imgSrc='noimage.png';
-			}else{
-				imgSrc=res.refilename
-			}
-			str='<img src="resources/review_images/'+imgSrc+'"class="img-fluid" style="width:50%; margin:auto">'
-			$('#prodImage').html(str);
-			$('#reviewModal').modal();
-			//모달창 띄우기 <==> 모달창 닫기 $().modal('hide');
-		},
-		error:function(err){
-			alert('수정안됨');
-				/* if(err.status==400) {
-					alert('로그인 해야 이용 가능해요');
-				} */
-		}
-	});
-}//---------------------------------------------------
+
 
 const reviewDel = function(renum){
 	let url="prdreviews/user/"+renum;
