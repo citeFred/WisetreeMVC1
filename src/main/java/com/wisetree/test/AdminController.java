@@ -67,11 +67,11 @@ public class AdminController {
 		return "adminpage/prodEdit";
 	}
 	
-	@PostMapping("/edit")
-	public String edit(ItemVO Item,RedirectAttributes rttr) {
+	@GetMapping("/prodEdit")
+	public String edit(@RequestParam("Item")ItemVO Item,RedirectAttributes rttr) {
 		int edit=shopService.modifyItem(Item);
 		rttr.addFlashAttribute("edit_result",edit);
-		return "redirect:index";
+		return "redirect:/index";
 	}
 
 	@GetMapping("/prodForm")

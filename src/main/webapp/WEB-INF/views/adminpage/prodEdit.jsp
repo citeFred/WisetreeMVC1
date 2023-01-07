@@ -216,8 +216,9 @@
 	<input type="hidden" name="itemNo" id="itemNo">
 </form>
 <script>
-function editregister(e){
+function editregister(itemNo){
 	//alert(itemNo);
+	resultform.itemNo.value=itemNo;
 	resultform.action="prodEdit";
 	resultform.submit();
 }
