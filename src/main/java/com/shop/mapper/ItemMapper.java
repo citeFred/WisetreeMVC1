@@ -15,4 +15,8 @@ public interface ItemMapper {
 	List<ItemVO> selectByOption(int op_num);
 	List<ItemVO> itemList();
 	ItemVO selectByitemNum(int itemNo);
+	
+	int removeByitemNo(int itemNo);
+	int modifyItem(ItemVO Item);
+
 }

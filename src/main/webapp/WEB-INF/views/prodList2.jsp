@@ -84,14 +84,14 @@
 function edit(itemNo){
 	//alert(itemNo);
 	editform.itemNo.value=itemNo;
-	editform.action="adminpage/edit";
+	editform.action="admin/edit";
 	editform.submit();
 }
 
 function remove(itemNo){
 	//alert(itemNo);
 	removeform.itemNo.value=itemNo;
-	removeform.action="adminpage/remove";
+	removeform.action="admin/remove";
 	removeform.submit();
 }
 

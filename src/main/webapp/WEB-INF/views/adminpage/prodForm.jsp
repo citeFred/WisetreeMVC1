@@ -101,12 +101,12 @@
                      <td width="80%">
                      <select name="up_Code" id="up_Code"
                         onchange="selectDownCategory(this.value)">
-                           <option value="">::상위 카테고리::</option>
+                           <option value="">::상위 카테고리::</option> -->
                            <c:forEach var="up" items="${upoption}">
                            	<option value="${up.up_Code}">${up.up_Name}</option>
                            </c:forEach>
                            
-                     </select> 
+                     </select>
                      <span id="selectDcg"> 
                      
                                               
@@ -127,7 +127,7 @@
                   </tr>
                   <tr>
                      <td width="20%"><b>상품스펙</b></td>
-                     <td width="80%"><select name="pspec" id="pspec">
+                     <td width="80%"><select name="quality" id="quality">
                            <option value="NEW" selected>NEW</option>
                            <option value="HIT">HIT</option>
                            <option value="BEST">BEST</option>

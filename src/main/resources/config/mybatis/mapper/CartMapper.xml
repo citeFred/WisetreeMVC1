@@ -11,7 +11,18 @@
 
 	<update id="updateCartCount" parameterType="cvo">
 		update cart set
-		count=count + #{count}
+		up_Name=#{up_Name},
+		down_Name=#{down_Name},
+		itemNo=#{itemNo},
+		itemName=#{itemName},
+		itemBrand=#{itemBrand},
+		quality=#{quality},
+		itemImage1=#{itemImage1},
+		count=count + #{count},
+		price=#{price},
+		saleprice=#{saleprice},
+		itemInfo=#{itemInfo},
+		point=#{point}
 		where itemNO=#{itemNO} and
 		idx=#{idk}
 	</update>
