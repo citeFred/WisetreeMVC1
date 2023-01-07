@@ -93,6 +93,12 @@ $(function(){
 			content:content
 		}
 		
+		// 리뷰수정을 위한 정보들을 다 입력했는지 확인
+        if (!userid || !itemno || !renum || !score || !content) {
+            alert("모든 정보를 입력해주세요!");
+            return false;
+        }
+		
 		//alert("jsonData======"+jsonData);
 		alert(JSON.stringify(jsonData))
 		

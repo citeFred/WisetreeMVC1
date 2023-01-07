@@ -24,9 +24,8 @@
 	<tr>
 		<td>상품은 만족하셨나요?</td>   
 		<td>
-			<input type="text" name="score" id="score">
-			<div class="star-score space-x-4 mx-auto" id="star">
-				<input type="radio" id="5-stars" name="score" value="5" />
+			<div class="star-score space-x-4 mx-auto" id="star" >
+				<input type="radio" id="5-stars" name="score" value="5" checked="checked" />
 				<label for="5-stars" class="star pr-4">★</label>
 				<input type="radio" id="4-stars" name="score" value="4" />
 				<label for="4-stars" class="star">★</label>

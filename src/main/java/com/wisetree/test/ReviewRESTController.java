@@ -147,7 +147,7 @@ public class ReviewRESTController {
 	}
 
 	/**
-	 * 특정 리뷰 조회
+	 * 리뷰 수정(편집) 페이지 매핑
 	 * */
 	@GetMapping(value = "/user/{renum}", produces = "application/json")
 	public ReviewVO revGet(@PathVariable("renum") int renum) {
@@ -161,7 +161,7 @@ public class ReviewRESTController {
 	}
 	
 	/**
-	 * 리뷰 글 수정
+	 * 리뷰 수정(편집) 처리 매핑
 	 * */
 	// user/{renum} --> GET
 	// user/{renum} --> PUT

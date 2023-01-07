@@ -51,7 +51,7 @@
 
 	<beans:bean id="upDir" class="java.lang.String">
 		<!-- <beans:constructor-arg value="/Users/haenalee/study/filedata"/> -->
-		<beans:constructor-arg value="C:"/>
+		<beans:constructor-arg value="C:\Users\jjs37\tmpstorage"/>
 	</beans:bean>
 
 </beans:beans>
