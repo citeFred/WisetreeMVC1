@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn"  uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <c:import url="/top"/>
 
 <div class="container mt-3" style="overflow:auro;">
-	<h1 class="text-center">Spring Board 내용 보기</h1>
+	<h1 class="text-center">공지게시판 내용 보기</h1>
 	
 	<c:if test="${board eq null }">
 		<div class="alert alert-danger my-5 test-center">
@@ -51,8 +52,24 @@
 		<tr>
 			<td>첨부파일</td>
 			<td>
-				<c:out value="${board.originFilename }"/>
-				<c:out value="${board.filesize }"/>
+			<!-- ---첨부파일이 있다면------------------------ -->
+			<c:if test="${board.filename ne null }">
+			<a href="#" onclick="down()">
+				${board.originFilename }
+			</a>
+				[ <c:out value="${board.filesize }"/> bytes]
+			</c:if>
+			<!-- --------------------------------------- -->
+			<!-- 파일명의 확장자를 검사하기 위해 모두 소문자로 바꿈 -->
+			<c:set var="fname" value="${fn:toLowerCase(board.filename) }"/>
+			<!-- ------------------------------------- -->
+			<!-- ---이미지 보이도록 수정---------------------------------- -->
+			<c:if test="${fn:endsWith(fname,'.jpg') or fn:endsWith(fname,'.gif') or fn:endsWith(fname,'.png') }">
+				<img width="80px" class="img img-thumbnail"
+				src="${pageContext.request.contextPath }/resources/notice_board_upload/${board.filename}">
+			</c:if>
+			<!-- ---------------------------------------------------- -->
+			
 			</td>
 		</tr>
 		
@@ -69,6 +86,15 @@
 	
 	</table>
 	</c:if>
+	
+<!-- ---파일다운로드를 위한 form text----- -->
+<form name="fileF" id="fileF" method="post" action="../../fileDown_notice">
+	<input type="text" name="fname" value="<c:out value="${board.filename }"/>"/>
+	<input type="text" name="origin_fname" value="<c:out value="${board.originFilename }"/>"/>
+</form>
+<!-- -------------------------------- -->
+	
+	
 <!-- 편집 또는 삭제를 위한 form----------------------------- -->
 <form name="frm" id="frm">
 	<input type="text" name="num" value="<c:out value="${board.num }"/>">
@@ -90,6 +116,12 @@
 </div>
 
 <script type="text/javascript">
+
+//파일 다운로드  처리
+function down(){
+	fileF.submit();
+}
+
 function go(flag){
 	if(flag==1){
 		frm.mode.value='delete';

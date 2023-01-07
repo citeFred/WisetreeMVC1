@@ -45,7 +45,7 @@ $(function(){
 </script>
 
 <div align="center" id="bbs" class="col-md-8 offset-md-2 my-4">
-   <h1>Spring Board</h1>
+   <h1>공지게시판 글쓰기</h1>
    <p>
    	<a href="write">글쓰기</a>|<a href="list">글목록</a>
    </p>
@@ -88,7 +88,7 @@ $(function(){
 	   		<tr>
 	   			<td style="width:20%"><b>첨부파일</b></td>
         		<td style="width:80%">
-	   				<input type="text" name="mfilename" id="filename" class="form-control">
+	   				<input type="file" name="mfilename" id="filename" class="form-control">
 	   			</td>
 	   		</tr>
 	   		

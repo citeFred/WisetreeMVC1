@@ -5,7 +5,7 @@
 <c:import url="/top"/>
 <%-- ${boardArr } --%>
 <div class="container mt-3" style="overflow: auto;">
-	<h1 class="text-center">Spring Board</h1>
+	<h1 class="text-center">공지게시판</h1>
 	<p class="text-center my-4">
 		<a href="write">글쓰기</a>|<a href="list">글목록</a>
 	</p>
@@ -36,6 +36,14 @@
 							<a href="view/<c:out value="${board.num }"/>">
 								<c:out value="${board.subject }" />				
 							</a>
+							<!-- ---첨부파일 있는 글 표시---------------- -->
+							<c:if test="${board.filesize>0 }">
+								<span class="float-right">
+									<img src="../images/attach.jpg" style='width:26px'
+									title="<c:out value="board.originFilename"/>"/>
+								</span>
+							</c:if>
+							<!-- ----------------------------------- -->
 						</td>
 						
 						<td><c:out value="${board.name }" /></td>
