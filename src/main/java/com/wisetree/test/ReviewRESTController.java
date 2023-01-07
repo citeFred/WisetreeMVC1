@@ -138,13 +138,29 @@ public class ReviewRESTController {
 	public ModelMap getrevCount(HttpSession sion) {
 		Integer itemNo = (Integer) sion.getAttribute("itemNo");
 		int cnt = this.reviewService.getReviewCnt(itemNo);
+		int avg = this.reviewService.getReviewavg(itemNo);
 		//System.out.println("cccccccccc");
 		log.info("cnt=>" + cnt);
+		log.info("avg=>" + avg);
 		
 		ModelMap remap = new ModelMap();
 		remap.put("cnt", cnt);
+		remap.put("avg", avg);
+		log.info("remap=>" + remap);
 		return remap;
 	}
+	
+	/*
+	 * @GetMapping(value = "/avg", produces = "application/json") public ModelMap
+	 * getstrAvg(HttpSession sion) { Integer itemNo = (Integer)
+	 * sion.getAttribute("itemNo"); int avg =
+	 * this.reviewService.getReviewavg(itemNo); //System.out.println("cccccccccc");
+	 * log.info("avg=>" + avg);
+	 * 
+	 * ModelMap reavg = new ModelMap(); reavg.put("avg", avg); return reavg; }
+	 */
+	
+	
 
 	/**
 	 * 리뷰 수정(편집) 페이지 매핑

@@ -121,7 +121,8 @@
 	<div class="row">
 		<div class="col-md-12" id="reviewTitle">
 			<h4>
-				상품 리뷰 목록 <span class="badge bage-success" id="review_cnt"> </span> 개
+				상품 리뷰 목록  <span class="badge bage-success" id="review_cnt"> </span> 개 
+				별점 평균  <span class="badge bage-success" id="review_avg"> </span> 개 
 			</h4>
 		</div>
 	</div>

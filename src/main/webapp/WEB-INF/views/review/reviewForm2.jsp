@@ -48,13 +48,13 @@
 		</td>
 	</tr>
 	<tr>
-		<th>사진/동영상 첨부하기</th>
+		<th>사진/동영상 첨부하기 </th>
 		<td colspan="2">
 			<input type="file" name="refilename" id="refilename"
 			 accept="image/*" class="form-control">
 		</td>
 		<td>
-			<button type="submit" class="btn btn-secondary">
+			<button type="button" class="btn btn-secondary" onclick="check()">
 				등록
 			</button>
 		</td>

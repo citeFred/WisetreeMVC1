@@ -8,6 +8,7 @@ $(function(){
 	
 	$('#reform').submit(function(evt){
 		evt.preventDefault();
+		//check();
 		//alert('1차확인');
 		const file=$('#refilename')[0]
 		//alert(file);
@@ -21,7 +22,7 @@ $(function(){
 		const itemno_fk=$('#itemno_fk').val();
 		//const pidx_fk=6;
 		
-		alert(userid+"/"+content+"/"+score+"/"+itemno_fk+"/"+fname);
+		console.log(userid+"/"+content+"/"+score+"/"+itemno_fk+"/"+fname);
 		let formD=new FormData();
  		formD.append('userid', userid);
 		//formD.append('userid', 'abcd');
@@ -63,9 +64,9 @@ $(function(){
 			},
 			error:function(err){
 				alert('err'+err.status+'등록 실패');
-				/* if(err.status==400) {
+				if(err.status==500) {
 					alert('로그인해야 이용가능 합니다..')
-				} */
+				} 
 			}
 			
 		});
@@ -195,8 +196,9 @@ const review_count=function(){
 		dataType:'json',
 		cache:false,
 		success:function(res){
-			//alert(res.cnt);
-			
+			console.log(res.cnt);
+			console.log(res.avg);
+			$('#review_avg').html(res.avg);
 			$('#review_cnt').html(res.cnt);
 		},
 		error:function(err){
@@ -284,7 +286,7 @@ const reviewDel = function(renum){
 }//--------------------------------------------------
 
 //파일 업로드 없는 일반적 form data 전송시
- const send=function(){
+const send=function(){
  	let params=$('#reform').serialize();
  	let url="prdreviews/user";
  	
@@ -304,5 +306,54 @@ const reviewDel = function(renum){
  		}
  	});
  }//---------------------------------------------------
-
+ //--------------------------------
+function check(){
+	 		if(!$('#userid').val()){
+	 			alert('아이디를 입력해주세요');
+	 			$('#userid').focus();
+	 			return;
+	 		} 
+	 		if(!$('#content').val()){
+	 			alert('리뷰 내용을 입력해주세요');
+	 			//-------------------------------
+	 			$('#content').focus();
+	 			return;
+	 		}
+	 		/* if(!$('#score').val()){
+	 			alert('별점을 남겨주세요');
+	 			$('#score').focus();
+	 			return;
+	 		} */
+	 		if(!$('#itemno_fk').val()){
+	 			alert('아이템을 선택해주세요');
+	 			$('#itemno_fk').focus();
+	 			return;
+	 		}
+	 		/* 
+	 		
+	 		let $price=$('#price').val();
+	 		let pattern=/^[0-9]+$/
+	 		if(!pattern.test($('#count').val())){
+	 			alert('수량은 숫자로 입력해야 해요');
+	 			$('#count').select();
+	 			return false;
+	 		}
+	 		
+	 		if(!pattern.test($price)){
+	 			alert('정가는 숫자로 입력해야 해요');
+	 			$('#price').focus();
+	 			return false;
+	 		}
+	 		if(!pattern.test($('#saleprice').val())){
+	 			alert('판매가는 숫자로 입력해야 해요');
+	 			$('#saleprice').focus();
+	 			return false;
+	 		}
+	 		if(!pattern.test($('#point').val())){
+	 			alert('포인트는 숫자로 입력해야 해요');
+	 			$('#point').focus();
+	 			return false;
+	 		} */
+	 		$('#reform').submit();
+	 	}
 </script>
