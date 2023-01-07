@@ -36,7 +36,7 @@
         	<max-file-size>209715200</max-file-size>
         	<max-request-size>209715200</max-request-size>
         	<file-size-threshold>0</file-size-threshold>
-        	<location>/Users/haenalee/study/filedata/</location>
+        	<location>C:\upload</location>
         	<!-- <location>/Users/inyongkim/Documents/myspring</location> -->
     	</multipart-config>
 	</servlet>

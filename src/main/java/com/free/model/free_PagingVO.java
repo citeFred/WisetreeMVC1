@@ -7,25 +7,32 @@ import lombok.Data;
 @Data
 public class free_PagingVO {
 	
-	private int cpage;
-	private int pageSize = 5;
-	private int totalCount;
-	private int pageCount;
+	//페이지 처리 관련
+	private int cpage; //현재 페이지
+	private int pageSize = 5; //페이지에 보여지는 page의 크기
+	private int totalCount; //총 개수
+	private int pageCount; //페이지 수
 	
+	//데이터베이스에서 앞뒤로 끊기위해 가져온
 	private int start;
 	private int end;
 	
-	private int pagingBlock=5;
-	private int prevBlock;
-	private int nextBlock;
+	//블록 처리
+	private int pagingBlock=5;  //하단 블록의 개수 설정
+	private int prevBlock; //이전 블록
+	private int nextBlock; //이후 블록
 	
-	private String findType;
-	private String findKeyword;
+	//검색 조건
+	private String findType; //검색 조건 입력
+	private String findKeyword; //검색어 입력
 	
+	//페이징 처리 연산하는 기능
 	public void init(HttpSession ses) {
 		if(ses!=null) {
 			ses.setAttribute("pageSize", pageSize);
 		}
+		
+		//한 페이지에 나오는 페이지의 개수
 		pageCount =(totalCount - 1)/pageSize + 1;
 		if(cpage<1) {
 			cpage=1;
@@ -41,8 +48,9 @@ public class free_PagingVO {
 		
 	}
 	
+	//하단의 블록에서 페이지 컨트롤 하는 기능
 	public String getPageNavi(String myctx, String loc, String userAgent) {
-		
+		//myctx : 컨텍스트명, userAgent : 브라우저 종류 파악하기 위한 문자열
 		String link = myctx + "/" + loc;
 		String qStr="?pageSize=" + pageSize;
 		link+=qStr;

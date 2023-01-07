@@ -44,7 +44,6 @@ $(function() {
 
    <form name="bf" id="bf" role="form" action="write" method="POST" enctype="multipart/form-data">
    <input type="hidden" name="mode" value="write">
-   <!-- 원본글쓰기mode는 write, 답변글쓰기 mode는 rewrite로 감  -->       
     <table class="table">
        <tr>
           <td style="width:20%; text-align: center;" ><b>제목</b></td>
