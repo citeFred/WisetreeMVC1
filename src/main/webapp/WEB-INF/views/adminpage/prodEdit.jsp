@@ -198,7 +198,9 @@
                   </tr>
                   <tr>
                      <td colspan="2">
-                        <button type="submit" class="btn btn-success">상품등록</button>
+                        <button type="submit" class="btn btn-success">
+                        <a href="javascript:editregister('${itemvo.itemNo}')">상품등록</a>
+                        </button>
                      </td>
                   </tr>
                </tbody>
@@ -210,4 +212,13 @@
     </div>
   </div>
     
-
+<form name="resultform">
+	<input type="hidden" name="itemNo" id="itemNo">
+</form>
+<script>
+function editregister(e){
+	//alert(itemNo);
+	resultform.action="prodEdit";
+	resultform.submit();
+}
+</script>

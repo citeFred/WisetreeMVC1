@@ -77,7 +77,19 @@ public class ShopServiceImpl implements ShopService {
 	@Override
 	public List<ItemVO> itemList() {
 		return this.itemMapper.itemList();
-	};
+	}
+
+	@Override
+	public int removeByitemNo(int itemNo) {
+		return this.itemMapper.removeByitemNo(itemNo);
+	}
+
+	@Override
+	public int modifyItem(ItemVO Item) {
+		return this.itemMapper.modifyItem(Item);
+	}
+
+	
 	
 
 }

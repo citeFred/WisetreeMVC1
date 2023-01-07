@@ -1,7 +1,5 @@
 package com.wisetree.test;
 
-
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
@@ -27,7 +25,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.shop.model.CartVO;
 import com.shop.model.ItemVO;
 import com.shop.model.OptionVO;
 import com.shop.service.AdminService;
@@ -36,7 +36,7 @@ import com.shop.service.ShopService;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("/adminpage")
 @PropertySource("classpath:config/props/filed.properties")
 @Slf4j
 public class AdminController {
@@ -49,7 +49,14 @@ public class AdminController {
 	
 	@Inject
 	private ShopService shopService;
-
+	
+	@GetMapping("/remove")
+	public String remove(@RequestParam("itemNo")int itemNo, RedirectAttributes rttr) {
+		int result=shopService.removeByitemNo(itemNo);	
+		rttr.addFlashAttribute("delete_result",result);
+		return "redirect:/prodList";
+	}
+	
 	@GetMapping("/edit")
 	public String editForm(@RequestParam("itemNo")int itemNo,Model m) {
 		ItemVO itemvo=shopService.selectByitemNum(itemNo);
@@ -57,7 +64,14 @@ public class AdminController {
 		m.addAttribute("upoption",upoption);
 		m.addAttribute("itemvo",itemvo);
 		
-		return "admin/prodEdit";
+		return "adminpage/prodEdit";
+	}
+	
+	@PostMapping("/edit")
+	public String edit(ItemVO Item,RedirectAttributes rttr) {
+		int edit=shopService.modifyItem(Item);
+		rttr.addFlashAttribute("edit_result",edit);
+		return "redirect:index";
 	}
 
 	@GetMapping("/prodForm")
@@ -65,7 +79,7 @@ public class AdminController {
 		List<OptionVO> upoption=adminService.getUpOption();
 		model.addAttribute("upoption",upoption);
 		
-		return "admin/prodForm";
+		return "adminpage/prodForm";
 	}
 	
 	@GetMapping("/getDownOption")
@@ -134,7 +148,7 @@ public class AdminController {
 		log.info("n((((((((((((((((((((((((((((((((((("+n);
 		
 		
-		return "admin/prodForm";
+		return "adminpage/prodForm";
 	}
 	
 	

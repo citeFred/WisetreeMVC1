@@ -16,4 +16,11 @@
 		from item2 i order by itemNo desc
 	</select>
 	
+	<delete id="removeByitemNo" parameterType="_int">
+		delete from item2 where itemNo=#{value}
+	</delete>
+	
+	<update id="modifyItem" parameterType="Item">
+		update item2 set itemName=#{itemName},itemBrand=#{itemBrand},price=#{price},saleprice=#{saleprice} where itemNo=${itemNo}
+	</update>
 </mapper>

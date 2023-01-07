@@ -13,4 +13,7 @@ public interface CartMapper {
 	List<CartVO> seeCartBasket(int idx);
 	int deleteCart(int cartNo);
 	int getCartTotalSum(int idx);
+	
+
+
 }
