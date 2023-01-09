@@ -38,10 +38,16 @@ public class ReviewController {
 	
 
 	
-	@GetMapping(value = "/reviewForm")
-	public String reviewWrite(){
-		
-		return "review/reviewForm";
+	@GetMapping("/chart")
+	public String reviewchart() {
+		// "/WEB-INF/views/review/chart.jsp
+		return "/review/chart";
+	}
+	
+	@GetMapping("/dataTables")
+	public String dataTables() {
+		// "/WEB-INF/views/review/dataTables.jsp
+		return "/review/dataTables";
 	}
 	
 	/*

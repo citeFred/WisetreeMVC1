@@ -21,6 +21,29 @@
 
 <!-- JS -->
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<!-- Google 번역 -->
+<script>
+			function googleTranslateElementInit() {
+				new google.translate.TranslateElement({
+					pageLanguage: 'ko',
+					includedLanguages: 'ko,zh-CN,zh-TW,ja,vi,th,tl,km,my,mn,ru,en,fr,ar',
+					//includedLanguages: 'ko,zh-CN,zh-TW,ja,en',
+					layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+					autoDisplay: false
+				}, 'google_translate_element');
+			}
+			setTimeout(function() {
+		    	  $("select.goog-te-combo").addClass("tx-select-top");
+			}, 1000);
+</script>
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<!-- //Google 번역 -->
+
+<!-- [파비콘] favicon.ico 404 오류 & favicon(파비콘) 만들기  -->
+<head>
+<link rel="shortcut icon" href="#">
+</head>
+<!-- --------------------------------------------------- -->
 
 <!-- [로그인 상태 탭 1,2] <- 어떠한 로그인도 안된 상태에서는 로그인상태가 둘다 안보이게 -->
 <script>
@@ -162,14 +185,14 @@ $(document).ready(function(){
 					<a class="nav-link" href="${myctx}/review">Review List</a>
 				</li>
 				
-				<%-- <!-- 리뷰 쓰기 폼 탭  -->
+				 <!-- 리뷰 쓰기 폼 탭  -->
 				<li class="nav-item">
-					<a class="nav-link" href="${myctx}/reviewForm">Review Write</a>
-				</li> --%>
+					<a class="nav-link" href="${myctx}/dataTables">Review dataTables</a>
+				</li> 
 				
 				<!-- 게시판 목록 탭  -->
 				<li class="nav-item">
-					<a class="nav-link" href="${myctx}/free_board/list">Board List</a>
+					<a class="nav-link" href="${myctx}/free_board/list">Board list</a>
 				</li>
 				
 				<!-- 게시판 목록 탭  -->
@@ -180,25 +203,11 @@ $(document).ready(function(){
 					
 			</ul>
 		</div>
+		
 		<!-- Google 번역 -->
 		<div id="google_translate_element" class="hd_lang"></div>
-		<script>
-			function googleTranslateElementInit() {
-				new google.translate.TranslateElement({
-					pageLanguage: 'ko',
-					includedLanguages: 'ko,zh-CN,zh-TW,ja,vi,th,tl,km,my,mn,ru,en,fr,ar',
-					//includedLanguages: 'ko,zh-CN,zh-TW,ja,en',
-					layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-					autoDisplay: false
-				}, 'google_translate_element');
-			}
-			setTimeout(function() {
-		    	  $("select.goog-te-combo").addClass("tx-select-top");
-			}, 1000);
-		</script>
-		<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-		<!-- //Google 번역 -->
 		
+		<!-- //Google 번역 -->
 		
 		<div>
 			<ul class="navbar-nav">
