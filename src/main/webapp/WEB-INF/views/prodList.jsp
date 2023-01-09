@@ -87,13 +87,11 @@ function edit(itemNo){
 	editform.action="adminpage/edit";
 	editform.submit();
 }
-
 function remove(itemNo){
 	//alert(itemNo);
 	removeform.itemNo.value=itemNo;
 	removeform.action="adminpage/remove";
 	removeform.submit();
 }
-
 </script>
 <c:import url="/foot" />

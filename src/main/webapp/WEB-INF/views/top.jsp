@@ -180,6 +180,25 @@ $(document).ready(function(){
 					
 			</ul>
 		</div>
+		<!-- Google 번역 -->
+		<div id="google_translate_element" class="hd_lang"></div>
+		<script>
+			function googleTranslateElementInit() {
+				new google.translate.TranslateElement({
+					pageLanguage: 'ko',
+					includedLanguages: 'ko,zh-CN,zh-TW,ja,vi,th,tl,km,my,mn,ru,en,fr,ar',
+					//includedLanguages: 'ko,zh-CN,zh-TW,ja,en',
+					layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+					autoDisplay: false
+				}, 'google_translate_element');
+			}
+			setTimeout(function() {
+		    	  $("select.goog-te-combo").addClass("tx-select-top");
+			}, 1000);
+		</script>
+		<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+		<!-- //Google 번역 -->
+		
 		
 		<div>
 			<ul class="navbar-nav">

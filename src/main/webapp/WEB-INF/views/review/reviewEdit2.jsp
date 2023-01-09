@@ -4,6 +4,14 @@
 <!-- ---동적 별점 css-------------------- -->
 <link href="css/review.css" rel="stylesheet" type="text/css">
 <!-- ------------------------------ -->
+<script>
+function deselect(){
+	//name이 score인 라디오버튼 일괄 해제
+	$("#reform2 input:radio[name='score']").prop('checked', false);
+	alert($("#reform2 input:radio[name='score']").is(":checked"))
+	
+}
+</script>
 <div class="modal" id="reviewModal">
 <div style='width:50%;margin:auto'>
 	<div class="modal-content">
@@ -12,8 +20,8 @@
 			<!-- hidden data------------------------------------ -->
 				<input type="text" name="itemno_fk" id="itemno_fk" value="${prod.itemNo}">
 				<input type="text" name="userid" id="userid" value="${loginUser.userid}">
-				<input type="text" name="score" id="score" value="${revo1.score}">
-				<input type="hidden" name="renum" id="renum" >
+				<input type="text" name="renum" id="renum" value="${result.revo} ">
+				<input type="hidden" name="score" id="score" >
 			<!-- ---------------------------------------------- -->
 	<table class="table">
 	<tr>
@@ -22,10 +30,10 @@
 		</th>
 	</tr>
 	<tr>
-		<td>상품은 만족하셨나요?</td>   
+		<td>상품은만족하셨나요?</td>   
 		<td>
 			<div class="star-score space-x-4 mx-auto" id="star" >
-				<input type="radio" id="5-stars" name="score" value="5" checked="checked" />
+				<input type="radio" id="5-stars" name="score" value="5" />
 				<label for="5-stars" class="star pr-4">★</label>
 				<input type="radio" id="4-stars" name="score" value="4" />
 				<label for="4-stars" class="star">★</label>
@@ -35,6 +43,9 @@
 				<label for="2-stars" class="star">★</label>
 				<input type="radio" id="1-star" name="score"  value="1" />
 				<label for="1-star" class="star">★</label>
+			</div>
+			<div>
+			<button type="button" class="btn btn-secondary" onclick="deselect()">선택해제</button>
 			</div>
 		</td>
 	</tr>
@@ -49,7 +60,7 @@
 		</td>
 	</tr>
 	<tr>
-		<th>사진/동영상 첨부하기</th>
+		<th>사진/동영상</th>
 		<td colspan="2" id="prodImage">	
 		 <input type="file" name="refilename" id="refilename"
 		 accept="image/*" class="form-control">

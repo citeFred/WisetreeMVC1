@@ -74,19 +74,18 @@ public class ReviewRESTController {
 	public ModelMap revInsert(
 			@RequestParam(value = "reviewFile", required = false) MultipartFile mtif,
 			@ModelAttribute("revo") ReviewVO revo,
-			/* @RequestBody */
 			HttpSession sion,
 			HttpServletResponse response) {
 		response.setContentType("application/json");
 		log.info("mtif : +++++"+mtif);
-		log.info("rvo.mtif : +++++"+revo.getRefilename());
-        log.info(response);
-		log.info("revo=>" + revo);
+		log.info("revo : +++++"+revo);
+		//log.info("rvo.mtif : +++++"+revo.getRefilename());
+        log.info("response : +++++"+response);
 
 		// 업로드 절대경로
 		ServletContext ser = sion.getServletContext();
 		String upDir = ser.getRealPath("/resources/review_images");
-		log.info("upDir=>" + upDir);
+		//log.info("upDir=>" + upDir);
 
 		// 디렉토리 생성
 		File fdir = new File(upDir);
@@ -105,9 +104,10 @@ public class ReviewRESTController {
 			//log.info("파일업로드에서 실패====>"+e);
 		}
 		int re = this.reviewService.addReview(revo);
-		log.info("reNum%%%%%%%%%%%%%%%%%%%%%%%%"+re);
+		//log.info("reNum : +++++"+re);
 		ModelMap momap = new ModelMap();
 		momap.addAttribute("result", re);
+		//log.info("momap : +++++"+momap);
 		return momap;
 
 	}
@@ -128,11 +128,13 @@ public class ReviewRESTController {
 		Integer itemNo1 = (Integer) sion.getAttribute("itemNo");
 		log.info("itemno =>" + itemNo1);
 		List<ReviewVO> rearr = this.reviewService.listReview(itemNo1);
+		log.info("List =>" + rearr.get(0));//리뷰vo안에있는 정보들
 		return rearr;
 	}
 
 	/**
-	 * 리뷰 갯수 카운팅
+	 * 상품번호에 따른 리뷰 갯수 카운팅
+	 * 상품번호에 따른 리뷰 평균값 
 	 * */
 	@GetMapping(value = "/cnt", produces = "application/json")
 	public ModelMap getrevCount(HttpSession sion) {
@@ -140,8 +142,8 @@ public class ReviewRESTController {
 		int cnt = this.reviewService.getReviewCnt(itemNo);
 		int avg = this.reviewService.getReviewavg(itemNo);
 		//System.out.println("cccccccccc");
-		log.info("cnt=>" + cnt);
-		log.info("avg=>" + avg);
+		//log.info("cnt=>" + cnt);
+		//log.info("avg=>" + avg);
 		
 		ModelMap remap = new ModelMap();
 		remap.put("cnt", cnt);
@@ -167,12 +169,14 @@ public class ReviewRESTController {
 	 * */
 	@GetMapping(value = "/user/{renum}", produces = "application/json")
 	public ReviewVO revGet(@PathVariable("renum") int renum) {
-		System.out.println("********************");
-		log.info("renum=>"+renum);
-		System.out.println("********************");
+		/*
+		 * if(renum==0) { return "redirect:prodList"; }
+		 */
 		ReviewVO revo1 = this.reviewService.getReview(renum);
+		System.out.println("********************");
+		log.info("특정 리뷰 페이징 값 =====>"+revo1);
+		System.out.println("********************");
 		
-		log.info("revo=>"+revo1);
 		return revo1;
 	}
 	
@@ -195,6 +199,7 @@ public class ReviewRESTController {
 		ModelMap upmap = new ModelMap();
 		//upmap.addAttribute("result",  Updn);
 		upmap.put("result", Updn);
+		//log.info("upmap===="+upmap);
 		return upmap;
 
 	}

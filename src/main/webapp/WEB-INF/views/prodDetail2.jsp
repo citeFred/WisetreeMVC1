@@ -4,6 +4,17 @@
 <%@ taglib prefix="fmt"  uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <c:import url="/top"/>
+<!-- <script src="js/starrr.js"></script>
+<link rel="stylesheet" href="css/starrr.css" type="text/css" >
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+
+<script>
+$(".starrr").starrr({
+	  change: function(e, value){
+	    alert('new rating is ' + value)
+	  }
+	})
+</script> -->
 
 <script>
 	const openPop=function(img){
@@ -50,7 +61,7 @@
                      <a href="#" onclick="openPop('${prod.itemImage1}')">
                      <%-- ${prod.itemImage} --%>
                      <img 
-                           src="resources/product_images/noimage.png" class="img-fluid" style="width: 70%;">
+                           src="resources/product_images/${prod.itemImage1}" class="img-fluid" style="width: 70%;">
                      </a></td>
 
                      <td align="left" width="50%" style="padding-left: 40px">
@@ -86,7 +97,7 @@
                         <button type="button" onclick="goCart()" class="btn btn-primary">장바구니</button>
                         <button type="button" onclick="goOrder()"
                            class="btn btn-warning">주문하기</button>
-                        <button type="button" onclick="goWish()" class="btn btn-danger">위시리시트</button>
+                        <button type="button" onclick="goWish()" class="btn btn-danger">위시리시트</button>	
                      </td>
 
                   </tr>
@@ -113,6 +124,7 @@
 	<div class="row mt-4">
 		<div class="col-md-10 offset-md-1">
 			<%@ include file="/WEB-INF/views/review/reviewForm2.jsp"%>
+			<%-- <%@ include file="/WEB-INF/views/review/reviewForm2.jsp"%> --%>
 			<%-- <c:import url="/reviewForm" /> --%>
 		</div>
 	</div>
@@ -121,9 +133,11 @@
 	<div class="row">
 		<div class="col-md-12" id="reviewTitle">
 			<h4>
-				상품 리뷰 목록  <span class="badge bage-success" id="review_cnt"> </span> 개 
-				별점 평균  <span class="badge bage-success" id="review_avg"> </span> 개 
+				리뷰목록  <span class="badge bage-success" id="review_cnt"> </span> 개 
 			</h4>
+			<h5>
+				리뷰평점  <span class="badge bage-success" id="review_avg"> </span> /5
+			</h5>
 		</div>
 	</div>
 	<div class="row">

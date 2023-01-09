@@ -44,7 +44,8 @@
 	<tr>
 		<th>어떤 점이 좋았나요?</th>
 		<td colspan="3">
-			<textarea name="content" id="content" rows="2" class="form-control"></textarea>	
+			<textarea name="content" id="content" rows="2" class="col-auto form-control"
+			placeholder="좋은 리뷰를 남겨주시면 큰 힘이 됩니다!"></textarea>	
 		</td>
 	</tr>
 	<tr>

@@ -3,8 +3,12 @@
 <script>
 
 $(function(){
-	show_reviews();//전체 리뷰 목록 가져오기
-	review_count();
+	if (renum!=null) {
+		show_reviews();//전체 리뷰 목록 가져오기
+		review_count();//리뷰 목록 갯수, 별점 평균
+    }
+		
+	
 	
 	$('#reform').submit(function(evt){
 		evt.preventDefault();
@@ -79,11 +83,13 @@ $(function(){
 		
 		let uid=reform2.userid.value;
 		let itemno=reform2.itemno_fk.value;
-		alert("itemno====>"+itemno);
+		//alert("itemno====>"+itemno);
 		let renum=reform2.renum.value;
 		//alert(renum);//---->해결	
-		let score=reform2.score.value;//-------->해결x
-		alert("sco===>"+score)
+		//let score=reform2.score.value;//-------->해결x
+		//-------->값은 변경이 되는데 별이 고정됨
+		let score=$('input[name="score"]:checked').val();
+		//alert("sco===>"+score)
 		let content=reform2.content.value;
 		
 		let jsonData= {
@@ -94,7 +100,7 @@ $(function(){
 			content:content
 		}
 		
-		// 리뷰수정을 위한 정보들을 다 입력했는지 확인
+		// 리뷰수정을 위한 정보들을 다 입력했는지 확인-------->해결o
         if (!userid || !itemno || !renum || !score || !content) {
             alert("모든 정보를 입력해주세요!");
             return false;
@@ -202,7 +208,7 @@ const review_count=function(){
 			$('#review_cnt').html(res.cnt);
 		},
 		error:function(err){
-			alert(err);
+			alert("등록된 리뷰가 없습니다");
 		}
 	});
 }
@@ -223,7 +229,8 @@ const show_reviews=function(){
 			showTable(res);
 		},
 		error:function(err){
-			alert('err'+err.status);
+			alert("등록된 리뷰가 없습니다");
+			//alert('err'+err.status);
 		}
 	});
 }//---------------------------------------------------
@@ -319,16 +326,19 @@ function check(){
 	 			$('#content').focus();
 	 			return;
 	 		}
-	 		/* if(!$('#score').val()){
-	 			alert('별점을 남겨주세요');
-	 			$('#score').focus();
-	 			return;
-	 		} */
+	 		
 	 		if(!$('#itemno_fk').val()){
 	 			alert('아이템을 선택해주세요');
 	 			$('#itemno_fk').focus();
 	 			return;
 	 		}
+	 		$('#reform').submit();
+	 		/* if(!$('#score').val()){
+ 			alert('별점을 남겨주세요');
+ 			$('#score').focus();
+ 			return;
+ 			} */
+ 			
 	 		/* 
 	 		
 	 		let $price=$('#price').val();
@@ -354,6 +364,6 @@ function check(){
 	 			$('#point').focus();
 	 			return false;
 	 		} */
-	 		$('#reform').submit();
+	 		
 	 	}
 </script>
