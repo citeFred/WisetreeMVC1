@@ -5,6 +5,32 @@
 <!-- <link href="css/review.css" rel="stylesheet" type="text/css"> -->
 <!-- 모달창이 원인이다 -> 에딧2만 라이브러리를 따로 쓰던가 -> 사진으로 대체하고 시간낭비 X  -->
 <!-- ------------------------------ -->
+
+<script type="text/javascript" src="../jquery/jquery.js"></script>
+<script type="text/javascript" src="../jquery/jRating.jquery.js"></script>
+<link rel="stylesheet" href="../jquery/jRating.jquery.css" type="text/css" />
+
+<script type="text/javascript">
+$(document).ready(function(){
+      // simple jRating call
+      $(".basic").jRating();
+      // more complex jRating call
+      $(".basic").jRating({
+         step:true,
+         length : 20,// nb of stars
+         onSuccess :function(){
+           alert('Success : your rate has been saved :)');
+         }
+       });
+      // you can rate 3 times ! After, jRating will be disabled
+      $(".basic").jRating({
+         canRateAgain :true,
+         nbRates : 3
+       });
+});
+</script>
+
+
 <script>
 function deselect(){
 	//name이 score인 라디오버튼 일괄 해제
@@ -34,18 +60,13 @@ function deselect(){
 	<tr>
 		<td>상품은만족하셨나요?</td>   
 		<td>
-			<div class="star-score space-x-4 mx-auto">
-				<input type="radio" id="5-stars" name="score" value="5" />
-				<label for="5-stars" class="star pr-4">★</label>
-				<input type="radio" id="4-stars" name="score" value="4" />
-				<label for="4-stars" class="star">★</label>
-				<input type="radio" id="3-stars" name="score" value="3" />
-				<label for="3-stars" class="star">★</label>
-				<input type="radio" id="2-stars" name="score" value="2" />
-				<label for="2-stars" class="star">★</label>
-				<input type="radio" id="1-stars" name="score" value="1" />
-				<label for="1-stars" class="star">★</label>
+			 <div class="score">
+   			<!-- in this exemple, 12 is the average and 1 is the id of the line to up
+   			<a href="https://www.jqueryscript.net/time-clock/">date</a> in DB -->
+  				 <div class="basic" data-average="12" data-id="1"></div>
 			</div>
+
+
 
 			<div>
 			<button type="button" class="btn btn-secondary" onclick="deselect()">선택해제</button>

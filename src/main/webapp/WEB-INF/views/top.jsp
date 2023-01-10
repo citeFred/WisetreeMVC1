@@ -15,12 +15,14 @@
 <script	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
-<!-- CSS -->
+<!-- carouse CSS -->
 <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
 <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
 
-<!-- JS -->
+<!-- carouse JS -->
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+
 <!-- Google 번역 -->
 <script>
 			function googleTranslateElementInit() {
@@ -48,13 +50,13 @@
 <!-- [로그인 상태 탭 1,2] <- 어떠한 로그인도 안된 상태에서는 로그인상태가 둘다 안보이게 -->
 <script>
 
-$('.dropdown-toggle').dropdown()
 $(function(){
 	if(${loginUser eq null and k_loginUser eq null}){
 		document.getElementById("normalUserLogined").style.display = "none";
 		document.getElementById("kakaoUserLogined").style.display = "none";
 	}
 })
+
 $(document).ready(function(){
 	$(".slide_div").slick(
 			{

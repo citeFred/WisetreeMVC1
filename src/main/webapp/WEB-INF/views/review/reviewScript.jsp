@@ -68,9 +68,9 @@ $(function(){
 			},
 			error:function(err){
 				alert('err'+err.status+'등록 실패');
-				if(err.status==500) {
+				/* if(err.status==500) {
 					alert('로그인해야 이용가능 합니다..')
-				} 
+				}  */
 			}
 			
 		});
@@ -163,17 +163,19 @@ const reviewEdit=function(renum){
 			//alert(reform2.renum.value);//여기까진 확인
 			
 			reform2.content.value=res.content;
-			let str='';
+			
 			
 			//alert($('#'+res.score+"-stars").val())
-			$('#reform2 #'+res.score+"-stars").prop("checked", true);
-			alert($('#reform2 #'+res.score+"-stars").is(":checked"))
+			//$('#reform2 #'+res.score+"-stars").prop("checked", true);
+			//alert($('#reform2 #'+res.score+"-stars").is(":checked"))
 			
 			//.prop("checked",true);
-			/* for(let i=0; i<res.score; i++) {
+			let str='';
+			
+			for(let i=0; i<res.score; i++) {
 				str+='<img src="resources/review_images/star.png">'
 			}
-			$('#star').html(str); */
+			$('#star').html(str);
 			let imgSrc;
 			if(res.refilename==null) {
 				imgSrc='noimage.png';

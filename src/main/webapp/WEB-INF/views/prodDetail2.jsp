@@ -3,19 +3,14 @@
 <%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt"  uri="http://java.sun.com/jsp/jstl/fmt"%>
 
+<link href="css/review.css" rel="stylesheet" type="text/css"> 
 <c:import url="/top"/>
-<!-- <script src="js/starrr.js"></script>
-<link rel="stylesheet" href="css/starrr.css" type="text/css" >
-<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
 
-<script>
-$(".starrr").starrr({
-	  change: function(e, value){
-	    alert('new rating is ' + value)
-	  }
-	})
-</script> -->
 
+<!-- <script type="text/javascript" src="jquery/jquery.js"></script>
+<script type="text/javascript" src="jquery/jRating.jquery.js"></script>
+<link rel="stylesheet" href="jquery/jRating.jquery.css" type="text/css" />
+ -->
 <script>
 	const openPop=function(img){
 		//alert(img);
@@ -143,10 +138,11 @@ $(".starrr").starrr({
 	<div class="row">
 		<div class="col-md-12" id="revList"></div>
 	</div>
+	
 	<div class="row">
 		<div class="col-md-10 offset-md-1">
 			<!-- 리뷰 수정 모달 ------------------------------------- -->
-			<%@ include file="/WEB-INF/views/review/reviewEdit2.jsp"%>
+			<%@ include file="/WEB-INF/views/review/reviewEdit.jsp"%>
 			<!-- ------------------------------------------------- -->
 		</div>
 	</div>

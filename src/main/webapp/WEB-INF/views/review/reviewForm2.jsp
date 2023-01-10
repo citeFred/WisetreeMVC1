@@ -25,16 +25,16 @@
 		<th>리뷰평가점수</th>   
 		<td>
 			<div class="star-score space-x-4 mx-auto">
-				<input type="radio" id="5-stars" name="score" value="5" v-model="ratings"/>
+				<input type="radio" id="5-stars" name="score" value="5" />
 				<label for="5-stars" class="star pr-4">★</label>
-				<input type="radio" id="4-stars" name="score" value="4" v-model="ratings"/>
+				<input type="radio" id="4-stars" name="score" value="4" />
 				<label for="4-stars" class="star">★</label>
-				<input type="radio" id="3-stars" name="score" value="3" v-model="ratings"/>
+				<input type="radio" id="3-stars" name="score" value="3" />
 				<label for="3-stars" class="star">★</label>
-				<input type="radio" id="2-stars" name="score" value="2" v-model="ratings"/>
+				<input type="radio" id="2-stars" name="score" value="2" />
 				<label for="2-stars" class="star">★</label>
-				<input type="radio" id="1-star" name="score" value="1" v-model="ratings" />
-				<label for="1-star" class="star">★</label>
+				<input type="radio" id="1-stars" name="score" value="1" />
+				<label for="1-stars" class="star">★</label>
 			</div>
 		</td>
 		
