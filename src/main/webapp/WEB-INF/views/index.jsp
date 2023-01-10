@@ -8,6 +8,13 @@
 </head>
 <!-- --------------------------------------------------- -->
 <c:import url="/top" />
+
+<script type="text/javascript">
+$(function(){
+	$("#noticePop").modal()
+})
+</script>
+
 <h3>메인화면 INDEX 테스트</h3>
  <!-- Section-->
         <section class="py-5">
@@ -212,5 +219,9 @@
                 </div>
             </div>
         </section>
+        
+<!-- noticePop.jsp include -->
+<%@ include file="/WEB-INF/views/notice_board/noticePop.jsp" %>
+<!-- ---------------------------------- -->
 
 <c:import url="/foot" />

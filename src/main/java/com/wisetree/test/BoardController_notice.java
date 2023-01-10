@@ -36,6 +36,14 @@ public class BoardController_notice {
 	@Inject
 	private CommonUtil util;
 	
+	@GetMapping("/noticePop")
+	public String noticePop(Model m) {
+		BoardVO board=this.boardService.selectBoardByIdx(2);
+		m.addAttribute("notice",board);
+		
+		return "notice_board/noticePop";
+	}
+	
 	@GetMapping("/write")
 	public String boardWrite() {
 		return "notice_board/boardWrite";
