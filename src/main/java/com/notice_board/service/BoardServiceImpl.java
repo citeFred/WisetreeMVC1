@@ -39,10 +39,5 @@ public class BoardServiceImpl implements BoardService{
 		return this.boardMapper.updateBoard(board);
 	}
 
-	@Override
-	public BoardVO notice_selectBoardByIdx(Integer idx) {
-		return this.boardMapper.notice_selectBoardByIdx(idx);
-	}
-
 
 }

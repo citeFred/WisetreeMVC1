@@ -50,10 +50,6 @@
 	</update>
 	
 	
-	<!-- 공지에 해당하는 글 가져오기 -->
-	<select id="notice_selectBoardByIdx" resultType="Board" parameterType="_int">
-		select * from notice_spring_board where num=#{notice}
-	</select>
 	
 	
 </mapper>
