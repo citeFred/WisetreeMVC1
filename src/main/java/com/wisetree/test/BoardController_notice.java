@@ -44,14 +44,6 @@ public class BoardController_notice {
 		return "notice_board/noticePop";
 	}
 	
-	@GetMapping("/noticeCon")
-	public String noticeCon(Model m) {
-		BoardVO board=this.boardService.selectBoardByIdx(2);
-		m.addAttribute("notice",board);
-		
-		return "notice_board/noticeControl";
-	}
-	
 	@GetMapping("/write")
 	public String boardWrite() {
 		return "notice_board/boardWrite";
