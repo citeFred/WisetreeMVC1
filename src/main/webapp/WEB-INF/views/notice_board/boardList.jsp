@@ -10,6 +10,10 @@
 		<a href="write">글쓰기</a>|<a href="list">글목록</a>
 	</p>
 	
+	<p class="text-right">
+		<a class="nav-link"	href="#noticeCon" data-toggle="modal">공지글 설정</a>
+	</p>
+	
 	<table class="table table-condensed table-striped">
 		<thead>
 			<tr>
@@ -59,4 +63,9 @@
 	</table>
 
 </div>
+
+<!-- noticePop.jsp include -->
+<%@ include file="/WEB-INF/views/notice_board/noticeControl.jsp" %>
+<!-- ---------------------------------- -->
+
 <c:import url="/foot"/>
