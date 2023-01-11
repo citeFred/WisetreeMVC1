@@ -17,5 +17,8 @@ public interface BoardMapper {
 	
 	// 글번호에 해당하는 글 수정
 	int updateBoard(BoardVO board);
+	
+	// 공지에 해당하는 글 가져오기
+	BoardVO notice_selectBoardByIdx(Integer idx);
 
 }

@@ -32,7 +32,7 @@ public class IndexController {
 
 	@RequestMapping("/index")
 	public void showIndex(Model m) {
-		BoardVO vo=noticeService.selectBoardByIdx(6);
+		BoardVO vo=noticeService.notice_selectBoardByIdx(1);
 		m.addAttribute("notice",vo);
 		//"/WEB-INF/views/index.jsp				
 	}
