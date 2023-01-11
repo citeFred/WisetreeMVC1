@@ -20,7 +20,7 @@
 				<!-- Modal body -->
 				<div class="modal-body">
 					<div>
-						<input type="text" name="num" id="num" placeholder="번호" required class="form-control">
+						<input type="text" name="num" id="num" placeholder="글 번호" required class="form-control">
 					</div>
 				</div>
 				
