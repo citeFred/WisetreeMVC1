@@ -19,7 +19,8 @@
 
 				<!-- Modal body -->
 				<div class="modal-body">
-					${notice.subject }
+					<h2>${notice.subject }</h2>
+					<h5>${notice.content }</h5>
 				</div>
 				
 				
