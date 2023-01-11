@@ -50,6 +50,12 @@ public class ReviewController {
 		return "/review/dataTables";
 	}
 	
+	@GetMapping("/dataTables2")
+	public String dataTables2() {
+		// "/WEB-INF/views/review/dataTables.jsp
+		return "/review/dataTables2";
+	}
+	
 	/*
 	 * @GetMapping("/prodDetail") public String productDetail(Model
 	 * m, @RequestParam(defaultValue = "0")int ItemNo, HttpSession ses) { if

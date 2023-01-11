@@ -245,12 +245,12 @@ $(document).ready(function(){
 							<div class="slide_div">
 								<div>
 									<a>
-										<img src="../resources/carousel_images/main1.gif">
+										<img src="/resources/carousel_images/main1.gif">
 									</a>
 								</div>
 								<div>
 									<a>
-										<img src="../resources/carousel_images/main2.jpg">
+										<img src="/resources/carousel_images/main2.jpg">
 									</a>
 								</div>
 								<div>
