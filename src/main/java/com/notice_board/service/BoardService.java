@@ -20,6 +20,6 @@ public interface BoardService {
 	
 	//
 	public int noticeControl(int num);
-	int noticeSelect();
+	BoardVO noticeSelect();
 
 }

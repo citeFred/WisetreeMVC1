@@ -20,5 +20,7 @@ public interface BoardMapper {
 	
 	//
 	int noticeControl(int num);
-    int noticeSelect();
+	BoardVO noticeSelect();
+	int noticeCount();
+	int noticeInsert(int num);
 }

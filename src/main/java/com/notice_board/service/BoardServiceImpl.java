@@ -42,11 +42,17 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public int noticeControl(int num) {
 		// TODO Auto-generated method stub
+		int cnt=this.boardMapper.noticeCount();
+		if(cnt>0)
 		return this.boardMapper.noticeControl(num);
+		else {
+			return this.boardMapper.noticeInsert(num);
+			
+		}
 	}
 
 	@Override
-	public int noticeSelect() {
+	public BoardVO noticeSelect() {
 		// TODO Auto-generated method stub
 		return this.boardMapper.noticeSelect();
 	}

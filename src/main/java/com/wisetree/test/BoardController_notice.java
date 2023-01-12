@@ -39,11 +39,16 @@ public class BoardController_notice {
 	@PostMapping("/noticeCon")
 	public String noticeControl(int num, Model m) {
 		log.info(num);
+		try {
 		int n=boardService.noticeControl(num);
 		if(n>0)
 		return util.addMsgLoc(m, "공지글이 등록되었습니다", "list");
 		else
 			return util.addMsgLoc(m, "공지글이 등록 실패", "list");
+		
+		}catch (Exception e) {
+			return util.addMsgLoc(m, "공지글번호를 확인하세요", "list");
+		}
 	}
 	
 	@GetMapping("/write")

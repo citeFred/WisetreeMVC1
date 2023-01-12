@@ -32,11 +32,15 @@ public class IndexController {
 
 	@RequestMapping("/index")
 	public void showIndex(Model m) {
-		//numbu에 등록된 공지글번호 가져오기r
-		int num=noticeService.noticeSelect();
+		//numbu에 등록된 공지글번호 가져오기
+		BoardVO num=noticeService.noticeSelect();
 		System.out.println("num="+num);
-		BoardVO vo=noticeService.selectBoardByIdx(num);
+		if(num!=null) {
+		BoardVO vo=noticeService.selectBoardByIdx(num.getNum());
 		m.addAttribute("notice",vo);
+		}else {
+			m.addAttribute("notice",null);
+		}
 		//"/WEB-INF/views/index.jsp				
 	}
 	
