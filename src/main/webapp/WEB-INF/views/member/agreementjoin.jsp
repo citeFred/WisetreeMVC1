@@ -26,6 +26,12 @@
                 }
             });    
         });
+        
+        $(document).ready(function() {
+            $('.check-all').click( function() {
+              $('.agree').prop( 'checked', this.checked );
+            } );
+          } );
     </script>
     
         <style type="text/css">
@@ -114,7 +120,7 @@
 
             </textarea>
             <p>
-                <input type="checkbox" id="check_1"  name="" /> 위의 약관에 동의 합니다.<br />
+                <input type="checkbox" id="check_1"  class="agree" /> 위의 약관에 동의 합니다.<br />
             </p>            
             <h4 class="scheme-g">●이용약관2</h4>
             <textarea style="width:100%; font-size:1em;">
@@ -244,7 +250,7 @@
 ② “몰”과 이용자 간에 제기된 전자상거래 소송에는 한국법을 적용합니다.
             </textarea>
             <p>
-                <input type="checkbox" id="check_2"  name="" /> 위의 약관에 동의 합니다.<br />
+                <input type="checkbox" id="check_2"  class="agree" /> 위의 약관에 동의 합니다.<br />
             </p>
             <h4 class="scheme-g">●개인정보취급방침</h4>
             <textarea style="width:100%; font-size:1em;">
@@ -384,7 +390,12 @@ viii.당사가 이용자의 권리를 침해했을 경우
 시행일자 : 2022년 07월 29일
             </textarea>
             <p>
-                <input type="checkbox" id="check_3"  name="" /> 위의 약관에 동의 합니다.<br />
+                <input type="checkbox" id="check_3"  class="agree" /> 위의 약관에 동의 합니다.<br />
+            </p>
+            <p>
+                <input type="checkbox" id="check_4"  class="check-all" /> <b>전체 약관에 동의 합니다.</b><br />
+            </p>
+            <p>
             	<button class="btn btn-outline-primary" type="button" id="nextBtn">다음단계로</button>
             </p>
         </form>
