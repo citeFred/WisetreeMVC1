@@ -35,15 +35,8 @@ public class ReviewController {
 			
 			return "review/reviewList2";
 	}
-	
 
-	
-	@GetMapping("/chart")
-	public String reviewchart() {
-		// "/WEB-INF/views/review/chart.jsp
-		return "/review/chart";
-	}
-	
+	/* 관리자용 페이지 */
 	@GetMapping("/dataTables")
 	public String dataTables() {
 		// "/WEB-INF/views/review/dataTables.jsp

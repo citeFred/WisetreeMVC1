@@ -3,11 +3,14 @@
 <script>
 
 $(function(){
-	if (renum!=null) {
+// 	if(rearr==null){
+// 		alert("등록된 리뷰가 엄슴")
+//     }else {
+//     	show_reviews();//전체 리뷰 목록 가져오기
+// 		review_count();//리뷰 목록 갯수, 별점 평균
+// 	}
 		show_reviews();//전체 리뷰 목록 가져오기
 		review_count();//리뷰 목록 갯수, 별점 평균
-    }
-		
 	
 	
 	$('#reform').submit(function(evt){
@@ -209,8 +212,9 @@ const review_count=function(){
 			$('#review_avg').html(res.avg);
 			$('#review_cnt').html(res.cnt);
 		},
-		error:function(err){
+		error:function(request,status,err){
 			alert("등록된 리뷰가 없습니다");
+			alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"err:"+err);
 		}
 	});
 }
@@ -232,7 +236,7 @@ const show_reviews=function(){
 		},
 		error:function(err){
 			alert("등록된 리뷰가 없습니다");
-			//alert('err'+err.status);
+			alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"err:"+err);
 		}
 	});
 }//---------------------------------------------------

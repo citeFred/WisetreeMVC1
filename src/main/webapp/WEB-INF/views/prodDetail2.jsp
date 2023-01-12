@@ -127,12 +127,17 @@
 	<!-- 리뷰 목록 ---------------------------------------- -->
 	<div class="row">
 		<div class="col-md-12" id="reviewTitle">
+			<%-- <c:if test="${rearr eq null or empty rearr}">
+					<h4>등록된 리뷰가 없습니다.</h4>
+			</c:if>
+			<c:if test="${rearr ne null and not empty rearr}"> --%>
 			<h4>
 				리뷰목록  <span class="badge bage-success" id="review_cnt"> </span> 개 
-			</h4>
+			</h4>	
 			<h5>
 				리뷰평점  <span class="badge bage-success" id="review_avg"> </span> /5
 			</h5>
+<%-- 			</c:if> --%>
 		</div>
 	</div>
 	<div class="row">

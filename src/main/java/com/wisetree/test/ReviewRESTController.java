@@ -84,11 +84,11 @@ public class ReviewRESTController {
 
 		// 업로드 절대경로
 		ServletContext ser = sion.getServletContext();
-		String upDir = ser.getRealPath("/resources/review_images");
+		String reDir = ser.getRealPath("/resources/review_images");
 		//log.info("upDir=>" + upDir);
 
 		// 디렉토리 생성
-		File fdir = new File(upDir);
+		File fdir = new File(reDir);
 		if (!fdir.exists()) {
 			fdir.mkdirs();
 		}
@@ -96,8 +96,8 @@ public class ReviewRESTController {
 		
 		// 업로드 처리 ------->>>이부분부터 오류 해결
 		try {
-			mtif.transferTo(new File(upDir, mtif.getOriginalFilename()));
-			revo.setRefilename(upDir);
+			mtif.transferTo(new File(reDir, mtif.getOriginalFilename()));
+			revo.setRefilename(reDir);
 			revo.setRefilename(mtif.getOriginalFilename());
 		} catch (Exception e) {
 			e.getMessage();

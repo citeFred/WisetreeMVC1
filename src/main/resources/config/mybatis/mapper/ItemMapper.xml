@@ -9,6 +9,12 @@
 		from item2 i where itemNo=#{value}
 	</select>
 	
+	
+	<select id="selectByQty" resultType="Item" parameterType="string">
+		select * from item2 where quality=#{value}
+	</select>
+	
+	
 	<select id="itemList" resultType="Item">
 		select i.*,
 		(select up_Name from upOption where up_Code=i.up_Code) up_Name,

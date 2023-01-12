@@ -255,12 +255,12 @@ $(document).ready(function(){
 								</div>
 								<div>
 									<a>
-										<img src="../resources/carousel_images/main3.jpg">
+										<img src="/resources/carousel_images/main3.jpg">
 									</a>
 								</div>
 								<div>
 									<a>
-										<img src="../resources/carousel_images/main4.jpg">
+										<img src="/resources/carousel_images/main4.jpg">
 									</a>
 								</div>
 								</div>
