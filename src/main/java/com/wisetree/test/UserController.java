@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,8 +28,17 @@ public class UserController {
 	@Resource(name = "userServiceImpl")
 	private UserService userService;
 	
+	@Autowired
+	private BCryptPasswordEncoder pwEncoder;
 	
 //-----CREATE START----------------------------------------------------------------------------------------------------
+
+	//약관 동의 폼 보여주는 메서드 CREATE-직전 FORM VIEW PAGE 보여줌
+	@GetMapping("/agreement")
+	public String agreementForm() {
+		// "/WEB-INF/views/member/join.jsp
+		return "/member/agreementjoin";
+	}
 	
 	//회원가입 폼 보여주는 메서드 CREATE-직전 FORM VIEW PAGE 보여줌
 	@GetMapping("/join")
@@ -40,11 +50,21 @@ public class UserController {
 	//회원가입 실행하는 메서드 [CREATE]
 	@PostMapping("/join")
 	public String userInsert(Model m, @ModelAttribute("user") UserVO user) {
-		int n=userService.createUser(user);
 		if(user.getName()==null || user.getUserid()==null || user.getPwd()==null
 		|| user.getName().trim().isEmpty()|| user.getUserid().trim().isEmpty()|| user.getPwd().trim().isEmpty()) {
 			return "redirect:join";
 		}
+		
+		String rawPw = "";            // 인코딩 전 비밀번호
+        String encodePw = "";        // 인코딩 후 비밀번호
+        
+        rawPw = user.getPwd();            // 비밀번호 데이터 얻음
+        encodePw = pwEncoder.encode(rawPw);        // 비밀번호 인코딩
+        user.setPwd(encodePw);            // 인코딩된 비밀번호 member객체에 다시 저장
+        
+        /* 회원가입 쿼리 실행 */
+        int n=userService.createUser(user);
+		
 		
 		String str=(n>0)?"회원 가입 성공":"회원 가입 실패";
 		String loc=(n>0)?"/index":"javascript:history.back()";

@@ -106,7 +106,7 @@ $(document).ready(function(){
 				<!-- [회원가입 폼 탭] <- 일반로그인, 카카오로그인 되지 않은 경우 보이게 -->
 				<c:if test="${loginUser eq null and k_loginUser eq null}">
 					<li class="nav-item">
-						<a class="nav-link" href="${myctx}/join">Join</a>
+						<a class="nav-link" href="${myctx}/agreement">Join</a>
 					</li>
 				</c:if>
 				<!-- [회원 목록 탭] <- 로그인된 유저의 상태status가 9(admin)인경우에만 보이게 -->
