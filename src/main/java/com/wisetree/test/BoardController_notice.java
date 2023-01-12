@@ -46,14 +46,6 @@ public class BoardController_notice {
 			return util.addMsgLoc(m, "공지글이 등록 실패", "list");
 	}
 	
-	@GetMapping("/noticePop")
-	public String noticePop(Model m) {
-		BoardVO board=this.boardService.selectBoardByIdx(2);
-		m.addAttribute("notice",board);
-		
-		return "notice_board/noticePop";
-	}
-	
 	@GetMapping("/write")
 	public String boardWrite() {
 		return "notice_board/boardWrite";
