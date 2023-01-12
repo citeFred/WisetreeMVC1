@@ -39,5 +39,17 @@ public class BoardServiceImpl implements BoardService{
 		return this.boardMapper.updateBoard(board);
 	}
 
+	@Override
+	public int noticeControl(int num) {
+		// TODO Auto-generated method stub
+		return this.boardMapper.noticeControl(num);
+	}
+
+	@Override
+	public int noticeSelect() {
+		// TODO Auto-generated method stub
+		return this.boardMapper.noticeSelect();
+	}
+
 
 }

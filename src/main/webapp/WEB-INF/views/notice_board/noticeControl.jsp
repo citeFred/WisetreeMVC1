@@ -4,7 +4,7 @@
 <div class="modal" id="noticeCon">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form name="noticeCon" method='post'>
+			<form name="noticeCon" method='post' action="noticeCon">
 		
 		
 		

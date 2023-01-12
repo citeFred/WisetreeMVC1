@@ -36,6 +36,16 @@ public class BoardController_notice {
 	@Inject
 	private CommonUtil util;
 	
+	@PostMapping("/noticeCon")
+	public String noticeControl(int num, Model m) {
+		log.info(num);
+		int n=boardService.noticeControl(num);
+		if(n>0)
+		return util.addMsgLoc(m, "공지글이 등록되었습니다", "list");
+		else
+			return util.addMsgLoc(m, "공지글이 등록 실패", "list");
+	}
+	
 	@GetMapping("/noticePop")
 	public String noticePop(Model m) {
 		BoardVO board=this.boardService.selectBoardByIdx(2);

@@ -17,5 +17,9 @@ public interface BoardService {
 	
 	// 글번호에 해당하는 글 수정
 	int updateBoard(BoardVO board);
+	
+	//
+	public int noticeControl(int num);
+	int noticeSelect();
 
 }
