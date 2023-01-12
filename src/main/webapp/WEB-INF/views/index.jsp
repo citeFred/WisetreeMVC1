@@ -10,8 +10,39 @@
 <c:import url="/top" />
 
 <script type="text/javascript">
+</script>
+<!-- The Modal -->
+<script>
+var getCookie = function(name) {
+    var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+    return value? value[2] : null;
+};
+
+var deleteCookie = function(name) {
+    document.cookie = name + '=; expires=Thu, 01 Jan 1999 00:00:10 GMT;';
+}
+
+var setCookie = function(name, value, exp) {
+    var date = new Date();
+    date.setTime(date.getTime() + exp*(24+9)*60*60*1000);
+    document.cookie = name + '=' + value + ';expires=' + date.toGMTString() + ';path=/';
+};
 $(function(){
-	$("#noticePop").modal()
+	let flag=getCookie("noticePop");
+	//alert(flag);
+	if(flag==null||flag==undefined||!flag){
+		$('#undoNotice').prop("checked",false);
+		$('#noticePop').modal();
+	}else{
+		$('#undoNotice').prop("checked",true);
+	}
+	$('#undoNotice').click(function(){
+		if($(this).is(':checked')){
+			setCookie("noticePop","${notice.num}",1)
+		}else{
+			deleteCookie("noticePop");
+		}
+	});
 })
 </script>
 

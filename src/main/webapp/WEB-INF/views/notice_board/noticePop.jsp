@@ -25,6 +25,9 @@
 				
 				
 				
+				<label for="undoNotice">
+					<input type="checkbox" name="saveId" id="undoNotice" > 하루동안 보이지 않기
+				</label>
 				
 				<!-- Modal footer -->
 				<div class="modal-footer">
