@@ -21,3 +21,27 @@ create sequence notice_spring_board_seq
 start with 1
 increment by 1
 nocache;
+
+
+-----------------------------------------------
+
+공지글 설정을 위한 테이블 생성_확정
+
+drop table numbu;
+
+create table numbu(
+    num number(8) primary key,
+    noticeNum number(8) REFERENCES notice_spring_board(num)
+    
+);
+
+drop sequence numbu_seq;
+
+create sequence numbu_seq
+start with 1
+increment by 1
+nocache;
+
+Insert into MULTI1.numbu (num,noticeNum) values (numbu_seq.nextval,1);
+
+commit;
