@@ -100,7 +100,7 @@ public class AdminController {
 		int i=0;
 		try {
 		for(MultipartFile mf:itemImage1) {
-			String tempname=mf.getOriginalFilename();
+			String tempname=new String(mf.getOriginalFilename().getBytes("8859_1"),"UTF-8");
 			mf.transferTo(new File(upFile, tempname));
 			if(i==0) {
 				Item.setItemImage1(tempname);

@@ -57,6 +57,11 @@ public class CartController {
 	public String cartList(Model m, HttpSession ses) {
 		
 		UserVO loginUser=(UserVO)ses.getAttribute("loginUser");
+//		log.info("user:" +loginUser);
+//		if (loginUser.getIdx()==0) {
+//			
+//			return "redirect:/index";
+//		}
 		int idx=loginUser.getIdx();
 		
 		List<CartVO> cartArr=this.shopService.seeCartBasket(idx);
@@ -77,6 +82,16 @@ public class CartController {
 		
 		return "redirect:/cartList";
 	}
+	
+	@PostMapping("/cartDel")
+	public String cardDelete(@RequestParam(defaultValue = "0") int cartNo) {
+		if (cartNo == 0) {
+			return "redirect:cartList";
+		}
+		int n = shopService.deleteCart(cartNo);
+		return "redirect:cartList";
+	}
+
 	
 
 }

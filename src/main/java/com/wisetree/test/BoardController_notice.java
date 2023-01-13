@@ -74,7 +74,7 @@ public class BoardController_notice {
 	public String boardWrite() {
 		return "notice_board/boardWrite";
 	}
-	@PostMapping("/write")
+	@PostMapping(value = "/write", produces = "application/text;charset=utf-8")
 	public String boardInsert(Model m,
 			HttpServletRequest req,
 			@RequestParam("mfilename") MultipartFile mfilename,
@@ -230,7 +230,7 @@ public class BoardController_notice {
 		return "notice_board/boardEdit";
 	}
 	
-	@PostMapping("/update")
+	@PostMapping(value = "/update",  produces = "application/text;charset=utf-8")
 	public String boardEditform(Model m,
 			HttpServletRequest req,
 			@RequestParam("mfilename") MultipartFile mfilename,
