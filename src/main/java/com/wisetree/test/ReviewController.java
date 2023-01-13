@@ -35,13 +35,18 @@ public class ReviewController {
 			
 			return "review/reviewList2";
 	}
-	
 
+	/* 관리자용 페이지 */
+	@GetMapping("/dataTables")
+	public String dataTables() {
+		// "/WEB-INF/views/review/dataTables.jsp
+		return "/review/dataTables";
+	}
 	
-	@GetMapping(value = "/reviewForm")
-	public String reviewWrite(){
-		
-		return "review/reviewForm";
+	@GetMapping("/dataTables2")
+	public String dataTables2() {
+		// "/WEB-INF/views/review/dataTables.jsp
+		return "/review/dataTables2";
 	}
 	
 	/*

@@ -10,8 +10,8 @@ public interface ItemMapper {
 
 	List<ItemVO> getItem();
 	
-	List<ItemVO>selectByQty(String quality);
-	List<ItemVO> selectByPspec(String pspec);
+	List<ItemVO> selectByQty(String quality);// <---------- ? 
+	//List<ItemVO> selectByPspec(String pspec);// 프러덕트 컨트롤 
 	List<ItemVO> selectByOption(int op_num);
 	List<ItemVO> itemList();
 	ItemVO selectByitemNum(int itemNo);

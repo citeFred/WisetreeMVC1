@@ -9,7 +9,7 @@ public interface ShopService {
 
 	/*상품정보*/
 
-	public List<ItemVO> selectByPspec(String pspec);
+	public List<ItemVO> selectByQty(String quality);
 	public List<ItemVO> selectByOption(int op_num);
 	
 	public ItemVO selectByitemNum(int itemNum);

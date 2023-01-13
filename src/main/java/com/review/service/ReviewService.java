@@ -24,6 +24,9 @@ public interface ReviewService {
 	
 	/* 리뷰 삭제 */
 	public int delReview(int renum);
+
+	/* 별점 평균 */
+	public int getReviewavg(Integer itemNo);
 	
 }
 	

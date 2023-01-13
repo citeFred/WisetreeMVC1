@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -20,14 +19,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.review.model.ReviewVO;
 import com.review.service.ReviewService;
-import com.shop.model.MemberVO;
 
 import lombok.extern.log4j.Log4j;
 
@@ -74,22 +70,21 @@ public class ReviewRESTController {
 	public ModelMap revInsert(
 			@RequestParam(value = "reviewFile", required = false) MultipartFile mtif,
 			@ModelAttribute("revo") ReviewVO revo,
-			/* @RequestBody */
 			HttpSession sion,
 			HttpServletResponse response) {
 		response.setContentType("application/json");
 		log.info("mtif : +++++"+mtif);
-		log.info("rvo.mtif : +++++"+revo.getRefilename());
-        log.info(response);
-		log.info("revo=>" + revo);
+		log.info("revo : +++++"+revo);
+		//log.info("rvo.mtif : +++++"+revo.getRefilename());
+        log.info("response : +++++"+response);
 
 		// 업로드 절대경로
 		ServletContext ser = sion.getServletContext();
-		String upDir = ser.getRealPath("/resources/review_images");
-		log.info("upDir=>" + upDir);
+		String reDir = ser.getRealPath("/resources/review_images");
+		//log.info("upDir=>" + upDir);
 
 		// 디렉토리 생성
-		File fdir = new File(upDir);
+		File fdir = new File(reDir);
 		if (!fdir.exists()) {
 			fdir.mkdirs();
 		}
@@ -97,17 +92,24 @@ public class ReviewRESTController {
 		
 		// 업로드 처리 ------->>>이부분부터 오류 해결
 		try {
-			mtif.transferTo(new File(upDir, mtif.getOriginalFilename()));
-			revo.setRefilename(upDir);
+			mtif.transferTo(new File(reDir, mtif.getOriginalFilename()));
+			revo.setRefilename(reDir);
 			revo.setRefilename(mtif.getOriginalFilename());
 		} catch (Exception e) {
 			e.getMessage();
 			//log.info("파일업로드에서 실패====>"+e);
 		}
 		int re = this.reviewService.addReview(revo);
-		log.info("reNum%%%%%%%%%%%%%%%%%%%%%%%%"+re);
+		/*
+		 * if(revo.getContent()==null|| revo.getItemno_fk()==0 ||revo.getScore()==0 ||
+		 * revo.getUserid()==null|| revo.getContent().trim().isEmpty()||
+		 * revo.getUserid().trim().isEmpty()) { return ""; }
+		 */
+		
+		//log.info("reNum : +++++"+re);
 		ModelMap momap = new ModelMap();
 		momap.addAttribute("result", re);
+		//log.info("momap : +++++"+momap);
 		return momap;
 
 	}
@@ -128,35 +130,55 @@ public class ReviewRESTController {
 		Integer itemNo1 = (Integer) sion.getAttribute("itemNo");
 		log.info("itemno =>" + itemNo1);
 		List<ReviewVO> rearr = this.reviewService.listReview(itemNo1);
+		log.info("List =>" + rearr.get(0));//리뷰vo안에있는 정보들
 		return rearr;
 	}
 
 	/**
-	 * 리뷰 갯수 카운팅
+	 * 상품번호에 따른 리뷰 갯수 카운팅
+	 * 상품번호에 따른 리뷰 평균값 
 	 * */
 	@GetMapping(value = "/cnt", produces = "application/json")
 	public ModelMap getrevCount(HttpSession sion) {
 		Integer itemNo = (Integer) sion.getAttribute("itemNo");
 		int cnt = this.reviewService.getReviewCnt(itemNo);
+		int avg = this.reviewService.getReviewavg(itemNo);
 		//System.out.println("cccccccccc");
-		log.info("cnt=>" + cnt);
+		//log.info("cnt=>" + cnt);
+		//log.info("avg=>" + avg);
 		
 		ModelMap remap = new ModelMap();
 		remap.put("cnt", cnt);
+		remap.put("avg", avg);
+		log.info("remap=>" + remap);
 		return remap;
 	}
+	
+	/*
+	 * @GetMapping(value = "/avg", produces = "application/json") public ModelMap
+	 * getstrAvg(HttpSession sion) { Integer itemNo = (Integer)
+	 * sion.getAttribute("itemNo"); int avg =
+	 * this.reviewService.getReviewavg(itemNo); //System.out.println("cccccccccc");
+	 * log.info("avg=>" + avg);
+	 * 
+	 * ModelMap reavg = new ModelMap(); reavg.put("avg", avg); return reavg; }
+	 */
+	
+	
 
 	/**
 	 * 리뷰 수정(편집) 페이지 매핑
 	 * */
 	@GetMapping(value = "/user/{renum}", produces = "application/json")
 	public ReviewVO revGet(@PathVariable("renum") int renum) {
-		System.out.println("********************");
-		log.info("renum=>"+renum);
-		System.out.println("********************");
+		/*
+		 * if(renum==0) { return "redirect:prodList"; }
+		 */
 		ReviewVO revo1 = this.reviewService.getReview(renum);
+		System.out.println("********************");
+		log.info("특정 리뷰 페이징 값 =====>"+revo1);
+		System.out.println("********************");
 		
-		log.info("revo=>"+revo1);
 		return revo1;
 	}
 	
@@ -179,6 +201,7 @@ public class ReviewRESTController {
 		ModelMap upmap = new ModelMap();
 		//upmap.addAttribute("result",  Updn);
 		upmap.put("result", Updn);
+		//log.info("upmap===="+upmap);
 		return upmap;
 
 	}

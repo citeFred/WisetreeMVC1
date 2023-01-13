@@ -45,4 +45,9 @@ public class ReviewServiceImpl implements ReviewService {
 		return this.reviewMapper.delReview(renum);
 	}
 
+	@Override
+	public int getReviewavg(Integer itemNo) {
+		return this.reviewMapper.getReviewavg(itemNo);
+	}
+
 }

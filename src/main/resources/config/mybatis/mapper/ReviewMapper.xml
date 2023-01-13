@@ -12,6 +12,11 @@
 		select count(renum) from review2 where itemno_fk=#{value}
 	</select>
 	
+	<!-- 별점 평균 -->
+	<select id="getReviewavg" resultType="_int" parameterType="_int">
+		select avg(score) from review2 where itemno_fk=#{value}
+	</select>
+	
 	<!-- 리뷰 추가 인설트 -->
 	<insert id="addReview" parameterType="Review">
 		<selectKey keyProperty="renum" resultType="int" order="BEFORE">

@@ -47,15 +47,15 @@ public class ProductController {
 		return "prodDetail2";
 	}
 	
-	@GetMapping("/prodPspec")
-	public String productByPspec(Model m, @RequestParam(name="quality", defaultValue="HIT")String quality) {
+	@GetMapping("/prodQty")
+	public String selectByQty(Model m, @RequestParam(name="quality", defaultValue="HIT")String quality) {
 		log.info("quality==="+quality);
 		
-		List<ItemVO> itemList=shopService.selectByPspec(quality);
-		log.info("itemList==="+itemList);
+		List<ItemVO> itemList=shopService.selectByQty(quality);
+		log.info("itemList==="+itemList.get(0));
 		m.addAttribute("itemList",itemList);
 		
-		return "admin/mallHit";
+		return "mallHit";
 	}
  
 }
