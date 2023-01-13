@@ -32,13 +32,13 @@
 			</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
-		<multipart-config>
+		<!-- <multipart-config>
         	<max-file-size>209715200</max-file-size>
         	<max-request-size>209715200</max-request-size>
         	<file-size-threshold>0</file-size-threshold>
-        	<location>C:</location>
-        	<!-- <location>/Users/inyongkim/Documents/myspring</location> -->
-    	</multipart-config>
+        	<location>/Users/shinseongwook/myspring/Workspace/notice_board_upload</location>
+        	<location>/Users/inyongkim/Documents/myspring</location>
+    	</multipart-config> -->
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>appServlet</servlet-name>
