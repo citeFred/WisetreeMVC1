@@ -35,9 +35,6 @@
     </script>
     
         <style type="text/css">
-        *{
-            font-family:'malgun gothic';
-}
 
         #content.cols-d { width: 583px; min-width: 583px; }
 
@@ -81,7 +78,8 @@
 <div class="container" style="height: 750px; overflow: auto;">
 <article id="content" class="">
 
-        <h1 style="text-align: center">전자상거래(인터넷사이버몰) 표준약관</h1>
+        <h1 style="text-align: center">회원가입 및 서비스 이용 약관</h1>
+        <h5 style="text-align: center">[*전자상거래(인터넷사이버몰) 표준약관]</h1>
         <form id="terms_form" class="f" action="join">
             <h4 class="scheme-g">●이용약관1</h4>
             <textarea style="width:100%; font-size:1em;">제 1장 총칙
