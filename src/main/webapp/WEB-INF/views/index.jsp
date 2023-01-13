@@ -32,7 +32,9 @@ $(function(){
 	//alert(flag);
 	if(flag==null||flag==undefined||!flag){
 		$('#undoNotice').prop("checked",false);
+		<c:if test="${notice ne null}">
 		$('#noticePop').modal();
+		</c:if>
 	}else{
 		$('#undoNotice').prop("checked",true);
 	}

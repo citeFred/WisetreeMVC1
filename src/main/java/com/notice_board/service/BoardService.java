@@ -21,5 +21,7 @@ public interface BoardService {
 	//
 	public int noticeControl(int num);
 	BoardVO noticeSelect();
+	
+	int deleteNotice();
 
 }

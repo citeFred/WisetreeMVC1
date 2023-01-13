@@ -57,5 +57,11 @@ public class BoardServiceImpl implements BoardService{
 		return this.boardMapper.noticeSelect();
 	}
 
+	@Override
+	public int deleteNotice() {
+		// TODO Auto-generated method stub
+		return this.boardMapper.deleteNotice();
+	}
+
 
 }

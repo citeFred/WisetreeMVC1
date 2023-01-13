@@ -10,8 +10,9 @@
 		<a href="write">글쓰기</a>|<a href="list">글목록</a>
 	</p>
 	
-	<p class="text-right">
-		<a class="nav-link"	href="#noticeCon" data-toggle="modal">공지글 설정</a>
+	<p class="text-right my-4" >
+		<a	href="#noticeCon" data-toggle="modal">공지글 설정</a> |
+		<a	href="deleteNotice">공지글 해제</a>
 	</p>
 	
 	<table class="table table-condensed table-striped">

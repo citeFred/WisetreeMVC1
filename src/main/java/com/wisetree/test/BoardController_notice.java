@@ -36,6 +36,25 @@ public class BoardController_notice {
 	@Inject
 	private CommonUtil util;
 	
+	@GetMapping("/deleteNotice")
+	public String boardDeleteNotice(Model m,
+			HttpServletRequest req,
+			@RequestParam(defaultValue = "0") int num) {
+		
+		BoardVO vo=this.boardService.noticeSelect();
+		if(vo==null) {
+			return util.addMsgBack(m, "해당글은 존재하지 않아요");
+		}
+		
+		//db에서 글 삭제처리
+		int n=this.boardService.deleteNotice(); 
+		
+		String str=(n>0)?"공지 삭제 성공":"삭제 실패";
+		String loc=(n>0)?"list":"javascript:history.back()";
+		
+		return util.addMsgLoc(m, str, loc);
+	}
+	
 	@PostMapping("/noticeCon")
 	public String noticeControl(int num, Model m) {
 		log.info(num);
