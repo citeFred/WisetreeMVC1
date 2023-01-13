@@ -116,6 +116,7 @@
          </div>
       </div>
      <!-- 리뷰 글쓰기 폼 ------------------------------------ -->
+	<c:if test="${loginUser ne null or k_loginUser ne null}">
 	<div class="row mt-4">
 		<div class="col-md-10 offset-md-1">
 			<%@ include file="/WEB-INF/views/review/reviewForm2.jsp"%>
@@ -123,21 +124,22 @@
 			<%-- <c:import url="/reviewForm" /> --%>
 		</div>
 	</div>
+	</c:if>
 
 	<!-- 리뷰 목록 ---------------------------------------- -->
 	<div class="row">
 		<div class="col-md-12" id="reviewTitle">
-			<%-- <c:if test="${rearr eq null or empty rearr}">
-					<h4>등록된 리뷰가 없습니다.</h4>
-			</c:if>
-			<c:if test="${rearr ne null and not empty rearr}"> --%>
+<%-- 			<c:if test="${empty remap}"> --%>
+<!-- 					<h4>등록된 리뷰가 없습니다.</h4> -->
+<%-- 			</c:if> --%>
+<%-- 			<c:if test="${not empty remap}"> --%>
 			<h4>
 				리뷰목록  <span class="badge bage-success" id="review_cnt"> </span> 개 
 			</h4>	
 			<h5>
 				리뷰평점  <span class="badge bage-success" id="review_avg"> </span> /5
 			</h5>
-<%-- 			</c:if> --%>
+<%-- 			</c:if>  --%>
 		</div>
 	</div>
 	<div class="row">

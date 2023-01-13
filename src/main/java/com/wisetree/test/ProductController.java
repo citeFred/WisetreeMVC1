@@ -52,7 +52,7 @@ public class ProductController {
 		log.info("quality==="+quality);
 		
 		List<ItemVO> itemList=shopService.selectByQty(quality);
-		log.info("itemList==="+itemList);
+		log.info("itemList==="+itemList.get(0));
 		m.addAttribute("itemList",itemList);
 		
 		return "mallHit";

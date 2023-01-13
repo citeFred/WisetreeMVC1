@@ -18,11 +18,11 @@
 	<table class="table">
 	<tr>
 		<th colspan="4" class="text-center">
-			<h3>리뷰쓰기</h3>
+			<h3>리뷰쓰기 ${param.itemno_fk}	</h3>
 		</th>
 	</tr>
 	<tr>
-		<th>리뷰평가점수</th>   
+		<th>리뷰평가점수 ${param.userid}</th>   
 		<td>
 			<div class="star-score space-x-4 mx-auto">
 				<input type="radio" id="5-stars" name="score" value="5" />

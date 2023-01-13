@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -20,14 +19,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.review.model.ReviewVO;
 import com.review.service.ReviewService;
-import com.shop.model.MemberVO;
 
 import lombok.extern.log4j.Log4j;
 
@@ -104,6 +100,12 @@ public class ReviewRESTController {
 			//log.info("파일업로드에서 실패====>"+e);
 		}
 		int re = this.reviewService.addReview(revo);
+		/*
+		 * if(revo.getContent()==null|| revo.getItemno_fk()==0 ||revo.getScore()==0 ||
+		 * revo.getUserid()==null|| revo.getContent().trim().isEmpty()||
+		 * revo.getUserid().trim().isEmpty()) { return ""; }
+		 */
+		
 		//log.info("reNum : +++++"+re);
 		ModelMap momap = new ModelMap();
 		momap.addAttribute("result", re);

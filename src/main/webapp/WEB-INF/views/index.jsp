@@ -6,7 +6,7 @@
 <c:import url="/top" />
 <h3>메인화면 INDEX 테스트</h3>
  <!-- Section-->
-       <div class="container mt-3" >
+ <div class="container mt-3" >
 	<c:import url="/prodQty">
 		<c:param name="quality" value="HIT"/>
 	</c:import>

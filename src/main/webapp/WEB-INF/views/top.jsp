@@ -28,8 +28,8 @@
 			function googleTranslateElementInit() {
 				new google.translate.TranslateElement({
 					pageLanguage: 'ko',
-					includedLanguages: 'ko,zh-CN,zh-TW,ja,vi,th,tl,km,my,mn,ru,en,fr,ar',
-					//includedLanguages: 'ko,zh-CN,zh-TW,ja,en',
+					//includedLanguages: 'ko,zh-CN,zh-TW,ja,vi,th,tl,km,my,mn,ru,en,fr,ar',
+					includedLanguages: 'ko,zh-CN,zh-TW,ja,en',
 					layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
 					autoDisplay: false
 				}, 'google_translate_element');
