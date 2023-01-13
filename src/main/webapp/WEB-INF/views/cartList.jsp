@@ -126,7 +126,7 @@
 			}
 
 			function cartDel(cnum) {
-				//alert(cnum);
+				alert(cnum);
 				df.cartNo.value = cnum;
 				df.method = 'post';
 				df.submit();

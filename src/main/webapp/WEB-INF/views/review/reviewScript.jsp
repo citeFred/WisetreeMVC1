@@ -109,8 +109,8 @@ $(function(){
             return false;
         }
 		
-		//alert("jsonData======"+jsonData);
-		alert(JSON.stringify(jsonData))
+        console.log(("jsonData======"+jsonData);
+		//alert(JSON.stringify(jsonData))
 		
 		let data=JSON.stringify(jsonData);
 		let url="prdreviews/user/"+renum;
@@ -159,7 +159,7 @@ const reviewEdit=function(renum){
 			//xhr.setRequestHeader("Ajax","true");
 		},
 		success:function(res){
-			alert(JSON.stringify(res));
+			console.log((JSON.stringify(res));
 			//alert(res.renum);
 			
 			reform2.renum.value=res.renum;

@@ -19,7 +19,7 @@ public interface ShopService {
 	public List<ItemVO> itemList();
 	
 	public int removeByitemNo(int itemNo);
-//장바구니 정보
+	//장바구니 정보
 
 	Integer findCartNoByitemNo(CartVO cvo);
 	int updateCartCount(CartVO cvo);
