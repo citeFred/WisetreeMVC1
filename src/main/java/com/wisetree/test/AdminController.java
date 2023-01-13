@@ -94,7 +94,7 @@ public class AdminController {
 	public String saveFileProduct(HttpServletRequest req,@RequestParam("mitemImage1") List<MultipartFile> itemImage1, @ModelAttribute ItemVO Item) {
 		
 		ServletContext app=req.getServletContext();
-		String upFile=app.getRealPath("resources/product_images");
+		String upFile=app.getRealPath("/resources/product_images");
 		File d=new File(upFile);
 		if(!d.exists()) d.mkdirs();
 		int i=0;
