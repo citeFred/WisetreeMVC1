@@ -136,9 +136,9 @@
                   <tr>
                      <td>상품이미지</td>
                      <td>
-                     <input type="file" name="itemImage1"><br> 
-                     <input type="file" name="itemImage1"><br> 
-                     <input type="file" name="itemImage1"><br>
+                     <input type="file" name="mitemImage1"><br> 
+                     <input type="file" name="mitemImage1"><br> 
+                     <input type="file" name="mitemImage1"><br>
                   </td>
                   </tr>
 

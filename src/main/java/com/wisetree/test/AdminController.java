@@ -1,5 +1,6 @@
 package com.wisetree.test;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
@@ -25,9 +26,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.shop.model.CartVO;
 import com.shop.model.ItemVO;
 import com.shop.model.OptionVO;
 import com.shop.service.AdminService;
@@ -90,6 +91,38 @@ public class AdminController {
 	}
 	
 	@PostMapping("/prodForm")//상품 등록 
+	public String saveFileProduct(HttpServletRequest req,@RequestParam("mitemImage1") List<MultipartFile> itemImage1, @ModelAttribute ItemVO Item) {
+		
+		ServletContext app=req.getServletContext();
+		String upFile=app.getRealPath("resources/product_images");
+		File d=new File(upFile);
+		if(!d.exists()) d.mkdirs();
+		int i=0;
+		try {
+		for(MultipartFile mf:itemImage1) {
+			String tempname=mf.getOriginalFilename();
+			mf.transferTo(new File(upFile, tempname));
+			if(i==0) {
+				Item.setItemImage1(tempname);
+				}else if(i==1) {
+					Item.setItemImage2(tempname);
+				}else if(i==2) {
+					Item.setItemImage3(tempname);
+				}
+			i++;
+		}
+		}catch(Exception e) {
+			log.error("파일 업로드 에러: "+e);
+		}
+		int n = adminService.register(Item);
+		log.info("n((((((((((((((((((((((((((((((((((("+n);
+		
+		
+		return "adminpage/prodForm";
+	}
+	
+	
+	
 	public String saveFile(HttpServletRequest req,@ModelAttribute ItemVO Item,BindingResult b) throws ServletException,IOException
 	{	
 		ServletContext app=req.getServletContext();
