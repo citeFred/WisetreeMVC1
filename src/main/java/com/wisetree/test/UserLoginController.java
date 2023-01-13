@@ -3,6 +3,8 @@ package com.wisetree.test;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +23,8 @@ public class UserLoginController {
 	@Inject
 	private UserService userService;
 	
+	@Autowired
+	private BCryptPasswordEncoder pwEncoder;
 	
 	@PostMapping("/login")
 	public String login(HttpSession session, @ModelAttribute("user") UserVO user) 
