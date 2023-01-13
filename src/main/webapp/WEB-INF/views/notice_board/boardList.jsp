@@ -6,14 +6,27 @@
 <%-- ${boardArr } --%>
 <div class="container mt-3" style="overflow: auto;">
 	<h1 class="text-center">공지게시판</h1>
-	<p class="text-center my-4">
-		<a href="write">글쓰기</a>|<a href="list">글목록</a>
-	</p>
 	
+	
+	
+	
+		<c:if test="${loginUser.status eq 9 or k_loginUser.status eq 9}">
+	<p class="text-center my-4">
+			<a href="write">글쓰기</a>
+	</p>
+	</c:if>
+	
+	
+	<c:if test="${loginUser.status eq 9 or k_loginUser.status eq 9}">
 	<p class="text-right my-4" >
 		<a	href="#noticeCon" data-toggle="modal">공지글 설정</a> |
 		<a	href="deleteNotice">공지글 해제</a>
 	</p>
+	</c:if>
+	
+	
+	
+	
 	
 	<table class="table table-condensed table-striped">
 		<thead>

@@ -75,10 +75,12 @@
 		
 		<tr>
 			<td colspan="4" align=center>
-				<a href="../write">글쓰기</a> | 
-				<a href="../list">목록</a> |  
+				<c:if test="${loginUser.status eq 9 or k_loginUser.status eq 9}">
+				<a href="../write">글쓰기</a> |   
 				<a href="#" onclick="go(1)">삭제</a> |  
-				<a href="#" onclick="go(2)">편집</a>
+				<a href="#" onclick="go(2)">편집</a> |
+				</c:if>
+				<a href="../list">목록</a>
 			</td>
 		</tr>
 	
