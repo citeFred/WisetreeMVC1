@@ -36,7 +36,26 @@
 		frm.action='user/wishAdd';
 		frm.submit();
 	}
-	
+	function check(){
+ 		if(!$('#userid').val()){
+ 			alert('아이디를 입력해주세요');
+ 			$('#userid').focus();
+ 			return;
+ 		} 
+ 		if(!$('#content').val()){
+ 			alert('리뷰 내용을 입력해주세요');
+ 			//-------------------------------
+ 			$('#content').focus();
+ 			return;
+ 		}
+ 		
+ 		if(!$('#itemno_fk').val()){
+ 			alert('아이템을 선택해주세요');
+ 			$('#itemno_fk').focus();
+ 			return;
+ 		}
+ 		$('#reform').submit();
+	}
 </script>
 
 <div class="container" style="text-align:center">
@@ -134,7 +153,7 @@
          </div>
       </div>
      <!-- 리뷰 글쓰기 폼 ------------------------------------ -->
-	<c:if test="${loginUser ne null or k_loginUser ne null}">
+<%-- 	<c:if test="${loginUser ne null or k_loginUser ne null}"> --%>
 	<div class="row mt-4">
 		<div class="col-md-10 offset-md-1">
 			<%@ include file="/WEB-INF/views/review/reviewForm2.jsp"%>
@@ -142,7 +161,7 @@
 			<%-- <c:import url="/reviewForm" /> --%>
 		</div>
 	</div>
-	</c:if>
+<%-- 	</c:if> --%>
 
 	<!-- 리뷰 목록 ---------------------------------------- -->
 	<div class="row">
