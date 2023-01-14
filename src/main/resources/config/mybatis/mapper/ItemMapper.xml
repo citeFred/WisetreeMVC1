@@ -11,7 +11,11 @@
 	
 	
 	<select id="selectByQty" resultType="Item" parameterType="string">
-		select * from item2 where quality=#{value}
+		select i.*,
+		(select up_Name from upOption where up_Code=i.up_Code) up_Name,
+		(select down_Name from downOption where down_Code=i.down_Code) down_Name 
+		
+		from item2 i where quality=#{value}
 	</select>
 	
 	

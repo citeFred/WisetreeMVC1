@@ -97,13 +97,31 @@
 
                   </tr>
                   <tr style="border: 0">
-                     <td align="center">
-                     	<img src="resources/product_images/${prod.itemImage2}"
-                        class="img img-thumbnail" style="width: 70%;"></td>
-                     <td align="center">
-                     	<img src="resources/product_images/${prod.itemImage3}"
-                        class="img img-thumbnail" style="width: 70%;"></td>
+           	         <c:if test="${prod.itemImage2 ne null}">
+	                     <td align="center">
+	                     	<img src="resources/product_images/${prod.itemImage2}" class="img img-thumbnail" style="width: 70%;">
+	                     </td>
+                     </c:if>    
+	                 <c:if test="${prod.itemImage2 eq null}">      
+                  		<td align="center">
+	                        <img src="resources/product_images/noimage.png" class="img img-thumbnail" style="width: 70%;">
+                         </td>
+	                 </c:if>       
+	                        
+                     <c:if test="${prod.itemImage3 ne null}">
+	                     <td align="center">
+	                     	<img src="resources/product_images/${prod.itemImage3}" class="img img-thumbnail" style="width: 70%;">
+	                     </td>
+                     </c:if>  
+                     <c:if test="${prod.itemImage3 eq null}">    
+                     	<td align="center">  
+	                        <img src="resources/product_images/noimage.png" class="img img-thumbnail" style="width: 70%;">
+                        </td>
+	                 </c:if> 
+                     
                   </tr>
+
+                  
                   <tr>
                      <td colspan="2">
                         <p>상품설명</p> 

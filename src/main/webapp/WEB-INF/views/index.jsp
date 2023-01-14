@@ -43,8 +43,9 @@ $(function(){
 	});
 })
 </script>
-
-<h3>메인화면 INDEX 테스트</h3>
+<br>
+<h3 style="text-align: center;"> 상품을 소개합니다! </h3>
+<br>
  <!-- Section-->
  <div class="container mt-3" >
 	<c:import url="/prodQty">

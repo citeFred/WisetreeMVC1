@@ -15,52 +15,26 @@
 
 				<!-- Modal body -->
 				<div class="modal-body">
-				
-				
-	<table class="table mt-4">
-		<tr>
-			<!-- <td>제목</td> -->
-			<td>
-				<c:out value="${notice.subject }"/>
-			</td>
-			<!-- <td>작성일</td> -->
-			<td>
-				<c:out value="${notice.wdate }"/>
-			</td>
-		</tr>
-		<!-- <tr>
-		</tr> -->
-		<tr>
-			<!-- <td>글내용</td> -->
-			<td>
-				${notice.content }
-			</td>
-		</tr>
+							
+
+		<p style="text-align: center;">
+				<c:out value="${notice.subject }"/>&nbsp;&nbsp;&nbsp;&nbsp;<c:out value="${notice.wdate }"/>
+		</p>
+		<hr>
+		<p style="text-align: center;">
+			${notice.content }
 		
-		<tr>
-			<td>첨부파일</td>
-			<td>
-			<!-- ---첨부파일이 있다면------------------------ -->
-			<c:if test="${notice.filename ne null }">
-			<a href="#" onclick="down()">
-				${notice.originFilename }
-			</a>
-				[ <c:out value="${notice.filesize }"/> bytes]
-			</c:if>
-			<!-- --------------------------------------- -->
+		
 			<!-- 파일명의 확장자를 검사하기 위해 모두 소문자로 바꿈 -->
 			<c:set var="fname" value="${fn:toLowerCase(notice.filename) }"/>
 			<!-- ------------------------------------- -->
 			<!-- ---이미지 보이도록 수정---------------------------------- -->
 			<c:if test="${fn:endsWith(fname,'.jpg') or fn:endsWith(fname,'.gif') or fn:endsWith(fname,'.png') }">
-				<img width="80px" class="img img-thumbnail"
+				<img width="300px" class="img img-thumbnail"
 				src="${pageContext.request.contextPath }/resources/notice_board_upload/${notice.filename}">
 			</c:if>
-			<!-- ---------------------------------------------------- -->
-			
-			</td>
-		</tr>
-	</table>
+		</p>
+
 	
 	<!-- ---파일다운로드를 위한 form text----- -->
 <form name="fileF" id="fileF" method="post" action="../../fileDown_notice">

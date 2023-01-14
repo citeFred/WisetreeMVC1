@@ -57,5 +57,36 @@ public class ProductController {
 		
 		return "mallHit";
 	}
+	
+	@GetMapping("/hitpage")
+	public String hitPage(Model m, @RequestParam(name="quality", defaultValue="HIT")String quality) {
+		log.info("quality==="+quality);
+		
+		List<ItemVO> itemList=shopService.selectByQty(quality);
+		log.info("itemList==="+itemList.get(0));
+		m.addAttribute("itemList",itemList);
+		
+		return "hitList";
+	}
+	@GetMapping("/newpage")
+	public String newPage(Model m, @RequestParam(name="quality", defaultValue="NEW")String quality) {
+		log.info("quality==="+quality);
+		
+		List<ItemVO> itemList=shopService.selectByQty(quality);
+		log.info("itemList==="+itemList.get(0));
+		m.addAttribute("itemList",itemList);
+		
+		return "newList";
+	}
+	@GetMapping("/bestpage")
+	public String bestPage(Model m, @RequestParam(name="quality", defaultValue="BEST")String quality) {
+		log.info("quality==="+quality);
+		
+		List<ItemVO> itemList=shopService.selectByQty(quality);
+		log.info("itemList==="+itemList.get(0));
+		m.addAttribute("itemList",itemList);
+		
+		return "bestList";
+	}
  
 }

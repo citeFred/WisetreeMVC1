@@ -128,80 +128,81 @@ $(document).ready(function(){
 		<!-- 메뉴 네비게이션 -->
 		<div class="collapse navbar-collapse" id="collapsibleNavbar">
 			<ul class="navbar-nav">
+			
+			<!-- A D M I N 전 용 메 뉴----------------- -->
+			
+				<!-- [회원 목록 탭]  -->
+				<c:if test="${loginUser.status eq 9 or k_loginUser.status eq 9}">
+					<li class="nav-item">
+						<a class="nav-link"	href="${myctx}/admin/userList">회원목록[admin]</a>
+					</li>
+				
+				<!-- [매출 정보 조회 탭]  -->
+				<li class="nav-item">
+					<a class="nav-link" href="${myctx}/dataTables">매출정보조회[admin]</a>
+				</li> 
+				<!-- [상품 추가 탭]  -->
+
+					<li class="nav-item">
+						<a class="nav-link" href="${myctx}/adminpage/prodForm">상품추가[admin]</a>
+					</li>
+				<!-- [상품 목록 탭]  -->
+					<li class="nav-item">
+						<a class="nav-link"	href="${myctx}/prodList">상품목록[admin]</a>
+					</li>
+				</c:if>
+				
+			<!-- A D M I N 전 용 메 뉴----------------- -->
+				
+				
+				
+				
+			<!-- 일 반 메 뉴--------------------------- -->
+				
 				<!-- [회원가입 폼 탭] <- 일반로그인, 카카오로그인 되지 않은 경우 보이게 -->
 				<c:if test="${loginUser eq null and k_loginUser eq null}">
 					<li class="nav-item">
-						<a class="nav-link" href="${myctx}/agreement">Join</a>
+						<a class="nav-link" href="${myctx}/agreement">회원가입</a>
 					</li>
 				</c:if>
-				<!-- [회원 목록 탭] <- 로그인된 유저의 상태status가 9(admin)인경우에만 보이게 -->
-				<c:if test="${loginUser.status eq 9 or k_loginUser.status eq 9}">
-					<li class="nav-item">
-						<a class="nav-link"	href="${myctx}/admin/userList">[Admin 전용]Users List</a>
-					</li>
-				</c:if>
-
 				<!-- [로그인 모달윈도 탭] <- 어떠한 로그인도 안된 상태에서는 로그인 창이 보이게 -->
 				<c:if test="${loginUser eq null and k_loginUser eq null}">
 					<li class="nav-item">
 						<!-- FOOT.jsp에서 MODAL 임포트함. -->
-						<a class="nav-link"	href="#loginModal" data-toggle="modal">Login</a>
+						<a class="nav-link"	href="#loginModal" data-toggle="modal">로그인</a>
 					</li>
 				</c:if>
 
 				<!-- [로그아웃 탭] <- 어떠한 형태의 회원이라도 로그인 한 경우 로그아웃 보이게 -->
 				<c:if test="${loginUser ne null or k_loginUser ne null}">
 					<li class="nav-item">
-						<a class="nav-link"	href="${myctx}/logout">Logout</a>
+						<a class="nav-link"	href="${myctx}/logout">로그아웃</a>
 					</li>
 				</c:if>
 				
-				<!-- [상품 추가 탭] <- 로그인된 유저의 상태가 9(관리자 인경우) 상품추가 가 보이게 -->
-				<%-- <c:if test="${loginUser.status eq 9 or k_loginUser.status eq 9}"> --%>
-					<li class="nav-item">
-						<a class="nav-link" href="${myctx}/adminpage/prodForm">Add Products</a>
-					</li>
-				<!-- [상품 목록 탭] <- 로그인된 유저의 상태가 9(관리자 인경우) 상품추가 가 보이게 -->
-					<li class="nav-item">
-						<a class="nav-link"	href="${myctx}/prodList">Products List</a>
-					</li>
-				<%-- </c:if> --%>
-				
-				<!-- 장바구니 목록 탭  -->
-				<li class="nav-item">
-					<a class="nav-link" href="${myctx}/cart/cartList">My Cart</a>
-				</li>
 				
 				<!-- 공지사항 목록 탭  -->
 				<li class="nav-item">
-					<a class="nav-link" href="${myctx}/notice_board/list">Notice List</a>
+					<a class="nav-link" href="${myctx}/notice_board/list">공지게시판</a>
 				</li>
-				
-				<!-- 공지사항 쓰기 폼 탭  -->
-				<li class="nav-item">
-					<a class="nav-link" href="${myctx}/notice_board/write">Notice Write</a>
-				</li>
-				
-				<!-- 리뷰 목록 탭  -->
-				<li class="nav-item">
-					<a class="nav-link" href="${myctx}/review">Review List</a>
-				</li>
-				
-				 <!-- 리뷰 쓰기 폼 탭  -->
-				<li class="nav-item">
-					<a class="nav-link" href="${myctx}/dataTables">Review dataTables</a>
-				</li> 
-				
+								
 				<!-- 게시판 목록 탭  -->
 				<li class="nav-item">
-					<a class="nav-link" href="${myctx}/free_board/list">Board list</a>
+					<a class="nav-link" href="${myctx}/free_board/list">자유게시판</a>
 				</li>
 				
-				<!-- 게시판 목록 탭  -->
+				<!-- 히트상품 목록 탭  -->
 				<li class="nav-item">
-					<a class="nav-link" href="${myctx}/free_board/write">Board Write</a>
+					<a class="nav-link" href="${myctx}/hitpage">히트상품</a>
 				</li>
-
+				<!-- 신규상품 목록 탭  -->
+				<li class="nav-item">
+					<a class="nav-link" href="${myctx}/newpage">신규상품</a>
+				</li>
+				<!-- 베스트상품 목록 탭  -->
+				<li class="nav-item">
+					<a class="nav-link" href="${myctx}/bestpage">베스트상품</a>
+				</li>
 					
 			</ul>
 		</div>
@@ -229,7 +230,7 @@ $(document).ready(function(){
 				</div>
 				</c:if>
 			
-				<button class="btn btn-outline-dark" type="button" onclick="location.href='${myctx}/cart'">
+				<button class="btn btn-outline-dark" type="button" onclick="location.href='${myctx}/cart/cartList'">
 						<i class="bi-cart-fill me-1"></i>
 						Cart
 						<span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
