@@ -51,7 +51,7 @@
 
 	<beans:bean id="upDir" class="java.lang.String">
  		<!-- <beans:constructor-arg value="/Users/shinseongwook/myspring/Workspace/notice_board_upload"/> -->
-		<beans:constructor-arg value="/Users/inyongkim/Documents/myspring"/>
+		<beans:constructor-arg value="C:"/>
 	</beans:bean>
 	
 

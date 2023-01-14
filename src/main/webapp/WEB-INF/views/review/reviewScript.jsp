@@ -29,7 +29,7 @@ $(function(){
 		const itemno_fk=$('#itemno_fk').val();
 		//const pidx_fk=6;
 		
-		console.log(userid+"/"+content+"/"+score+"/"+itemno_fk+"/"+fname);
+		//alert(userid+"/"+content+"/"+score+"/"+itemno_fk+"/"+fname);
 		let formD=new FormData();
  		formD.append('userid', userid);
 		//formD.append('userid', 'abcd');
@@ -109,7 +109,7 @@ $(function(){
             return false;
         }
 		
-        console.log(("jsonData======"+jsonData);
+        //alert(("jsonData======"+jsonData);
 		//alert(JSON.stringify(jsonData))
 		
 		let data=JSON.stringify(jsonData);
@@ -159,7 +159,7 @@ const reviewEdit=function(renum){
 			//xhr.setRequestHeader("Ajax","true");
 		},
 		success:function(res){
-			console.log((JSON.stringify(res));
+			//alert((JSON.stringify(res));
 			//alert(res.renum);
 			
 			reform2.renum.value=res.renum;
@@ -214,7 +214,7 @@ const review_count=function(){
 		},
 		error:function(request,status,err){
 			alert("등록된 리뷰가 없습니다");
-			alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"err:"+err);
+			console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"err:"+err);
 		}
 	});
 }
@@ -234,9 +234,9 @@ const show_reviews=function(){
 		 	//alert(res.length);
 			showTable(res);
 		},
-		error:function(err){
+		error:function(request,status,err){
 			alert("등록된 리뷰가 없습니다");
-			alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"err:"+err);
+			console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"err:"+err);
 		}
 	});
 }//---------------------------------------------------
