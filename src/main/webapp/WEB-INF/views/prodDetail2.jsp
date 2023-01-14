@@ -103,8 +103,8 @@
                            <input type="hidden" name="itemImage1" value="${prod.itemImage1}">
                            <!-- -------------------------------- -->
                            <label for="count">상품갯수</label> 
-                           <input type="number" name="count"
-                              id="count" min="1" max="50" size="2" value="1">
+                           <input type="number" name="oqty"
+                              id="oqty" min="1" max="50" size="2" value="1">
 
                         </form> <!-- form end------------ -->
 

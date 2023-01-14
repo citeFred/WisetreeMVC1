@@ -10,9 +10,9 @@ public interface CartMapper {
 	int updateCartCount(CartVO cvo);
 	int addCart(CartVO cvo);
 	
-	List<CartVO> seeCartBasket(int idx);
-	int deleteCart(int cartNo);
-	int getCartTotalSum(int idx);
+	List<CartVO> seeCartBasket(int idx_fk);
+	int deleteCart(int cartNum);
+	int getCartTotalSum(int idx_fk);
 	
 
 

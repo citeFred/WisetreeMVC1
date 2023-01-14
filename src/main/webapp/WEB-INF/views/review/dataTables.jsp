@@ -2,12 +2,12 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%-- <c:import url="/top" /> --%>
+
 <!DOCTYPE html>
 <html lang="kr">
 <head>
-<meta charset="UTF-8">
-<title>데이터 차트</title>
+<meta charset="UTF-8"><title>데이터 차트</title>
+
 <!-- DataTables -->
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script	src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
@@ -368,8 +368,6 @@ jQuery(function($){
 	//------------------------버튼 클릭시 함수호출----------------------------------------
 </script>
 
-<title>DataTable</title>
-</head>
 <body>
 	<table id="sellTable" class="table table-bordered" style="width: 100%">
 		<thead>
@@ -400,6 +398,6 @@ jQuery(function($){
 		<div id="pie_chart_div1"></div>
 	</div>
 </body>
-</html>
 
 
+<%-- <c:import url="/foot" /> --%>

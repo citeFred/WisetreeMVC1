@@ -130,28 +130,36 @@ $(document).ready(function(){
 			<ul class="navbar-nav">
 			
 			<!-- A D M I N 전 용 메 뉴----------------- -->
-			
-				<!-- [회원 목록 탭]  -->
-				<c:if test="${loginUser.status eq 9 or k_loginUser.status eq 9}">
-					<li class="nav-item">
-						<a class="nav-link"	href="${myctx}/admin/userList">회원목록[admin]</a>
-					</li>
-				
-				<!-- [매출 정보 조회 탭]  -->
-				<li class="nav-item">
-					<a class="nav-link" href="${myctx}/dataTables">매출정보조회[admin]</a>
-				</li> 
-				<!-- [상품 추가 탭]  -->
-
-					<li class="nav-item">
-						<a class="nav-link" href="${myctx}/adminpage/prodForm">상품추가[admin]</a>
-					</li>
-				<!-- [상품 목록 탭]  -->
-					<li class="nav-item">
-						<a class="nav-link"	href="${myctx}/prodList">상품목록[admin]</a>
-					</li>
-				</c:if>
-				
+			<c:if test="${loginUser.status eq 9 or k_loginUser.status eq 9}">
+				<div class="btn-group">
+				  <button type="button" class="btn btn-outline-danger">관리자메뉴</button>
+				  <button type="button" class="btn btn-outline-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-expanded="false">
+				   		 <span class="sr-only">Toggle Dropdown</span>
+				  </button>
+				  <ul class="dropdown-menu">
+				    <!-- Dropdown menu links -->
+						<!-- [회원 목록 탭]  -->
+							<li class="nav-item">
+								<a class="nav-link, dropdown-item"	href="${myctx}/admin/userList">회원목록[admin]</a>
+							</li>
+						
+						<!-- [매출 정보 조회 탭]  -->
+							<li class="nav-item">
+								<a class="nav-link, dropdown-item" href="${myctx}/dataTables">매출정보조회[admin]</a>
+							</li> 
+						
+						<!-- [상품 추가 탭]  -->
+		
+							<li class="nav-item">
+								<a class="nav-link, dropdown-item" href="${myctx}/adminpage/prodForm">상품추가[admin]</a>
+							</li>
+						<!-- [상품 목록 탭]  -->
+							<li class="nav-item">
+								<a class="nav-link, dropdown-item"	href="${myctx}/prodList">상품목록[admin]</a>
+							</li>
+					</ul>
+				</div>
+			</c:if>
 			<!-- A D M I N 전 용 메 뉴----------------- -->
 				
 				

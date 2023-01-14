@@ -33,19 +33,23 @@ public class CartController {
 	}
 	@PostMapping("/add")
 	public String addItem(
-			HttpSession ses,@ModelAttribute CartVO cvo) {
-			log.info("itemNo==="+cvo.getItemNo()+",count==="+cvo.getCount());
-			
-			if(cvo.getItemNo()==0||cvo.getCount()==0) {
-				return "redirect:../index";
-			}
-			
+			Model m, HttpSession ses,
+			@RequestParam(defaultValue="0")int itemNo,
+			@RequestParam(defaultValue="0")int oqty) {
+		if(itemNo==0|| oqty==0) {
+			System.out.println("ddddd");
+//			return "redirect:../index";
+		}
 			UserVO loginUser=(UserVO)ses.getAttribute("loginUser");
 			int idx=loginUser.getIdx();
 			
+			CartVO cvo=new CartVO();
+			cvo.setPnum_fk(itemNo);
+			cvo.setOqty(oqty);
+
 			
-			cvo.setIdx(idx);
-		
+			cvo.setIdx_fk(idx);
+			log.info("cvo==="+cvo);
 			
 			int n=shopService.addCart(cvo);
 			
@@ -74,21 +78,21 @@ public class CartController {
 		return "cartList";
 	}
 	
-	@PostMapping("/updatecart")
+	@PostMapping("/cartEdit")
 	public String cartEdit(@ModelAttribute("cvo") CartVO cvo) {
 		log.info("cvo==="+cvo);
 		
 		shopService.updateCartCount(cvo);
 		
-		return "redirect:/cartList";
+		return "redirect:cartList";
 	}
 	
 	@PostMapping("/cartDel")
-	public String cardDelete(@RequestParam(defaultValue = "0") int cartNo) {
-		if (cartNo == 0) {
+	public String cardDelete(@RequestParam(defaultValue = "0") int cartNum) {
+		if (cartNum == 0) {
 			return "redirect:cartList";
 		}
-		int n = shopService.deleteCart(cartNo);
+		int n = shopService.deleteCart(cartNum);
 		return "redirect:cartList";
 	}
 

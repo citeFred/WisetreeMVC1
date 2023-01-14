@@ -49,18 +49,19 @@ public class ShopServiceImpl implements ShopService {
 	}
 
 	@Override
-	public List<CartVO> seeCartBasket(int idx) {
-		return this.cartMapper.seeCartBasket(idx);
+	public List<CartVO> seeCartBasket(int idx_fk) {
+		return this.cartMapper.seeCartBasket(idx_fk);
 	}
 
 	@Override
-	public int deleteCart(int cartNo) {
-		return this.cartMapper.deleteCart(cartNo);
+	public int deleteCart(int cartNum) {
+		return this.cartMapper.deleteCart(cartNum);
 	}
 
 	@Override
-	public int getCartTotalSum(int idx) {
-		return this.cartMapper.getCartTotalSum(idx);
+	public int getCartTotalSum(int idx_fk) {
+		return this.cartMapper.getCartTotalSum(idx_fk);
+
 	}
 
 	@Override

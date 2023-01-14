@@ -50,25 +50,25 @@
                        value="${vo.ItemNo}">
                        ${vo.ItemNo}
                       </label> --%> <input type="checkbox" name="ItemNo"
-													value="${vo.itemNo}"> ${vo.itemNo}
+													value="${vo.pnum_fk}"> ${vo.pnum_fk}
 											</label></td>
 											<td>
 												<h4>${vo.itemName}</h4> <br> 
 												<a
-												href="../prodDetail?ItemNo=${vo.itemNo}" target="_blank">
+												href="../prodDetail?ItemNo=${vo.pnum_fk}" target="_blank">
 													<img src="../resources/product_images/${vo.itemImage1}"
 													class="img-thumbnail" style="width: 140px">
 												</a>
 											</td>
-											<td><input type="number" name="count"
-												id="count${state.index}" value="${vo.count}" min="1"
+											<td><input type="number" name="oqty"
+												id="oqty${state.index}" value="${vo.oqty}" min="1"
 												max="50" size="3">
 												<button type="button" class="btn btn-success"
-													onclick="cartEdit('${vo.cartNo}')">
+													onclick="cartEdit('${vo.cartNum}','${state.index}')">
 													수정</button></td>
 											<td>${vo.price}</td>
-											<td>${vo.price}</td>
-											<td><a href="#" onclick="cartDel('${vo.cartNo}')">삭제</a>
+											<td>${vo.saleprice}</td>
+											<td><a href="#" onclick="cartDel('${vo.cartNum}')">삭제</a>
 											</td>
 										</tr>
 									</c:forEach>
@@ -102,24 +102,24 @@
 		</div>
 		<!-- 삭제form------------------------- -->
 		<form name="df" action="cartDel">
-			<input type="hidden" name="cartNo">
+			<input type="hidden" name="cartNum">
 		</form>
 		<!-- --------------------------------- -->
 
 		<!-- 수정form ------------------------- -->
 		<form name="ef" action="cartEdit">
-			<input type="hidden" name="cartNo"> <input type="hidden"
-				name="count">
+			<input type="hidden" name="cartNum">
+			<input type="hidden" name="oqty">
 		</form>
 		<!-- --------------------------------- -->
 
 		<script>
 			function cartEdit(cnum, i) {
-				//alert(cnum+"/"+i);
-				let qty = $('#count' + i).val();
-				//alert(qty);
-				ef.cartNo.value = cnum;
-				ef.count.value = qty;
+				alert(cnum+"/"+i);
+				let oqty = $('#oqty' + i).val();
+				alert(oqty);
+				ef.cartNum.value = cnum;
+				ef.oqty.value = oqty;
 				ef.method = 'post';
 				ef.submit();
 
@@ -127,7 +127,7 @@
 
 			function cartDel(cnum) {
 				alert(cnum);
-				df.cartNo.value = cnum;
+				df.cartNum.value = cnum;
 				df.method = 'post';
 				df.submit();
 			}
