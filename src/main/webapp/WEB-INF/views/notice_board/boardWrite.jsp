@@ -63,7 +63,9 @@ $(function(){
 	   		<tr>
 	   			<td style="width:20%"><b>글쓴이</b></td>
         		<td style="width:80%">
-	   				<input type="text" name="name" id="name" class="form-control">
+	   				<input type="text" name="name" id="name" 
+	   				value='<c:out value="${loginUser.userid}"/>'
+	   				class="form-control" readonly>
 	   			</td>
 	   		</tr>
 	   		
