@@ -179,12 +179,7 @@ $(document).ready(function(){
 					</li>
 				</c:if>
 
-				<!-- [로그아웃 탭] <- 어떠한 형태의 회원이라도 로그인 한 경우 로그아웃 보이게 -->
-				<c:if test="${loginUser ne null or k_loginUser ne null}">
-					<li class="nav-item">
-						<a class="nav-link"	href="${myctx}/logout">로그아웃</a>
-					</li>
-				</c:if>
+
 				
 				
 				<!-- 공지사항 목록 탭  -->
@@ -236,10 +231,17 @@ $(document).ready(function(){
 				</div>
 				</c:if>
 			
+				<!-- [로그아웃 탭] <- 어떠한 형태의 회원이라도 로그인 한 경우 로그아웃 보이게 -->
+				<c:if test="${loginUser ne null or k_loginUser ne null}">
+					<li class="nav-item">
+						<a class="nav-link"	href="${myctx}/logout">로그아웃</a>
+					</li>
+				</c:if>
+				
 				<button class="btn btn-outline-dark" type="button" onclick="location.href='${myctx}/cart/cartList'">
 						<i class="bi-cart-fill me-1"></i>
 						Cart
-						<span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+						<span class="badge bg-dark text-white ms-1 rounded-pill"></span>
 				</button>
 			</ul>
 		</div>
