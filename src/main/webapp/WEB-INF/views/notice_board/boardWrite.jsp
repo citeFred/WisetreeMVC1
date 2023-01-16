@@ -15,6 +15,13 @@ $(function(){
 			$('#subject').focus();
 			return false;
 		}
+		
+		if($('#subject').val().length>200){
+			alert('제목은 200자 내로 작성해주세요');
+			$('#subject').focus();
+			return false;
+		}
+		
 		if($('#name').val()==''){
 			alert('글쓴이를 입력하세요');
 			$('#name').focus();
@@ -27,6 +34,12 @@ $(function(){
 			return false;
 		}
 		
+		if($('#content').val().length>2000){
+			alert('글내용은 2000자 내로 작성해주세요');
+			$('#content').focus();
+			return false;
+		}
+		
 		/* if($('#content').val()==''){
 			alert('글내용을 입력하세요');
 			$('#content').focus();
@@ -34,10 +47,17 @@ $(function(){
 		} */
 		
 		if($('#bpwd').val()==''){
-			alert('비밀번호를 입력하세요');
+			alert('글 비밀번호를 입력하세요');
 			$('#bpwd').focus();
 			return false;
 		}
+		
+		if($('#bpwd').val().length>20){
+			alert('글 비밀번호는 20자 내로 작성해주세요');
+			$('#bpwd').focus();
+			return false;
+		}
+		
 		return true;
 	})
 })//$() end----------------------------
@@ -79,7 +99,7 @@ $(function(){
 	   		</tr>
 	   		
 	       <tr>
-    	        <td style="width:20%"><b>비밀번호</b></td>
+    	        <td style="width:20%"><b>글 비밀번호</b></td>
        	   		<td style="width:80%">
        	  	 	<div class="col-md-5">
        			<input type="password" name="passwd" id="bpwd" class="form-control">

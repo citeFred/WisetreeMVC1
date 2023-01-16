@@ -57,7 +57,7 @@
 	</update>
 	
 	
-	<select id="noticeSelect" resultType="Board">
+	<select id="noticeSelect" resultType="int">
 		select noticeNum num from numbu where num=1
 	</select>
 	

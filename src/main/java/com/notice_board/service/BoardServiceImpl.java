@@ -52,9 +52,13 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public BoardVO noticeSelect() {
+	public int noticeSelect() {
 		// TODO Auto-generated method stub
-		return this.boardMapper.noticeSelect();
+		Integer temp = this.boardMapper.noticeSelect();
+		if(temp == null) {
+			temp = 0;
+		}
+		return temp;
 	}
 
 	@Override
