@@ -41,9 +41,9 @@ public class BoardController_notice {
 			HttpServletRequest req,
 			@RequestParam(defaultValue = "0") int num) {
 		
-		BoardVO vo=this.boardService.noticeSelect();
-		if(vo==null) {
-			return util.addMsgBack(m, "해당글은 존재하지 않아요");
+		int vo=this.boardService.noticeSelect();
+		if(vo==0) {
+			return util.addMsgBack(m, "공지글이 존재하지 않아요");
 		}
 		
 		//db에서 글 삭제처리
@@ -156,6 +156,8 @@ public class BoardController_notice {
 		BoardVO board=this.boardService.selectBoardByIdx(num);
 		m.addAttribute("board",board);
 		
+		int noticeCon=this.boardService.noticeSelect();
+		m.addAttribute("noticeCon",noticeCon);
 		return "notice_board/boardView";
 	}
 	

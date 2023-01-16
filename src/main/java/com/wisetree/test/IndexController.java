@@ -33,10 +33,10 @@ public class IndexController {
 	@RequestMapping("/index")
 	public void showIndex(Model m) {
 		//numbu에 등록된 공지글번호 가져오기
-		BoardVO num=noticeService.noticeSelect();
+		int num=noticeService.noticeSelect();
 		System.out.println("num="+num);
-		if(num!=null) {
-		BoardVO vo=noticeService.selectBoardByIdx(num.getNum());
+		if(num!=0) {
+		BoardVO vo=noticeService.selectBoardByIdx(num);
 		m.addAttribute("notice",vo);
 		}else {
 			m.addAttribute("notice",null);

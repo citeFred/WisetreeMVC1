@@ -79,10 +79,20 @@
 			<td colspan="4" align=center>
 				<c:if test="${loginUser.status eq 9 or k_loginUser.status eq 9}">
 				<a href="../write">글쓰기</a> |   
-				<a href="#" onclick="go(1)">삭제</a> |  
+				<%-- ${noticeCon } --%>
+					<c:if test="${board.num ne noticeCon}">
+						<a href="#" onclick="go(1)">삭제</a> |  
+					</c:if>
+				
 				<a href="#" onclick="go(2)">편집</a> |
 				</c:if>
 				<a href="../list">목록</a>
+				
+				<c:if test="${board.num eq noticeCon}">
+				<br>
+				<a> * 글 삭제를 원하실 경우 공지글을 해제해주세요</a>
+				</c:if>
+				
 			</td>
 		</tr>
 	
