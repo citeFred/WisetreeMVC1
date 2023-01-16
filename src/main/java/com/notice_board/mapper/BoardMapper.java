@@ -20,7 +20,8 @@ public interface BoardMapper {
 	
 	//
 	int noticeControl(int num);
-	BoardVO noticeSelect();
+	// int 0 Integer null but 둘다 숫자형
+	Integer noticeSelect();
 	int noticeCount();
 	int noticeInsert(int num);
 	
