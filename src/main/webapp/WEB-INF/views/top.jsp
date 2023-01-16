@@ -142,14 +142,8 @@ $(document).ready(function(){
 							<li class="nav-item">
 								<a class="nav-link, dropdown-item"	href="${myctx}/admin/userList">회원목록[admin]</a>
 							</li>
-						
-						<!-- [매출 정보 조회 탭]  -->
-							<li class="nav-item">
-								<a class="nav-link, dropdown-item" href="${myctx}/dataTables">매출정보조회[admin]</a>
-							</li> 
-						
+												
 						<!-- [상품 추가 탭]  -->
-		
 							<li class="nav-item">
 								<a class="nav-link, dropdown-item" href="${myctx}/adminpage/prodForm">상품추가[admin]</a>
 							</li>
@@ -157,6 +151,10 @@ $(document).ready(function(){
 							<li class="nav-item">
 								<a class="nav-link, dropdown-item"	href="${myctx}/prodList">상품목록[admin]</a>
 							</li>
+						<!-- [매출 정보 조회 탭]  -->
+							<li class="nav-item">
+								<a class="nav-link, dropdown-item" href="${myctx}/dataTables">매출정보조회[admin]</a>
+							</li> 
 					</ul>
 				</div>
 			</c:if>

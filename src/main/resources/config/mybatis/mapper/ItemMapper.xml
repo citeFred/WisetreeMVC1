@@ -31,6 +31,6 @@
 	</delete>
 	
 	<update id="modifyItem" parameterType="Item">
-		update item2 set itemName=#{itemName},itemBrand=#{itemBrand},price=#{price},saleprice=#{saleprice},point=#{point} where itemNo=#{itemNo}
+		update item2 set itemName=#{itemName},price=#{price},saleprice=#{saleprice},point=#{point} where itemNo=#{itemNo}
 	</update>
 </mapper>

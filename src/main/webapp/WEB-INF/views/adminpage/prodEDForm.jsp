@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="fn"  uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <c:import url="/top"/>
 
@@ -83,16 +82,16 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-           <h1 class="text-center">상품 수정[Admin Page]</h1>
+           <h1 class="text-center">상품 등록[Admin Page]</h1>
            
-           <form name="prodF" id="prodF" action="prodEdit" method="POST" enctype="multipart/form-data">
-           
+           <form name="prodF" id="prodF" method="POST" enctype="multipart/form-data" 
+           action onsubmit="return check()">
             <!-- 파일업로드시: enctype="multipart/form-data"-->
             <table class="table table-condensed table-bordered mt-4">
                <thead>
                   <tr>
                      <th colspan="2" class="text-center">
-                        <h3>:::Product Edit:::</h3>
+                        <h3>:::Product Register:::</h3>
                      </th>
                   </tr>
                </thead>
@@ -100,8 +99,6 @@
                   <tr>
                      <td width="20%"><b>카테고리</b></td>
                      <td width="80%">
-                     <b>${itemvo.up_Name}/ ${itemvo.down_Name}</b>
-                     <br>
                      <select name="up_Code" id="up_Code"
                         onchange="selectDownCategory(this.value)">
                            <option value="">::상위 카테고리::</option>
@@ -109,7 +106,7 @@
                            	<option value="${up.up_Code}">${up.up_Name}</option>
                            </c:forEach>
                            
-                     </select> 
+                     </select>
                      <span id="selectDcg"> 
                      
                                               
@@ -117,16 +114,8 @@
                   </tr>
                   
                   <tr>
-                     <td width="20%"><b>상품번호</b></td>
-                     <td width="80%"><input type="text" name="itemNo" id="itemNo" value="${itemvo.itemNo } "readonly>
-                     <span style="color: red"> 
-                     </span>
-               		 </td>
-                  </tr>
-                  
-                  <tr>
                      <td width="20%"><b>상품명</b></td>
-                     <td width="80%"><input type="text" name="itemName" id="itemName" value="${itemvo.itemName }">
+                     <td width="80%"><input type="text" name="itemName" id="itemName">
                      <span style="color: red"> 
                      </span>
                		 </td>
@@ -134,56 +123,28 @@
                   <tr>
                      <td width="20%"><b>제조사</b></td>
                      <td width="80%"><input type="text" name="itemBrand"
-                        id="itemBrand" value="${itemvo.itemBrand }"></td>
+                        id="itemBrand"></td>
                   </tr>
                   <tr>
                      <td width="20%"><b>상품스펙</b></td>
-                     <td width="80%">
-                     <b>${itemvo.quality}</b>
-                     <select name="quality" id="quality">
+                     <td width="80%"><select name="quality" id="quality">
                            <option value="NEW" selected>NEW</option>
                            <option value="HIT">HIT</option>
                            <option value="BEST">BEST</option>
                      </select></td>
                   </tr>
-            <!--       <tr>
+                  <tr>
                      <td>상품이미지</td>
                      <td>
-                     <IMG SRC="" WIDTH="150PX" >
-                     <br>
-                     <input type="file" name="itemImage1"><br> 
-                     <input type="file" name="itemImage1"><br> 
-                     <input type="file" name="itemImage1"><br>
-                     </td>
-                  </tr> -->
-                  
-            <tr>
-	   			<td style="width:20%"><b>상품이미지</b></td>
-        		<td style="width:80%">
-			   		<!-- 파일명의 확장자를 검사하기 위해 모두 소문자로 바꿈 -->
-					<c:set var="fname" value="${fn:toLowerCase(itemvo.itemImage1) }"/>
-					<!-- ------------------------------------- -->
-					<!-- ---이미지 보이도록 수정---------------------------------- -->
-					<c:if test="${fn:endsWith(fname,'.jpg') or fn:endsWith(fname,'.gif') or fn:endsWith(fname,'.png') }">
-						<img width="80px" class="img img-thumbnail"
-						src="${pageContext.request.contextPath }/resources/product_images/${itemvo.itemImage1}">
-					</c:if>
-					<!-- ---------------------------------------------------- -->
-					
-			
-	   				<!-- ---새로 업로드 하는 파일---------------- -->
-	   				<input type="file" name="mfilename" id="filename" 
-	   				class="form-control">
-	   				<!-- ---------------------------------- -->
-	   				<!-- ---기존 파일 보내기hidden-------------------- -->
-	   				<input type="hidden" name="itemImage1" value="<c:out value="${itemvo.itemImage1 }"/>">
-	   				<!-- ----------------------------------- -->
-	   			</td>
-	   		</tr>
+                     <input type="file" name="mitemImage1"><br> 
+                     <input type="file" name="mitemImage1"><br> 
+                     <input type="file" name="mitemImage1"><br>
+                  </td>
+                  </tr>
 
                   <tr>
                      <td width="20%"><b>상품수량</b></td>
-                     <td width="80%"><input type="number" name="count" id="count" value="${itemvo.count}">
+                     <td width="80%"><input type="number" name="count" id="count">
                         개
                <span style="color: red"> 
                </span></td>
@@ -192,7 +153,7 @@
                   <tr>
                      <td width="20%"><b>상품정가</b></td>
                      <td width="80%">
-                     <input type="text" name="price" id="price" value="${itemvo.price }">
+                     <input type="text" name="price" id="price">
       
                         원
                      <span style="color: red"> 
@@ -203,7 +164,7 @@
                   <tr>
                      <td width="20%"><b>상품판매가</b></td>
                      <td width="80%"><input type="text" name="saleprice"
-                        id="saleprice" value="${itemvo.saleprice }"> 원
+                        id="saleprice"> 원
                         <span style="color: red"> 
                      
                </span>   
@@ -222,7 +183,7 @@
                   </tr>
                   <tr>
                      <td colspan="2">
-                        <button type="" class="btn btn-success" onclick="check()" >상품정보수정</button>
+                        <button type="submit" class="btn btn-success">상품등록</button>
                      </td>
                   </tr>
                </tbody>
@@ -235,9 +196,3 @@
   </div>
     
 
-<script>
-function editregister(){
-	
-	prodF.submit();
-}
-</script>

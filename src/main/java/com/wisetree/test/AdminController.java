@@ -68,11 +68,16 @@ public class AdminController {
 		return "adminpage/prodEdit";
 	}
 	
-	@GetMapping("/prodEdit")
-	public String edit(@RequestParam("Item")ItemVO Item,RedirectAttributes rttr) {
-		int edit=shopService.modifyItem(Item);
-		rttr.addFlashAttribute("edit_result",edit);
-		return "redirect:/index";
+	@PostMapping("/prodEdit")
+	public String edit(Model m, @ModelAttribute("item") ItemVO item) {
+		log.info("prod edit===="+item);
+		int n=shopService.modifyItem(item);
+		String str = (n > 0) ? "수정 성공" : "수정 실패";
+		String loc = (n > 0) ? "prodList" : "javascript:history.back()";
+
+		m.addAttribute("message", str);
+		m.addAttribute("loc", loc);
+		return "msg";
 	}
 
 	@GetMapping("/prodForm")

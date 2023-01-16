@@ -18,7 +18,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<!-- 주문 폼 시작-------------------------- -->
-				<form name="orderF" id="orderF" action="order">
+				<form name="orderF" id="orderF" action="orderList" method="post">
 
 					<table class="table table-striped">
 						<thead>
@@ -89,10 +89,11 @@
 
 							</td>
 							<td colspan="3">
-								<button type="button" onclick="goOrder()"
+								<button type="submit" id="orderBtn"
 									class="btn btn-outline-info">주문하기</button> <!-- form tag안에 버튼이 있으면 default 로 submit ==> order.jsp -->
 								<button type="button" class="btn btn-outline-warning"
 									onclick="location.href='../index'">계속쇼핑</button>
+									
 							</td>
 						</tr>
 					</table>
@@ -131,6 +132,7 @@
 				df.method = 'post';
 				df.submit();
 			}
+			
 		</script>
 
 	</div>

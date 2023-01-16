@@ -9,8 +9,8 @@
 <!-- ------------------------------ -->
 <form method="post" enctype="multipart/form-data" name="reform" id="reform">
 	<!-- hidden data------------------------------------ -->
-	<input type="text" name="itemno_fk" id="itemno_fk" value="${prod.itemNo}">
-	<input type="text" name="userid" id="userid" value="${loginUser.userid}">
+	<input type="hidden" name="itemno_fk" id="itemno_fk" value="${prod.itemNo}">
+	<input type="hidden" name="userid" id="userid" value="${loginUser.userid}">
 	<%-- <input type="text" name="score" id="score" value="${revo.score}"> --%>
 	<input type="hidden" name="mode" value="ajaxMode">
 

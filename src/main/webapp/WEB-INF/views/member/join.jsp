@@ -12,7 +12,7 @@
 	<h1 class="text-center mt-1">Signup</h1>
 	<form name="mf" action="join" method="post">
 		<!-- id중복체크용 hidden data--------------- -->
-		id중복체크 yes/no<input type="text" name="id_flag" id="id_flag" value="N">
+		id중복체크 yes/no<input type="hidden" name="id_flag" id="id_flag" value="N">
 		<!-- ------------------------- -->
 				
 		<table class="table">

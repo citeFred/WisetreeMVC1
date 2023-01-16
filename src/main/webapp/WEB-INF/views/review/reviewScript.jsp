@@ -213,7 +213,7 @@ const review_count=function(){
 			$('#review_cnt').html(res.cnt);
 		},
 		error:function(request,status,err){
-			alert("등록된 리뷰가 없습니다");
+			//alert("등록된 리뷰가 없습니다");
 			console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"err:"+err);
 		}
 	});
@@ -235,7 +235,7 @@ const show_reviews=function(){
 			showTable(res);
 		},
 		error:function(request,status,err){
-			alert("등록된 리뷰가 없습니다");
+			//alert("등록된 리뷰가 없습니다");
 			console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"err:"+err);
 		}
 	});
@@ -268,6 +268,7 @@ const showTable=function(res){
 			str+='</div>';
 			str+='</td>';
 			str+='</tr>';
+			
 		});
 		str+='</table>';
 		$('#revList').html(str);

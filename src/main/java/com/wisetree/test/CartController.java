@@ -97,5 +97,26 @@ public class CartController {
 	}
 
 	
+	@PostMapping("/orderList")
+	public String orderList(Model m, HttpSession ses) {
+		
+		UserVO loginUser=(UserVO)ses.getAttribute("loginUser");
+//		log.info("user:" +loginUser);
+//		if (loginUser.getIdx()==0) {
+//			
+//			return "redirect:/index";
+//		}
+		int idx=loginUser.getIdx();
+		
+		List<CartVO> cartArr=this.shopService.seeCartBasket(idx);
+		
+		int sum=this.shopService.getCartTotalSum(idx);
+		
+		m.addAttribute("cartArr",cartArr);
+		m.addAttribute("sum",sum);
+		
+		return "order";
+	}
+	
 
 }

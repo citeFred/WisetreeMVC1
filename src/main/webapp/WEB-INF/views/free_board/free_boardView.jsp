@@ -58,10 +58,10 @@
                      </c:if>
                </td>
             </tr>
-            <tr>
+<!--             <tr>
             	<td colspan="4" align=center><button id="btnUP" class="btn btn-primary">UP</button>&nbsp;&nbsp;&nbsp;
             	<button id="btnDOWN" class="btn btn-danger">DOWN</button>
-            </tr>
+            </tr> -->
             <tr>
                <td colspan="4" align=center><a href="../write">글쓰기</a>| <a
                   href="../list">목록</a>| <a href="#" onclick="go(1)">편집</a>| <a

@@ -17,14 +17,21 @@
 				<div class="modal-body">
 							
 
-		<p style="text-align: center;">
-				<c:out value="${notice.subject }"/>&nbsp;&nbsp;&nbsp;&nbsp;<c:out value="${notice.wdate }"/>
-		</p>
+		<div style="text-align: center;">
+			<div style="float: left;">
+				<c:out value="${notice.subject }"/>
+			</div>
+			<div style="float: right;">
+				<c:out value="${notice.wdate }"/>
+			</div>
+			<div style="clear: both;"></div>
+		</div>
 		<hr>
 		<p style="text-align: center;">
 			${notice.content }
+		</p>
 		
-		
+		<p style="text-align:center;">
 			<!-- 파일명의 확장자를 검사하기 위해 모두 소문자로 바꿈 -->
 			<c:set var="fname" value="${fn:toLowerCase(notice.filename) }"/>
 			<!-- ------------------------------------- -->
@@ -49,7 +56,7 @@ function down(){
 	fileF.submit();
 }
 </script>
-				<label for="undoNotice">
+				<label style="text-align: right;" for="undoNotice">
 					<input type="checkbox" name="saveId" id="undoNotice" > 하루동안 보이지 않기
 				</label>
 				

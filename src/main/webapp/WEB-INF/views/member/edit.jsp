@@ -33,7 +33,7 @@
 	
 	<form name="mf" action="edit" method="post">
 		<!-- id중복체크용 hidden data--------------- -->
-		<input type="text" name="id_flag" id="id_flag" value="N">
+		<input type="hidden" name="id_flag" id="id_flag" value="N">
 		<!-- ------------------------- -->
 		<table class="table">
 			<tr>
