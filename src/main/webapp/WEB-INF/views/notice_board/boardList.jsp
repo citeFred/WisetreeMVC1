@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn"  uri="http://java.sun.com/jsp/jstl/functions"%>
 <!-- functions taglib---------------------------------------- -->
 <c:import url="/top"/>
 <%-- ${boardArr } --%>
@@ -52,7 +53,12 @@
 
 						<td class="sub">
 							<a href="view/<c:out value="${board.num }"/>">
-								<c:out value="${board.subject }" />				
+								<c:if test="${fn:length(board.subject)>20 }">
+					<c:out value="${fn:substring(board.subject,0,20) }"/>...
+				</c:if>
+				<c:if test="${fn:length(board.subject)<=20 }">
+				<c:out value="${board.subject }"/>
+				</c:if>				
 							</a>
 							<!-- ---첨부파일 있는 글 표시---------------- -->
 							<c:if test="${board.filesize>0 }">

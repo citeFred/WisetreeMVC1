@@ -3,6 +3,11 @@
 <%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn"  uri="http://java.sun.com/jsp/jstl/functions"%>
 <!-- The Modal -->
+<style>
+	.modal p{
+		word-wrap:break-word;
+	}
+</style>
 <div class="modal" id="noticePop">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -18,9 +23,12 @@
 							
 
 		<div style="text-align: center;">
-			<div style="float: left;">
-				<c:out value="${notice.subject }"/>
-			</div>
+			
+			<p style="text-align: center;word-wrap:break-word;">
+			<c:out value="${notice.subject }"/>
+			
+			</p>
+			
 			<div style="float: right;">
 				<c:out value="${notice.wdate }"/>
 			</div>
@@ -28,7 +36,7 @@
 		</div>
 		<hr>
 		<p style="text-align: center;">
-			${notice.content }
+		${notice.content }
 		</p>
 		
 		<p style="text-align:center;">
