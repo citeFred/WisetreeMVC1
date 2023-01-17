@@ -27,8 +27,8 @@
 				</div>
 				<!-- Modal footer -->
 				<div class="modal-footer">
-					<button class="btn btn-success">일반 회원 Login</button>
-					<button class="btn btn-primary" onclick="location.href='/join'">Join a member</button>
+					<button class="btn btn-success">일반 회원 로그인</button>
+					<button class="btn btn-primary" onclick="location.href='/join'">회원가입</button>
 					<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
 					
 			<!-- 카카오 로그인 -->

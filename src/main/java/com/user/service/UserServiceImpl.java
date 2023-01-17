@@ -83,7 +83,7 @@ public class UserServiceImpl implements UserService {
 		UserVO user=this.findUser(tmpVo); //제출한 아이디와 DB에 일치하는 아이디가 있는지(윗 메서드에서 DB로 연결됨) 
 		//있는 경우 user(VO)를 반환 받아 옴.
 		
-		if(user!= null) { //아이디가 존재 한다면, 
+		if(user!= null) { //아이디가 존재 하는 경우
             rawPw = tmpVo.getPwd();        // 사용자가 제출한 비밀번호
             encodePw = user.getPwd();        // 데이터베이스에 저장한 인코딩된 비밀번호
             if(true == pwEncoder.matches(rawPw, encodePw)) {

@@ -9,10 +9,10 @@
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 
 <div class="container" style="height: 750px; overflow: auto;">
-	<h1 class="text-center mt-1">Signup</h1>
+	<h1 class="text-center mt-1">회원가입</h1>
 	<form name="mf" action="join" method="post">
 		<!-- id중복체크용 hidden data--------------- -->
-		id중복체크 yes/no<input type="hidden" name="id_flag" id="id_flag" value="N">
+		<input type="hidden" name="id_flag" id="id_flag" value="N">
 		<!-- ------------------------- -->
 				
 		<table class="table">
