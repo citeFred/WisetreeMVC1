@@ -23,8 +23,10 @@
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
 
-<!-- Google 번역 -->
-<script>
+<!-- Google 번역 ---------------------------------------------------------------------------------->
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<!-- //Google 번역 -------------------------------------------------------------------------------->
+		<script>
 			function googleTranslateElementInit() {
 				new google.translate.TranslateElement({
 					pageLanguage: 'ko',
@@ -37,8 +39,8 @@
 			setTimeout(function() {
 		    	  $("select.goog-te-combo").addClass("tx-select-top");
 			}, 1000);
-</script>
-<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+		</script>
+
 <!-- //Google 번역 -->
 
 <!-- [파비콘] favicon.ico 404 오류 & favicon(파비콘) 만들기  -->
@@ -107,6 +109,48 @@ $(document).ready(function(){
     margin: auto;    
 }
 
+/* /* 구글 번역  */ */
+/* #google_translate_element > div > div { */
+/* 	position: relative; */
+/* 	min-width: 200px; */
+/* 	height: 60px; */
+/* } */
+/* #google_translate_element > div > div > select::-ms-expand { */
+/*     display: none; */
+/* } */
+
+/* #google_translate_element > div > div:after { */
+/*     content: '<>'; /* 목록 펼침 아이콘 */ */
+/*     font: 17px "Consolas", monospace; */
+/*     color: #333; */
+/*     transform: rotate(90deg); */
+/*     right: 11px; */
+/*     top: 18px; */
+/*     padding: 0 0 2px; */
+/*     border-bottom: 1px solid #999; */
+/*     position: absolute; */
+/*     pointer-events: none; */
+/* } */
+
+/* #google_translate_element > div > div > select { */
+/*     -webkit-appearance: none; */
+/*     -moz-appearance: none; */
+/*     appearance: none; */
+/*     display: block; */
+/*     width: 100%; */
+/*     max-width: 320px; */
+/*     height: 50px; */
+/*     float: right; */
+/*     margin: 5px 0px; */
+/*     padding: 0px 24px; */
+/*     font-size: 16px; */
+/*     line-height: 1.75; */
+/*     color: #333; */
+/*     border: 1px solid #cccccc; */
+/*     -ms-word-break: normal; */
+/*     word-break: normal; */
+/*     border-radius: 10px; */
+/* } */
 </style>
 </head>
 
@@ -209,7 +253,7 @@ $(document).ready(function(){
 		</div>
 		
 		<!-- Google 번역 -->
-		<div id="google_translate_element" class="hd_lang"></div>
+		<div id="google_translate_element" class="hd_lang"></div>&nbsp;&nbsp;
 		
 		<!-- //Google 번역 -->
 		
@@ -220,7 +264,7 @@ $(document).ready(function(){
 				<div id="normalUserLogined">
 					<li class="nav-item bg-primary">
 						<a class="nav-link text-white" href="#">${loginUser.userid }님 로그인중..</a>
-				</div>
+				</div>&nbsp;&nbsp;
 				</c:if>
 				
 				<!-- [카카오 로그인 상태 탭-2] <- 카카오회원 로그인 상태에서는 일반 로그인상태가 안보이게 -->
@@ -228,14 +272,14 @@ $(document).ready(function(){
 				<div id="kakaoUserLogined">
 					<li class="nav-item bg-primary">
 						<a class="nav-link text-white" href="#">${k_loginUser.k_name}님 로그인중..</a>
-				</div>
+				</div>&nbsp;&nbsp;
 				</c:if>
 			
 				<!-- [로그아웃 탭] <- 어떠한 형태의 회원이라도 로그인 한 경우 로그아웃 보이게 -->
 				<c:if test="${loginUser ne null or k_loginUser ne null}">
 					<li class="nav-item">
 						<a class="nav-link"	href="${myctx}/logout">로그아웃</a>
-					</li>
+					</li>&nbsp;&nbsp;
 				</c:if>
 				
 				<button class="btn btn-outline-dark" type="button" onclick="location.href='${myctx}/cart/cartList'">

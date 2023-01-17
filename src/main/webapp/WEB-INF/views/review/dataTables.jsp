@@ -186,9 +186,7 @@ jQuery(function($){
 });
 </script>
 
-<!-- 동적으로 데이터 추가삭제 차트  -->
 <script>
-	// https://www.tutorialspoint.com/googlecharts/
 	// 구글 시각화 API를 로딩하는 메소드
 	google.charts.load('current', {packages: ['corechart']});
 	
