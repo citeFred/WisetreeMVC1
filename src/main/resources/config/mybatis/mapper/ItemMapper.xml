@@ -31,6 +31,12 @@
 	</delete>
 	
 	<update id="modifyItem" parameterType="Item">
-		update item2 set itemName=#{itemName},price=#{price},saleprice=#{saleprice},point=#{point} where itemNo=#{itemNo}
+		update item2 set itemName=#{itemName},count=#{count},price=#{price},saleprice=#{saleprice},point=#{point} 
+			<if test="itemImage1!=null and itemImage1!=''">
+		 		itemImage1=#{itemImage1}, itemImage2=#{itemImage2}, itemImage3=#{itemImage3} 
+	 		</if>
+	 		<where>
+	 			itemNo=#{itemNo}
+	 		</where>
 	</update>
 </mapper>

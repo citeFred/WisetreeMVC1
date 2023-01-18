@@ -31,7 +31,14 @@ public class ItemVO {
 	private int totalPoint;
 
 	private String ordernum;
-
+	
+	private String originFilename1;
+	private String originFilename2;
+	private String originFilename3;
+	private String old_filename1;
+	private String old_filename2;
+	private String old_filename3;
+	
 	public void setCount(int count) {
 		this.count = count;
 		this.totalPrice = this.saleprice * this.count;

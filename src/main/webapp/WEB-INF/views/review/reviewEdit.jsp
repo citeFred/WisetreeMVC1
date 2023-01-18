@@ -8,9 +8,9 @@
 		<div class="modal-body">
 <form method="post" enctype="multipart/form-data" name="reform2" id="reform2">
 			<!-- hidden data--------------------------------------------------------------- -->
-				<input type="text" name="itemno_fk" id="itemno_fk" value="${prod.itemNo}">
-				<input type="text" name="userid" id="userid" value="${loginUser.userid}">
-				<input type="text" name="renum" id="renum" value="${result.revo} ">
+				<input type="hidden" name="itemno_fk" id="itemno_fk" value="${prod.itemNo}">
+				<input type="hidden" name="userid" id="userid" value="${loginUser.userid}">
+				<input type="hidden" name="renum" id="renum" value="${result.revo} ">
 				<input type="hidden" name="score" id="score" >
 			<!-- -------------------------------------------------------------------------- -->
 	<table class="table">

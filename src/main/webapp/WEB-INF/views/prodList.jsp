@@ -36,7 +36,7 @@
 							<td>
 							${prod.up_Name}>${prod.down_Name}
 							</td>
-							<td>${prod.itemName}</td>
+							<td><a href="prodDetail2?itemNo=${prod.itemNo}" target="_blank">${prod.itemName}</a></td>
 							<td width="15%">
 							<a href="prodDetail2?itemNo=${prod.itemNo}" target="_blank">
 					

@@ -51,14 +51,15 @@ public class AdminController {
 	@Inject
 	private ShopService shopService;
 	
-	@GetMapping("/remove")
+	
+	@GetMapping("remove")
 	public String remove(@RequestParam("itemNo")int itemNo, RedirectAttributes rttr) {
 		int result=shopService.removeByitemNo(itemNo);	
 		rttr.addFlashAttribute("delete_result",result);
 		return "redirect:/prodList";
 	}
 	
-	@GetMapping("/edit")
+	@GetMapping("edit")
 	public String editForm(@RequestParam("itemNo")int itemNo,Model m) {
 		ItemVO itemvo=shopService.selectByitemNum(itemNo);
 		List<OptionVO> upoption=adminService.getUpOption();
@@ -68,12 +69,36 @@ public class AdminController {
 		return "adminpage/prodEdit";
 	}
 	
-	@PostMapping("/prodEdit")
-	public String edit(Model m, @ModelAttribute("item") ItemVO item) {
+	@PostMapping("prodEdit")
+	public String edit(Model m, HttpServletRequest req,@RequestParam("mitemImage1") List<MultipartFile> itemImage1,
+			@ModelAttribute("item") ItemVO item) {
 		log.info("prod edit===="+item);
+		
+		ServletContext app=req.getServletContext();
+		String upFile=app.getRealPath("/resources/product_images");
+		File d=new File(upFile);
+		if(!d.exists()) d.mkdirs();
+		int i=0;
+		try {
+			for(MultipartFile mf:itemImage1) {
+				String tempname=new String(mf.getOriginalFilename().getBytes("8859_1"),"UTF-8");
+				mf.transferTo(new File(upFile, tempname));
+				if(i==0) {
+					item.setItemImage1(tempname);
+					}else if(i==1) {
+						item.setItemImage2(tempname);
+					}else if(i==2) {
+						item.setItemImage3(tempname);
+					}
+				i++;
+			}
+			}catch(Exception e) {
+				log.error("파일 업로드 에러: "+e);
+			}
+		
 		int n=shopService.modifyItem(item);
 		String str = (n > 0) ? "수정 성공" : "수정 실패";
-		String loc = (n > 0) ? "prodList" : "javascript:history.back()";
+		String loc = (n > 0) ? "../prodList" : "javascript:history.back()";
 
 		m.addAttribute("message", str);
 		m.addAttribute("loc", loc);
@@ -88,7 +113,7 @@ public class AdminController {
 		return "adminpage/prodForm";
 	}
 	
-	@GetMapping("/getDownOption")
+	@GetMapping("getDownOption")
 	@ResponseBody
 	public List<OptionVO> getDownOption(Integer up_Code){
 		List<OptionVO> downoption=adminService.getDownOption(up_Code);
@@ -96,7 +121,7 @@ public class AdminController {
 	}
 	
 	@PostMapping("/prodForm")//상품 등록 
-	public String saveFileProduct(HttpServletRequest req,@RequestParam("mitemImage1") List<MultipartFile> itemImage1, @ModelAttribute ItemVO Item) {
+	public String saveFileProduct(HttpServletRequest req, @RequestParam("mitemImage1") List<MultipartFile> itemImage1, @ModelAttribute ItemVO Item) {
 		
 		ServletContext app=req.getServletContext();
 		String upFile=app.getRealPath("/resources/product_images");

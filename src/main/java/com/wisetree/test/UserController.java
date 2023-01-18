@@ -138,6 +138,13 @@ public class UserController {
 	@PostMapping("/admin/edit")
 	public String userEditEnd(Model m, @ModelAttribute("user") UserVO user) {
 		log.info("user edit===="+user);
+		String rawPw = "";            // 인코딩 전 비밀번호
+        String encodePw = "";        // 인코딩 후 비밀번호
+        
+        rawPw = user.getPwd();            // 비밀번호 데이터 얻음
+        encodePw = pwEncoder.encode(rawPw);        // 비밀번호 인코딩
+        user.setPwd(encodePw);            // 인코딩된 비밀번호 member객체에 다시 저장
+        
 		int n = this.userService.updateUser(user);
 		String str = (n > 0) ? "수정 성공" : "수정 실패";
 		String loc = (n > 0) ? "userList" : "javascript:history.back()";

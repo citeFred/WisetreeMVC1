@@ -116,7 +116,7 @@ $(function(){
 	   				class="form-control">
 	   				<!-- ---------------------------------- -->
 	   				<!-- ---기존 파일 보내기hidden-------------------- -->
-	   				<input type="hidden" name="old_filename" value="<c:out value="${board.filename }"/>">
+	   				<input type="text" name="old_filename" value="<c:out value="${board.filename }"/>">
 	   				<!-- ----------------------------------- -->
 	   			</td>
 	   		</tr>

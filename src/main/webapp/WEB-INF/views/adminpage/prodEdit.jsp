@@ -7,7 +7,7 @@
 <c:import url="/top"/>
 
 <script>
-	function selectDownCategory(up_Code){
+/*  function selectDownCategory(up_Code){
 		//alert(upCode);
 		$.ajax({
 			type:'get',
@@ -32,9 +32,8 @@
 			alert('err');
 		})
 		
-	}
+	}  */
 	
-	function check(){
 /* 		if(!$('#up_Code').val()){
 			alert('상위 카테고리를 선택하세요');
 			$('#up_Code').focus();
@@ -44,11 +43,11 @@
 			alert('하위 카테고리를 선택하세요');
 			$('#down_Code').focus();
 			return false;
-		} */
+		} 
 		if(!$('#itemName').val()){
 			alert('상품명을 입력하세요');
 			$('#itemName').focus();
-			return false;
+			return;
 		}
 		
 		let $price=$('#price').val();
@@ -56,26 +55,27 @@
 		if(!pattern.test($('#count').val())){
 			alert('수량은 숫자로 입력해야 해요');
 			$('#count').select();
-			return false;
+			return;
 		}
 		
 		if(!pattern.test($price)){
 			alert('정가는 숫자로 입력해야 해요');
 			$('#price').focus();
-			return false;
+			return;
 		}
 		if(!pattern.test($('#saleprice').val())){
 			alert('판매가는 숫자로 입력해야 해요');
 			$('#saleprice').focus();
-			return false;
+			return;
 		}
 		if(!pattern.test($('#point').val())){
 			alert('포인트는 숫자로 입력해야 해요');
 			$('#point').focus();
-			return false;
+			return;
 		}
 		return true;
 	}
+	*/
 </script>
 
 
@@ -85,7 +85,9 @@
         <div class="col-md-12">
            <h1 class="text-center">상품 수정[Admin Page]</h1>
            
-           <form name="prodF" id="prodF" action="prodEdit" method="POST" enctype="multipart/form-data">
+
+           
+           <form name="peditF" id="peditF" action="prodEdit" method="POST" enctype="multipart/form-data">
            
             <!-- 파일업로드시: enctype="multipart/form-data"-->
             <table class="table table-condensed table-bordered mt-4">
@@ -93,32 +95,30 @@
                   <tr>
                      <th colspan="2" class="text-center">
                         <h3>:::Product Edit:::</h3>
+                        
                      </th>
                   </tr>
                </thead>
                <tbody>
                   <tr>
                      <td width="20%"><b>카테고리</b></td>
+                    
                      <td width="80%">
-                     <b>${itemvo.up_Name}/ ${itemvo.down_Name}</b>
+                     <b>
+                     	<input type="text" name="up_Name" id="up_Name" readonly value="${itemvo.up_Name}">
+                     	<input type="hidden" name="up_Code" id="up_Code" value="${itemvo.up_Code}">
+                        <input type="text" name="down_Name" id="down_Name" readonly value="${itemvo.down_Name}">
+                        <input type="hidden" name="down_Code" id="down_Code" value="${itemvo.down_Code}">
+                     </b>
                      <br>
-                     <select name="up_Code" id="up_Code"
-                        onchange="selectDownCategory(this.value)">
-                           <option value="">::상위 카테고리::</option>
-                           <c:forEach var="up" items="${upoption}">
-                           	<option value="${up.up_Code}">${up.up_Name}</option>
-                           </c:forEach>
-                           
-                     </select> 
-                     <span id="selectDcg"> 
-                     
-                                              
-                     </span></td>
+
+                  </td>
                   </tr>
                   
                   <tr>
                      <td width="20%"><b>상품번호</b></td>
-                     <td width="80%"><input type="text" name="itemNo" id="itemNo" value="${itemvo.itemNo } "readonly>
+                     <td width="80%">
+                     	<input type="text" name="itemNo" id="itemNo" value="${itemvo.itemNo } "readonly>
                      <span style="color: red"> 
                      </span>
                		 </td>
@@ -126,25 +126,22 @@
                   
                   <tr>
                      <td width="20%"><b>상품명</b></td>
-                     <td width="80%"><input type="text" name="itemName" id="itemName" value="${itemvo.itemName }">
+                     <td width="80%">
+                     	<input type="text" name="itemName" id="itemName" value="${itemvo.itemName }">
                      <span style="color: red"> 
                      </span>
                		 </td>
                   </tr>
                   <tr>
                      <td width="20%"><b>제조사</b></td>
-                     <td width="80%"><input type="text" name="itemBrand"
-                        id="itemBrand" value="${itemvo.itemBrand }"></td>
+                     <td width="80%">
+                     <input type="text" name="itemBrand" id="itemBrand" value="${itemvo.itemBrand }"></td>
                   </tr>
                   <tr>
                      <td width="20%"><b>상품스펙</b></td>
                      <td width="80%">
                      <b>${itemvo.quality}</b>
-                     <select name="quality" id="quality">
-                           <option value="NEW" selected>NEW</option>
-                           <option value="HIT">HIT</option>
-                           <option value="BEST">BEST</option>
-                     </select></td>
+                 
                   </tr>
             <!--       <tr>
                      <td>상품이미지</td>
@@ -160,23 +157,19 @@
             <tr>
 	   			<td style="width:20%"><b>상품이미지</b></td>
         		<td style="width:80%">
-			   		<!-- 파일명의 확장자를 검사하기 위해 모두 소문자로 바꿈 -->
-					<c:set var="fname" value="${fn:toLowerCase(itemvo.itemImage1) }"/>
-					<!-- ------------------------------------- -->
-					<!-- ---이미지 보이도록 수정---------------------------------- -->
-					<c:if test="${fn:endsWith(fname,'.jpg') or fn:endsWith(fname,'.gif') or fn:endsWith(fname,'.png') }">
-						<img width="80px" class="img img-thumbnail"
-						src="${pageContext.request.contextPath }/resources/product_images/${itemvo.itemImage1}">
-					</c:if>
-					<!-- ---------------------------------------------------- -->
-					
-			
-	   				<!-- ---새로 업로드 하는 파일---------------- -->
-	   				<input type="file" name="mfilename" id="filename" 
-	   				class="form-control">
-	   				<!-- ---------------------------------- -->
+        		
+        		<!-- ---새파일 업로드------------------ -->
+        		     <input type="file" name="mitemImage1"><br> 
+                     <input type="file" name="mitemImage1"><br> 
+                     <input type="file" name="mitemImage1"><br>
+        		<!-- ---기존 파일 표시------------------ -->
+					<c:out value="${itemvo.itemImage1}"/> <br>
+					<c:out value="${itemvo.itemImage2}"/> <br>
+					<c:out value="${itemvo.itemImage3}"/> <br>
 	   				<!-- ---기존 파일 보내기hidden-------------------- -->
-	   				<input type="hidden" name="itemImage1" value="<c:out value="${itemvo.itemImage1 }"/>">
+	   				<input type="text" name="old_filename1" value="<c:out value="${itemvo.itemImage1 }"/>">
+	   				<input type="text" name="old_filename2" value="<c:out value="${itemvo.itemImage2 }"/>">
+	   				<input type="text" name="old_filename3" value="<c:out value="${itemvo.itemImage3 }"/>">
 	   				<!-- ----------------------------------- -->
 	   			</td>
 	   		</tr>
@@ -212,17 +205,19 @@
                   </tr>
                   <tr>
                      <td width="20%"><b>상품설명</b></td>
-                     <td width="80%"><textarea name="itemInfo" id="itemInfo"
-                           rows="5" cols="60"></textarea></td>
+
+                     <td width="80%">
+                     <textarea name="itemInfo" id="itemInfo" rows="5" cols="60">${itemvo.itemInfo }</textarea></td>
                   </tr>
                   <tr>
                      <td width="20%"><b>포인트</b></td>
-                     <td width="80%"><input type="number" name="point" id="point">
+                     <td width="80%">
+                     <input type="number" name="point" id="point" value="${itemvo.point }">
                         POINT</td>
                   </tr>
                   <tr>
                      <td colspan="2">
-                        <button type="" class="btn btn-success" onclick="check()" >상품정보수정</button>
+                        <button type="submit" class="btn btn-success" >상품정보수정</button>
                      </td>
                   </tr>
                </tbody>
@@ -234,10 +229,3 @@
     </div>
   </div>
     
-
-<script>
-function editregister(){
-	
-	prodF.submit();
-}
-</script>
