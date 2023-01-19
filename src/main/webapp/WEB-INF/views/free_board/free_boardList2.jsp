@@ -77,13 +77,12 @@
 				<th>작성자</th>
 				<th>날짜</th>
 				<th>조회수</th>
-				<th>추천수</th>
 			</tr>
 		</thead>
 		<tbody id="boardBody">
 		<c:if test="${boardArr eq null or empty boardArr}">
 			<tr>
-				<td colspan="5"><b>No Data</b></td>
+				<td colspan="4"><b>No Data</b></td>
 			</tr>
 		</c:if>
 		<c:if test="${boardArr ne null and not empty boardArr}">
@@ -118,9 +117,6 @@
 				</td>
 				<td>
 					<c:out value="${board.readnum}" />
-				</td>
-				<td>
-					0<%-- <c:out value="${board.readnum}" /> --%>
 				</td>
 			</tr>
 			</c:forEach>

@@ -4,29 +4,16 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <c:import url="/top" />
-<script type="text/javascript" src="./js/userCheck.js"></script>
+<script type="text/javascript" src="/js/userCheck.js"></script>
+<script type="text/javascript" src="/js/addressApi.js"></script>
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 
 <div class="container" style="height: 750px; overflow: auto;">
 	<h1 class="text-center mt-1">회원 정보 수정</h1>
 	
 	<script type="text/javascript">
 	function check() {
-		/* //유효성 체크
-		if (window.document.frm.name.value == "") {
-			alert('이름을 입력하세요');
-			frm.name.focus();//입력포커스
-			return;
-		}
-		if (!frm.msg.value) {
-			alert('메모 내용을 입력하세요')
-			frm.msg.focus();
-			return;
-		}
-		if (frm.msg.value.length > 100) {
-			alert('메모 내용은 100자까지만 가능해요');
-			frm.msg.select();
-			return;
-		} */
+
 		frm.submit();//서버에 전송		
 	}
 </script>
@@ -91,8 +78,9 @@
 			<tr>
 				<td width="20%" class="m1"><b>우편번호</b></td>
 				<td width="80%" class="m2">
-					<input type="text" name="post" id="post" placeholder="Post" maxlength="5" value="${user.post}">
-					<button class="btn btn-outline-success" type="button">우편번호 찾기</button></td>
+					<input type="text" name="post" id="post" placeholder="우편번호 찾기를 눌러주세요." onclick="execPostCode();" readonly>
+					<!-- 다음카카오 우편번호 API를 활용한 우편번호 검색입력 기능 추가 -->
+					<button class="btn btn-outline-success" type="button" onclick="execPostCode();">우편번호 찾기</button></td>
 			</tr>
 			<tr>
 				<td width="20%" class="m1"><b>주소</b></td>
