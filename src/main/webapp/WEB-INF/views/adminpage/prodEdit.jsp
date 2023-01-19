@@ -118,7 +118,7 @@
                   <tr>
                      <td width="20%"><b>상품번호</b></td>
                      <td width="80%">
-                     	<input type="text" name="itemNo" id="itemNo" value="${itemvo.itemNo } "readonly>
+                     	<input class="form-control" style="width: 50%;" type="text" name="itemNo" id="itemNo" value="${itemvo.itemNo } "readonly>
                      <span style="color: red"> 
                      </span>
                		 </td>
@@ -127,7 +127,7 @@
                   <tr>
                      <td width="20%"><b>상품명</b></td>
                      <td width="80%">
-                     	<input type="text" name="itemName" id="itemName" value="${itemvo.itemName }">
+                     	<input type="text" style="width: 50%;" name="itemName" id="itemName" value="${itemvo.itemName }">
                      <span style="color: red"> 
                      </span>
                		 </td>
@@ -163,13 +163,14 @@
                      <input type="file" name="mitemImage1"><br> 
                      <input type="file" name="mitemImage1"><br>
         		<!-- ---기존 파일 표시------------------ -->
+					기존 첨부 파일 명 : <br>
 					<c:out value="${itemvo.itemImage1}"/> <br>
 					<c:out value="${itemvo.itemImage2}"/> <br>
 					<c:out value="${itemvo.itemImage3}"/> <br>
 	   				<!-- ---기존 파일 보내기hidden-------------------- -->
-	   				<input type="text" name="old_filename1" value="<c:out value="${itemvo.itemImage1 }"/>">
-	   				<input type="text" name="old_filename2" value="<c:out value="${itemvo.itemImage2 }"/>">
-	   				<input type="text" name="old_filename3" value="<c:out value="${itemvo.itemImage3 }"/>">
+	   				<input type="hidden" name="old_filename1" value="<c:out value="${itemvo.itemImage1 }"/>">
+	   				<input type="hidden" name="old_filename2" value="<c:out value="${itemvo.itemImage2 }"/>">
+	   				<input type="hidden" name="old_filename3" value="<c:out value="${itemvo.itemImage3 }"/>">
 	   				<!-- ----------------------------------- -->
 	   			</td>
 	   		</tr>

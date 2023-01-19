@@ -86,7 +86,7 @@ $(function(){
 	   		</tr>
 	   		
 	   		<tr>
-	   			<td style="width:20%"><b>비밀번호</b></td>
+	   			<td style="width:20%"><b>공지글 비밀번호</b></td>
         		<td style="width:80%">
     	  		  <div class="col-md-5">
    		 	      <input type="password" name="passwd" id="bpwd" class="form-control">
@@ -116,7 +116,7 @@ $(function(){
 	   				class="form-control">
 	   				<!-- ---------------------------------- -->
 	   				<!-- ---기존 파일 보내기hidden-------------------- -->
-	   				<input type="text" name="old_filename" value="<c:out value="${board.filename }"/>">
+	   				<input type="hidden" name="old_filename" value="<c:out value="${board.filename }"/>">
 	   				<!-- ----------------------------------- -->
 	   			</td>
 	   		</tr>

@@ -99,7 +99,7 @@ $(function(){
 	   		</tr>
 	   		
 	       <tr>
-    	        <td style="width:20%"><b>글 비밀번호</b></td>
+    	        <td style="width:20%"><b>공지글 비밀번호</b></td>
        	   		<td style="width:80%">
        	  	 	<div class="col-md-5">
        			<input type="password" name="passwd" id="bpwd" class="form-control">
